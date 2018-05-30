@@ -1,0 +1,74 @@
+/******** Customized style ********/
+#id_more_info_comment_section tr:first-child, #id_rejection_comment_section tr:first-child
+{
+    height: 0px;
+}
+
+#id_more_info_comment_section tbody tr td a, #id_rejection_comment_section tbody tr td a
+{
+    display: none;
+}
+
+/******** Custom Header menu ********/
+.displayme_true {
+    display: block;
+}
+.displayme_false {
+    display: none;
+}
+#rmpmenu {
+    margin: 0;
+    color: #343434;
+}
+.rmpmenu li {
+     background-color: #cacaca; 
+}
+.rmplevel0 {
+    margin: 0 0 1px 2px;
+    height: 26px;
+    border-radius: 10px 10px 0 0;
+    padding: 5px 0;
+}
+/* Home icon position */
+#rmpoption0_0 {
+    margin: 0 0 0 2px;
+    padding-left: 5px;
+}
+#rmpoption0_0 a:after {
+    display: inline-block;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content:"  \f015";
+}
+#rmpmenu a {
+    text-decoration: none;
+    
+    font-size: 13px;
+}
+#rmpmenu a:hover {
+    color: #fff;
+}
+#rmpmenu a:active {
+    color: #fff;
+}
+.rmpmenu li:hover a {
+    color: #fff; 
+}
+.rmplevel0:hover,
+.rmplevel1:hover {
+    background-color: #939393;
+    color: #fff;
+    cursor: pointer
+}
+.rmplevel0:hover>a,
+.rmplevel0:hover>a {
+    text-decoration: none;
+    color: #fff;
+}
+.rmplevel0:hover a,
+.rmplevel1:hover a {
+    color: #fff;
+}

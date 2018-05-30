@@ -1,0 +1,54 @@
+	<!-- Selection filters -->
+	<div id="id_profileRow" class="row margin-bottom-10px">
+		<div class="col-md-4 col-sm-4">
+			<div class="input-group" data-toggle="tooltip" data-placement="top" title="${i18n('company_tooltip', 'Compagnie')}">
+			  <span class="input-group-addon">
+			    <i class="fa fa-building" aria-hidden="true"></i>
+			  </span>
+			  <input id="id_company" name="company" class="form-control" type="text" placeholder="">
+			</div>
+		</div>
+		<div class="col-md-3 col-md-offset-3 col-sm-3 col-sm-offset-3">
+			<div class="form-group has-warning has-feedback" data-toggle="tooltip" data-placement="top" title="${i18n('profile_tooltip', 'Vue associée au profil')}">
+			  <input id="id_profile" name="profile" class="form-control text-bold" type="text" placeholder="">
+			  <span class="form-control-feedback">
+			    <i class="fa fa-user-secret" aria-hidden="true"></i>
+			  </span>
+			</div>
+		</div>
+
+		<!-- Loading Spinner -->
+		<div id="id_spinner_search" class="col-md-1 col-sm-1">
+			<p><i class="fa fa-spinner fa-pulse fa-3x fa-fw text-primary"></i></p>
+			<p class="sr-only-visible text-primary text-bold-italic">${i18n('spinner_search_text', 'Chargement...')}</p>
+		</div>
+	</div>
+
+	<div id="id_graphFilter" class="row no-margin">
+		<div class="col-md-4 col-sm-4">
+			<div class="input-group has-success" data-toggle="tooltip" data-placement="top" title="Choix enseigne(s)">
+			  <span class="input-group-addon">
+			    <i class="fa fa-tag" aria-hidden="true"></i>
+			  </span>
+			  <select id="id_affiliateFilter" name="affiliateFilter" class="form-control" type="text" Title="${i18n('affiliate_tooltip', 'Choix enseigne(s)')}" size="1"></select>
+			</div>
+		</div>
+
+		<div class="col-md-3 col-sm-3">
+			<div class="input-group has-success" data-toggle="tooltip" data-placement="top" title="Choix pays">
+			  <span class="input-group-addon">
+			    <i class="fa fa-globe" aria-hidden="true"></i>
+			  </span>
+			  <select id="id_countryFilter" name="countryFilter" class="form-control" type="text" Title="${i18n('country_tooltip', 'Choix pays')}" size="1"></select>
+			</div>
+		</div>
+
+		<div class="col-md-3 col-sm-3">
+			<div  id="id_divOtherInfo" class="input-group" data-toggle="tooltip" data-placement="top" title="${i18n('otherInfo_tooltip', 'Type Secteur')}">
+			  <span class="input-group-addon">
+			    <i class="fa fa-font-awesome" aria-hidden="true"></i>
+			  </span>
+			  <input id="id_otherInfo" name="otherInfo" class="form-control" type="text" placeholder="">
+			</div>
+		</div>
+	</div>

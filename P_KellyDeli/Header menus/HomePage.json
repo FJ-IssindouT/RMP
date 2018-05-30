@@ -4,7 +4,7 @@
         "url" : "https://live.runmyprocess.com/live/112501480325272109/appli/345846?P_mode=${P_mode}&P_language=${P_language}"
     }, {
         "title" : "Créer demande",
-		"visible" : "${has_right('402267')=='true' || has_right('402314')=='true' || has_right('398372')=='true' || has_right('398369')=='true'}",
+		"visible" : "${has_right('402267')=='true' || has_right('402314')=='true' || has_right('401915')=='true' || has_right('398372')=='true' || has_right('398369')=='true'}",
         "url" : "https://live.runmyprocess.com/live/112501480325272109/appli/345849?P_mode=${P_mode}&P_language=${P_language}"
     }, {
         "title" : "Suivi demandes",
@@ -16,7 +16,7 @@
         "url" : "https://live.runmyprocess.com/live/112501480325272109/appli/345847?P_mode=${P_mode}&P_language=${P_language}"
     }, {
         "title" : "Tableaux de bord",
-		"visible" : "${has_right('403277')=='false' && has_right('402267')=='false' && has_right('402314')=='false'}",
+		"visible" : "${has_right('402267')=='false' && has_right('403277')=='false'}",
         "url" : "https://live.runmyprocess.com/live/112501480325272109/appli/345850?P_mode=${P_mode}&P_language=${P_language}"
     }, {
         "title" : "Tutoriels",
@@ -28,18 +28,19 @@
         "url" : "https://live.runmyprocess.com/live/112501480325272109/appli/347324?P_mode=${P_mode}&P_language=${P_language}"
     }, {
         "title" : "Fermeture ticket",
-        "visible" : "${has_right('403277')=='true' || has_right('398369')=='true'}",
+        "visible" : "${has_right('403277')=='true' || has_right('439766')=='true' || has_right('401915')=='true' || has_right('398369')=='true'}",
         "url" : "https://live.runmyprocess.com/live/112501480325272109/appli/350158?P_mode=${P_mode}&P_language=${P_language}"
     }, {
         "title" : "Gestion Compte",
         "visible" : "${has_right('398372')=='true' || has_right('398369')=='true'}",
-        "url" : ""
+        "url" : "https://live.runmyprocess.com/live/112501480325272109/appli/345843?P_mode=${P_mode}&P_language=${P_language}"
     }
 ]
 
 // 398369  => RMS - Designers
 // 398368  => RMS - KELLYDELI
-// 403277  => KD - Support DESK
+// 403277  => KD - Partners
+// 439766  => KD - Support DESK KD
 // 401915  => KD - Support Managers
 // 402221  => KD - Affiliate Managers
 // 402315  => KD - Region Manager (ex-Division)

@@ -1,0 +1,22 @@
+[{
+    "title" : "Home",
+    "image" : "https://live.runmyprocess.com/live/112501487582701289/upload/674da3b0-9d52-11e7-9c4e-0619bd984419/home-icon.png",
+    "url" : "https://live.runmyprocess.com/live/112501487582701289/appli/341528?P_mode=${P_mode}"
+}, {
+    "title" : "Créer demande",
+    "url" : "https://live.runmyprocess.com/live/112501487582701289/appli/341528?P_mode=${P_mode}"
+}, {
+    "title" : "Rapports",
+    "url" : "https://live.runmyprocess.com/live/112501487582701289/appli/342922?P_mode=${P_mode}"
+}, {
+    "title" : "Module de gestion",
+    "url" : "https://live.runmyprocess.com/live/112501487582701289/appli/349277?P_mode=${P_mode}",
+    "visible" : "${has_right('401469')=='true' || has_right('401372')=='true'}"
+}
+]
+
+// Lanes description
+// 419193 => Campagne TPI - Techniciens
+// 401469 => Campagne TPI - Gestionnaires
+// 401372 => Campagne TPI - Designers
+// 401468 => Campagne TPI - Utilisateurs (All)

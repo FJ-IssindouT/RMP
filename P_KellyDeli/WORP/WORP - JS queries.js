@@ -1,5 +1,5 @@
 var queries_title_notify = ${P_quoted(i18n("queries_title_notify", "Erreur"))};
-var queries_thanks_notify = ${P_quoted(i18n("queries_thanks_notify", "Merci de signaler cette erreur!"))};
+var queries_thanks_notify = ${P_quoted(i18n("queries_thanks_notify", "Merci de signaler cette erreur !"))};
 var queries_btn_ok = ${P_quoted(i18n("btn_ok", "OK"))};
 
 // ===========================
@@ -239,7 +239,7 @@ function getCompanyQuery()
     RMPApplication.debug("begin getCompanyQuery");
     var company = login.company;
     if (isEmpty(company)) {
-        var error_msg = ${P_quoted(i18n("error_getCompanyQuery_msg", "Le nom de la compagnie n'est pas pas défini!"))};
+        var error_msg = ${P_quoted(i18n("error_getCompanyQuery_msg", "Le nom de la compagnie n'est pas pas défini !"))};
         notify_error(queries_title_notify, error_msg + ' ' + queries_thanks_notify); 
         return;
     } else {
@@ -313,7 +313,7 @@ function affiliate_ok(result)
     c_debug(debug.query, "=> affiliate_ok: result = ", result);
     if ( (result.records.length == undefined) || (result.records.length == 0) ) {
         var  error_affiliate_ok_title = ${P_quoted(i18n("error_affiliate_ok_title", "Résultat de la recherche"))};
-        var  error_affiliate_ok_msg = ${P_quoted(i18n("error_affiliate_ok_msg", "Aucun contrat ne répond aux critères!"))};
+        var  error_affiliate_ok_msg = ${P_quoted(i18n("error_affiliate_ok_msg", "Aucun contrat ne répond aux critères !"))};
         dialog_error(error_affiliate_ok_title, error_affiliate_ok_msg, queries_btn_ok);
         return;
     } else {
@@ -331,7 +331,7 @@ function affiliate_ko(error)
 {
     RMPApplication.debug("begin affiliate_ko : error = " + JSON.stringify(error));
     c_debug(debug.query, "=> affiliate_ko: error = ", error);
-    var error_msg = ${P_quoted(i18n("affiliate_ko_msg", "Récupération impossible des informations du contrat!"))};
+    var error_msg = ${P_quoted(i18n("affiliate_ko_msg", "Récupération impossible des informations du contrat !"))};
     notify_error(queries_title_notify, error_msg + ' ' + queries_thanks_notify); 
     RMPApplication.debug("end affiliate_ko");
 }
@@ -401,7 +401,7 @@ function getLocationQuery()
         if (locations_value[0] === 'false') {        // no location matching
             $("#id_spinner_search").hide();
             var  error_location_title = ${P_quoted(i18n("error_location_title", "Suivi des incidents"))};
-            var  error_location_text = ${P_quoted(i18n("error_location_text", "Il n'existe aucun site répondant aux critères de recherche!"))};
+            var  error_location_text = ${P_quoted(i18n("error_location_text", "Il n'existe aucun site répondant aux critères de recherche !"))};
             dialog_warning(error_location_title, error_location_text, queries_btn_ok);
             return;
         } else {

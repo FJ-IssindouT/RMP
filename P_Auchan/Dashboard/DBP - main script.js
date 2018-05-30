@@ -31,7 +31,7 @@ var locationsListQuery = '';    // part of query with involved contracts will be
 var wos_array = null;           // all opened work orders with active SLA for selected locations
 
 var error_title_notify = ${P_quoted(i18n("error_title_notify", "Erreur"))};
-var info_title_notify = ${P_quoted(i18n("info_title_notify", "Information"))};
+// var info_title_notify = ${P_quoted(i18n("info_title_notify", "Information"))};
 var error_thanks_notify = ${P_quoted(i18n("error_thanks_notify", "Merci de signaler cette erreur!"))};
 var btn_ok = ${P_quoted(i18n("btn_ok", "OK"))};
 
@@ -654,6 +654,7 @@ function affiliate_ok(result)
         var contract_query = "^co_u_full_name=" + contract.toUpperCase();
         sn_query += contract_query;            // query is completed; special SN view
         c_debug(debug.query, "=> affiliate_ok: sn_query = ", sn_query);
+
         contractsListQuery += "^co_u_full_nameIN" + contract.toUpperCase();    // standard SN table
         c_debug(debug.query, "=> affiliate_ok: contractsListQuery = ", contractsListQuery);
 
@@ -726,6 +727,7 @@ function getLocationQuery()
             break;
 
     }   // -- end switch (scope)
+
     c_debug(debug.query, "=> getLocationQuery: locationQuery = ", locationQuery);
     c_debug(debug.query, "=> getLocationQuery: locationsListQuery = ", locationsListQuery);
     sn_query += locationQuery;          // query is complete
@@ -743,7 +745,7 @@ function queryServiceNow()
 
     // For reminder, sn_query already contains, when impacted:
     // names of company, affiliates, country, division, region
-    // Only work orders with active SLA are interestinf for cartography
+    // Only work orders with active SLA are interesting for cartography
 
     // due to new dedicated SNOW database view to retrieve active SLAs, we don't need anymore information related to company or affiliate
     sn_query += "^tasksla_active=true";              // only WO with a n associated active sla
@@ -752,7 +754,7 @@ function queryServiceNow()
     var input = {};
     var options = {};
     input.query = sn_query;
-    c_debug(debug.query, "=> queryServiceNow: sn_query = ", sn_query);   
+    c_debug(debug.query, "=> queryServiceNow: sn_query = ", sn_query);
 
     id_get_work_order_sla_api.trigger(input, options, get_wos_sla_ok, get_wos_sla_ko);
 
@@ -762,13 +764,13 @@ function queryServiceNow()
 function get_wos_sla_ok(result)
 {
     RMPApplication.debug("begin get_wos_sla_ok : result = " + JSON.stringify(result));
-    c_debug(debug.sla, "=> get_wos_sla_ok: result = ", result);   
+    c_debug(debug.sla, "=> get_wos_sla_ok: result = ", result);
 
     wos_array = result.result;          // array of work orders with active SLA
     $("#id_spinner_search").hide();
 
     var selected_dashboard_tab = id_selected_dashboard_tab.getValue();
-    c_debug(debug.sla, "=> get_wos_sla_ok: selected_dashboard_tab = ", selected_dashboard_tab);   
+    c_debug(debug.sla, "=> get_wos_sla_ok: selected_dashboard_tab = ", selected_dashboard_tab);
     switch (selected_dashboard_tab) {
         case "kpi" :
             // TO DO: function call with Satisfaction statistics

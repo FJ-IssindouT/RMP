@@ -1,0 +1,12 @@
+{
+	"FUJITSU_NUMBER" : "WO0123456",
+	"company": "KD",
+	"affiliate" : "KELLYDELI",
+	"LOCATION_CODE" : "FR-CRF-00052",
+	"OPENED_DATE": "12/01/2018 12:00",
+	"PRIORITY": "2 - High",
+	"STATUS": "Assigned",
+	"CLOSURE_DATE": "15/01/2018 15:00",
+	"SHORT_DESCRIPTION": "TEST Trad",
+	"DESCRIPTION": "TEST Trad - pour client KellYDeli"
+}

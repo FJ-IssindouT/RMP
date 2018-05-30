@@ -348,14 +348,20 @@ function timestamp_to_delay(t_stamp_ms)
     if (t_stamp_ms == 0) {
         return "00:00";
     } else {
-        var seconds = (t_stamp_ms/1000) % 60;
+
+        var seconds = (t_stamp_ms / 1000).toFixed(0);
         var minutes = Math.floor(seconds / 60);
-        var hours = Math.floor(minutes/60);
-        minutes = minutes % 60;
-        var hours_part = (hours == 0) ? "" : pad(hours) + "h";
-        var minutes_part = (minutes == 0) ? "00" : pad(minutes);
-        var seconds_part = (seconds == 0) ? "" : pad(seconds);
-        return hours_part + minutes_part + ":" + seconds_part;
+        var hours = "";
+        if (minutes > 59) {
+            hours = Math.floor(minutes / 60);
+            minutes = minutes - (hours * 60);
+            hours = (hours == 0) ? "" : pad(hours) + "h";
+        }
+        minutes = (minutes == 0) ? "00" : pad(minutes);
+        seconds = Math.floor(seconds % 60);
+        seconds = (seconds == 0) ? "" : pad(seconds);
+        
+        return hours + minutes + ":" + seconds;
     }
 
     RMPApplication.debug ("end timestamp_to_delay");

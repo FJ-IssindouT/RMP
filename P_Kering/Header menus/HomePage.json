@@ -1,0 +1,32 @@
+[
+	{
+        "title" : "Home",
+        "image" : "https://live.runmyprocess.com/live/112501412000161590/upload/46cce350-010f-11e8-b860-0639651b3341/home-icon.png",
+        "url" :"https://portal.runmyprocess.com"
+    }, 
+	{
+        "title" : "New Request",
+        "url" : "https://live.runmyprocess.com/live/112501412000161590/appli/262591?P_mode=${P_mode}"
+    },
+	{
+        "title" : "Dashboard",
+        "url" : "https://live.runmyprocess.com/live/112501412000161590/appli/265533?P_mode=${P_mode}",
+        "visible" : "${has_right('319624')=='true'}"
+    },
+	{
+        "title" : "Reports",
+        "url" : "https://live.runmyprocess.com/live/112501412000161590/appli/263827?P_mode=${P_mode}",	
+    },
+	{
+        "title" : "Configuration",
+        "url" : "https://live.runmyprocess.com/live/112501412000161590/appli/266816?P_mode=${P_mode}",
+        "visible" : "${has_right('319624')=='true'}"
+    },
+	{
+        "title" : "Rights Management",
+        "url" : "https://live.runmyprocess.com/live/112501412000161590/appli/274912?P_mode=${P_mode}",
+        "visible" : "${has_right('319624')=='true'}"
+    }
+]
+
+// 319624  =>  PPM Observer

@@ -219,7 +219,7 @@ function inv_ok(result)
 		var dispatch_group = id_dispatch_group.getValue();
 		var vb_wo = new Array();
 		if (typeof(wt_ol[0]) == 'undefined') {		// 1 Seul résultat
-			if ( include_string(wt_ol.dispatch_group, "Fujitsu") || include_string(wt_ol.dispatch_group, "Dispatch") ||	include_string(wt_ol.assignment_group, "Fujitsu") || include_string(wt_ol.assignment_group, "Dispatch") ) {
+			if ( include_string(wt_ol.dispatch_group, "Fujitsu") || include_string(wt_ol.dispatch_group, "Dispatch")  || include_string(wt_ol.dispatch_group, "RMSDEMO") ||	include_string(wt_ol.assignment_group, "Fujitsu") || include_string(wt_ol.assignment_group, "Dispatch") ) {
 				vb_wo.push({"label": wt_ol.number + "-" + wt_ol.location, "value": wt_ol.sys_id});
 				console.log("inv_ok 1");
 			}
@@ -227,7 +227,7 @@ function inv_ok(result)
 
 		} else {											// 1 liste de résultats
 			for(i=0; i<wt_ol.length; i++) {
-				if ( include_string(wt_ol[i].dispatch_group, "Fujitsu") || include_string(wt_ol[i].dispatch_group, "Dispatch") || include_string(wt_ol[i].assignment_group, "Fujitsu") || include_string(wt_ol[i].assignment_group, "Dispatch") ) {
+				if ( include_string(wt_ol[i].dispatch_group, "Fujitsu") || include_string(wt_ol[i].dispatch_group, "Dispatch")  || include_string(wt_ol[i].dispatch_group, "RMSDEMO") || include_string(wt_ol[i].assignment_group, "Fujitsu") || include_string(wt_ol[i].assignment_group, "Dispatch") ) {
 					vb_wo.push({"label": wt_ol[i].number + "-" + wt_ol[i].location, "value": wt_ol[i].sys_id});
 					console.log("inv_ok 3");
 				}

@@ -1,0 +1,95 @@
+<!--6 - Ticket details -->
+<div class="container">
+
+<input id="id_selectedFamily" type="text" hidden="hidden">
+<input id="id_selectedCategory" type="text" hidden="hidden">
+<input id="id_selectedBrand" type="text" hidden="hidden">
+<input id="id_selectedModel" type="text" hidden="hidden">
+<input id="id_selectedNotation" type="text" hidden="hidden" readonly="readonly">
+
+    <!-- Identification Part -->
+    <div id="id_rowIdentification" class="row">
+        <div class="col-md-4 col-sm-4 margin-bottom-10px">
+            <!-- <div class="row"> -->
+                <div id="id_num_det_div" class="input-group" data-toggle="tooltip" data-placement="bottom" title="${i18n('tooltip_id1', 'N° Incident')}">
+                    <span class="input-group-addon">
+                    <i class="fa fa-hashtag" aria-hidden="true"></i>
+                    </span>
+                    <input id="id_number_detail" name="number_detail" class="form-control" type="text" placeholder="" readonly="readonly">
+                </div>
+            <!-- </div> -->
+            <!-- <div class="row"> -->
+            <div id="id_cont_det_div" class="input-group" data-toggle="tooltip" data-placement="top" title="${i18n('tooltip_id2', 'Contrat')}">
+                <span class="input-group-addon">
+                <i class="fa fa-group" aria-hidden="true"></i>
+                </span>
+                <input id="id_contract_detail" name="contract_detail" class="form-control" type="text" placeholder="" readonly="readonly">
+            </div>
+            <!-- </div> -->
+			 <div id="id_aff_det_div" class="input-group" data-toggle="tooltip" data-placement="top" title="${i18n('tooltip_id3', 'Code Magasin / Enseigne')}">
+                <span class="input-group-addon">
+                <i class="fa fa-tag" aria-hidden="true"></i>
+                </span>
+                <input id="id_affiliate_detail" name="affiliate_detail" class="form-control" type="text" placeholder="" readonly="readonly">
+            </div>
+			
+        </div>
+
+        <div class="col-md-4 col-sm-4 margin-bottom-10px">
+			<div id="id_open_det_div" class="input-group has-success" data-toggle="tooltip" data-placement="bottom" title="${i18n('tooltip_id4', 'Date Ouverture')}">
+                <span class="input-group-addon">
+                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                </span>
+                <input id="id_opened_detail" name="opened_detail" class="form-control" type="text" placeholder="" readonly="readonly">
+            </div>
+            <div id="id_prior_det_div" class="input-group" data-toggle="tooltip" data-placement="top" title="${i18n('tooltip_id5', 'Priorité')}">
+                <span class="input-group-addon">
+                    <i class="fa fa-list-ol" aria-hidden="true"></i>
+                </span>
+                <input id="id_priority_detail" name="priority_detail" class="form-control" type="text" placeholder="" readonly="readonly">
+            </div>            
+            <div id="id_stat_det_div" class="input-group" data-toggle="tooltip" data-placement="top" title="${i18n('tooltip_id6', 'Statut')}">
+                <span class="input-group-addon">
+                    <i class="fa fa-hourglass-half" aria-hidden="true"></i>
+                </span>
+                <input id="id_state_detail" name="state_detail" class="form-control" type="text" placeholder="" readonly="readonly">
+            </div>
+            <div id="id_clos_det_div" class="input-group has-warning" data-toggle="tooltip" data-placement="top" title="${i18n('tooltip_id7', 'Date Fermeture')}">
+                <span class="input-group-addon">
+                    <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                </span>
+                <input id="id_closed_detail" name="closed_detail" class="form-control" type="text" placeholder="" readonly="readonly">
+            </div>
+
+        </div>
+
+    </div>
+</div>
+    <hr>
+    <!-- Ticket Details Part -->
+<div class="container">
+    <div id="id_rowTicketDetails" class="row margin-bottom-10px">
+        <div class="col-md-4 col-sm-4 margin-bottom-10px">
+           <div id="id_short_desc_det_div" class="form-group">
+                <label for="short_description_detail">${i18n('title_id1', 'Résumé')}</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="fa fa-file" aria-hidden="true"></i>
+                    </span>
+                    <input id="id_short_description_detail" name="short_description_detail" class="form-control" type="text" placeholder="${i18n('tooltip_id8', 'Courte description')}" readonly="readonly">
+                </div>
+            </div>
+             <div id="id_desc_det_div" class="form-group">
+                <label for="description_detail">${i18n('title_id2', 'Description')}</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="fa fa-file-text" aria-hidden="true"></i>
+                    </span>
+                    <textarea id="id_description_detail" rows="6" class="form-control" readonly="readonly"></textarea>   
+                </div>
+            </div>          
+        </div>
+
+
+    </div>
+</div>

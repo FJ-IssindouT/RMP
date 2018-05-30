@@ -83,7 +83,7 @@ function setLabels ()
 	var year_text = ${P_quoted(i18n("year_period_text", "Exercice"))};
 
 	id_currMonth.append(month_text + ': ' + curr_month);
-	id_prevMonth.append(month_text + ' ' + prev_month);
+	id_prevMonth.append(month_text + ': ' + prev_month);
 	id_currQuart.append(quarter_text + curr_quarter.num + ' - ' + curr_quarter.year);
 	id_prevQuart.append(quarter_text + prev_quarter.num + ' - ' + prev_quarter.year);
 
@@ -92,12 +92,12 @@ function setLabels ()
 		id_prevExercise.append(year_text + ': ' + prev_year);		
 	} else {
 		if (num_curr_month < FIRSTMONTHOFEXERCISE) {
-			prev_year -= 1 ;
+			prev_year -= 1;
 			curr_year -= 1;
-			next_year -= 1 ;
+			next_year -= 1;
 		}
-		id_currExercise.append(year_text + ': ' + curr_year + " / " + next_year);
-		id_prevExercise.append(year_text + ': ' + prev_year + " / " + curr_year);
+		id_currExercise.append(year_text + ': ' + curr_year + ' / ' + next_year);
+		id_prevExercise.append(year_text + ': ' + prev_year + ' / ' + curr_year);
 	}
 	RMPApplication.debug("end setLabels");
 }
@@ -123,13 +123,20 @@ function getFilter()
 	// var previous_month_query = "^wo_opened_atONLast month@javascript:gs.beginningOfLastMonth()@javascript:gs.endOfLastMonth()";
 	// var current_quarter_query = "^wo_opened_atONThis quarter@javascript:gs.beginningOfThisQuarter()@javascript:gs.endOfThisQuarter()";
 	// var previous_quarter_query = "^wo_opened_atONLast quarter@javascript:gs.quartersAgoStart(1)@javascript:gs.quartersAgoEnd(1)";
-	var current_exercise_query = "^wo_opened_atBETWEEN" + getFirstDayCurrentExercise(FIRSTMONTHOFEXERCISE) + "@" + getLastDayCurrentExercise(FIRSTMONTHOFEXERCISE);
+	var today = new Date();
+	var num_curr_month = today.getMonth() + 1;
+	var num_first_moe = Number(FIRSTMONTHOFEXERCISE);
+	if (((num_curr_month + 12 - num_first_moe)%12) > 3) {
+		var current_exercise_query = "^wo_opened_atBETWEEN" + getFirstDayCurrentExercise(FIRSTMONTHOFEXERCISE) + "@" + getLastDayCurrentExercise(FIRSTMONTHOFEXERCISE);
+	} else {
+		var current_exercise_query = "^wo_opened_atBETWEEN" + getFirstDayPreviousQuarter() + "@" + getLastDayCurrentExercise(FIRSTMONTHOFEXERCISE);	
+	}
 
-	// var sn_query_charts = "co_parentLIKE" + login.company;
+	var sn_query_charts = "co_parentLIKE" + login.company;
+
 	// following any change to affiliate filter, we use contractsListQuery, already defined :)
-	// sn_query_charts += contractsListQuery;
-	// sn_query_charts += locationsListQuery;
-	var sn_query_charts = "";
+	sn_query_charts += contractsListQuery;
+	sn_query_charts += locationsListQuery;
 
 	/*current_month_query = sn_query_charts + current_month_query;
 	previous_month_query = sn_query_charts + previous_month_query;
@@ -170,7 +177,6 @@ function drawChart()
 
 	var options = {};
 	// Following CAPI is only implemented for 6 periods (current & previous months, quarters, exercises)
-	// id_get_report_datas_full_api.trigger(wo_query, options, wo_list_ok, wo_list_ko);
 	id_get_report_datas_api.trigger(wo_query, options, wo_list_ok, wo_list_ko);
 	
 	RMPApplication.debug("end drawChart");
@@ -230,6 +236,7 @@ function wo_list_ok(P_computed)
 		}
 		c_debug(debug.chart, "=> wo_list_ok: *** KEY = ", key);
 		c_debug(debug.chart, "                 array = ", array);
+
 		var result = {};
 		if (!isEmpty(array)) {
 			result.nb_draf = 0;			// "Draft"
@@ -686,7 +693,7 @@ function drawColumnChart(d_obj, id_div)
 	wo_per_type_chart.draw (wo_per_type_data, wo_per_type_options);
 
 	RMPApplication.debug("end drawColumnChart");
-}	// End function columnPieChart
+}	// End function drawColumnChart
 
 function drawPieChart(d_obj, id_div) 
 {
@@ -702,7 +709,7 @@ function drawPieChart(d_obj, id_div)
 		wo_per_prod_array[i+1] =  [d_obj.wo_prod_reduced[i], d_obj.wo_prod_details[i]];
 	}
 
-	// console.log('wo_per_prod_array: ', wo_per_prod_array);
+	c_debug(debug.chart, "=> drawPieChart: wo_per_prod_array = ", wo_per_prod_array);
 	var wo_per_prod_data = google.visualization.arrayToDataTable(wo_per_prod_array);
 	var wo_per_prod_options_title = ${P_quoted(i18n("pie_title_id1", "Répartition des"))} + " (" + d_obj.wo_prod_number + ") " + ${P_quoted(i18n("pie_title_id2", "tickets par PRODUIT"))};
 	var wo_per_prod_options = {

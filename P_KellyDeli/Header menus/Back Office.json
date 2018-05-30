@@ -7,9 +7,9 @@
         "visible" : "${has_right('398372')=='true' || has_right('398369')=='true'}",
         "url" : "https://live.runmyprocess.com/live/112501480325272109/appli/360952?P_mode=${P_mode}&P_language=${P_language}"
     }, {
-        "title" : "Gestion Enseignes",
+        "title" : "Gestion Langues",
         "visible" : "${has_right('398372')=='true' || has_right('398369')=='true'}",
-        "url" : ""
+        "url" : "https://live.runmyprocess.com/live/112501480325272109/appli/378886?P_mode=${P_mode}&P_language=${P_language}"
     }
 ]
 

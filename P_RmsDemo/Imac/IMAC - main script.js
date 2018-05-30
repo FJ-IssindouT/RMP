@@ -658,7 +658,7 @@ function showUserChoice()
 			break;
 	}
 
-	var action = "Matériel à ";
+	var action = ${P_quoted(i18n("action_to_do", "Matériel à"))} + " ";
 	switch (matAction) {
 		case "add" : 
 			action += ${P_quoted(i18n("add_action", "ajouter"))};

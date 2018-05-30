@@ -6,9 +6,22 @@ RMPApplication.debug("Dashboard : Application started");
 // ========================
 // Variables declaration
 // ========================
+
+// if "true", logs will be showed on the browser console
+var debug = {
+    "init" : false,
+    "box" : false,
+    "site" : false,
+    "query" : false,
+    "sla" : false,
+    "chart" : false
+    // "order" : true
+};
+
+// other global variables
+var login = {};                 // retrieve metadata user
 var view = '';                  // define current profile view
 var scope = null;               // scope of involved locations
-var login = {};                 // retrieve metadata user
 var enseigne = null;            // affiliate's login user
 var affiliateList = null;       // group of alliliates for specific profile
 var var_location_list = null;   // all locations defined by entry filter
@@ -36,9 +49,8 @@ function init()
     var option = {};
     var pattern = {};
     pattern.login = RMPApplication.get("login");
-    // console.log("=> init: pattern = ", pattern);
+    c_debug(debug.init, "=> init: pattern = ", pattern);
 
-    // CAPI for getting user information
     id_get_user_info_as_admin_api.trigger (pattern, option , get_info_ok, get_info_ko);
     RMPApplication.debug("end init");
 }
@@ -49,7 +61,7 @@ function init()
 function get_info_ok(result) 
 {
     RMPApplication.debug("begin get_info_ok : result = " + JSON.stringify(result));
-    // console.log("=> get_info_ok: result", result);
+    c_debug(debug.init, "=> get_info_ok: result = ", result);
 
     // define "login" variable properties
     login.user = result.user;
@@ -58,6 +70,7 @@ function get_info_ok(result)
     login.timezone = result.timezone;
     login.company = (!isEmpty(result.compagnie)) ? result.compagnie.trim().toUpperCase() : '';
     login.grp_affiliates = (!isEmpty(result.grp_ens)) ? result.grp_ens.trim().toUpperCase() : '';
+    login.affiliates_access = (!isEmpty(result.acces_enseignes)) ? result.acces_enseignes.trim().toUpperCase() : '';
     login.affiliate = (!isEmpty(result.enseigne)) ? result.enseigne.trim().toUpperCase() : '';
     login.country = (!isEmpty(result.pays)) ? result.pays.trim().toUpperCase() : '';
     login.location_code = (!isEmpty(result.code_magasin)) ? result.code_magasin.trim().toUpperCase() : '';
@@ -65,7 +78,7 @@ function get_info_ok(result)
     login.region = (!isEmpty(result.region)) ? result.region.trim().toUpperCase() : '';
     login.is_super_user = (!isEmpty(result.is_super_user)) ? result.is_super_user.toUpperCase() : '';
     enseigne = login.affiliate;
-    // console.log("=> get_info_ok: login = ", login);
+    c_debug(debug.init, "=> get_info_ok: login = ", login);
 
     // Define 'view' global variable, used to filter locations scope
     // Different profiles are: SUPERUSER-COMPANY-COUNTRY-DIVISION-REGION-LOCAL
@@ -99,8 +112,8 @@ function get_info_ok(result)
     id_profile.attr('readonly', 'readonly');
     id_company.attr("value", login.company);
     id_company.attr('readonly', 'readonly');
+    c_debug(debug.init, "=> get_info_ok: view = ", view);
 
-    // console.log("get_info_ok: view = ", view);
     fillCountryBox(view);       // Country selection if authorized
     fillAffiliateBox(view);     // Affiliate selection if authorized
     fillOtherInfo(view);        // Show Division / Region if manager
@@ -108,11 +121,10 @@ function get_info_ok(result)
     RMPApplication.debug("end get_info_ok");
 }
 
-function get_info_ko(result) 
+function get_info_ko(error) 
 {
-    RMPApplication.debug("get_info_ko : " + JSON.stringify(result));
-    // console.log("* get_info_ko: result = ", result);
-
+    RMPApplication.debug("get_info_ko : " + JSON.stringify(error));
+    c_debug(debug.init, "=> get_info_ko: error = ", error);
     var error_msg = ${P_quoted(i18n("get_info_ko_msg", "Récupération impossible des informations utilisateur!"))};
     notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify);
     RMPApplication.debug("end get_info_ko");
@@ -128,7 +140,7 @@ function get_info_ko(result)
 function fillCountryBox(vue) 
 {
     RMPApplication.debug("begin fillCountryBox");
-    // console.log("=>  fillCountryBox: vue = ", vue);
+    c_debug(debug.box, "=> fillCountryBox: vue = ", vue);
 
     var text_countryFilter = "";
 
@@ -179,10 +191,11 @@ function fillCountryBox(vue)
 function fillAffiliateBox(vue) 
 {
     RMPApplication.debug("begin fillAffiliateBox");
-    // console.log("=>  fillAffiliateBox: vue = ", vue);
+    c_debug(debug.box, "=> fillAffiliateBox: vue = ", vue);
 
     var affiliateListTemp = JSON.parse(id_affiliate_cl.getList()).list;
-    // console.log("=>  fillAffiliateBox: affiliateListTemp = ", affiliateListTemp);
+    c_debug(debug.box, "=> fillAffiliateBox: affiliateListTemp = ", affiliateListTemp);
+
     var text_affiliateFilter = ${P_quoted(i18n("affiliateFilter_text", "TOUTES LES ENSEIGNES"))};
 
     // Complete affiliate selection filter according connected profile
@@ -191,9 +204,19 @@ function fillAffiliateBox(vue)
         case "COMPANY" : // see "COUNTRY"
         case "COUNTRY" :
             // Following line can be disabled if the concerned company only have one affiliate 
-            $("#id_affiliateFilter").append($("<option selected />").val('tous').html(text_affiliateFilter));
+            // $("#id_affiliateFilter").append($("<option selected />").val('tous').html(text_affiliateFilter));
             affiliateList = JSON.parse(id_affiliate_cl.getList()).list;
-            for (var i=0; i < affiliateList.length; i++) {
+            var aff_list_length = affiliateList.length;
+            for (var i=0; i < aff_list_length; i++) {
+                if (aff_list_length > 1) {
+                    if (i==0) {
+                        // If we have more than one affiliate, "all" option for selection is added
+                        $("#id_affiliateFilter").append($("<option selected />").val('tous').html(text_affiliateFilter));
+                    }
+                } else {
+                    // If we have only one affiliate, we can fix the following field as read-only
+                    $("#id_affiliateFilter").attr('readonly', 'readonly');
+                }
                 $("#id_affiliateFilter").append($("<option />").val(affiliateList[i].value).html("&#10143; " + affiliateList[i].label.toUpperCase()));
             }
             // If we have only one affiliate, we can fix the following field as read-only
@@ -228,7 +251,7 @@ function fillAffiliateBox(vue)
                      affiliateList = [{ 'label': affiliateListTemp[i].label.toUpperCase(), 'value': affiliateListTemp[i].value }];
                 }
             }
-            // console.log("fillAffiliateBox: affiliateList = ", affiliateList);
+            c_debug(debug.box, "=> fillAffiliateBox: affiliateList = ", affiliateList);
             $("#id_affiliateFilter").append($("<option selected />").val(affiliateList[0].value).html(affiliateList[0].label.toUpperCase()));
             $("#id_affiliateFilter").attr('readonly', 'readonly');
             break;
@@ -237,7 +260,9 @@ function fillAffiliateBox(vue)
     }
 
     // Listen changes before populating dynamically locations select box
-    $("#id_affiliateFilter").change(getFilteredLocations);
+    if (affiliateListTemp.length > 1) {
+        $("#id_affiliateFilter").change(getFilteredLocations);
+    }
 
     RMPApplication.debug ("end fillAffiliateBox");
 }
@@ -246,8 +271,8 @@ function fillAffiliateBox(vue)
 function fillOtherInfo(vue) 
 {
     RMPApplication.debug("begin fillOtherInfo");
+    c_debug(debug.box, "=> fillOtherInfo: vue = ", vue);
 
-    // TO DO
     // Adapt this info area according the previous selection (country & affiliate)
     switch (vue) {
         case "DIVISION" :
@@ -278,14 +303,14 @@ function fillOtherInfo(vue)
 function getFilteredLocations()
 {
     RMPApplication.debug("begin getFilteredLocations");
-    // console.log("=> getFilteredLocations");
+    c_debug(debug.site, "=> getFilteredLocations");
 
     $("#id_spinner_search").show();         // show spinner before querying Service Now
 
     // Retrieving user's input value
     var country_value = $("#id_countryFilter").val();
     var affiliate_value = $("#id_affiliateFilter").val();
-    // console.log("=>  getFilteredLocations: affiliate_value = ", affiliate_value);
+    c_debug(debug.site, "=> getFilteredLocations: affiliate_value = ", affiliate_value);
     var affiliate_label = $("#id_affiliateFilter").text(); 
     var division_value = login.division; 
     var region_value = login.region;
@@ -300,14 +325,14 @@ function getFilteredLocations()
         for (var i=0; i < affiliateList.length; i++) {
             if ( affiliate_value.toUpperCase() ==  affiliateList[i].value.toUpperCase() ) {
                 affiliate_value = affiliateList[i].label.toUpperCase();
-                // console.log("getFilteredLocations: affiliate_value = ", affiliate_value);
+                c_debug(debug.site, "=> getFilteredLocations: affiliate_value = ", affiliate_value);
             }
         }
     }
 
+    c_debug(debug.site, "=> getFilteredLocations: switch | view = ", view);
     switch (view) {
             case "COMPANY" :
-                // console.log("switch COMPANY");
                 if ( (country_value !== "tous") && (!isEmpty(country_value)) ) {
                     input.country = { "$regex" : country_value, "$options" : "i"};   
                 }
@@ -317,14 +342,14 @@ function getFilteredLocations()
                 break;
 
             case "GRP_AFF" :
-                // console.log("switch GRP_AFF");
                 if ( (country_value !== "tous") && (!isEmpty(country_value)) ) {
                     input.country = { "$regex" : country_value, "$options" : "i"};   
                 }
                 switch (login.grp_affiliates) {
                     case 'SOCIETE2':
                         if ( (affiliate_value !== "tous") && (!isEmpty(affiliate_value)) ) {
-                            input.affiliate = { "$regex" : affiliate_value, "$options" : "i"}; 
+                            input.affiliate = { "$regex" : affiliate_value, "$options" : "i"};
+
                         } else {
                             // TO DO: composer la query avec le nom des 2 enseignes
                             input.affiliate = {};
@@ -334,6 +359,7 @@ function getFilteredLocations()
                     case 'SOCIETE3':
                         if ( (affiliate_value !== "tous") && (!isEmpty(affiliate_value)) ) {
                             input.affiliate = { "$regex" : affiliate_value, "$options" : "i"}; 
+
                         } else {
                             // TO DO: composer la query avec le nom des 3 enseignes
                             input.affiliate = {};
@@ -349,7 +375,6 @@ function getFilteredLocations()
                 break;
 
             case "AFFILIATE" :
-                // console.log("switch AFFILIATE");
                 if ( (country_value !== "tous") && (!isEmpty(country_value)) ) {
                     input.country = { "$regex" : country_value, "$options" : "i"};   
                 }
@@ -359,7 +384,6 @@ function getFilteredLocations()
                 break;
 
             case "COUNTRY" :
-                // console.log("switch COUNTRY");
                 if ( (country_value !== "tous") && (!isEmpty(country_value)) ) {
                     input.country = { "$regex" : country_value, "$options" : "i"}; 
                 } 
@@ -369,7 +393,6 @@ function getFilteredLocations()
                 break;
 
             case "DIVISION" :
-                // console.log("switch DIVISION");
                 if ( (country_value !== "tous") && (!isEmpty(country_value)) ) {
                     input.country = { "$regex" : country_value, "$options" : "i"};  
                 }
@@ -382,7 +405,6 @@ function getFilteredLocations()
                 break;
 
             case "REGION" :
-                // console.log("switch REGION");
                 if ( (country_value !== "tous") && (!isEmpty(country_value)) ) {
                     input.country = { "$regex" : country_value, "$options" : "i"};  
                 } 
@@ -395,7 +417,6 @@ function getFilteredLocations()
                 break;
 
             case "LOCAL" :
-                // console.log("switch LOCAL");
                 if ( (country_value !== "tous") && (!isEmpty(country_value)) ) {
                     input.country = { "$regex" : country_value, "$options" : "i"};  
                 } 
@@ -408,6 +429,7 @@ function getFilteredLocations()
         }
     
     //call api to location collection
+    c_debug(debug.site, "=> getFilteredLocations: input = ", input);
     id_get_filtered_locations_api.trigger(input, options, get_locations_ok, get_locations_ko);
 
     RMPApplication.debug("end getFilteredLocations");
@@ -417,14 +439,14 @@ function getFilteredLocations()
 function get_locations_ok(result)
 {
     RMPApplication.debug("begin get_locations_ok : result = " + JSON.stringify(result));
-    // console.log("begin get_locations_ok : result = ", result);
     var_location_list = result.res;
-    // console.log("begin get_locations_ok : var_location_list = ", var_location_list);
+    c_debug(debug.site, "=> get_locations_ok : var_location_list = ", var_location_list);
 
     // Define an array with composed locations name
     var location_names_array = [];
     var separator, rule_name;
-    for (var j = 0 ; j < var_location_list.length ; j++){
+    for (var j = 0 ; j < var_location_list.length ; j++) {
+
         switch (var_location_list[j].affiliate.toUpperCase()) {
             case 'XXXXXX':              // case "XXXXXX" affiliate & location name's specific rule
                 separator = "-";
@@ -435,7 +457,7 @@ function get_locations_ok(result)
                 rule_name = "loca_rule_2";
                 break;
         }
-        // console.log("=> getLocationQuery: rule_name = ", rule_name);
+        // c_debug(debug.site, "=> get_locations_ok : rule_name = ", rule_name);
 
         switch (rule_name) {
             case 'loca_rule_1':         //  case "XXXXXX" affiliate
@@ -445,12 +467,14 @@ function get_locations_ok(result)
                 var loca_name = $.trim(var_location_list[j].location) + separator + $.trim(var_location_list[j].location_code);
                 break;
         }   // -- end switch (rule_name)
-        // console.log('j:', j, "- loca_name: ", loca_name);
+        // c_debug(debug.site, "=> get_locations_ok : j = ", j);
+        // c_debug(debug.site, "=> get_locations_ok : loca_name = ", loca_name);
+
         location_names_array.push(loca_name);
     }
 
     var selected_dashboard_tab = id_selected_dashboard_tab.getValue();
-    // console.log("get_locations_ok: selected_dashboard_tab = ", selected_dashboard_tab);
+    c_debug(debug.site, "=> get_locations_ok : selected_dashboard_tab = ", selected_dashboard_tab);
     switch (selected_dashboard_tab) {
         case "kpi" :
             break;
@@ -467,7 +491,7 @@ function get_locations_ok(result)
 function get_locations_ko(error)
 {
     RMPApplication.debug("begin get_locations_ko : error = " + JSON.stringify(error));
-    // console.log("begin get_locations_ko : error = ", error);
+    c_debug(debug.site, "=> get_locations_ko: error = ", error);
     var error_msg = ${P_quoted(i18n("get_locations_ko_msg", "Récupération impossible des informations du site!"))};
     notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify);
     RMPApplication.debug("end get_locations_ko");
@@ -480,7 +504,7 @@ function get_locations_ko(error)
 function setScopeLocations() 
 {
     RMPApplication.debug("begin setScopeLocations");
-    // console.log('setScopeLocations');
+    c_debug(debug.site, "=> setScopeLocations");
     var country_value = $("#id_countryFilter").val();
     var affiliate_value = $("#id_affiliateFilter").val();
     var allCountries = (country_value.toLowerCase() === "tous") ? true : false;
@@ -489,10 +513,9 @@ function setScopeLocations()
     sn_query = "";      // previous query reset
 
     // Set SCOPE variable: check if "tous" value is selected for country & affiliate filters
-    // console.log('setScopeLocations: view = ', view);
+    c_debug(debug.site, "=> setScopeLocations: switch | view = ", view);
     switch (view) {
         case "COMPANY" :
-            // console.log("setScopeLocations: switch COMPANY");
             if (allCountries && allAffiliates) {    // "tous" + "tous" => company is enough
                 scope = "COMPANY";
                 getCompanyQuery();
@@ -509,8 +532,6 @@ function setScopeLocations()
             break;
 
         case "GRP_AFF" :
-            // console.log("setScopeLocations: switch GRP_AFF");
-            // TO DO => traiter ce cas particulier => ex: SMC (3 enseignes)
             if (allCountries && allAffiliates) {    // "tous" + "tous" => company is enough
                 scope = "GRP_AFF";
                 getContractFullName();
@@ -527,7 +548,6 @@ function setScopeLocations()
             break;
 
         case "AFFILIATE" :
-            // console.log("setScopeLocations: switch AFFILIATE");
             if (allCountries) {            // 1 selected country + "tous" => query with country setted
                 scope = "AFFILIATE";
                 getContractFullName();
@@ -538,7 +558,6 @@ function setScopeLocations()
             break;
 
         case "COUNTRY" :
-            // console.log("setScopeLocations: switch COUNTRY");
             if (allAffiliates) {            // 1 selected country + "tous" => query with country setted
                 scope = "COUNTRY";
                 getCompanyQuery();
@@ -549,23 +568,22 @@ function setScopeLocations()
             break;
 
         case "DIVISION" :
-            // console.log("setScopeLocations: switch DIVISION");
             scope = "DIVISION";
             getContractFullName();          // by requesting affiliate collection
             break;
 
         case "REGION" :
-            // console.log("setScopeLocations: switch REGION");
             scope = "REGION";
             getContractFullName();          // by requesting affiliate collection
             break;
 
         case "LOCAL" :
-            // console.log("setScopeLocations: switch LOCAL");
             scope = "LOCAL";
             getContractFullName();          // by requesting affiliate collection
             break;
     }
+    c_debug(debug.site, "=> setScopeLocations: scope = ", scope);
+
     RMPApplication.debug("end setScopeLocations");
 }
 
@@ -575,7 +593,6 @@ function setScopeLocations()
 function getCompanyQuery()
 {
     RMPApplication.debug("begin getCompanyQuery");
-    // console.log('getCompanyQuery: \n + view = ' + view + '\n + scope = ' + scope);
     var company = login.company;
     if (isEmpty(company)) {
         var error_msg = ${P_quoted(i18n("error_getCompanyQuery_msg", "Le nom de la compagnie n'est pas pas défini!"))};
@@ -583,11 +600,9 @@ function getCompanyQuery()
         return;
     } else {
         var companyQuery = "^wo_companyLIKE" + login.company;
-        // console.log('=> getCompanyQuery: companyQuery = ', companyQuery);  
-
+        c_debug(debug.query, "=> getCompanyQuery: companyQuery = ", companyQuery);  
         sn_query += companyQuery;       // query is completed
         getContractFullName();          // to define contract name
-
     }
     RMPApplication.debug("end getCompanyQuery");
 }
@@ -598,15 +613,15 @@ function getCompanyQuery()
 function getContractFullName()
 {
     RMPApplication.debug("begin getContractFullName");
-    // console.log('getContractFullName: \n + view = ' + view + '\n + scope = ' + scope);
+    c_debug(debug.query, "=> getContractFullName: view = ", view);
     var affiliate_value = $("#id_affiliateFilter").val();          //get selected affiliate value (only one can be selected)
     var allAffiliates = (affiliate_value.toLowerCase() === "tous") ? true : false;
     contractsListQuery = '';    // reset of previous query
 
+    c_debug(debug.query, "=> getContractFullName: switch | scope = ", scope);
     switch (scope) {
         case "COUNTRY" :
         case "GRP_AFF" :         // affiliate_value = 'tous'
-            // console.log("getContractFullName: switch GRP_AFF");
             var contractQuery = '';
             switch (login.grp_affiliates) {
                 case 'SOCIETE2' :
@@ -617,8 +632,8 @@ function getContractFullName()
                         var contract = login.company + "\\" + affiliateList[i].value;          // contract definition
                         if (first == true) {
                             first = false;
-                            contractQuery += "^wo_company.u_full_nameIN" + contract.toUpperCase();      // special SN view
-                            contractsListQuery += "^company.u_full_nameIN" + contract.toUpperCase();    // standard SN table
+                            contractQuery += "^co_u_full_nameIN" + contract.toUpperCase();      // special SN view
+                            contractsListQuery += "^co_u_full_nameIN" + contract.toUpperCase();    // standard SN table
                         } else {
                             contractQuery += "," + contract.toUpperCase();
                             contractsListQuery += "," + contract.toUpperCase();
@@ -628,7 +643,7 @@ function getContractFullName()
                 default :
                     break;
             }
-
+            c_debug(debug.query, "=> getContractFullName: contractQuery = ", contractQuery);
             sn_query += contractQuery;          // query is completed
             getLocationQuery();                 // precise geographical area to limit search time
             break;
@@ -642,21 +657,19 @@ function getContractFullName()
                 var query = {};
                 query.abbreviation = { "$regex" : affiliate_value, "$options" : "i"};       // options for case INSENSITIVE
                 input.input_query = query; 
-                // console.log("getContractFullName switch default: input = ", input);
+                c_debug(debug.query, "=> getContractFullName: switch default: input = ", input);
                 id_get_affiliate_api.trigger(input, {}, affiliate_ok, affiliate_ko);
             }
             break;
     }
-
     RMPApplication.debug("end getContractFullName");
 }
 
 function affiliate_ok(result)
 {
     RMPApplication.debug("begin affiliate_ok : result = " + JSON.stringify(result));
-    // console.log("=> affiliate_ok: result = ", result);
+    c_debug(debug.query, "=> affiliate_ok: result = ", result);
     if ( (result.records.length == undefined) || (result.records.length == 0) ) {
-        // console.log('=> affiliate_ok: aucune enseigne ne répond aux critères!');
         var  error_affiliate_ok_title = ${P_quoted(i18n("error_affiliate_ok_title", "Résultat de la recherche"))};
         var  error_affiliate_ok_msg = ${P_quoted(i18n("error_affiliate_ok_msg", "Aucune enseigne ne répond aux critères!"))};
         dialog_error(error_affiliate_ok_title, error_affiliate_ok_msg, btn_ok);
@@ -664,9 +677,12 @@ function affiliate_ok(result)
     } else {
         affiliate_obj = result.records[0];
         var contract = affiliate_obj.company + "\\" + affiliate_obj.abbreviation;   // contract definition
+        var contract_query = "^co_u_full_name=" + contract.toUpperCase();
+        sn_query += contract_query;            // query is completed; special SN view
+        c_debug(debug.query, "=> affiliate_ok: sn_query = ", sn_query);
 
-        sn_query += "^wo_company.u_full_name=" + contract.toUpperCase();            // query is completed; special SN view
-        contractsListQuery += "^company.u_full_nameIN" + contract.toUpperCase();    // standard SN table
+        contractsListQuery += "^co_u_full_nameIN" + contract.toUpperCase();    // standard SN table
+        c_debug(debug.query, "=> affiliate_ok: contractsListQuery = ", contractsListQuery);
 
         getLocationQuery();     // precise geographical area to limit search time
     }
@@ -676,7 +692,7 @@ function affiliate_ok(result)
 function affiliate_ko(error)
 {
     RMPApplication.debug("begin affiliate_ko : error = " + JSON.stringify(error));
-    // console.log("=> affiliate_ko: error = ", error);
+    c_debug(debug.query, "=> affiliate_ko: error = ", error);
     var error_msg = ${P_quoted(i18n("affiliate_ko_msg", "Récupération impossible des informations de la filiale!"))};
     notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify); 
     RMPApplication.debug("end affiliate_ko");
@@ -688,7 +704,7 @@ function affiliate_ko(error)
 function getLocationQuery()
 {
     RMPApplication.debug("begin getLocationQuery");
-    // console.log('getLocationQuery: \n + view = ' + view + '\n + scope = ' + scope);
+    c_debug(debug.query, "=> getLocationQuery: scope = ", scope);
     var country_value = $("#id_countryFilter").val();
     var affiliate_value = $("#id_affiliateFilter").val();
     var locationQuery = "";     // temporary query
@@ -707,37 +723,39 @@ function getLocationQuery()
 
         case "COUNTRY" :
             locationQuery += "^loc_country=" + $.trim(country_value);
-            locationsListQuery += "^location.country=" + $.trim(country_value);
+            locationsListQuery += "^loc_country=" + $.trim(country_value);
             break;              // "All affiliates" and 1 country are selected            
 
         case "AFFILIATECOUNTRY" :       // contract is already defined !
             locationQuery += "^loc_country=" + $.trim(country_value);
-            locationsListQuery += "^location.country=" + $.trim(country_value);
+            locationsListQuery += "^loc_country=" + $.trim(country_value);
             break;
 
         case "DIVISION" :       // we can optimize SN query by adding division's location value
             locationQuery += "^loc_country=" + $.trim(country_value);
-            locationsListQuery += "^location.country=" + $.trim(country_value);
+            locationsListQuery += "^loc_country=" + $.trim(country_value);
             locationQuery += "^loc_u_division=" + $.trim(login.division);
-            locationsListQuery += "^location.u_division=" + $.trim(login.division);
+            locationsListQuery += "^loc_u_division=" + $.trim(login.division);
             break;
 
         case "REGION" :         // we can optimize SN query by adding region's location value
             locationQuery += "^loc_country=" + $.trim(country_value);
-            locationsListQuery += "^location.country=" + $.trim(country_value);
+            locationsListQuery += "^loc_country=" + $.trim(country_value);
             locationQuery += "^loc_u_region=" + $.trim(login.region);
-            locationsListQuery += "^location.u_region=" + $.trim(login.region);
+            locationsListQuery += "^loc_u_region=" + $.trim(login.region);
             break;
 
         case "LOCAL" :          // this kind of profile shouldn't access to Dashboard module
-            // locationQuery += "^loc_country=" + $.trim(country_value);
-            // locationQuery += "^loc_u_division=" + $.trim(login.division);
-            // locationQuery += "^loc_u_region=" + $.trim(login.region);
-            // locationQuery += "^loc_location_code=" + $.trim(login.location_code);
+            locationQuery += "^loc_country=" + $.trim(country_value);
+            locationQuery += "^loc_u_division=" + $.trim(login.division);
+            locationQuery += "^loc_u_region=" + $.trim(login.region);
+            locationQuery += "^cu_correlation_id=" + $.trim(login.location_code);
             break;
 
     }   // -- end switch (scope)
 
+    c_debug(debug.query, "=> getLocationQuery: locationQuery = ", locationQuery);
+    c_debug(debug.query, "=> getLocationQuery: locationsListQuery = ", locationsListQuery);
     sn_query += locationQuery;          // query is complete
     queryServiceNow();                  // request Service Now with sn_query
 
@@ -750,19 +768,18 @@ function getLocationQuery()
 function queryServiceNow()
 {
     RMPApplication.debug("begin QueryServiceNow");
-    // console.log('begin QueryServiceNow');
-    
+
     // For reminder, sn_query already contains, when impacted:
     // names of company, affiliates, country, division, region
 
-    // Only work orders with active SLA are interestinf for cartography
-    sn_query += "^tasksla_active=true";         // only WO with a n associated active sla
+    // Only work orders with active SLA are interesting for cartography
+    sn_query += "^tasksla_active=true";         // only WO with an associated active sla
     sn_query += "^tasksla_stage=in_progress";         // only WO with an associated active sla & in_progress stage
 
     var input = {};
     var options = {};
     input.query = sn_query;
-    // console.log("QueryServiceNow: sn_query = ", sn_query);
+    c_debug(debug.query, "=> queryServiceNow: sn_query = ", sn_query);
 
     id_get_work_order_sla_api.trigger(input, options, get_wos_sla_ok, get_wos_sla_ko);
 
@@ -772,13 +789,13 @@ function queryServiceNow()
 function get_wos_sla_ok(result)
 {
     RMPApplication.debug("begin get_wos_sla_ok : result = " + JSON.stringify(result));
-    console.log("get_wos_sla_ok: result = ", result);
+    c_debug(debug.sla, "=> get_wos_sla_ok: result = ", result);
 
     wos_array = result.result;          // array of work orders with active SLA
     $("#id_spinner_search").hide();
 
     var selected_dashboard_tab = id_selected_dashboard_tab.getValue();
-    // console.log("get_wos_sla_ok: selected_dashboard_tab = ", selected_dashboard_tab);
+    c_debug(debug.sla, "=> get_wos_sla_ok: selected_dashboard_tab = ", selected_dashboard_tab);   
     
     switch (selected_dashboard_tab) {
         case "kpi" :
@@ -792,15 +809,14 @@ function get_wos_sla_ok(result)
             break;
         default:
             break;
-    }
-    
+    }   
     RMPApplication.debug("end get_wos_sla_ok");
 }
 
 function get_wos_sla_ko(error)
 {
     RMPApplication.debug("begin get_wos_sla_ko : error = " + JSON.stringify(error));
-    // console.log("begin get_wos_sla_ko : error = ", error);
+    c_debug(debug.sla, "=> get_wos_sla_ko: error", error);
     $("#id_spinner_search").hide();
     var error_msg = ${P_quoted(i18n("get_wos_sla_ko_msg", "Récupération impossible des interventions avec SLA en cours!"))};
     notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify); 

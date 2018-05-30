@@ -1,0 +1,86 @@
+VISION D’ENSEMBLE SIGNALETIQUE ENTREE D’ILOT ET POTEAU D’AUVENT
+Vision d'ensemble signalétique Entrée d'îlot et Poteau d'auvent
+VAR Old: vision_d_ensemble_signaletique_entree_d_ilot_et_poteau_d_auvent
+photos_ilot_et_auvent
+commentaires_ilot_et_auvent     id_commentaire
+live/112501487582701289/project/183033/upload/?filter=VISIBILITY&operator=IN&value=PRIVATE%7CPUBLIC&nb=20&orderby=CREATED&order=desc&filter=NAME&operator=EE&value=${vision_d_ensemble_signaletique_entree_d_ilot_et_poteau_d_auvent[0].name}
+
+VUE DE CHAQUE FACE APPAREIL DISTRIBUTEUR MODIFIE (AD complet + TPI + EPEC)
+Vue de chaque Face Appareil Distributeur Modifié (AD complet + TPI + EPEC)
+VAR Old: vu_chaque_appareil_distributeur_modifie
+photos_face_appareil_modifie
+commentaires_face_appareil_modifie      commentaire1
+live/112501487582701289/project/183033/upload/?filter=VISIBILITY&operator=IN&value=PRIVATE%7CPUBLIC&nb=20&orderby=CREATED&order=desc&filter=NAME&operator=EE&value=${vu_chaque_appareil_distributeur_modifie[0].name}
+
+VUE DES BONBONNES DEPASS INSTALLEES ET DES ARRETS D’URGENCE CREES
+Vue des bonbonnes Depass installées et des Arrêts d'urgence créés
+VAR Old: vu_bonbonnes_depass_installees
+photos_depass_et_arrets_urgence
+commentaires_depass_et_arrets_urgence   commentaire2
+live/112501487582701289/project/183033/upload/?filter=VISIBILITY&operator=IN&value=PRIVATE%7CPUBLIC&nb=20&orderby=CREATED&order=desc&filter=NAME&operator=EE&value=${vu_bonbonnes_depass_installees[0].name}
+
+VUE DU NOYAU A L’INTERIEUR DE LA TETE CALCULATEUR DE CHAQUE AD MODIFIE
+Vue du Noyau à l'intérieur de la Tête Calculateur de chaque AD modifié
+VAR Old: vu_du_noyau_a_linterieur__tete_calculateur
+photos_noyau_interieur_tete_calculateur
+commentaires_noyau_interieur_tete_calculateur   commentaire3
+live/112501487582701289/project/183033/upload/?filter=VISIBILITY&operator=IN&value=PRIVATE%7CPUBLIC&nb=20&orderby=CREATED&order=desc&filter=NAME&operator=EE&value=${vu_du_noyau_a_linterieur__tete_calculateur[0].name}
+
+VUE DE LA PALETTE FILMEE DES MATERIELS DEPOSES
+Vue de la Palette filmée des matériels déposés
+VAR Old: vu_palette_filmes_materiels_deposes
+photos_palette_filmee
+commentaires_palette_filmee             commentaire9
+live/112501487582701289/project/183033/upload/?filter=VISIBILITY&operator=IN&value=PRIVATE%7CPUBLIC&nb=20&orderby=CREATED&order=desc&filter=NAME&operator=EE&value=${vu_palette_filmes_materiels_deposes[0].name}
+
+VUE DU SWITCH EN CAISSE
+Vue du Switch en caisse
+VAR Old: vue_switch_en_caisse
+photos_switch_caisse
+commentaires_switch_caisse              commentaire4
+live/112501487582701289/project/183033/upload/?filter=VISIBILITY&operator=IN&value=PRIVATE%7CPUBLIC&nb=20&orderby=CREATED&order=desc&filter=NAME&operator=EE&value=${vu_du_switch_en_caisse[0].name}
+
+VUE DES ARRIVEES RESEAU CREEES AU NIVEAU DE LA BAIE LAN WAN
+Vue des Arrivées Réseau créées au niveau de la Baie LAN WAN
+VAR Old: vu_arrive_reseau_crees_niveau_baie_lanwan
+photos_arrivees_reseau_baie
+commentaires_arrivees_reseau_baie       commentaire5
+live/112501487582701289/project/183033/upload/?filter=VISIBILITY&operator=IN&value=PRIVATE%7CPUBLIC&nb=20&orderby=CREATED&order=desc&filter=NAME&operator=EE&value=${vu_arrive_reseau_crees_niveau_baie_lanwan[0].name}
+
+VUE DES MODIFICATIONS REALISEES AU TGBT
+Vue des modifications réalisées au TGBT
+VAR Old: vu_modif_tgbt
+photos_modifications_tgbt
+commentaires_modifications_tgbt         commentaire6
+live/112501487582701289/project/183033/upload/?filter=VISIBILITY&operator=IN&value=PRIVATE%7CPUBLIC&nb=20&orderby=CREATED&order=desc&filter=NAME&operator=EE&value=${vu_modif_tgbt[0].name}
+
+AUTRES PHOTOS INTERESSANTES
+Autres Photos intéressantes
+VAR Old: autre_photo_interessante
+photos_photos_autres
+commentaires_photos_autres              commentaire7
+live/112501487582701289/project/183033/upload/?filter=VISIBILITY&operator=IN&value=PRIVATE%7CPUBLIC&nb=20&orderby=CREATED&order=desc&filter=NAME&operator=EE&value=${autre_photo_interessante[0].name}
+
+Vue de la fiche de Mise en service de chaque Face TPI
+photos_mise_service_face_tpi
+commentaires_mise_service_face_tpi
+live/112501487582701289/project/183033/upload/?filter=VISIBILITY&operator=IN&value=PRIVATE%7CPUBLIC&nb=20&orderby=CREATED&order=desc&filter=NAME&operator=EE&value=${photos_mise_service_face_tpi[0].name}
+
+Fiche de Mouvement Matériel (matériels TPI/face)
+photos_fiche_mouvement_materiel
+commentaires_fiche_mouvement_materiel
+live/112501487582701289/project/183033/upload/?filter=VISIBILITY&operator=IN&value=PRIVATE%7CPUBLIC&nb=20&orderby=CREATED&order=desc&filter=NAME&operator=EE&value=${photos_fiche_mouvement_materiel[0].name}
+
+Vue du Bon de livraison des TPI et des kits associés
+photos_bon_livraison_tpi_kits
+commentaires_bon_livraison_tpi_kits
+live/112501487582701289/project/183033/upload/?filter=VISIBILITY&operator=IN&value=PRIVATE%7CPUBLIC&nb=20&orderby=CREATED&order=desc&filter=NAME&operator=EE&value=${photos_bon_livraison_tpi_kits[0].name}
+
+VUE DE LA FICHE DE MISE EN SERVICE TPI INSTALLE, SIGNEE PAR LE GERANT
+Vue de la fiche de Mise en service TPI installé, signée par le gérant
+VAR Old: fiche_mise_en_service_TPI
+photos_fiche_mise_service_tpi
+commentaires_fiche_mise_service_tpi     commentaire8
+live/112501487582701289/project/183033/upload/?filter=VISIBILITY&operator=IN&value=PRIVATE%7CPUBLIC&nb=20&orderby=CREATED&order=desc&filter=NAME&operator=EE&value=${fiche_mise_en_service_TPI[0].name}
+
+f44aa6a0-707f-11e7-b42c-0619bd984419

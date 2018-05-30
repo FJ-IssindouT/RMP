@@ -1,0 +1,888 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsl:stylesheet version="1.1" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fo="http://www.w3.org/1999/XSL/Format" exclude-result-prefixes="fo">
+	<xsl:output method="xml" version="1.0" omit-xml-declaration="no" indent="yes"/>
+	<xsl:template match="my_var_main">
+		<fo:root font-family="Arial" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:w="http://schemas.microsoft.com/office/word/2003/wordml">
+			<fo:layout-master-set xmlns:rx="http://www.renderx.com/XSL/Extensions" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:wx="http://schemas.microsoft.com/office/word/2003/auxHint" xmlns:aml="http://schemas.microsoft.com/aml/2001/core" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+				<fo:simple-page-master master-name="section1-first-page" page-width="8.268055555555555in" page-height="11.693055555555556in" margin-top="35.4pt" margin-bottom="35.4pt" margin-right="70.85pt" margin-left="70.85pt">
+					<fo:region-body margin-top="35.45pt" margin-bottom="35.45pt"></fo:region-body>
+					<fo:region-before region-name="first-page-header" extent="11in"></fo:region-before>
+					<fo:region-after region-name="first-page-footer" extent="11in" display-align="after"></fo:region-after>
+				</fo:simple-page-master>
+				<fo:simple-page-master master-name="section1-odd-page" page-width="8.268055555555555in" page-height="11.693055555555556in" margin-top="35.4pt" margin-bottom="35.4pt" margin-right="70.85pt" margin-left="70.85pt">
+					<fo:region-body margin-top="35.45pt" margin-bottom="35.45pt"></fo:region-body>
+					<fo:region-before region-name="odd-page-header" extent="11in"></fo:region-before>
+					<fo:region-after region-name="odd-page-footer" extent="11in" display-align="after"></fo:region-after>
+				</fo:simple-page-master>
+				<fo:simple-page-master master-name="section1-even-page" page-width="8.268055555555555in" page-height="11.693055555555556in" margin-top="35.4pt" margin-bottom="35.4pt" margin-right="70.85pt" margin-left="70.85pt">
+					<fo:region-body margin-top="35.45pt" margin-bottom="35.45pt"></fo:region-body>
+					<fo:region-before region-name="even-page-header" extent="11in"></fo:region-before>
+					<fo:region-after region-name="even-page-footer" extent="11in" display-align="after"></fo:region-after>
+				</fo:simple-page-master>
+				<fo:page-sequence-master master-name="section1-page-sequence-master">
+					<fo:repeatable-page-master-alternatives>
+						<fo:conditional-page-master-reference odd-or-even="odd" master-reference="section1-odd-page" />
+						<fo:conditional-page-master-reference odd-or-even="even" master-reference="section1-even-page" />
+					</fo:repeatable-page-master-alternatives>
+				</fo:page-sequence-master>
+			</fo:layout-master-set>
+			<fo:page-sequence master-reference="section1-page-sequence-master" format="1" xmlns:rx="http://www.renderx.com/XSL/Extensions" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:wx="http://schemas.microsoft.com/office/word/2003/auxHint" xmlns:aml="http://schemas.microsoft.com/aml/2001/core" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+				<fo:static-content flow-name="first-page-header">
+					<fo:retrieve-marker retrieve-class-name="first-page-header" retrieve-position="first-including-carryover" retrieve-boundary="page" />
+				</fo:static-content>
+				<fo:static-content flow-name="first-page-footer">
+					<fo:retrieve-marker retrieve-class-name="first-page-footer" retrieve-position="first-including-carryover" retrieve-boundary="page" />
+				</fo:static-content>
+				<fo:static-content flow-name="odd-page-header">
+					<fo:retrieve-marker retrieve-class-name="odd-page-header" retrieve-position="first-including-carryover" retrieve-boundary="page" />
+				</fo:static-content>
+				<fo:static-content flow-name="odd-page-footer">
+					<fo:retrieve-marker retrieve-class-name="odd-page-footer" retrieve-position="first-including-carryover" retrieve-boundary="page" />
+				</fo:static-content>
+				<fo:static-content flow-name="even-page-header">
+					<fo:retrieve-marker retrieve-class-name="odd-page-header" retrieve-position="first-including-carryover" retrieve-boundary="page" />
+				</fo:static-content>
+				<fo:static-content flow-name="even-page-footer">
+					<fo:retrieve-marker retrieve-class-name="odd-page-footer" retrieve-position="first-including-carryover" retrieve-boundary="page" />
+				</fo:static-content>
+				<fo:static-content flow-name="xsl-footnote-separator">
+					<fo:block>
+						<fo:leader leader-pattern="rule" leader-length="144pt" rule-thickness="0.5pt" rule-style="solid" color="gray" />
+					</fo:block>
+				</fo:static-content>
+				<fo:flow flow-name="xsl-region-body">
+
+					<fo:block widows="2" orphans="2" font-size="10pt" line-height="1.147" white-space-collapse="false">
+						<fo:marker marker-class-name="first-page-header" xmlns:st1="urn:schemas-microsoft-com:office:smarttags" />
+						<fo:marker marker-class-name="first-page-footer" xmlns:st1="urn:schemas-microsoft-com:office:smarttags" />
+						<fo:marker marker-class-name="odd-page-header" xmlns:st1="urn:schemas-microsoft-com:office:smarttags" />
+						<fo:marker marker-class-name="odd-page-footer" xmlns:st1="urn:schemas-microsoft-com:office:smarttags" />
+						<fo:marker marker-class-name="even-page-header" xmlns:st1="urn:schemas-microsoft-com:office:smarttags" />
+						<fo:marker marker-class-name="even-page-footer" xmlns:st1="urn:schemas-microsoft-com:office:smarttags" />
+						<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="11pt" language="FR" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+
+							<fo:inline>
+								<fo:external-graphic content-width="220pt" content-height="80pt" padding-left="120px" padding-bottom="20px" src="url(&quot;data:image/auto;base64,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&#xA;EIQO8/8DABxvTMd7AkN9AAAAAElFTkSuQmCC&#xA;&quot;)" />
+							</fo:inline>
+						</fo:block>
+						<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="18pt" language="FR" text-align="center" font-weight="bold" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+							<fo:inline font-weight="bold" font-size="18pt">
+								<fo:leader leader-length="0pt" />CAMPAGNE REMPLACEMENT TPI
+							</fo:inline>
+						</fo:block>
+						<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="18pt" language="FR" text-align="center" font-weight="bold" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+							<fo:inline font-weight="bold" font-size="18pt">
+								<fo:leader leader-length="0pt" />APPLICATION DE RÉCEPTION DES CHANTIERS
+							</fo:inline>
+						</fo:block>
+						<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="12pt" language="FR" text-align="center" font-weight="bold" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+							<fo:leader />
+						</fo:block>
+						<fo:table font-family="Arial" language="FR" start-indent="0pt" border-top-style="solid" border-top-color="black" border-top-width="0.5pt" border-left-style="solid" border-left-color="black" border-left-width="0.5pt" border-bottom-style="solid" border-bottom-color="black" border-bottom-width="0.5pt" border-right-style="solid" border-right-color="black" border-right-width="0.5pt" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+							<fo:table-column column-number="1" column-width="203.85pt" />
+							<fo:table-column column-number="2" column-width="276.45pt" />
+							<fo:table-body start-indent="0pt" end-indent="0pt">
+								<fo:table-row>
+									<fo:table-cell padding-top="5pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="none" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" number-columns-spanned="2" background-color="#FF0000">
+										<fo:block space-after="5pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="12pt" language="FR" font-weight="bold">
+											<fo:inline font-weight="bold" color="#FFFFFF" font-size="12pt">
+												<fo:leader leader-length="0pt" />Information de la station concernée
+											</fo:inline>
+										</fo:block>
+									</fo:table-cell>
+								</fo:table-row>
+								<fo:table-row>
+									<fo:table-cell padding-top="5pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white">
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="9pt" language="FR">
+											<fo:inline font-weight="bold">
+												<fo:leader leader-length="0pt" />Date Intervention: </fo:inline>
+                                            <fo:inline>
+                                                <fo:leader leader-length="0pt" />
+												<xsl:value-of select="date_intervention_str"/>
+											</fo:inline>
+										</fo:block>
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="9pt" language="FR">
+											<fo:inline font-weight="bold">
+												<fo:leader leader-length="0pt" />Nom Société: </fo:inline>
+                                            <fo:inline>
+                                                <fo:leader leader-length="0pt" />
+												<xsl:value-of select="nom_societe"/>
+											</fo:inline>
+										</fo:block>
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="9pt" language="FR">
+											<fo:inline font-weight="bold">
+												<fo:leader leader-length="0pt" />Nom Intervenant: </fo:inline>
+                                            <fo:inline>
+                                                <fo:leader leader-length="0pt" />
+												<xsl:value-of select="nom_intervenant"/>
+											</fo:inline>
+										</fo:block>
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="9pt" language="FR">
+											<fo:inline font-weight="bold">
+												<fo:leader leader-length="0pt" />Téléphone Intervenant: </fo:inline>
+                                            <fo:inline>
+                                                <fo:leader leader-length="0pt" />
+												<xsl:value-of select="tel_intervenant"/>
+											</fo:inline>
+										</fo:block>
+									</fo:table-cell>
+
+									<fo:table-cell padding-top="5pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white">
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="9pt" language="FR">
+											<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="9pt" language="FR">
+											<fo:inline font-weight="bold">
+												<fo:leader leader-length="0pt" />Code Implant: </fo:inline>
+                                            <fo:inline>
+                                                <fo:leader leader-length="0pt" />
+												<xsl:value-of select="code_implant"/>
+											</fo:inline>
+										</fo:block>
+												<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="9pt" language="FR">
+											<fo:inline font-weight="bold">
+												<fo:leader leader-length="0pt" />Code Postal: </fo:inline>
+                                            <fo:inline>
+                                                <fo:leader leader-length="0pt" />
+												<xsl:value-of select="code_postal"/>
+											</fo:inline>
+										</fo:block>
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="9pt" language="FR">
+											<fo:inline font-weight="bold">
+												<fo:leader leader-length="0pt" />Nom Station: </fo:inline>
+                                            <fo:inline>
+                                                <fo:leader leader-length="0pt" />
+												<xsl:value-of select="nom_station"/>
+											</fo:inline>
+										</fo:block>
+									
+											<fo:inline font-weight="bold">
+												<fo:leader leader-length="0pt" />Email Station: </fo:inline>
+                                            <fo:inline>
+                                                <fo:leader leader-length="0pt" />
+												<xsl:value-of select="email_station"/>
+											</fo:inline>
+										</fo:block>
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="9pt" language="FR">
+											<fo:inline font-weight="bold">
+												<fo:leader leader-length="0pt" />Téléphone Station: </fo:inline>
+                                            <fo:inline>
+                                                <fo:leader leader-length="0pt" />
+												<xsl:value-of select="tel_station"/>
+											</fo:inline>
+										</fo:block>
+									</fo:table-cell>
+								</fo:table-row>
+							</fo:table-body>
+						</fo:table>
+						<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="11pt" language="FR" font-weight="bold" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+							<fo:leader />
+						</fo:block>
+						<fo:table font-family="Arial" language="FR" start-indent="0pt" border-top-style="solid" border-top-color="black" border-top-width="0.5pt" border-left-style="solid" border-left-color="black" border-left-width="0.5pt" border-bottom-style="solid" border-bottom-color="black" border-bottom-width="0.5pt" border-right-style="solid" border-right-color="black" border-right-width="0.5pt" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+							<fo:table-column column-number="1" column-width="482pt" />
+							<fo:table-body start-indent="0pt" end-indent="0pt">
+								<fo:table-row>
+									<fo:table-cell padding-top="5pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#FF0000">
+										<fo:block space-after="5pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="12pt" language="FR" font-weight="bold">
+											<fo:inline font-weight="bold" color="#FFFFFF" font-size="12pt">
+												<fo:leader leader-length="0pt" />Informations relatives aux travaux
+											</fo:inline>
+										</fo:block>
+									</fo:table-cell>
+								</fo:table-row>
+								<fo:table-row>
+									<fo:table-cell padding-top="5pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white">
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="9pt" language="FR">
+											<fo:inline font-weight="bold">
+												<fo:leader leader-length="0pt" />Temps de fermeture commerciale: </fo:inline>
+                                            <fo:inline>
+                                                <fo:leader leader-length="0pt" />
+												<xsl:value-of select="duree_ferm_comm"/>min
+											</fo:inline>
+										</fo:block>
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="9pt" language="FR">
+											<fo:inline font-weight="bold">
+												<fo:leader leader-length="0pt" />Temps d'activation TPI: </fo:inline>
+                                            <fo:inline>
+                                                <fo:leader leader-length="0pt" />
+												<xsl:value-of select="duree_activation_tpi"/>min
+											</fo:inline>
+										</fo:block>
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="9pt" language="FR">
+											<fo:inline font-weight="bold">
+												<fo:leader leader-length="0pt" />Nombre de faces TPI SF installées: </fo:inline>
+                                            <fo:inline>
+                                                <fo:leader leader-length="0pt" />
+												<xsl:value-of select="nb_faces_tpi_installes"/>
+											</fo:inline>
+										</fo:block>
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="9pt" language="FR">
+											<fo:inline font-weight="bold">
+												<fo:leader leader-length="0pt" />Nombre de TPI DF installés: </fo:inline>
+                                            <fo:inline>
+                                                <fo:leader leader-length="0pt" />
+												<xsl:value-of select="nb_tpi_df_installes"/>
+											</fo:inline>
+										</fo:block>
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="9pt" language="FR">
+											<fo:inline font-weight="bold">
+												<fo:leader leader-length="0pt" />Nombre de bornes installées: </fo:inline>
+                                            <fo:inline>
+                                                <fo:leader leader-length="0pt" />
+												<xsl:value-of select="nb_bornes_installees"/>
+											</fo:inline>
+										</fo:block>
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="9pt" language="FR">
+											<fo:inline font-weight="bold">
+												<fo:leader leader-length="0pt" />Nombre d’appareils distributeur VL pilotés par borne: </fo:inline>
+                                            <fo:inline>
+                                                <fo:leader leader-length="0pt" />
+												<xsl:value-of select="nb_appareils_distributeur_vl"/>
+											</fo:inline>
+										</fo:block>
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="9pt" language="FR">
+											<fo:inline font-weight="bold">
+												<fo:leader leader-length="0pt" />Nombre d’appareils distributeur PL pilotés par borne: </fo:inline>
+                                            <fo:inline>
+                                                <fo:leader leader-length="0pt" />
+												<xsl:value-of select="nb_appareils_distributeur_pl"/>
+											</fo:inline>
+										</fo:block>
+									</fo:table-cell>
+								</fo:table-row>
+							</fo:table-body>
+						</fo:table>
+                        <fo:block page-break-before="always" space-after="8pt" space-after.conditionality="retain" line-height="1.2378041666666666" font-family="Arial" font-size="12pt" language="FR" font-weight="bold" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+                            <fo:leader />
+                        </fo:block>
+
+
+
+
+<!-- Vision d'ensemble signalétique Entrée d'îlot et Poteau d'auvent -->
+						<fo:table font-family="Arial" language="FR" start-indent="0pt" border-top-style="solid" border-top-color="black" border-top-width="0.5pt" border-left-style="solid" border-left-color="black" border-left-width="0.5pt" border-bottom-style="solid" border-bottom-color="black" border-bottom-width="0.5pt" border-right-style="solid" border-right-color="black" border-right-width="0.5pt" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+							<fo:table-column column-number="1" column-width="482pt" />
+							<fo:table-body start-indent="0pt" end-indent="0pt">
+								<fo:table-row>
+									<fo:table-cell padding-top="5pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#0070C0">
+										<fo:block space-after="5pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="11pt" language="FR" text-align="center" font-weight="bold">
+											<fo:inline font-weight="bold" color="#FFFFFF" font-size="12pt" language="">
+												<fo:leader leader-length="0pt" />Vision d'ensemble signalétique Entrée d'îlot et Poteau d'auvent
+											</fo:inline>
+										</fo:block>
+									</fo:table-cell>
+								</fo:table-row>
+								<fo:table-row>
+									<fo:table-cell padding-top="0pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white">
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="11pt" language="FR" font-weight="bold">
+
+
+											<fo:inline language="">
+												<fo:external-graphic   margin-left="auto" margin-right="auto" content-height="scale-to-fit" height="6.00in"  content-width="6.00in" scaling="non-uniform">
+													<xsl:attribute name="src">
+														<xsl:text>url('data:</xsl:text>
+														<xsl:value-of select="attachmentContentType"/>
+														<xsl:text>;base64,</xsl:text>
+														<xsl:value-of select="photos_ilot_et_auvent"/>
+														<xsl:text>')</xsl:text>
+													</xsl:attribute>
+												</fo:external-graphic>
+											</fo:inline>
+
+
+										</fo:block>
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="9pt" language="FR">
+											<fo:leader />
+										</fo:block>
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="9pt" language="FR">
+											<fo:inline>
+												<fo:leader leader-length="0pt" />Commentaires: <xsl:value-of select="commentaires_ilot_et_auvent"/>
+											</fo:inline>
+										</fo:block>
+									</fo:table-cell>
+								</fo:table-row>
+							</fo:table-body>
+						</fo:table>
+                        <fo:block page-break-before="always" space-after="8pt" space-after.conditionality="retain" line-height="1.2378041666666666" font-family="Arial" font-size="11pt" language="FR" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+                            <fo:inline />
+                        </fo:block>
+
+<!-- Vue de chaque Face Appareil Distributeur Modifié (AD complet + TPI + EPEC) -->
+						<fo:table font-family="Arial" language="FR" start-indent="0pt" border-top-style="solid" border-top-color="black" border-top-width="0.5pt" border-left-style="solid" border-left-color="black" border-left-width="0.5pt" border-bottom-style="solid" border-bottom-color="black" border-bottom-width="0.5pt" border-right-style="solid" border-right-color="black" border-right-width="0.5pt" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+							<fo:table-column column-number="1" column-width="482pt" />
+							<fo:table-body start-indent="0pt" end-indent="0pt">
+								<fo:table-row>
+									<fo:table-cell padding-top="5pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#0070C0">
+										<fo:block space-after="5pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="12pt" language="" text-align="center" font-weight="bold">
+											<fo:inline font-weight="bold" color="#FFFFFF" font-size="12pt" language="">
+												<fo:leader leader-length="0pt" />Vue de chaque Face Appareil Distributeur Modifié (AD complet + TPI + EPEC)
+											</fo:inline>
+										</fo:block>
+									</fo:table-cell>
+								</fo:table-row>
+								<fo:table-row>
+									<fo:table-cell padding-top="0pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white">
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="11pt" language="FR" font-weight="bold">
+
+
+											<fo:inline language="">
+												<fo:external-graphic content-height="scale-to-fit" height="6.00in"  content-width="6.00in" scaling="non-uniform">
+													<xsl:attribute name="src">
+														<xsl:text>url('data:</xsl:text>
+														<xsl:value-of select="attachmentContentType"/>
+														<xsl:text>;base64,</xsl:text>
+														<xsl:value-of select="photos_face_appareil_modifie"/>
+														<xsl:text>')</xsl:text>
+													</xsl:attribute>
+												</fo:external-graphic>
+											</fo:inline>
+
+										</fo:block>
+
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="9pt" language="FR">
+											<fo:leader />
+										</fo:block>
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="9pt" language="FR">
+											<fo:inline>
+												<fo:leader leader-length="0pt" />Commentaires: <xsl:value-of select="commentaires_face_appareil_modifie"/>
+											</fo:inline>
+										</fo:block>
+									</fo:table-cell>
+								</fo:table-row>
+							</fo:table-body>
+						</fo:table>
+                        <fo:block page-break-before="always" space-after="8pt" space-after.conditionality="retain" line-height="1.2378041666666666" font-family="Arial" font-size="11pt" language="FR" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+                            <fo:inline />
+                        </fo:block>
+						<!-- <fo:block break-after="page"></fo:block> -->
+
+
+<!-- Vue des bonbonnes Depass installées et des Arrêts d'urgence créés -->
+						<fo:table font-family="Arial" language="FR" start-indent="0pt" border-top-style="solid" border-top-color="black" border-top-width="0.5pt" border-left-style="solid" border-left-color="black" border-left-width="0.5pt" border-bottom-style="solid" border-bottom-color="black" border-bottom-width="0.5pt" border-right-style="solid" border-right-color="black" border-right-width="0.5pt" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+							<fo:table-column column-number="1" column-width="482pt" />
+							<fo:table-body start-indent="0pt" end-indent="0pt">
+								<fo:table-row>
+									<fo:table-cell padding-top="5pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#0070C0">
+										<fo:block space-after="5pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="12pt" language="" text-align="center" font-weight="bold" color="#FFFFFF">
+											<fo:inline font-weight="bold" color="#FFFFFF" font-size="12pt" language="">
+												<fo:leader leader-length="0pt" />Vue des bonbonnes Depass installées et des Arrêts d'urgence créés
+											</fo:inline>
+										</fo:block>
+									</fo:table-cell>
+								</fo:table-row>
+								<fo:table-row>
+									<fo:table-cell padding-top="0pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white">
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="11pt" language="FR" font-weight="bold">
+
+
+
+											<fo:inline language="">
+												<fo:external-graphic content-height="scale-to-fit" height="6.00in"  content-width="6.00in" scaling="non-uniform">
+													<xsl:attribute name="src">
+														<xsl:text>url('data:</xsl:text>
+														<xsl:value-of select="attachmentContentType"/>
+														<xsl:text>;base64,</xsl:text>
+														<xsl:value-of select="photos_depass_et_arrets_urgence"/>
+														<xsl:text>')</xsl:text>
+													</xsl:attribute>
+												</fo:external-graphic>
+											</fo:inline>
+										</fo:block>
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="9pt" language="FR">
+											<fo:leader />
+										</fo:block>
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="9pt" language="FR">
+											<fo:inline>
+												<fo:leader leader-length="0pt" />Commentaires: <xsl:value-of select="commentaires_depass_et_arrets_urgence"/>
+											</fo:inline>
+										</fo:block>
+									</fo:table-cell>
+								</fo:table-row>
+							</fo:table-body>
+						</fo:table>
+                        <fo:block page-break-before="always" space-after="8pt" space-after.conditionality="retain" line-height="1.2378041666666666" font-family="Arial" font-size="11pt" language="FR" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+                            <fo:inline />
+                        </fo:block>
+
+						<!-- <fo:block break-after="page"></fo:block> -->
+
+
+<!-- Vue du Noyau à l'intérieur de la Tête Calculateur de chaque AD modifié -->
+						<fo:table font-family="Arial" language="FR" start-indent="0pt" border-top-style="solid" border-top-color="black" border-top-width="0.5pt" border-left-style="solid" border-left-color="black" border-left-width="0.5pt" border-bottom-style="solid" border-bottom-color="black" border-bottom-width="0.5pt" border-right-style="solid" border-right-color="black" border-right-width="0.5pt" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+							<fo:table-column column-number="1" column-width="482pt" />
+							<fo:table-body start-indent="0pt" end-indent="0pt">
+								<fo:table-row>
+									<fo:table-cell padding-top="5pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#0070C0">
+										<fo:block space-after="5pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="12pt" language="" text-align="center" font-weight="bold" color="#FFFFFF">
+											<fo:inline font-weight="bold" color="#FFFFFF" font-size="12pt" language="">
+												<fo:leader leader-length="0pt" />Vue du Noyau à l'intérieur de la Tête Calculateur de chaque AD modifié
+											</fo:inline>
+										</fo:block>
+									</fo:table-cell>
+								</fo:table-row>
+								<fo:table-row>
+									<fo:table-cell padding-top="0pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white">
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="11pt" language="FR" font-weight="bold">
+
+
+
+											<fo:inline language="">
+												<fo:external-graphic content-height="scale-to-fit" height="6.00in"  content-width="6.00in" scaling="non-uniform">
+													<xsl:attribute name="src">
+														<xsl:text>url('data:</xsl:text>
+														<xsl:value-of select="attachmentContentType"/>
+														<xsl:text>;base64,</xsl:text>
+														<xsl:value-of select="photos_noyau_interieur_tete_calculateur"/>
+														<xsl:text>')</xsl:text>
+													</xsl:attribute>
+												</fo:external-graphic>
+											</fo:inline>
+										</fo:block>
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="9pt" language="FR">
+											<fo:leader />
+										</fo:block>
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="9pt" language="FR">
+											<fo:inline>
+												<fo:leader leader-length="0pt" />Commentaires: <xsl:value-of select="commentaires_noyau_interieur_tete_calculateur"/>
+											</fo:inline>
+										</fo:block>
+									</fo:table-cell>
+								</fo:table-row>
+							</fo:table-body>
+						</fo:table>
+                        <fo:block page-break-before="always" space-after="8pt" space-after.conditionality="retain" line-height="1.2378041666666666" font-family="Arial" font-size="11pt" language="FR" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+                            <fo:inline />
+                        </fo:block>
+
+						<!-- <fo:block break-after="page"></fo:block> -->
+
+
+<!-- Vue de la Palette filmée des matériels déposés -->
+						<fo:table font-family="Arial" language="FR" start-indent="0pt" border-top-style="solid" border-top-color="black" border-top-width="0.5pt" border-left-style="solid" border-left-color="black" border-left-width="0.5pt" border-bottom-style="solid" border-bottom-color="black" border-bottom-width="0.5pt" border-right-style="solid" border-right-color="black" border-right-width="0.5pt" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+							<fo:table-column column-number="1" column-width="482pt" />
+							<fo:table-body start-indent="0pt" end-indent="0pt">
+								<fo:table-row>
+									<fo:table-cell padding-top="5pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#0070C0">
+										<fo:block space-after="5pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="12pt" language="" text-align="center" font-weight="bold" color="#FFFFFF">
+											<fo:inline font-weight="bold" color="#FFFFFF" font-size="12pt" language="">
+												<fo:leader leader-length="0pt" />Vue de la Palette filmée des matériels déposés
+											</fo:inline>
+										</fo:block>
+									</fo:table-cell>
+								</fo:table-row>
+								<fo:table-row>
+									<fo:table-cell padding-top="0pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white">
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="11pt" language="FR" font-weight="bold">
+											<fo:inline language="">
+												<fo:external-graphic content-height="scale-to-fit" height="6.00in"  content-width="6.00in" scaling="non-uniform">
+													<xsl:attribute name="src">
+														<xsl:text>url('data:</xsl:text>
+														<xsl:value-of select="attachmentContentType"/>
+														<xsl:text>;base64,</xsl:text>
+														<xsl:value-of select="photos_palette_filmee"/>
+														<xsl:text>')</xsl:text>
+													</xsl:attribute>
+												</fo:external-graphic>
+											</fo:inline>
+										</fo:block>
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="9pt" language="FR">
+											<fo:leader />
+										</fo:block>
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="9pt" language="FR">
+											<fo:inline>
+												<fo:leader leader-length="0pt" />Commentaires: <xsl:value-of select="commentaires_palette_filmee"/>
+											</fo:inline>
+										</fo:block>
+									</fo:table-cell>
+								</fo:table-row>
+							</fo:table-body>
+						</fo:table>
+                        <fo:block page-break-before="always" space-after="8pt" space-after.conditionality="retain" line-height="1.2378041666666666" font-family="Arial" font-size="11pt" language="FR" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+                            <fo:inline />
+                        </fo:block>
+
+						<!-- <fo:block break-after="page"></fo:block> -->
+
+
+<!-- Vue du Switch en caisse -->
+						<fo:table font-family="Arial" language="FR" start-indent="0pt" border-top-style="solid" border-top-color="black" border-top-width="0.5pt" border-left-style="solid" border-left-color="black" border-left-width="0.5pt" border-bottom-style="solid" border-bottom-color="black" border-bottom-width="0.5pt" border-right-style="solid" border-right-color="black" border-right-width="0.5pt" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+							<fo:table-column column-number="1" column-width="482pt" />
+							<fo:table-body start-indent="0pt" end-indent="0pt">
+								<fo:table-row>
+									<fo:table-cell padding-top="5pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#0070C0">
+										<fo:block space-after="5pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="12pt" language="" text-align="center" font-weight="bold" color="#FFFFFF">
+											<fo:inline font-weight="bold" color="#FFFFFF" font-size="12pt" language="">
+												<fo:leader leader-length="0pt" />Vue du Switch en caisse
+											</fo:inline>
+										</fo:block>
+									</fo:table-cell>
+								</fo:table-row>
+								<fo:table-row>
+									<fo:table-cell padding-top="0pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white">
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="11pt" language="FR" font-weight="bold">
+											<fo:inline language="">
+												<fo:external-graphic content-height="scale-to-fit" height="6.00in"  content-width="6.00in" scaling="non-uniform">
+													<xsl:attribute name="src">
+														<xsl:text>url('data:</xsl:text>
+														<xsl:value-of select="attachmentContentType"/>
+														<xsl:text>;base64,</xsl:text>
+														<xsl:value-of select="photos_switch_caisse"/>
+														<xsl:text>')</xsl:text>
+													</xsl:attribute>
+												</fo:external-graphic>
+											</fo:inline>
+										</fo:block>
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="9pt" language="FR">
+											<fo:leader />
+										</fo:block>
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="9pt" language="FR">
+											<fo:inline>
+												<fo:leader leader-length="0pt" />Commentaires: <xsl:value-of select="commentaires_switch_caisse"/>
+											</fo:inline>
+										</fo:block>
+									</fo:table-cell>
+								</fo:table-row>
+							</fo:table-body>
+						</fo:table>
+                        <fo:block page-break-before="always" space-after="8pt" space-after.conditionality="retain" line-height="1.2378041666666666" font-family="Arial" font-size="11pt" language="FR" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+                            <fo:inline />
+                        </fo:block>
+
+						<!-- <fo:block break-after="page"></fo:block> -->
+
+
+<!-- Vue des Arrivées Réseau créées au niveau de la Baie LAN WAN -->
+						<fo:table font-family="Arial" language="FR" start-indent="0pt" border-top-style="solid" border-top-color="black" border-top-width="0.5pt" border-left-style="solid" border-left-color="black" border-left-width="0.5pt" border-bottom-style="solid" border-bottom-color="black" border-bottom-width="0.5pt" border-right-style="solid" border-right-color="black" border-right-width="0.5pt" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+							<fo:table-column column-number="1" column-width="482pt" />
+							<fo:table-body start-indent="0pt" end-indent="0pt">
+								<fo:table-row>
+									<fo:table-cell padding-top="5pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#0070C0">
+										<fo:block space-after="5pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="12pt" language="" text-align="center" font-weight="bold" color="#FFFFFF">
+											<fo:inline font-weight="bold" color="#FFFFFF" font-size="12pt" language="">
+												<fo:leader leader-length="0pt" />Vue des Arrivées Réseau créées au niveau de la Baie LAN WAN
+											</fo:inline>
+										</fo:block>
+									</fo:table-cell>
+								</fo:table-row>
+								<fo:table-row>
+									<fo:table-cell padding-top="0pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white">
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="11pt" language="FR" font-weight="bold">
+											<fo:inline language="">
+												<fo:external-graphic content-height="scale-to-fit" height="6.00in"  content-width="6.00in" scaling="non-uniform">
+													<xsl:attribute name="src">
+														<xsl:text>url('data:</xsl:text>
+														<xsl:value-of select="attachmentContentType"/>
+														<xsl:text>;base64,</xsl:text>
+														<xsl:value-of select="photos_arrivees_reseau_baie"/>
+														<xsl:text>')</xsl:text>
+													</xsl:attribute>
+												</fo:external-graphic>
+											</fo:inline>
+										</fo:block>
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="9pt" language="FR">
+											<fo:leader />
+										</fo:block>
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="9pt" language="FR">
+											<fo:inline>
+												<fo:leader leader-length="0pt" />Commentaires: <xsl:value-of select="commentaires_arrivees_reseau_baie"/>
+											</fo:inline>
+										</fo:block>
+									</fo:table-cell>
+								</fo:table-row>
+							</fo:table-body>
+						</fo:table>
+                        <fo:block page-break-before="always" space-after="8pt" space-after.conditionality="retain" line-height="1.2378041666666666" font-family="Arial" font-size="11pt" language="FR" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+                            <fo:inline />
+                        </fo:block>
+
+						<!-- <fo:block break-after="page"></fo:block> -->
+
+
+<!-- Vue des modifications réalisées au TGBT -->
+						<fo:table font-family="Arial" language="FR" start-indent="0pt" border-top-style="solid" border-top-color="black" border-top-width="0.5pt" border-left-style="solid" border-left-color="black" border-left-width="0.5pt" border-bottom-style="solid" border-bottom-color="black" border-bottom-width="0.5pt" border-right-style="solid" border-right-color="black" border-right-width="0.5pt" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+							<fo:table-column column-number="1" column-width="482pt" />
+							<fo:table-body start-indent="0pt" end-indent="0pt">
+								<fo:table-row>
+									<fo:table-cell padding-top="5pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#0070C0">
+										<fo:block space-after="5pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="12pt" language="" text-align="center" font-weight="bold" color="#FFFFFF">
+											<fo:inline font-weight="bold" color="#FFFFFF" font-size="12pt" language="">
+												<fo:leader leader-length="0pt" />Vue des modifications réalisées au TGBT
+											</fo:inline>
+										</fo:block>
+									</fo:table-cell>
+								</fo:table-row>
+								<fo:table-row>
+									<fo:table-cell padding-top="0pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white">
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="11pt" language="FR" font-weight="bold">
+											<fo:inline language="">
+												<fo:external-graphic content-height="scale-to-fit" height="6.00in"  content-width="6.00in" scaling="non-uniform">
+													<xsl:attribute name="src">
+														<xsl:text>url('data:</xsl:text>
+														<xsl:value-of select="attachmentContentType"/>
+														<xsl:text>;base64,</xsl:text>
+														<xsl:value-of select="photos_modifications_tgbt"/>
+														<xsl:text>')</xsl:text>
+													</xsl:attribute>
+												</fo:external-graphic>
+											</fo:inline>
+										</fo:block>
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="9pt" language="FR">
+											<fo:leader />
+										</fo:block>
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="9pt" language="FR">
+											<fo:inline>
+												<fo:leader leader-length="0pt" />Commentaires: <xsl:value-of select="commentaires_modifications_tgbt"/>
+											</fo:inline>
+										</fo:block>
+									</fo:table-cell>
+								</fo:table-row>
+							</fo:table-body>
+						</fo:table>
+                        <fo:block page-break-before="always" space-after="8pt" space-after.conditionality="retain" line-height="1.2378041666666666" font-family="Arial" font-size="11pt" language="FR" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+                            <fo:inline />
+                        </fo:block>
+
+						<!-- <fo:block break-after="page"></fo:block> -->
+						
+
+<!-- Autres Photos intéressantes -->
+						<fo:table font-family="Arial" language="FR" start-indent="0pt" border-top-style="solid" border-top-color="black" border-top-width="0.5pt" border-left-style="solid" border-left-color="black" border-left-width="0.5pt" border-bottom-style="solid" border-bottom-color="black" border-bottom-width="0.5pt" border-right-style="solid" border-right-color="black" border-right-width="0.5pt" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+							<fo:table-column column-number="1" column-width="482pt" />
+							<fo:table-body start-indent="0pt" end-indent="0pt">
+								<fo:table-row>
+									<fo:table-cell padding-top="5pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#0070C0">
+										<fo:block space-after="5pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="12pt" language="" text-align="center" font-weight="bold" color="#FFFFFF">
+											<fo:inline font-weight="bold" color="#FFFFFF" font-size="12pt" language="">
+												<fo:leader leader-length="0pt" />Autres Photos intéressantes
+											</fo:inline>
+										</fo:block>
+									</fo:table-cell>
+								</fo:table-row>
+								<fo:table-row>
+									<fo:table-cell padding-top="0pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white">
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="11pt" language="FR" font-weight="bold">
+											<fo:inline language="">
+												<fo:external-graphic content-height="scale-to-fit" height="6.00in"  content-width="6.00in" scaling="non-uniform">
+													<xsl:attribute name="src">
+														<xsl:text>url('data:</xsl:text>
+														<xsl:value-of select="attachmentContentType"/>
+														<xsl:text>;base64,</xsl:text>
+														<xsl:value-of select="photos_photos_autres"/>
+														<xsl:text>')</xsl:text>
+													</xsl:attribute>
+												</fo:external-graphic>
+											</fo:inline>
+										</fo:block>
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="9pt" language="FR">
+											<fo:leader />
+										</fo:block>
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="9pt" language="FR">
+											<fo:inline>
+												<fo:leader leader-length="0pt" />Commentaires: <xsl:value-of select="commentaires_photos_autres"/>
+											</fo:inline>
+										</fo:block>
+									</fo:table-cell>
+								</fo:table-row>
+							</fo:table-body>
+						</fo:table>
+                        <fo:block page-break-before="always" space-after="8pt" space-after.conditionality="retain" line-height="1.2378041666666666" font-family="Arial" font-size="11pt" language="FR" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+                            <fo:inline />
+                        </fo:block>
+
+						<!-- <fo:block break-after="page"></fo:block> -->
+
+
+<!-- Vue de la fiche de Mise en service de chaque Face TPI -->
+						<fo:table font-family="Arial" language="FR" start-indent="0pt" border-top-style="solid" border-top-color="black" border-top-width="0.5pt" border-left-style="solid" border-left-color="black" border-left-width="0.5pt" border-bottom-style="solid" border-bottom-color="black" border-bottom-width="0.5pt" border-right-style="solid" border-right-color="black" border-right-width="0.5pt" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+							<fo:table-column column-number="1" column-width="482pt" />
+							<fo:table-body start-indent="0pt" end-indent="0pt">
+								<fo:table-row>
+									<fo:table-cell padding-top="5pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#0070C0">
+										<fo:block space-after="5pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="12pt" language="" text-align="center" font-weight="bold" color="#FFFFFF">
+											<fo:inline font-weight="bold" color="#FFFFFF" font-size="12pt" language="">
+												<fo:leader leader-length="0pt" />Vue de la fiche de Mise en service de chaque Face TPI
+											</fo:inline>
+										</fo:block>
+									</fo:table-cell>
+								</fo:table-row>
+								<fo:table-row>
+									<fo:table-cell padding-top="0pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white">
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="11pt" language="FR" font-weight="bold">
+											<fo:inline language="">
+												<fo:external-graphic content-height="scale-to-fit" height="6.00in"  content-width="6.00in" scaling="non-uniform">
+													<xsl:attribute name="src">
+														<xsl:text>url('data:</xsl:text>
+														<xsl:value-of select="attachmentContentType"/>
+														<xsl:text>;base64,</xsl:text>
+														<xsl:value-of select="photos_mise_service_face_tpi"/>
+														<xsl:text>')</xsl:text>
+													</xsl:attribute>
+												</fo:external-graphic>
+											</fo:inline>
+										</fo:block>
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="9pt" language="FR">
+											<fo:leader />
+										</fo:block>
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="9pt" language="FR">
+											<fo:inline>
+												<fo:leader leader-length="0pt" />Commentaires: <xsl:value-of select="commentaires_mise_service_face_tpi"/>
+											</fo:inline>
+										</fo:block>
+									</fo:table-cell>
+								</fo:table-row>
+							</fo:table-body>
+						</fo:table>
+                        <fo:block page-break-before="always" space-after="8pt" space-after.conditionality="retain" line-height="1.2378041666666666" font-family="Arial" font-size="11pt" language="FR" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+                            <fo:inline />
+                        </fo:block>
+
+						<!-- <fo:block break-after="page"></fo:block> -->
+
+
+<!-- Fiche de Mouvement Matériel (matériels TPI/face) -->
+						<fo:table font-family="Arial" language="FR" start-indent="0pt" border-top-style="solid" border-top-color="black" border-top-width="0.5pt" border-left-style="solid" border-left-color="black" border-left-width="0.5pt" border-bottom-style="solid" border-bottom-color="black" border-bottom-width="0.5pt" border-right-style="solid" border-right-color="black" border-right-width="0.5pt" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+							<fo:table-column column-number="1" column-width="482pt" />
+							<fo:table-body start-indent="0pt" end-indent="0pt">
+								<fo:table-row>
+									<fo:table-cell padding-top="5pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#0070C0">
+										<fo:block space-after="5pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="12pt" language="" text-align="center" font-weight="bold" color="#FFFFFF">
+											<fo:inline font-weight="bold" color="#FFFFFF" font-size="12pt" language="">
+												<fo:leader leader-length="0pt" />Fiche de Mouvement Matériel (matériels TPI/face)
+											</fo:inline>
+										</fo:block>
+									</fo:table-cell>
+								</fo:table-row>
+								<fo:table-row>
+									<fo:table-cell padding-top="0pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white">
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="11pt" language="FR" font-weight="bold">
+											<fo:inline language="">
+												<fo:external-graphic content-height="scale-to-fit" height="6.00in"  content-width="6.00in" scaling="non-uniform">
+													<xsl:attribute name="src">
+														<xsl:text>url('data:</xsl:text>
+														<xsl:value-of select="attachmentContentType"/>
+														<xsl:text>;base64,</xsl:text>
+														<xsl:value-of select="photos_fiche_mouvement_materiel"/>
+														<xsl:text>')</xsl:text>
+													</xsl:attribute>
+												</fo:external-graphic>
+											</fo:inline>
+										</fo:block>
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="9pt" language="FR">
+											<fo:leader />
+										</fo:block>
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="9pt" language="FR">
+											<fo:inline>
+												<fo:leader leader-length="0pt" />Commentaires: <xsl:value-of select="commentaires_fiche_mouvement_materiel"/>
+											</fo:inline>
+										</fo:block>
+									</fo:table-cell>
+								</fo:table-row>
+							</fo:table-body>
+						</fo:table>
+                        <fo:block page-break-before="always" space-after="8pt" space-after.conditionality="retain" line-height="1.2378041666666666" font-family="Arial" font-size="11pt" language="FR" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+                            <fo:inline />
+                        </fo:block>
+
+						<!-- <fo:block break-after="page"></fo:block> -->
+
+
+<!-- Vue du Bon de livraison des TPI et des kits associés -->
+						<fo:table font-family="Arial" language="FR" start-indent="0pt" border-top-style="solid" border-top-color="black" border-top-width="0.5pt" border-left-style="solid" border-left-color="black" border-left-width="0.5pt" border-bottom-style="solid" border-bottom-color="black" border-bottom-width="0.5pt" border-right-style="solid" border-right-color="black" border-right-width="0.5pt" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+							<fo:table-column column-number="1" column-width="482pt" />
+							<fo:table-body start-indent="0pt" end-indent="0pt">
+								<fo:table-row>
+									<fo:table-cell padding-top="5pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#0070C0">
+										<fo:block space-after="5pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="12pt" language="" text-align="center" font-weight="bold" color="#FFFFFF">
+											<fo:inline font-weight="bold" color="#FFFFFF" font-size="12pt" language="">
+												<fo:leader leader-length="0pt" />Vue du Bon de livraison des TPI et des kits associés
+											</fo:inline>
+										</fo:block>
+									</fo:table-cell>
+								</fo:table-row>
+								<fo:table-row>
+									<fo:table-cell padding-top="0pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white">
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="11pt" language="FR" font-weight="bold">
+											<fo:inline language="">
+												<fo:external-graphic content-height="scale-to-fit" height="6.00in"  content-width="6.00in" scaling="non-uniform">
+													<xsl:attribute name="src">
+														<xsl:text>url('data:</xsl:text>
+														<xsl:value-of select="attachmentContentType"/>
+														<xsl:text>;base64,</xsl:text>
+														<xsl:value-of select="photos_bon_livraison_tpi_kits"/>
+														<xsl:text>')</xsl:text>
+													</xsl:attribute>
+												</fo:external-graphic>
+											</fo:inline>
+										</fo:block>
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="9pt" language="FR">
+											<fo:leader />
+										</fo:block>
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="9pt" language="FR">
+											<fo:inline>
+												<fo:leader leader-length="0pt" />Commentaires: <xsl:value-of select="commentaires_bon_livraison_tpi_kits"/>
+											</fo:inline>
+										</fo:block>
+									</fo:table-cell>
+								</fo:table-row>
+							</fo:table-body>
+						</fo:table>
+                        <fo:block page-break-before="always" space-after="8pt" space-after.conditionality="retain" line-height="1.2378041666666666" font-family="Arial" font-size="11pt" language="FR" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+                            <fo:inline />
+                        </fo:block>
+
+						<!-- <fo:block break-after="page"></fo:block> -->
+
+
+<!-- Vue de la fiche de Mise en service TPI installé, signée par le gérant -->
+						<fo:table font-family="Arial" language="FR" start-indent="0pt" border-top-style="solid" border-top-color="black" border-top-width="0.5pt" border-left-style="solid" border-left-color="black" border-left-width="0.5pt" border-bottom-style="solid" border-bottom-color="black" border-bottom-width="0.5pt" border-right-style="solid" border-right-color="black" border-right-width="0.5pt" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+							<fo:table-column column-number="1" column-width="482pt" />
+							<fo:table-body start-indent="0pt" end-indent="0pt">
+								<fo:table-row>
+									<fo:table-cell padding-top="5pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#0070C0">
+										<fo:block space-after="5pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="12pt" language="" text-align="center" font-weight="bold" color="#FFFFFF">
+											<fo:inline font-weight="bold" color="#FFFFFF" font-size="12pt" language="">
+												<fo:leader leader-length="0pt" />Vue de la fiche de Mise en service TPI installé, signée par le gérant
+											</fo:inline>
+										</fo:block>
+									</fo:table-cell>
+								</fo:table-row>
+								<fo:table-row>
+									<fo:table-cell padding-top="0pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white">
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="11pt" language="FR" font-weight="bold">
+
+
+
+											<fo:inline language="">
+												<fo:external-graphic content-height="scale-to-fit" height="6.00in"  content-width="6.00in" scaling="non-uniform">
+													<xsl:attribute name="src">
+														<xsl:text>url('data:</xsl:text>
+														<xsl:value-of select="attachmentContentType"/>
+														<xsl:text>;base64,</xsl:text>
+														<xsl:value-of select="FicheMiseEnServiceTPI"/>
+														<xsl:text>')</xsl:text>
+													</xsl:attribute>
+												</fo:external-graphic>
+											</fo:inline>
+
+										</fo:block>
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="9pt" language="FR">
+											<fo:leader />
+										</fo:block>
+										<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="9pt" language="FR">
+											<fo:inline>
+												<fo:leader leader-length="0pt" />Commentaires : <xsl:value-of select="commentaire8"/>
+											</fo:inline>
+										</fo:block>
+									</fo:table-cell>
+								</fo:table-row>
+							</fo:table-body>
+						</fo:table>
+						<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="11pt" language="FR" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+							<fo:leader />
+						</fo:block>
+					</fo:block>
+					
+					<fo:block id="ID1A2WWHPOC0QLDGUBACIXJA04BICJVD30RIZ5LZH4WBNZ0Q0RHO" />
+				</fo:flow>
+			</fo:page-sequence>
+		</fo:root>
+	</xsl:template>
+</xsl:stylesheet>

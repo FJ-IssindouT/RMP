@@ -1230,7 +1230,8 @@ function createRequest()
     // issue description will contain informations about impacted equipement
     var description_head = "- Matériel: " + selectedCat + " (" + selectedBrand + " - " + selectedModel + ")";
     var description_body = $("#id_descripton").val();
-    var short_description = description_body.substring(0,99);
+    var not_filled = ${P_quoted(i18n("not_filled", "Non renseigné"))};
+    var short_description = (isEmpty(description_body)) ? not_filled : description_body.substring(0,99);
     var description = description_head + "\n" + "- Information: " + description_body;
     var expected_start = "";
     // var expected_start = getExpectedStartDateSN(7);

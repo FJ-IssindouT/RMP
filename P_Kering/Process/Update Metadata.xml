@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xml:base="https://live.runmyprocess.com/" xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns="http://www.w3.org/2005/Atom">
+    <title>${user_name}</title>
+    <rights>(c) RunMyProcess</rights>
+    <category term="status" label="${user_status}"/>
+    <category term="language" label="${user_language}"/>
+    <category term="client_language" label="${client_language}"/>
+    <category term="profile" label="${user_profile}"/>
+    <author>
+        <name>${user_name}</name>
+        <email>${user_login}</email>
+    </author>
+    <entry>
+        <title>extension</title>
+        <category term="mode" label="${P_mode}"/>
+        <content type="text/base64">${encrypt('BASE64', newMetadataObject)}</content>
+    </entry>
+    <category term="receive_alert" label="false"/>
+</feed>
+
+
+<category term="status" label="PENDING"/>
+<category term="language" label="en"/>
+<category term="client_language" label="en"/>
+<category term="profile" label="USER"/>
+<category term="receive_alert" label="false"/>
+<category term="access_restriction" label="IDE"/>
+<category term="access_restriction" label="EXTENSION_DATA"/>
+<category term="access_restriction" label="VIEW_OTHERS"/>
+

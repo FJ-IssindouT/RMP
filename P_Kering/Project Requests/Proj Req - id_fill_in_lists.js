@@ -1,7 +1,7 @@
 // id_fill_in_lists
 
 var my_pattern = {};
-col_lists.listCallback(my_pattern,{},list_ok,list_ko);
+col_lists.listCallback(my_pattern, {}, list_ok, list_ko);
 
 function list_ok(result) 
 {
@@ -10,7 +10,7 @@ function list_ok(result)
 	//List Org unit
 	var vb_org = new Array();
 	for (i=0; i<result[0].organization_unit.list_elements.length; i++) {
-		vb_org.push({"label":result[0].organization_unit.list_elements[i],"value":result[0].organization_unit.list_elements[i]});
+		vb_org.push({"label":result[0].organization_unit.list_elements[i], "value":result[0].organization_unit.list_elements[i]});
 	}
 
 	var a = new RMP_List();
@@ -30,5 +30,5 @@ function list_ok(result)
 
 function list_ko(result) 
 {
-    alert("ko=" + JSON.stringify(result));
+    alert("list_ko = " + JSON.stringify(result));
 }

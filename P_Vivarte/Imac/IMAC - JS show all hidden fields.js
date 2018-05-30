@@ -31,4 +31,5 @@
 	id_delivery_date.setVisible(true);
 	id_collect_date.setVisible(true);
 	id_fujitsu_state.setVisible(true);
+	id_planning_changed.setVisible(true);
 	id_restricted_access.setVisible(true);

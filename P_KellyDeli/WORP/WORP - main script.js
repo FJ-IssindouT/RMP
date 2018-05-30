@@ -10,7 +10,11 @@ RMPApplication.debug("Main : Application started");
 // if "true", logs will be showed on the browser console
 var debug = {
     "init" : false,
+    "language" : false,
     "box" : false,
+    "status" : false,
+    "priority" : false,
+    "type" : false,
     "site" : false,
     "query" : false,
     "order" : false,
@@ -26,7 +30,6 @@ var debug = {
 var login = {};                     // retrieve metadata user
 var view = "";                      // define current profile view
 var scope = null;
-var site = {};
 var sn_query = null;
 var affiliate_obj = null;
 var affiliateList = null;           // group of alliliates for specific GRP_AFF view
@@ -34,16 +37,16 @@ var var_location_list = null;
 var var_order_list = null;
 var var_task_list = null;
 var v_ol = null;
-var curr_indice = 0;
-var iso_code ='fr';
+var col_lang_opt = {};
 
 var error_title_notify = ${P_quoted(i18n("error_title_notify", "Erreur"))};
 var info_title_notify = ${P_quoted(i18n("info_title_notify", "Information"))};
-var error_thanks_notify = ${P_quoted(i18n("error_thanks_notify", "Merci de signaler cette erreur!"))};
+var error_thanks_notify = ${P_quoted(i18n("error_thanks_notify", "Merci de signaler cette erreur !"))};
 var btn_ok = ${P_quoted(i18n("btn_ok", "OK"))};
 
 // used collections list
 var col_locations = "col_locations_kellydeli";
+var col_languages = "col_langues_kellydeli";
 
 // execute main program
 init();
@@ -56,7 +59,8 @@ function init()
     RMPApplication.debug("begin init : login = " + login);
     $("#id_spinner_search_top").hide();
     $("#id_spinner_search_bottom").hide();
-    resetWI();              // reset Web Iterface
+
+    load_language(RMPApplication.get("language"));      // load WI language options
 
     var option = {};
     var pattern = {};
@@ -65,6 +69,42 @@ function init()
 
     id_get_user_info_as_admin_api.trigger(pattern, option , get_info_ok, get_info_ko);
     RMPApplication.debug("end init");
+}
+
+// ============================================
+// get information for selected language
+// ============================================
+function load_language(code_language)
+{
+    RMPApplication.debug ("begin load_language");
+    c_debug(debug.language, "=> load_language: code_language = ", code_language);
+    var my_pattern = {};
+    var options = {};
+    my_pattern.code_language = code_language;
+    eval(col_languages).listCallback(my_pattern, options, load_language_ok, load_language_ko);
+    RMPApplication.debug ("end load_language");
+}
+
+function load_language_ok(result)
+{
+    RMPApplication.debug ("begin load_language_ok");
+    c_debug(debug.language, "=> load_language_ok: result", result);
+    if (result.length > 0) {
+        col_lang_opt = result[0];
+        var success_msg = ${P_quoted(i18n("load_ok_msg", "Informations de la collection chargées !"))};
+        // notify_success(info_title_notify, success_msg);
+        resetWI();                                          // reset Web Iterface
+    }
+    RMPApplication.debug ("end load_language_ok");
+}
+
+function load_language_ko(error)
+{
+    RMPApplication.debug ("begin load_language_ko");
+    c_debug(debug.language, "=> load_language_ko: error = ", error);
+    var error_msg = ${P_quoted(i18n("load_ko_msg", "Récupération impossible des données de la langue !"))};
+    notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify);
+    RMPApplication.debug ("end load_language_ko");
 }
 
 // ======================
@@ -79,10 +119,10 @@ function resetWI()
     id_search_results.setVisible(false);
     id_ticket_details.setVisible(false);
 
-    // fr as default language
-    var selectedLang = (isEmpty(RMPApplication.get("language_list_label"))) ? "fr" : RMPApplication.get("language_list_label");                // french by default
-    var datebox_lang = selectedLang;
-    var datepicker_lang = selectedLang;
+    // var selectedLang = (isEmpty(RMPApplication.get("language_list_label"))) ? "fr" : RMPApplication.get("language_list_label");                // french by default
+    var selectedLang = col_lang_opt.code_language;
+    var datebox_lang = col_lang_opt.code_datebox;
+    var datepicker_lang = col_lang_opt.code_datepicker;
 
     var contexte = id_context.getValue();
     // contexte == "web" for desktop screen and datepicker; otherwise (for tablet & mobile) datebox is used as calendar component
@@ -110,7 +150,7 @@ function resetWI()
             mode: "flipbox",
             themeDate: "info",
             themeDatePick: "warning",
-            useLang: selectedLang,
+            useLang: datebox_lang,
             minYear: 2016,
             maxYear: 2022,
             useSetButton: true,
@@ -195,7 +235,7 @@ function get_info_ko(error)
 {
     RMPApplication.debug("begin get_info_ko: error = " + JSON.stringify(error));
     c_debug(debug.init, "=> get_info_ko: error = ", error);
-    var error_msg = ${P_quoted(i18n("get_info_ko_msg", "Récupération impossible des informations utilisateur!"))};
+    var error_msg = ${P_quoted(i18n("get_info_ko_msg", "Récupération impossible des informations utilisateur !"))};
     notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify);
     RMPApplication.debug("end get_info_ko");
 } 
@@ -214,7 +254,8 @@ function fillStateBox()
     $("#id_statusFilter").append($("<option selected />").val('tous').html(text_statusFilter));
     var stateList = JSON.parse(id_request_status_cl.getList()).list;
     for (i=0; i < stateList.length; i++) {
-        $("#id_statusFilter").append("<option value='" + stateList[i].value + "'>&#10143; " + stateList[i].label + "</option>");
+        var stateLabel = translateExp(col_lang_opt.code_language, getVarStatusValue(stateList[i].label));
+        $("#id_statusFilter").append("<option value='" + stateList[i].value + "'>&#10143; " + stateLabel + "</option>");
     }
     RMPApplication.debug("end fillStateBox");
 }
@@ -229,6 +270,7 @@ function fillWoTypeBox()
     $("#id_woTypeFilter").append($("<option selected />").val('tous').html(text_woTypeFilter));
     var typeList = JSON.parse(id_request_type_cl.getList()).list;
     for (i=0; i < typeList.length; i++) {
+        var typeWOLabel = translateExp(col_lang_opt.code_language, getVarWOTypeValue(typeList[i].label));
         $("#id_woTypeFilter").append("<option value='" + typeList[i].value + "'>&#10143; " + typeList[i].label + "</option>");
     }
     RMPApplication.debug("end fillWoTypeBox");
@@ -356,38 +398,241 @@ function fillLocationBox(locations_array)
     RMPApplication.debug("end fillLocationBox");
 }
 
-// ======================================================
-// load_site
-// ======================================================
-function load_site(locationCode) 
+// =======================================
+// Get Var Status Value
+// =======================================
+function getVarStatusValue (libelle)
 {
-    RMPApplication.debug ("begin load_site: locationCode = " + JSON.stringify(locationCode));
-    c_debug(debug.site, "=> load_site: locationCode = ", locationCode);
-    var my_pattern = {};
-    var options = {};
-    my_pattern.location_code = locationCode;
-    // eval function used as faster than capi call
-    eval(col_locations).listCallback(my_pattern, options, load_site_ok, load_site_ko);
-    // id_get_location_by_code_api.trigger(my_pattern , options, load_site_ok, load_site_ko);
-    RMPApplication.debug ("end load_site"); 
+    RMPApplication.debug("begin getVarStatusValue");
+    c_debug(debug.status, "=> getVarStatusValue: libelle = ", libelle);
+
+    switch (libelle)  {
+        case "Brouillon" :
+        case "Transmis" :
+        case "Draft" :
+        case "1" :
+            return 'st_sent';
+            break;
+        case "Clos - Résolu" :
+        case "Terminé - Complet" :
+        case "Closed Complete" :
+        case "3" :
+            return 'st_closed_complete';
+            break;
+        case "Clos - Non résolu" :
+        case "Terminé - Incomplet" :
+        case "Closed Incomplete" :
+        case "4" :
+            return 'st_closed_incomplete';
+            break;
+        case "Clos - Annulé" :          
+        case "Cancelled" :
+        case "7" :
+            return 'st_cancelled';
+            break;
+        case "Diagnostiqué" :
+        case "Qualifié" :
+        case "Diagnosed" :
+        case "Qualified" :
+        case "10" :
+            return 'st_diagnosed';
+            break;
+        case "En attente d'approbation" :
+        case "Awaiting Approval" :
+        case "11" :
+            return 'st_waiting_appro';
+            break;
+        case "Approuvé" :
+        case "Approved" :
+        case "13" :
+            return 'st_approved';
+            break;
+        case "En attente de diagnostic" :
+        case "Awaiting Diagnosis" :
+        case "15" :
+            return 'st_waiting_diag';
+            break;
+        case "Assigné" :
+        case "Affecté" :
+        case "Assigned" :
+        case "16" :
+            return 'st_assigned';
+            break;
+        case "En cours de résolution" :
+        case "En cours de traitement" :
+        case "Work In Progress" :
+        case "18" :
+            return 'st_in_progress';
+            break;
+        case "Erreur" :
+        case "Error" :
+        case "19" :
+            return 'st_error';
+            break;
+        case "Résolu - En attente de cloture" : 
+        case "Resolved" :
+        case "20" :
+            return 'st_resolved';
+            break;
+        case "Non résolu - En attente de cloture" :
+        case "Unresolved" :
+        case "21" :
+            return 'st_unresolved';
+            break;
+        default:        // All status or no status selected)
+            return 'st_unknown';
+            break;
+    }
+    RMPApplication.debug("end getVarStatusValue");
 }
 
-function load_site_ok(result) 
+// =======================================
+// Get Var Intervention Status Value
+// =======================================
+function getVarINVStatusValue (libelle)
 {
-    RMPApplication.debug ("begin load_site_ok: result = " + JSON.stringify(result)); 
-    site = result;
-    c_debug(debug.site, "=> load_site_ok: site = ", site);
-    RMPApplication.debug ("end load_site_ok");    
+    RMPApplication.debug("begin getVarINVStatusValue");
+    c_debug(debug.status, "=> getVarINVStatusValue: libelle = ", libelle);
+
+    switch (libelle)  {
+        case "Brouillon" :
+        case "Transmis" :
+        case "Draft" :
+        case "1" :
+            return 'st_inv_draft';
+            break;
+        case "Clos - Résolu" :
+        case "Terminé - Complet" :
+        case "Closed Complete" :
+        case "3" :
+            return 'st_inv_closed_complete';
+            break;
+        case "Clos - Non résolu" :
+        case "Terminé - Incomplet" :
+        case "Closed Incomplete" :
+        case "4" :
+            return 'st_inv_closed_incomplete';
+            break;
+        case "Clos - Annulé" :          
+        case "Cancelled" :
+        case "7" :
+            return 'st_inv_cancelled';
+            break;
+        case "En attente d'affectation" :
+        case "Pending Dispatch" :
+        case "10" :
+            return 'st_inv_dispatch';
+            break;
+        case "Assigné" :
+        case "Affecté" :
+        case "Assigned" :
+        case "16" :
+            return 'st_inv_assigned';
+            break;
+        case "Accepté" :
+        case "Accepted" :
+        case "17" :
+            return 'st_inv_accepted';
+            break;
+        case "En cours de résolution" :
+        case "Work In Progress" :
+        case "18" :
+            return 'st_inv_in_progress';
+            break;
+        default:        // All status or no status selected)
+            return 'st_inv_unknown';
+            break;
+    }
+    RMPApplication.debug("end getVarINVStatusValue");
 }
 
-function load_site_ko(result) 
+// =======================================
+// Get Var Priority Value
+// =======================================
+function getVarPriorityValue (priority)
 {
-    RMPApplication.debug ("begin load_site_ko: result = " + JSON.stringify(result)); 
-    c_debug(debug.site, "=> load_site_ko: error = ", JSON.stringify(error));
-    site = {};
-    var error_msg = ${P_quoted(i18n("load_site_ko_msg", "Récupération impossible des informations du site!"))};
-    notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify);
-    RMPApplication.debug ("end load_site_ko");    
+    RMPApplication.debug("begin getVarPriorityValue");
+    c_debug(debug.priority, "=> getVarPriorityValue: priority = ", priority);
+
+    switch (priority)  {
+        case '1':
+        case '1 - Critical':
+        case '1 - Critique':
+            return "prio_critical";
+            break;
+        case '2':
+        case '2 - High':
+        case '2 - Elevée':
+            return "prio_high";
+            break;
+        case '3':
+        case '3 - Moderate':
+        case '3 - Modérée':
+            return "prio_moderate";
+            break;
+        case '4':
+        case '4 - Low':
+        case '4 - Basse':
+            return "prio_low";
+            break;
+        case '5':
+        case '5 - Planning':
+            return "prio_planned";
+            break;
+        default:        // All priorities or no priority selected)
+            return 'prio_unknown';
+            break;
+    }
+    RMPApplication.debug("end getVarPriorityValue");
+}
+
+// =======================================
+// Get Var Priority Value
+// =======================================
+function getVarWOTypeValue (wo_type)
+{
+    RMPApplication.debug("begin getVarWOTypeValue");
+    c_debug(debug.type, "=> getVarWOTypeValue: wo_type = ", wo_type);
+
+    switch (wo_type)  {
+        case 'Devis':
+            return "type_quotation";
+            break;
+        case 'IMAC':
+            return "type_imac";
+            break;
+        case 'Preventive':
+            return "type_preventive";
+            break;
+        case 'Request':
+            return "type_request";
+            break;
+        case 'Project':
+            return "type_project";
+            break;
+        case 'Intervention':
+            return "type_intervention";
+            break;
+        case 'Assistance':
+            return "type_assistance";
+            break;
+        default:        // All priorities or no priority selected)
+            return 'type_unknown';
+            break;
+    }
+    RMPApplication.debug("end getVarWOTypeValue");
+}
+
+// =======================================
+// Get Status Value from ServiceNow data
+// =======================================
+function translateExp (lang, expr)
+{
+    RMPApplication.debug("begin translateExp");
+    c_debug(debug.status, "=> translateExp: lang = ", lang);
+    c_debug(debug.status, "=>               expr = ", expr);
+    return col_lang_opt[expr];
+    RMPApplication.debug("end translateExp");
 }
 
 // ======================================================================================================
@@ -554,7 +799,7 @@ function get_locations_ko(error)
 {
     RMPApplication.debug("begin get_locations_ko : error = " + JSON.stringify(error));
     c_debug(debug.site, "=> get_locations_ko: error = ", error);
-    var error_msg = ${P_quoted(i18n("get_locations_ko_msg", "Récupération impossible des informations du site!"))};
+    var error_msg = ${P_quoted(i18n("get_locations_ko_msg", "Récupération impossible des informations du site !"))};
     notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify);
     RMPApplication.debug("end get_locations_ko");
 }
@@ -584,7 +829,7 @@ function getWorkOrderListFromServiceNow()
             break;
         default:
             var  title = ${P_quoted(i18n("error_getWOListFromSN_title", "Type d'incident"))};
-            var  content = ${P_quoted(i18n("error_getWOListFromSN_msg", "La recherche pour le type d'incident sélectionné n'est pas encore implémentée!"))};
+            var  content = ${P_quoted(i18n("error_getWOListFromSN_msg", "La recherche pour le type d'incident sélectionné n'est pas encore implémentée !"))};
             dialog_error(title, content, btn_ok);
             return;
             break;
@@ -712,15 +957,15 @@ function order_ok(result)
         c_debug(debug.order, "=> order_ok: var_order_list (null) = ", var_order_list);
 
         var  title = ${P_quoted(i18n("order_ok_title", "Résultat de la recherche"))};
-        var  content = ${P_quoted(i18n("order_ok_msg", "Aucun ticket ne correspond aux critères donnés!"))};
+        var  content = ${P_quoted(i18n("order_ok_msg", "Aucun ticket ne correspond aux critères donnés !"))};
         dialog_info(title, content, btn_ok);
 
         id_search_results.setVisible(false);
         $("#id_spinner_search_top").hide();
         $("#id_spinner_search_bottom").hide();
         return;
-    } else {
 
+    } else {
         var_order_list = result.result;
         c_debug(debug.order, "=> order_ok: var_order_list (not empty) = ", var_order_list);
     }
@@ -736,7 +981,7 @@ function order_ko(error)
     $("#id_spinner_search_top").hide();
     $("#id_spinner_search_bottom").hide();
 
-    var error_msg = ${P_quoted(i18n("order_ko_msg", "Récupération impossible des informations de Work Order!"))};
+    var error_msg = ${P_quoted(i18n("order_ko_msg", "Récupération impossible des informations de Work Order !"))};
     notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify);
     RMPApplication.debug("end order_ko");
 }
@@ -772,7 +1017,7 @@ function fillOrderArray()
         $("#id_spinner_search_bottom").hide();
         RMPApplication.debug("fillOrderArray : var_order_list not set ");
         var  title1 = ${P_quoted(i18n("error_fillOrderArray_title1", "Résultat de la recherche"))};
-        var  content1 = ${P_quoted(i18n("error_fillOrderArray_msg1", "Aucune demande ne correspond à votre recherche! <br> (var_order_list non défini)"))};
+        var  content1 = ${P_quoted(i18n("error_fillOrderArray_msg1", "Aucune demande ne correspond à votre recherche ! <br> (var_order_list non défini)"))};
         dialog_info(title1, content1, btn_ok);
         return;
     }
@@ -815,7 +1060,7 @@ function fillOrderArray()
                 "",
                 "<button onClick=\"getTaskList(" + i + ");\" class=\"btn_style_loupe loupe\">" + var_ol[i].wo_number + " " + "<i class=\"fa fa-search fa-lg\" aria-hidden=\"true\"></i></button>",
                 var_ol[i].wo_short_description.substring(0,45),
-                "<span id='id_state" + i + "'>" + StatusFromUkToFr(var_ol[i].wo_state) + "</span>",
+                "<span id='id_state" + i + "'>" + translateExp(col_lang_opt.code_language, getVarStatusValue(var_ol[i].wo_state)) + "</span>",
                 notation,
                 site_name,
                 opened_at,
@@ -890,7 +1135,7 @@ function task_ko(error)
     $("#id_spinner_search_top").hide();
     $("#id_spinner_search_bottom").hide();
     clearTaskDataTable();
-    var error_msg = ${P_quoted(i18n("task_ko_msg", "Récupération impossible des interventions!"))};
+    var error_msg = ${P_quoted(i18n("task_ko_msg", "Récupération impossible des interventions !"))};
     notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify);
     RMPApplication.debug("end task_ko");
 }
@@ -931,7 +1176,7 @@ function wo_details_ok(result)
     id_search_results.setVisible(false);
     id_ticket_details.setVisible(true);
     
-    var text_error_detail = ${P_quoted(i18n("error_detail_text", "Non trouvé!"))};
+    var text_error_detail = ${P_quoted(i18n("error_detail_text", "Non trouvé !"))};
     var company_detail = (isEmpty(login.company)) ? v_ol.co_u_full_name.toUpperCase() : login.company;
     var affiliate_detail = (isEmpty(v_ol.co_name)) ? v_ol.co_u_full_name : v_ol.co_name;
     var country_detail = (isEmpty(v_ol.loc_country)) ? text_error_detail : v_ol.loc_country.toUpperCase();
@@ -952,20 +1197,13 @@ function wo_details_ok(result)
         var u_resolution_time = moment(u_resolution_time_utc, "YYYY-MM-DD HH:mm:ss").tz(login.timezone).format("DD/MM/YYYY HH:mm:ss");
     }
 
-    /*$("#id_company_detail").val (company_detail);
-    $("#id_affiliate_detail").val (affiliate_detail);
-    $("#id_country_detail").val (country_detail);
-    $("#id_location_detail").val (location_detail);
-    var contract_detail = (v_ol.site[0] == undefined) ? v_ol.company : v_ol.site[0].company;
-    $("#id_contract_detail").val (contract_detail);*/
-
     $("#id_number_detail").val (v_ol.wo_number);
     $("#id_correlation_id_detail").val (v_ol.wo_correlation_id);
     $("#id_caller_detail").val (v_ol.user_name);
     $("#id_contact_detail").val (v_ol.wo_u_contact_details);
     $("#id_opened_detail").val (opened_at);
-    $("#id_priority_detail").val (getPrioriyLabel(v_ol.wo_priority));
-    $("#id_state_detail").val (StatusFromUkToFr(v_ol.wo_state));
+    $("#id_priority_detail").val (translateExp(col_lang_opt.code_language, getVarPriorityValue(v_ol.wo_priority)));
+    $("#id_state_detail").val (translateExp(col_lang_opt.code_language, getVarStatusValue(v_ol.wo_state)));
     // $("#id_closed_detail").val (wo_closed_at);          // administrative closure
     $("#id_closed_detail").val (u_resolution_time);     // real closure date
     $("#id_category_detail").val (v_ol.cat_u_label  );
@@ -981,7 +1219,6 @@ function wo_details_ok(result)
     // Fill a 2nd table with tasks associated to current work order
     fillTaskArray(v_ol.wo_number);
     var number = v_ol.wo_number;
-    // var state = getStatusValue( $("#id_state_detail").val() );
     
     // Fill statisfaction part if already evaluated or if closed since 5 days
     var eval_note = v_ol.wo_u_customer_satisfaction;
@@ -1003,7 +1240,7 @@ function wo_details_ko(error)
     c_debug(debug.detail, "=> wo_details_ko : error = ", error);
     $("#id_spinner_search_top").hide();
     $("#id_spinner_search_bottom").hide();
-    var error_msg = ${P_quoted(i18n("wo_details_ko_msg", "Récupération impossible des informations de Work Order!"))};
+    var error_msg = ${P_quoted(i18n("wo_details_ko_msg", "Récupération impossible des informations de Work Order !"))};
     notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify); 
     RMPApplication.debug("end wo_details_ko");
 }
@@ -1030,7 +1267,7 @@ function get_photo_ok (result)
         id_attachment.html('');
         var content = "";
         for (var i = 0; i< result.my_obj.length; i++) {
-            content = content +  '<p><a href="' + result.my_obj[i].url + '">' + result.my_obj[i].name+ '</a></p>';
+            content = content +  '<p><i class="fa fa-file-image-o" aria-hidden="true"></i> <a href="' + result.my_obj[i].url + '" target="_blank">' + result.my_obj[i].name+ '</a></p>';
         }
         id_attachment.append(content);
     }
@@ -1042,7 +1279,7 @@ function get_photo_ko (error)
     RMPApplication.debug("begin get_photo_ko : error =  " + JSON.stringify(error));
     c_debug(debug.photo, "=> get_photo_ko: error", error);
 
-    var error_msg = ${P_quoted(i18n("order_ko_msg", "Récupération impossible des photos!"))};
+    var error_msg = ${P_quoted(i18n("order_ko_msg", "Récupération impossible des photos !"))};
     notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify);
     RMPApplication.debug("end get_photo_ko");
 }
@@ -1073,7 +1310,7 @@ function fillTaskArray(wm_order_num)
                     "",
                     var_tl[j].number,
                     var_tl[j].description,
-                    var_tl[j].state,
+                    translateExp(col_lang_opt.code_language, getVarINVStatusValue(var_tl[j].state)),
                     var_tl[j].opened_at,
                     var_tl[j].closed_at,
                     var_tl[j].dispatch_group,
@@ -1094,7 +1331,6 @@ function fillTaskArray(wm_order_num)
 // ==========================================
 // Show satisfaction areas under conditions
 // ==========================================
-// function fillSatisfaction(note, toEval, evalComment)
 function fillSatisfaction(note, evalComment)
 {
     RMPApplication.debug("begin fillSatisfaction");
@@ -1225,7 +1461,7 @@ function setProgression(numb)
     var selectedValue = 0; 
     var state = $("#id_state_detail").val();
     c_debug(debug.progress, "=> setProgression: state : ", state);
-    var state_val = getStatusValue(state);
+    var state_val = getStatusValue(v_ol.wo_state);
     c_debug(debug.progress, "=> setProgression: state_val : ", state_val);
 
     switch (state_val)
@@ -1391,6 +1627,11 @@ function getStatusValue (libelle)
         case "16" :
             return '16';
             break;
+        case "Accepté" :
+        case "Accepted" :
+        case "17" :
+            return '17';
+            break;
         case "En cours de résolution" :
         case "En cours de traitement" :
         case "Work In Progress" :
@@ -1419,166 +1660,6 @@ function getStatusValue (libelle)
     RMPApplication.debug("end getStatusValue");
 }
 
-// =======================================
-// Traduce Status Label from UK to FR
-// =======================================
-function StatusFromUkToFr (libelle)
-{
-    RMPApplication.debug("begin StatusFromUkToFr");
-    c_debug(debug.status, "=> StatusFromUkToFr: libelle = ", libelle);
-    switch (libelle)  {
-        case "1" :
-        case "Draft" :
-            return "Transmis";
-            break;
-        case "3" :
-        case "Closed Complete" :
-            return "Terminé - Complet";
-            break;
-        case "4" :
-        case "Closed Incomplete" :
-            return "Terminé - Incomplet";
-            break;
-        case "7" :   
-        case "Cancelled" :
-            return "Clos - Annulé";
-            break;
-        case "10" :
-        case "Diagnosed" : 
-        case "Qualified" :
-            return "Diagnostiqué";
-            break;
-        case "11" :
-        case "Awaiting Approval" :
-            return "En attente d'approbation";
-            break;
-        case "13" :
-        case "Approved" :
-            return "Approuvé";
-            break;
-        case "15" :
-        case "Awaiting Diagnosis" :
-            return "En attente de diagnostic";
-            break;
-        case "16" :
-        case "Assigned" :
-        case "Assigné" :
-            return "Affecté";
-            break;
-        case "18" :
-        case "Work In Progress" :
-            return "En cours de résolution";
-            break;
-        case "19" :
-        case "Error" :
-            return "Erreur";
-            break;
-        case "20" :
-        case "Resolved" :
-            return "Terminé - Complet";
-            break;
-        case "21" :
-        case "Unresolved" :
-            return "Terminé - Incomplet";
-            break;
-        default:        // All status or no status selected)
-            return "Aucun statut";
-            break;
-    }
-    RMPApplication.debug("end StatusFromUkToFr");
-}
-
-// =======================================
-// Get Simplified Status Label
-// =======================================
-function getStatusLabel (status)
-{
-    RMPApplication.debug("begin getStatusLabel");
-    c_debug(debug.status, "=> getStatusLabel: status = ", status);
-
-    switch (status)  {
-        case '1' :
-            return "Transmis";
-            break;
-        case '3' :
-        case '20' :
-            return "Terminé - Complet";
-            break;
-        case '4' :
-        case '21' :
-            return "Terminé - Incomplet";
-            break;
-        case '7' :          
-            return "Clos - Annulé";
-            break;
-        case '10' :
-            return "Diagnostiqué";
-            break;
-        case '11' :
-            return "En attente d'approbation";
-            break;
-        case '13' :
-            return "Approuvé";
-            break;
-        case '15' :
-            return "En attente de diagnostic";
-            break;
-        case '16' :
-            return "Affecté";
-            break;
-        case '18' :
-            return "En cours de résolution";
-            break;
-        case '19':
-            return "Erreur";
-            break;
-        default:        // All status or no status selected)
-            return 'Aucun statut';
-            break;
-    }
-    RMPApplication.debug("end getStatusLabel");
-}
-
-// =======================================
-// Get Simplified Priority Label
-// =======================================
-function getPrioriyLabel (priority)
-{
-    RMPApplication.debug("begin getPrioriyLabel");
-    c_debug(debug.status, "=> getPrioriyLabel: priority = ", priority);
-
-    switch (priority)  {
-        case '1':
-        case '1 - Critical':
-        case '1 - Critique':
-            return "1 - Critique";
-            break;
-        case '2':
-        case '2 - High':
-        case '2 - Elevée':
-            return "2 - Elevée";
-            break;
-        case '3':
-        case '3 - Moderate':
-        case '3 - Modérée':
-            return "3 - Modérée";
-            break;
-        case '4':
-        case '4 - Low':
-        case '4 - Basse':
-            return "4 - Basse";
-            break;
-        case '5':
-        case '5 - Planning':
-            return "5 - Planifiée";
-            break;
-        default:        // All priorities or no priority selected)
-            return 'Aucune priorité';
-            break;
-    }
-    RMPApplication.debug("end getPrioriyLabel");
-}
-
 // ======================
 //  datatable clean
 // ======================
@@ -1588,7 +1669,6 @@ function clearOrderDataTable()
     $('#id_tab_wm_order').DataTable().clear();
     $('#id_tab_wm_order').DataTable().draw();
     RMPApplication.debug("end clearOrderDataTable");
-
 }
 
 function clearTaskDataTable()
@@ -1605,26 +1685,16 @@ function clearTaskDataTable()
 function initDataTable()
 {
     RMPApplication.debug("begin initDataTable");
-
-    // Common options for all of our tables
-    var  fr_language = {
-        "emptyTable": "Aucune donnée disponible",
-        "zeroRecords": "Pas d'information à afficher",
-        "lengthMenu": "Affiche _MENU_ tickets par page",
-        "info": "Page _PAGE_ sur _PAGES_",
-        "infoEmpty": "Aucune information pour cette selection",
-        "infoFiltered": "(filtré sur le nombre _MAX_ total de tickets)",
-        "loadingRecords": "Chargement en cours...",
-        "processing": "Traitement en cours...",
-        "search": "Rechercher:",
-        "paginate" : {
-            "first" : "<i class=\"fa fa-fast-backward\" aria-hidden=\"true\"></i>",
-            "previous" : "<i class=\"fa fa-step-backward\" aria-hidden=\"true\"></i>",
-            "next" : "<i class=\"fa fa-step-forward\" aria-hidden=\"true\"></i>",
-            "last" : "<i class=\"fa fa-fast-forward\" aria-hidden=\"true\"></i>"
+    
+    var datatable_language = col_lang_opt.code_datatable;
+    var datatable_lang_option = {};
+    for (i=0; i<datatable_lang.length; i++) {
+        if (datatable_lang[i].language == datatable_language) {
+            datatable_lang_option = datatable_lang[i].options;
+            break;
         }
-    };
-
+    }
+    
     var ticket_nb_col = ${P_quoted(i18n("ticket_nb_col", "N° Ticket"))};
     var ticket_site_col = ${P_quoted(i18n("ticket_site_col", "Site"))};
     var ticket_desc_abr_col = ${P_quoted(i18n("task_desc_abr_col", "Description (abrégée)"))};
@@ -1721,9 +1791,13 @@ function initDataTable()
     // order by opened date
     var order_wm_options = [6, 'desc'];
 
+    // what date format to apply
+    var dateFormatLang = col_lang_opt.date_full;
+    var momentFormatLang = col_lang_opt.code_moment;
+
     // #id_tab_wm_order table options
     if ( $.fn.dataTable.isDataTable('#id_tab_wm_order') == false ) {
-        $.fn.dataTable.moment('DD/MM/YYYY HH:mm:ss', iso_code);
+        $.fn.dataTable.moment(dateFormatLang, momentFormatLang);
         $('#id_tab_wm_order').DataTable({
             responsive: responsive_options,
             columns: tab_wm_order_col,
@@ -1733,12 +1807,12 @@ function initDataTable()
             searching: false,       // Disable searching abilities in DataTables
             lengthChange: false,    // Disable user ability to change number of records per page
             "pagingType": "full_numbers",
-            "language": fr_language
+            "language": datatable_lang_option
         });
     }
     // #id_tab_wm_task table options
     if ( $.fn.dataTable.isDataTable('#id_tab_wm_task') == false ) {
-        $.fn.dataTable.moment('DD/MM/YYYY HH:mm:ss', iso_code);
+        $.fn.dataTable.moment(dateFormatLang, momentFormatLang);
         $('#id_tab_wm_task').DataTable({
             responsive: responsive_options,
             columns: tab_wm_task_col,
@@ -1747,7 +1821,7 @@ function initDataTable()
             searching: false,       // Disable searching abilities in DataTables
             lengthChange: false,    // Disable user ability to change number of records per page
             "pagingType": "full_numbers",
-            "language": fr_language
+            "language": datatable_lang_option
         });
     }
     RMPApplication.debug("end initDataTable");

@@ -40,10 +40,10 @@
                     <fo:retrieve-marker retrieve-class-name="odd-page-footer" retrieve-position="first-including-carryover" retrieve-boundary="page" />
                 </fo:static-content>
                 <fo:static-content flow-name="even-page-header">
-                    <fo:retrieve-marker retrieve-class-name="odd-page-header" retrieve-position="first-including-carryover" retrieve-boundary="page" />
+                    <fo:retrieve-marker retrieve-class-name="even-page-header" retrieve-position="first-including-carryover" retrieve-boundary="page" />
                 </fo:static-content>
                 <fo:static-content flow-name="even-page-footer">
-                    <fo:retrieve-marker retrieve-class-name="odd-page-footer" retrieve-position="first-including-carryover" retrieve-boundary="page" />
+                    <fo:retrieve-marker retrieve-class-name="even-page-footer" retrieve-position="first-including-carryover" retrieve-boundary="page" />
                 </fo:static-content>
                 <fo:static-content flow-name="xsl-footnote-separator">
                     <fo:block>
@@ -52,26 +52,20 @@
                 </fo:static-content>
                 <fo:flow flow-name="xsl-region-body">
                     <fo:block widows="2" orphans="2" font-size="10pt" line-height="1.147" white-space-collapse="false">
-                        <fo:marker marker-class-name="first-page-header" xmlns:st1="urn:schemas-microsoft-com:office:smarttags" />
-                        <fo:marker marker-class-name="first-page-footer" xmlns:st1="urn:schemas-microsoft-com:office:smarttags" />
-                        <fo:marker marker-class-name="odd-page-header" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+                        <fo:marker marker-class-name="first-page-header" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
                             <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="11pt" language="FR" text-align="center">
                                 <fo:inline language="">
                                     <fo:external-graphic content-width="138.1pt" content-height="55.35pt" src="url(&quot;data:image/auto;base64,iVBORw0KGgoAAAANSUhEUgAAAS0AAAB4CAMAAACQCVQsAAAAAXNSR0IArs4c6QAAAARnQU1BAACx&#xA;jwv8YQUAAAMAUExURWs1eXs1dVxje3lqYQNEngZJng5Cmg5NnxlMmgRKoAxMoQlTpxFNoRNRpBRW&#xA;qBJfrhlUphhXqBxYpxpaqiFJmyFRkzxBjzhFkjxaizVXkiBXpyBZpyJbqStXqSpfqyJhrSlhrCRo&#xA;sipyuTFjpjFlrTNorzNlsDRpsD1ssjZ1uit9wUU6hmk8gkhCjEdEkEhdikpRmFJBi1JfhUNqrEJu&#xA;skRytUJ3uEt1tk94t017ulJ8ulh+uS2KyzKJyjSQzjuT0E+QvFWAvV+Du3yElmSGvWqVqE+KxUeU&#xA;y0CV0V+Mw1SVwlKe1Vei1meKwWaQxWebwGuRxnSTxHKXyHWayXmWxXuYx3mbymeq2Xii0Hex3Iku&#xA;aoowa4g2dJgqZa8kXbMlW6MvaLx/NopxXJJzXYlyaZl2Yd4IOd4TP+wAEu0HLO0LM+4ZOu8iPPA5&#xA;NskVSdIOQdQVRMMlVcE5Zu8cQO4lRfAsTPAtUPAyTfA2VPE8YPFIMvNZLfJQMPRoJfZ7OtNFaPFB&#xA;XPFGZPFVa/Jbc/RpSfNmevNrgPR3ivV+kKWATrGGVK+SZrucc8uHOs+WP9KHKtOJNNmSJ96TM+GL&#xA;GO+TD+iUH/aBC/eJH/eTB/eXGvebIfihKPikN8qIRsmVRMOVWNSTT/msR/ipVPqwSPq0WPq6Z/q+&#xA;dPvDeYWUnImaoLKUtoGcyoWgzIujzYil0IK335CmzpSs05qu0pWz2JO43Jux1Ie74ZK/4qm6xaG1&#xA;1qC22Ky92pfE5K7A3LTE3qjL563Q6rfI4bbU7Ni3ks63pPWHlvaSnuGSpfeYp/eirfiqtPi1vfm7&#xA;w/vHifvMlPzSnO/VvPzPofzUpPzbt/3gvsDO5MTR5cHb78vV58nV6M3b7Mbd8NDX59Td7Mvg8dfg&#xA;7dri7tTj8tXo9drk8drq9frCyvvN0/vW2vzd4f3jx/3r1/7w3ufl6+Dm8ePr9OPu+Oru9ubw+Ozw&#xA;9+zy+Pzl6P3u8P7z6PL2+vb4/P7z9P72+P758/7+/gAAAAAAAAAAACvJb4oAAAEAdFJOU///////&#xA;////////////////////////////////////////////////////////////////////////////&#xA;////////////////////////////////////////////////////////////////////////////&#xA;////////////////////////////////////////////////////////////////////////////&#xA;////////////////////////////////////////////////////////////////////////////&#xA;/////////////////////////////wBT9wclAAAACXBIWXMAABJ0AAASdAHeZh94AAAAGXRFWHRT&#xA;b2Z0d2FyZQBwYWludC5uZXQgNC4wLjE3M26fYwAADaVJREFUeF7tnX9wHFUdwFEj5jYXLQNOUKI0&#xA;tSP1B+KPRqBDcoI4BJuOdGAaYaiM4qi3kYLmQg8Y9S7n5arI+AOVS3KiwYSoWFCUCDY0JLr1crmU&#xA;MdFqraktJHdJCgWbSy6X7B++t+/79sft273dxD/oZj+h7d177zZ3n3y/333v3V44R3SxjmvLDq4t&#xA;O7i27ODasoNryw6uLTu4tuzg2rKDa8sOri07uLbs4Nqyg2vLDq4tO7i27ODassPqbZ15efLokSNH&#xA;jk6+PA8tzmeVtk48s+Pq2ks2VldXb9xce82O3x45DR3OZjW2lp796Du8ZQgPB1RWv3vXCeh1Mquw&#xA;NVm7+drfHDx48MmdW7kyL8Bx3mtfhAHOxb6t/AElik7v3+ABXV6vp+wmp1ew1Vd5wpnHqjmw5fWW&#xA;bTy4BO3OZFW2CoUcYqFQwHeOXq3o4t7+mKPDy6atXCYlRMPhcCgUDqF/IvuS6exL11eALKSr4kon&#xA;nx3t2MocCgdamotoCQS+ceuHvBU0wDzVr8JwB2LZVjYW8PNgqBieD+z+QAVEmOc98AgHYs1WLhU0&#xA;VEXg+T23VoGuT8OjnIcFWwvp2F5zVQS++bZzqrwoI6uH4JGOo7StdCQAOiyw55YqzsvVOrXSl7KV&#xA;i9lwhblz9wUc9xQ82mmUsJVpBQnW4e+61FPh0FmXua0UGLAHf075k3AAh2Fmq5DUza4s8pkP5uEY&#xA;zsLEViEGr90+/F1/gYM4C2Nby1F46auiRYDDOApjW2uShUjCcZyEoS3ByoTUjJY0HMlBGNlKF02z&#xA;UL23W/JbMnAs52BgKxcir7g1GI4IyVSakEoK+yKRcBCZtBJ5AcfpMrAV49E6OdienM5KO35qCrns&#xA;dEpoD7fwJY3tzcFjnALb1jRyFUllF+Aug4VcNhUrtTHR3AajnQLbVtAfHDVRRSlkhRLCRmGkQ2Da&#xA;OuRvs5xDWSFg4itiwflZBMvWTKt2armyuLg4R0C3oFFFOhI0Ol+2OCu4WLYE5SWuzM0+39fb09Od&#xA;IHT39PT2HZ6YK3I2M/LVL4KfIiKOKvQMWzPyiX92rDvR1dmBiOO/MPhGZ2dXoufwLAwifOR9u9kJ&#xA;6ag5KsNWjkwaVv6aIIKYYGuPzkkDJTze8qrbGL746DKMcALMKo8ZV+KpmHi8A4XWqRUYiTmNL4jw&#xA;VO1h+HJSKhrYmu3WuZIyEv3d1fO8KqaAIXL5SPmtd4IjGX8KhqjITVtANy1+DcC0lR8jajDoFvkP&#xA;g8rVBOOkKIo7iS3OU7X7rqL4CsIQFclmf0m+lIXBryVYtub/RANLkYbyL9E7PqfOPjVw6UhlJVd+&#xA;6W2gCfDrUzFl4Z0R/9li6+kfgSAsCwIr3m2sShRPKBeOeLkLbtFEFyMVrWz3ny22hr/TSR1R4om/&#xA;GatCHHgjqMJw3OvUuvgYDFJwUGzlb34YHCFIdHVr51Z6rlWuecN43v8FeM2YMAxSGIEeM84SW8c/&#xA;9X1ZE6azZwJ6DMm/EzQRKis9l+6BF40I6GZc6UhYQV40BaCBEHotzjz0tgY+hm1hTfgvVK+YJ0EN&#xA;QxvAkwxX9RVwgNC/7mX0BRSCMKo5qNo8VLqz6REhFmtv3yck09rNNnzFnTEwiJIbHUmxJyWFzGgq&#xA;NW3tZ6OztXRz/cMQVYjE86VdieIuVZEHuF/JFvgZGMaGaQvICOG78SVjqA7yzYFAa7A9rbzi2N6g&#xA;CdpEzoQC6OHtDCfZe1pRVyBkafmvs5XfXn+/nIY9+nkoi8sZtv49Sks5b16BFFvF49Jh6FETlBee&#xA;bYyFg4x2lzsL6R7V6wrDUSztUelsTTXU/+KH2BTKwh4rgSWKkxtBkZq8/K4Rb749bxRbywbvOvlj&#xA;kKZt0MAkoFafkY/UrktG+u3D5hlA0Nk6Xt/QgOdbnUgWNJXiKV3Z8nouRwUBQsNybGls5aJ+aC/G&#xA;30oOaG5LdbA0tCH8uuham61j9Q2+X0pz+cPQUor8Dn0ilj2DOmZILq4qE7MhJbJ4+JIhb1W2+XkK&#xA;tKOhcN+vsqWd3bUVWVmbrWEUW76fxjstyxJPXMKw9TLuSZHwMK8IzNjKqUpWOCYkk0lBaFOEBfFL&#xA;SwmH4CtKO0LQIAhJ+ZtO3w2dQFGB+j/Y+uQP4n3WahZiCAyp8GyRepbJUzHfm2faEqCtmY9Ow35b&#xA;IZeJybrIVjheX+A/o5C0PD7pkUWHPAXJycenD45patfabKFMRHwiUWr6rrBLvewhePZLPSvfxM8j&#xA;IN02RLGlZCJ98xctmzRT2xFay7SvTbGln1HRuAtkYvTBmoXr2mydlGxd97T0IypYCLD8RYxEnMQ9&#xA;i4kf4+dR4k1FVmzJ1xUUr5pGaIBMQ4OEiS2BKkKlThanLpBrs3Xah235Go5J9ybMdh4IB+TPkcl4&#xA;avMosMa7Oh76MjoNlbg2iWXrEDTxupIHQcdrruAxtpWksvD4QoTc5kMqXWuztYRlIV2Nw9Ldid7e&#xA;WVNfS5sZofVHUTz1KJ7f3lt6eazYkgcut5MWXh+WSRIfvKb4GNpKwayUF6SO7D1wN6SU0jXaagJd&#xA;DUTXXC9aVpv4GtJXLW7jpIgCC4NsNeuyQwsjtgpw7RivD8tpIoaPWLGVhWPLo2mGq3aR1mZL7JdS&#xA;EenyEV2LPfF4x5jhLOAK7WYNhts5Ib1dhILrPnRSg4FGmNjy66+Yy4IYzfuURrbopaCt8mB5fSCv&#xA;n9ZoaxBsKbp64x3xeDc7wP4DhjR8S96pvq/Zr6nHDBRbcibKsbUPGhTk2FJPSwxsZem5QjU1oQuA&#xA;MB25RlvHQZaUjOTDmYdRWqEA6x2fWyxWxpjHey/8LsjCsRXU/rj1MGJLhLrF2Ei0U7foOTAoxGTk&#xA;60NHYNAabb3SRIML6foD+ZgAKl7opcfjnd19YxPqs+TRajCkgnsDMYUysfNenj4rQ1i2ktCkW5DT&#xA;3TAr50RYSSDwWgj+gxYlkmmwtRZ/KxZ6W2I/uML4mo5LbSvjCZpdicTP+8ZnibKlG8CQmvIH8DBp&#xA;x6fjjrBhwaMotpSTZ5p+BCRY9HBad1pKz7dymuWhDnoGkSuZlauKGbb+AaYkfA2DpPUUql7EgGSi&#xA;K9HdOzb253fpE9HzYRiCeMjCc2DFVoHO5Zs1tgvy0ke72GPaUpZJBpDUS9MIDJQqsAiGraVGORUR&#xA;Pl8/fK5iVg4vIB7/HKNqlf0EupGwr5UOLVFeP6tsqd5D2ztCD1FItcoCtD8Elq0caaJpKP0h0HYS&#xA;XMtwF4GWpFKTMQxb4iCIAnxNU9BxGDxQHnwbI7Quw04hCu+wsH8LdVuTiSqHzX4+GI0JsWhYVXSK&#xA;3uJg2aLr8oAgCDH4Q4jSKSs5rSoxyPvxdrYCr3v2LFuiUucxPp9v4CTpmOvTXHfzef1cy1v+PdKH&#xA;fd1XYtEjkdsLT1YdW+IC3QHGqCJCQjMSQbNJZYtuPTAmuLQLZnO5oh0dBb/uaiqmrSmNLVS7fI0D&#xA;r5CuufEefPENctHZ8UA5I7Rup6pQHpL1Riky8Oy1DnL7SKsevk0dhBhGbI3SN94YySVPWsnoUaNP&#xA;FfqtxZa0yaXF1zgInzlcnH0ULla6UC+Lu+xBqQvz9VHNbosxGbJPqslEbZlSwe9VNvoosq2obIsa&#xA;YW2ATNNUJN9weToEjy/Cqi20/NGGF07HhmEo9yunxh+Jx+O3vwkUqfk29oRDK/5IcQQYkxNQddLl&#xA;lzhzqPjXBKDKIjBmkTlIVGWltBCBFsb1UGKBrhbp8MJoBB1Zm+0Iy7amtoMlNXXbYW6PODX2s3IQ&#xA;pIJ7PQmteLxrHAZaI5eKMj+6kYkFeD/sv/v5QHSUndvZKK5toZTcO9MGhZo5Q4+QzhbVFRqF6ZFY&#xA;NBQMIJGkE6HdRMMY2BKHwZAGX33j4AuQkPNXgiE1b/0sDqyu7j5r70NqYYsQF7LToyMjI6nRjNn5&#xA;fTmXs5j3a8HIFlsXrvhNA8eQsPyvK8GQCu7jvfiKZ91i0jEY2jLQhc6PDQ1N/YODql8lRfFc8ZJz&#xA;RUkY2xJfBEE6UMH3XXfVey+u9GhOip5K5Rdz5emE1lmY2EK6ik6MCliYr+GqTTXnIUsgrewoPO7k&#xA;QGMT3HQYZrbEKe2knk1d3aZNm2pqaip2nfzX8ODAzY2+q3z9Dv2lZaa2xFf6t5f0BQPQP/U+9IVu&#xA;NT7n1N/wZmJrHs8VjvXXW4gvCh5a3wSLSgdiFlv7cYjMDxtXLwb1vudgQuZEzGwN3SD9c3qgeBlk&#xA;jK8JVt/OxMzW/JYbSZy88IQlXWjQoFMrFsG0yg95Lx+SLi1C8dUISoxA8dfY/19psHMxtZV/jPNu&#xA;vfHA5PzSUv7k76+v0+3jyPh8jf3DTndVwpb46k0cx523eUttbe2WzRsq3lJTV6fPSTRv2P7E8JSz&#xA;c5BgbkvM36S5gqay4s3n12xSGauv8zU+MTg1vx5UIUrYEsWDZdod0srKCk9l5XkX1+AZ/MU3vrhO&#xA;PBFK2hInt3L6HWWMx3sJXRmuF0rbEs/8bls1Kl/gSALdvaj2hn+uq7jCWLCFiv3fH9+2oexcDyd9&#xA;nes59/xtjw+tj/9bgRZLthCnJ5/dv2Pb1s1btl6z86mhyfWoCmHVFiZPWHf5p2DHlotryw6uLTu4&#xA;tuzg2rKDa8sOri07uLbs4Nqyg2vLDq4tO7i27ODasoNryw6uLTu4tuzg2rKOKP4PMJNjMwWv+1MA&#xA;AAAASUVORK5CYIJ=&#xA;&quot;)"></fo:external-graphic>
                                 </fo:inline>
                             </fo:block>
                         </fo:marker>
+                        <fo:marker marker-class-name="first-page-footer" xmlns:st1="urn:schemas-microsoft-com:office:smarttags" />
+                        <fo:marker marker-class-name="odd-page-header" xmlns:st1="urn:schemas-microsoft-com:office:smarttags" />
                         <fo:marker marker-class-name="odd-page-footer" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
                             <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="11pt" language="FR" text-align="center">
                                 <fo:inline>
                                     <fo:leader leader-length="0pt" />
-                                    <fo:page-number />
-                                </fo:inline>
-                                <fo:inline>
-                                    <fo:leader leader-length="0pt" /> / </fo:inline>
-                                <fo:inline>
-                                    <fo:leader leader-length="0pt" />
-                                    <fo:page-number-citation ref-id="IDSR3JLZDKTWW0JJJ45DOYJQZMHM0VSP3ONBQLLYKTDHDTA0ADZEDD" />
+                                    <fo:page-number /> / <fo:page-number-citation ref-id="IDSR3JLZDKTWW0JJJ45DOYJQZMHM0VSP3ONBQLLYKTDHDTA0ADZEDD" />
                                 </fo:inline>
                             </fo:block>
                         </fo:marker>
@@ -80,13 +74,7 @@
                             <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="11pt" language="FR" text-align="center">
                                 <fo:inline>
                                     <fo:leader leader-length="0pt" />
-                                    <fo:page-number />
-                                </fo:inline>
-                                <fo:inline>
-                                    <fo:leader leader-length="0pt" /> / </fo:inline>
-                                <fo:inline>
-                                    <fo:leader leader-length="0pt" />
-                                    <fo:page-number-citation ref-id="IDSR3JLZDKTWW0JJJ45DOYJQZMHM0VSP3ONBQLLYKTDHDTA0ADZEDD" />
+                                    <fo:page-number /> / <fo:page-number-citation ref-id="IDSR3JLZDKTWW0JJJ45DOYJQZMHM0VSP3ONBQLLYKTDHDTA0ADZEDD" />
                                 </fo:inline>
                             </fo:block>
                         </fo:marker>
@@ -111,6 +99,7 @@
                         <fo:block space-after="30pt" space-after.conditionality="retain" line-height="1.2378041666666666" font-family="Arial" font-size="13pt" language="FR" text-align="center" font-weight="bold" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
                             <fo:leader />
                         </fo:block>
+<!-- Statut -->                         
                         <fo:block text-align="right">
                             <fo:table font-family="Arial" language="FR" start-indent="0pt" text-align="right" border-top-style="solid" border-top-color="black" border-top-width="0.5pt" border-left-style="solid" border-left-color="black" border-left-width="0.5pt" border-bottom-style="solid" border-bottom-color="black" border-bottom-width="0.5pt" border-right-style="solid" border-right-color="black" border-right-width="0.5pt" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
                                 <fo:table-column column-number="1" column-width="96.25pt" />
@@ -139,6 +128,7 @@
                         <fo:block space-after="8pt" space-after.conditionality="retain" line-height="1.2378041666666666" font-family="Arial" font-size="12pt" language="FR" font-weight="bold" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
                             <fo:leader />
                         </fo:block>
+<!-- Donneur d’ordre -->                          
                         <fo:table font-family="Arial" language="FR" start-indent="0pt" border-top-style="solid" border-top-color="black" border-top-width="0.5pt" border-left-style="solid" border-left-color="black" border-left-width="0.5pt" border-bottom-style="solid" border-bottom-color="black" border-bottom-width="0.5pt" border-right-style="solid" border-right-color="black" border-right-width="0.5pt" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
                             <fo:table-column column-number="1" column-width="255pt" />
                             <fo:table-column column-number="2" column-width="255.05pt" />
@@ -190,6 +180,7 @@
                         <fo:block space-after="8pt" space-after.conditionality="retain" line-height="1.2378041666666666" font-family="Arial" font-size="12pt" language="FR" font-weight="bold" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
                             <fo:leader />
                         </fo:block>
+<!-- Informations relatives à l’intervention -->                        
                         <fo:table font-family="Arial" language="FR" start-indent="0pt" border-top-style="solid" border-top-color="black" border-top-width="0.5pt" border-left-style="solid" border-left-color="black" border-left-width="0.5pt" border-bottom-style="solid" border-bottom-color="black" border-bottom-width="0.5pt" border-right-style="solid" border-right-color="black" border-right-width="0.5pt" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
                             <fo:table-column column-number="1" column-width="233.65pt" />
                             <fo:table-column column-number="2" column-width="42.55pt" />
@@ -302,6 +293,7 @@
                         <fo:block space-after="8pt" space-after.conditionality="retain" line-height="1.2378041666666666" font-family="Arial" font-size="12pt" language="FR" font-weight="bold" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
                             <fo:leader />
                         </fo:block>
+<!-- Informations de la station concernée -->                        
                         <fo:table font-family="Arial" language="FR" start-indent="0pt" border-top-style="solid" border-top-color="black" border-top-width="0.5pt" border-left-style="solid" border-left-color="black" border-left-width="0.5pt" border-bottom-style="solid" border-bottom-color="black" border-bottom-width="0.5pt" border-right-style="solid" border-right-color="black" border-right-width="0.5pt" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
                             <fo:table-column column-number="1" column-width="318.7pt" />
                             <fo:table-column column-number="2" column-width="191.35pt" />
@@ -378,27 +370,21 @@
                                 </fo:table-row>
                             </fo:table-body>
                         </fo:table>
-                        <fo:block page-break-before="always" space-after="8pt" space-after.conditionality="retain" line-height="1.2378041666666666" font-family="Arial" font-size="12pt" language="FR" font-weight="bold" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+                        <fo:block space-after="8pt" space-after.conditionality="retain" line-height="1.2378041666666666" font-family="Arial" font-size="12pt" language="FR" font-weight="bold" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
                             <fo:leader />
                         </fo:block>
-                    </fo:block>
-
-
-<!-- Report Contrôles initiaux -->
+<!-- Résumé des anomalies non réparées -->
                         <fo:table font-family="Arial" language="FR" start-indent="0pt" border-top-style="solid" border-top-color="black" border-top-width="0.5pt" border-left-style="solid" border-left-color="black" border-left-width="0.5pt" border-bottom-style="solid" border-bottom-color="black" border-bottom-width="0.5pt" border-right-style="solid" border-right-color="black" border-right-width="0.5pt" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
-                            <fo:table-column column-number="1" column-width="254.9pt" />
+                            <fo:table-column column-number="1" column-width="380.00pt" />
                             <fo:table-column column-number="2" column-width="42.55pt" />
-                            <fo:table-column column-number="3" column-width="42.5pt" />
+                            <fo:table-column column-number="3" column-width="42.55pt" />
                             <fo:table-column column-number="4" column-width="42.55pt" />
-                            <fo:table-column column-number="5" column-width="42.5pt" />
-                            <fo:table-column column-number="6" column-width="42.55pt" />
-                            <fo:table-column column-number="7" column-width="42.5pt" />
                             <fo:table-body start-indent="0pt" end-indent="0pt">
                                 <fo:table-row>
-                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" number-columns-spanned="7" background-color="#FF0000" display-align="center">
+                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" number-columns-spanned="4" background-color="#FF0000" display-align="center">
                                         <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="10pt" language="FR" font-weight="bold" color="#FFFFFF">
                                             <fo:inline font-weight="bold" color="#FFFFFF" font-size="10pt">
-                                                <fo:leader leader-length="0pt" />Actions et contrôles initiaux
+                                                <fo:leader leader-length="0pt" />Résumé des anomalies NON réparées sur place (en cours de dévt...)
                                             </fo:inline>
                                         </fo:block>
                                     </fo:table-cell>
@@ -408,27 +394,6 @@
                                         <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
                                             <fo:inline font-weight="bold" font-size="8pt">
                                                 <fo:leader leader-length="0pt" />Action
-                                            </fo:inline>
-                                        </fo:block>
-                                    </fo:table-cell>
-                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="dotted" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#E2EFD9" display-align="center">
-                                        <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center" font-weight="bold">
-                                            <fo:inline font-weight="bold" font-size="8pt">
-                                                <fo:leader leader-length="0pt" />Heure Début
-                                            </fo:inline>
-                                        </fo:block>
-                                    </fo:table-cell>
-                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="dotted" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#E2EFD9" display-align="center">
-                                        <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center" font-weight="bold">
-                                            <fo:inline font-weight="bold" font-size="8pt">
-                                                <fo:leader leader-length="0pt" />Heure Fin
-                                            </fo:inline>
-                                        </fo:block>
-                                    </fo:table-cell>
-                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="dotted" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#E2EFD9" display-align="center">
-                                        <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center" font-weight="bold">
-                                            <fo:inline font-weight="bold" font-size="8pt">
-                                                <fo:leader leader-length="0pt" />Délai action
                                             </fo:inline>
                                         </fo:block>
                                     </fo:table-cell>
@@ -458,31 +423,7 @@
                                     <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="none" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white" display-align="left">
                                         <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                             <fo:inline font-size="8pt">
-                                                <fo:leader leader-length="0pt" />PPJ complété sur site
-                                            </fo:inline>
-                                        </fo:block>
-                                    </fo:table-cell>
-                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="dotted" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="dotted" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#E2EFD9" display-align="center">
-                                        <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
-                                            <fo:inline font-size="8pt">
-                                                <fo:leader leader-length="0pt" />
-                                                <xsl:value-of select="cinit_ppj_start_time_str"/>
-                                            </fo:inline>
-                                        </fo:block>
-                                    </fo:table-cell>
-                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="dotted" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="dotted" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#E2EFD9" display-align="center">
-                                        <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
-                                            <fo:inline font-size="8pt">
-                                                <fo:leader leader-length="0pt" />
-                                                <xsl:value-of select="cinit_ppj_end_time_str"/>
-                                            </fo:inline>
-                                        </fo:block>
-                                    </fo:table-cell>
-                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="dotted" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="dotted" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#E2EFD9" display-align="center">
-                                        <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
-                                            <fo:inline font-size="8pt">
-                                                <fo:leader leader-length="0pt" />
-                                                <xsl:value-of select="cinit_ppj_delay_str"/>
+                                                <fo:leader leader-length="0pt" />"" Action concernée ""
                                             </fo:inline>
                                         </fo:block>
                                     </fo:table-cell>
@@ -529,31 +470,95 @@
                                         </fo:block>
                                     </fo:table-cell>
                                 </fo:table-row>
-                                <xsl:if test="cinit_ppj_ano_checked = 'OUI'">
-                                    <fo:table-row>
-                                        <fo:table-cell padding-top="10pt" padding-left="5.4pt" padding-bottom="10pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="none" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" number-columns-spanned="7" background-color="white" display-align="left">
-                                            <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
-                                                <fo:inline font-size="8pt">
-                                                        <fo:leader leader-length="0pt" />&#160;&#160;&#9658;&#160;Description du problème constaté&#160;&#9668;&#160;&#160; 
-                                                        <xsl:value-of select="cinit_ppj_ano_description"/>
-                                                </fo:inline>
-                                            </fo:block>
-                                            <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
-                                                <xsl:if test="cinit_ppj_ano_photo_joined = 'OUI'">
-                                                    <fo:inline font-size="8pt">
-                                                        <fo:external-graphic margin-left="auto" margin-right="auto" content-height="scale-down-to-fit" height="300pt" content-width="350pt" scaling="uniform">
-                                                            <xsl:attribute name="src">
-                                                                <xsl:text>url('</xsl:text>
-                                                                <xsl:value-of select="cinit_ppj_ano_photo_url"/>
-                                                                <xsl:text>')</xsl:text>
-                                                            </xsl:attribute>
-                                                        </fo:external-graphic>
-                                                    </fo:inline>
-                                                </xsl:if>
-                                            </fo:block>
-                                        </fo:table-cell>
-                                    </fo:table-row>
-                                </xsl:if>
+                            </fo:table-body>
+                        </fo:table>
+                        <fo:block page-break-before="always" space-after="8pt" space-after.conditionality="retain" line-height="1.2378041666666666" font-family="Arial" font-size="12pt" language="FR" font-weight="bold" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+                            <fo:leader />
+                        </fo:block>
+
+<!--#########################-->
+<!-- FIN DE LA PREMIERE PAGE -->
+<!--#########################-->
+
+<!-- Report Contrôles initiaux -->
+                        <fo:table font-family="Arial" language="FR" start-indent="0pt" border-top-style="solid" border-top-color="black" border-top-width="0.5pt" border-left-style="solid" border-left-color="black" border-left-width="0.5pt" border-bottom-style="solid" border-bottom-color="black" border-bottom-width="0.5pt" border-right-style="solid" border-right-color="black" border-right-width="0.5pt" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+                            <fo:table-column column-number="1" column-width="254.9pt" />
+                            <fo:table-column column-number="2" column-width="42.55pt" />
+                            <fo:table-column column-number="3" column-width="42.5pt" />
+                            <fo:table-column column-number="4" column-width="42.55pt" />
+                            <fo:table-body start-indent="0pt" end-indent="0pt">
+                                <fo:table-row>
+                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" number-columns-spanned="4" background-color="#FF0000" display-align="center">
+                                        <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="10pt" language="FR" font-weight="bold" color="#FFFFFF">
+                                            <fo:inline font-weight="bold" color="#FFFFFF" font-size="10pt">
+                                                <fo:leader leader-length="0pt" />Actions et contrôles initiaux
+                                            </fo:inline>
+                                        </fo:block>
+                                    </fo:table-cell>
+                                </fo:table-row>
+                                <fo:table-row>
+                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white" display-align="center">
+                                        <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
+                                            <fo:inline font-weight="bold" font-size="8pt">
+                                                <fo:leader leader-length="0pt" />Action
+                                            </fo:inline>
+                                        </fo:block>
+                                    </fo:table-cell>
+                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="dotted" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#E2EFD9" display-align="center">
+                                        <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center" font-weight="bold">
+                                            <fo:inline font-weight="bold" font-size="8pt">
+                                                <fo:leader leader-length="0pt" />Heure Début
+                                            </fo:inline>
+                                        </fo:block>
+                                    </fo:table-cell>
+                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="dotted" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#E2EFD9" display-align="center">
+                                        <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center" font-weight="bold">
+                                            <fo:inline font-weight="bold" font-size="8pt">
+                                                <fo:leader leader-length="0pt" />Heure Fin
+                                            </fo:inline>
+                                        </fo:block>
+                                    </fo:table-cell>
+                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="dotted" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#E2EFD9" display-align="center">
+                                        <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center" font-weight="bold">
+                                            <fo:inline font-weight="bold" font-size="8pt">
+                                                <fo:leader leader-length="0pt" />Délai action
+                                            </fo:inline>
+                                        </fo:block>
+                                    </fo:table-cell>
+                                </fo:table-row>
+                                <fo:table-row>
+                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="none" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white" display-align="left">
+                                        <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
+                                            <fo:inline font-size="8pt">
+                                                <fo:leader leader-length="0pt" />PPJ complété sur site
+                                            </fo:inline>
+                                        </fo:block>
+                                    </fo:table-cell>
+                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="dotted" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="dotted" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#E2EFD9" display-align="center">
+                                        <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
+                                            <fo:inline font-size="8pt">
+                                                <fo:leader leader-length="0pt" />
+                                                <xsl:value-of select="cinit_ppj_start_time_str"/>
+                                            </fo:inline>
+                                        </fo:block>
+                                    </fo:table-cell>
+                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="dotted" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="dotted" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#E2EFD9" display-align="center">
+                                        <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
+                                            <fo:inline font-size="8pt">
+                                                <fo:leader leader-length="0pt" />
+                                                <xsl:value-of select="cinit_ppj_end_time_str"/>
+                                            </fo:inline>
+                                        </fo:block>
+                                    </fo:table-cell>
+                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="dotted" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="dotted" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#E2EFD9" display-align="center">
+                                        <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
+                                            <fo:inline font-size="8pt">
+                                                <fo:leader leader-length="0pt" />
+                                                <xsl:value-of select="cinit_ppj_delay_str"/>
+                                            </fo:inline>
+                                        </fo:block>
+                                    </fo:table-cell>
+                                </fo:table-row>
                                 <fo:table-row>
                                     <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="none" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white" display-align="left">
                                         <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left" font-weight="bold">
@@ -586,74 +591,7 @@
                                             </fo:inline>
                                         </fo:block>
                                     </fo:table-cell>
-                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="dotted" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#DEEAF6" display-align="center">
-                                        <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
-                                            <fo:inline font-size="8pt">
-                                                <fo:leader leader-length="0pt" />
-                                                <xsl:choose>
-                                                    <xsl:when test="cinit_ferm_com_ano_checked = 'OUI'">
-                                                        <xsl:value-of select="cinit_ferm_com_ano_checked"/>
-                                                    </xsl:when>
-                                                    <xsl:otherwise>
-                                                    </xsl:otherwise>
-                                                </xsl:choose>
-                                            </fo:inline>
-                                        </fo:block>
-                                    </fo:table-cell>
-                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="dotted" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#DEEAF6" display-align="center">
-                                        <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
-                                            <fo:inline font-size="8pt">
-                                                <fo:leader leader-length="0pt" />
-                                                <xsl:choose>
-                                                    <xsl:when test="cinit_ferm_com_ano_repare = 'OUI'">
-                                                        <xsl:value-of select="cinit_ferm_com_ano_repare"/>
-                                                    </xsl:when>
-                                                    <xsl:otherwise>
-                                                    </xsl:otherwise>
-                                                </xsl:choose>
-                                            </fo:inline>
-                                        </fo:block>
-                                    </fo:table-cell>
-                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="dotted" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#DEEAF6" display-align="center">
-                                        <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
-                                            <fo:inline font-size="8pt">
-                                                <fo:leader leader-length="0pt" />
-                                                <xsl:choose>
-                                                    <xsl:when test="cinit_ferm_com_ano_renvoi_ordre = 'OUI'">
-                                                        <xsl:value-of select="cinit_ferm_com_ano_renvoi_ordre"/>
-                                                    </xsl:when>
-                                                    <xsl:otherwise>
-                                                    </xsl:otherwise>
-                                                </xsl:choose>
-                                            </fo:inline>
-                                        </fo:block>
-                                    </fo:table-cell>
                                 </fo:table-row>
-                                <xsl:if test="cinit_ferm_com_ano_checked = 'OUI'">
-                                    <fo:table-row>
-                                        <fo:table-cell padding-top="10pt" padding-left="5.4pt" padding-bottom="10pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="none" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" number-columns-spanned="7" background-color="white" display-align="left">
-                                            <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
-                                                <fo:inline font-size="8pt">
-                                                    <fo:leader leader-length="0pt" />&#160;&#160;&#9658;&#160;Description du problème constaté&#160;&#9668;&#160;&#160; 
-                                                    <xsl:value-of select="cinit_ferm_com_ano_description"/>
-                                                </fo:inline>
-                                            </fo:block>
-                                            <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
-                                                <xsl:if test="cinit_ferm_com_ano_photo_joined = 'OUI'">
-                                                    <fo:inline font-size="8pt">
-                                                        <fo:external-graphic margin-left="auto" margin-right="auto" content-height="scale-down-to-fit" height="300pt" content-width="350pt" scaling="uniform">
-                                                            <xsl:attribute name="src">
-                                                                <xsl:text>url('</xsl:text>
-                                                                <xsl:value-of select="cinit_ferm_com_ano_photo_url"/>
-                                                                <xsl:text>')</xsl:text>
-                                                            </xsl:attribute>
-                                                        </fo:external-graphic>
-                                                    </fo:inline>
-                                                </xsl:if>
-                                            </fo:block>
-                                        </fo:table-cell>
-                                    </fo:table-row>
-                                </xsl:if>
                                 <fo:table-row>
                                     <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="none" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white" display-align="left">
                                         <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
@@ -686,74 +624,7 @@
                                             </fo:inline>
                                         </fo:block>
                                     </fo:table-cell>
-                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="dotted" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#DEEAF6" display-align="center">
-                                        <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
-                                            <fo:inline font-size="8pt">
-                                                <fo:leader leader-length="0pt" />
-                                                <xsl:choose>
-                                                    <xsl:when test="cinit_rep_au_ano_checked = 'OUI'">
-                                                            <xsl:value-of select="cinit_rep_au_ano_checked"/>
-                                                    </xsl:when>
-                                                    <xsl:otherwise>
-                                                    </xsl:otherwise>
-                                                </xsl:choose>
-                                            </fo:inline>
-                                        </fo:block>
-                                    </fo:table-cell>
-                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="dotted" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#DEEAF6" display-align="center">
-                                        <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
-                                            <fo:inline font-size="8pt">
-                                                <fo:leader leader-length="0pt" />
-                                                <xsl:choose>
-                                                    <xsl:when test="cinit_rep_au_ano_repare = 'OUI'">
-                                                        <xsl:value-of select="cinit_rep_au_ano_repare"/>
-                                                    </xsl:when>
-                                                    <xsl:otherwise>
-                                                    </xsl:otherwise>
-                                                </xsl:choose>
-                                            </fo:inline>
-                                        </fo:block>
-                                    </fo:table-cell>
-                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="dotted" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#DEEAF6" display-align="center">
-                                        <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
-                                            <fo:inline font-size="8pt">
-                                                <fo:leader leader-length="0pt" />
-                                                <xsl:choose>
-                                                    <xsl:when test="cinit_rep_au_ano_renvoi_ordre = 'OUI'">
-                                                        <xsl:value-of select="cinit_rep_au_ano_renvoi_ordre"/>
-                                                    </xsl:when>
-                                                    <xsl:otherwise>
-                                                    </xsl:otherwise>
-                                                </xsl:choose>
-                                            </fo:inline>
-                                        </fo:block>
-                                    </fo:table-cell>
                                 </fo:table-row>
-                                <xsl:if test="cinit_rep_au_ano_checked = 'OUI'">
-                                    <fo:table-row>
-                                        <fo:table-cell padding-top="10pt" padding-left="5.4pt" padding-bottom="10pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="none" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" number-columns-spanned="7" background-color="white" display-align="left">
-                                            <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
-                                                <fo:inline font-size="8pt">
-                                                    <fo:leader leader-length="0pt" />&#160;&#160;&#9658;&#160;Description du problème constaté&#160;&#9668;&#160;&#160; 
-                                                    <xsl:value-of select="cinit_rep_au_ano_description"/>
-                                                </fo:inline>
-                                            </fo:block>
-                                            <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
-                                                <xsl:if test="cinit_rep_au_ano_photo_joined = 'OUI'">
-                                                    <fo:inline font-size="8pt">
-                                                        <fo:external-graphic margin-left="auto" margin-right="auto" content-height="scale-down-to-fit" height="300pt" content-width="350pt" scaling="uniform">
-                                                            <xsl:attribute name="src">
-                                                                <xsl:text>url('</xsl:text>
-                                                                <xsl:value-of select="cinit_rep_au_ano_photo_url"/>
-                                                                <xsl:text>')</xsl:text>
-                                                            </xsl:attribute>
-                                                        </fo:external-graphic>
-                                                    </fo:inline>
-                                                </xsl:if>
-                                            </fo:block>
-                                        </fo:table-cell>
-                                    </fo:table-row>
-                                </xsl:if>
                                 <fo:table-row>
                                     <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="none" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white" display-align="left">
                                         <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
@@ -786,74 +657,7 @@
                                             </fo:inline>
                                         </fo:block>
                                     </fo:table-cell>
-                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="dotted" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#DEEAF6" display-align="center">
-                                        <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
-                                            <fo:inline font-size="8pt">
-                                                <fo:leader leader-length="0pt" />
-                                                <xsl:choose>
-                                                    <xsl:when test="cinit_rep_depass_ano_checked = 'OUI'">
-                                                        <xsl:value-of select="cinit_rep_depass_ano_checked"/>
-                                                    </xsl:when>
-                                                    <xsl:otherwise>
-                                                    </xsl:otherwise>
-                                                </xsl:choose>
-                                            </fo:inline>
-                                        </fo:block>
-                                    </fo:table-cell>
-                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="dotted" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#DEEAF6" display-align="center">
-                                        <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
-                                            <fo:inline font-size="8pt">
-                                                <fo:leader leader-length="0pt" />
-                                                <xsl:choose>
-                                                    <xsl:when test="cinit_rep_depass_ano_renvoi_ordre = 'OUI'">
-                                                        <xsl:value-of select="cinit_rep_depass_ano_renvoi_ordre"/>
-                                                    </xsl:when>
-                                                    <xsl:otherwise>
-                                                    </xsl:otherwise>
-                                                </xsl:choose>
-                                            </fo:inline>
-                                        </fo:block>
-                                    </fo:table-cell>
-                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="dotted" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#DEEAF6" display-align="center">
-                                        <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
-                                            <fo:inline font-size="8pt">
-                                                <fo:leader leader-length="0pt" />
-                                                <xsl:choose>
-                                                    <xsl:when test="cinit_rep_depass_ano_renvoi_ordre = 'OUI'">
-                                                        <xsl:value-of select="cinit_rep_depass_ano_renvoi_ordre"/>
-                                                    </xsl:when>
-                                                    <xsl:otherwise>
-                                                    </xsl:otherwise>
-                                                </xsl:choose>
-                                            </fo:inline>
-                                        </fo:block>
-                                    </fo:table-cell>
                                 </fo:table-row>
-                                <xsl:if test="cinit_rep_depass_ano_checked = 'OUI'">
-                                    <fo:table-row>
-                                        <fo:table-cell padding-top="10pt" padding-left="5.4pt" padding-bottom="10pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="none" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" number-columns-spanned="7" background-color="white" display-align="left">
-                                            <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
-                                                <fo:inline font-size="8pt">
-                                                    <fo:leader leader-length="0pt" />&#160;&#160;&#9658;&#160;Description du problème constaté&#160;&#9668;&#160;&#160; 
-                                                    <xsl:value-of select="cinit_rep_depass_ano_description"/>
-                                                </fo:inline>
-                                            </fo:block>
-                                            <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
-                                                <xsl:if test="cinit_rep_depass_ano_photo_joined = 'OUI'">
-                                                    <fo:inline font-size="8pt">
-                                                        <fo:external-graphic margin-left="auto" margin-right="auto" content-height="scale-down-to-fit" height="300pt" content-width="350pt" scaling="uniform">
-                                                            <xsl:attribute name="src">
-                                                                <xsl:text>url('</xsl:text>
-                                                                <xsl:value-of select="cinit_rep_depass_ano_photo_url"/>
-                                                                <xsl:text>')</xsl:text>
-                                                            </xsl:attribute>
-                                                        </fo:external-graphic>
-                                                    </fo:inline>
-                                                </xsl:if>
-                                            </fo:block>
-                                        </fo:table-cell>
-                                    </fo:table-row>
-                                </xsl:if>
                                 <fo:table-row>
                                     <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="none" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white" display-align="left">
                                         <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
@@ -886,74 +690,7 @@
                                             </fo:inline>
                                         </fo:block>
                                     </fo:table-cell>
-                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="dotted" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#DEEAF6" display-align="center">
-                                        <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
-                                            <fo:inline font-size="8pt">
-                                                <fo:leader leader-length="0pt" />
-                                                <xsl:choose>
-                                                    <xsl:when test="cinit_rep_tgbt_jn_ano_checked = 'OUI'">
-                                                        <xsl:value-of select="cinit_rep_tgbt_jn_ano_checked"/>
-                                                    </xsl:when>
-                                                    <xsl:otherwise>
-                                                    </xsl:otherwise>
-                                                </xsl:choose>
-                                            </fo:inline>
-                                        </fo:block>
-                                    </fo:table-cell>
-                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="dotted" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#DEEAF6" display-align="center">
-                                        <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
-                                            <fo:inline font-size="8pt">
-                                                <fo:leader leader-length="0pt" />
-                                                <xsl:choose>
-                                                    <xsl:when test="cinit_rep_tgbt_jn_ano_repare = 'OUI'">
-                                                        <xsl:value-of select="cinit_rep_tgbt_jn_ano_repare"/>
-                                                    </xsl:when>
-                                                    <xsl:otherwise>
-                                                    </xsl:otherwise>
-                                                </xsl:choose>
-                                            </fo:inline>
-                                        </fo:block>
-                                    </fo:table-cell>
-                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="dotted" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#DEEAF6" display-align="center">
-                                        <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
-                                            <fo:inline font-size="8pt">
-                                                <fo:leader leader-length="0pt" />
-                                                <xsl:choose>
-                                                    <xsl:when test="cinit_rep_tgbt_jn_ano_renvoi_ordre = 'OUI'">
-                                                        <xsl:value-of select="cinit_rep_tgbt_jn_ano_renvoi_ordre"/>
-                                                    </xsl:when>
-                                                    <xsl:otherwise>
-                                                    </xsl:otherwise>
-                                                </xsl:choose>
-                                            </fo:inline>
-                                        </fo:block>
-                                    </fo:table-cell>
                                 </fo:table-row>
-                                <xsl:if test="cinit_rep_tgbt_jn_ano_checked = 'OUI'">
-                                    <fo:table-row>
-                                        <fo:table-cell padding-top="10pt" padding-left="5.4pt" padding-bottom="10pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="none" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" number-columns-spanned="7" background-color="white" display-align="left">
-                                            <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
-                                                <fo:inline font-size="8pt">
-                                                    <fo:leader leader-length="0pt" />&#160;&#160;&#9658;&#160;Description du problème constaté&#160;&#9668;&#160;&#160; 
-                                                    <xsl:value-of select="cinit_rep_tgbt_jn_ano_description"/>
-                                                </fo:inline>
-                                            </fo:block>
-                                            <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
-                                                <xsl:if test="cinit_rep_tgbt_jn_ano_photo_joined = 'OUI'">
-                                                    <fo:inline font-size="8pt">
-                                                        <fo:external-graphic margin-left="auto" margin-right="auto" content-height="scale-down-to-fit" height="300pt" content-width="350pt" scaling="uniform">
-                                                            <xsl:attribute name="src">
-                                                                <xsl:text>url('</xsl:text>
-                                                                <xsl:value-of select="cinit_rep_tgbt_jn_ano_photo_url"/>
-                                                                <xsl:text>')</xsl:text>
-                                                            </xsl:attribute>
-                                                        </fo:external-graphic>
-                                                    </fo:inline>
-                                                </xsl:if>
-                                            </fo:block>
-                                        </fo:table-cell>
-                                    </fo:table-row>
-                                </xsl:if>
                                 <fo:table-row>
                                     <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="none" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white" display-align="left">
                                         <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
@@ -986,74 +723,7 @@
                                             </fo:inline>
                                         </fo:block>
                                     </fo:table-cell>
-                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="dotted" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#DEEAF6" display-align="center">
-                                        <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
-                                            <fo:inline font-size="8pt">
-                                                <fo:leader leader-length="0pt" />
-                                                <xsl:choose>
-                                                    <xsl:when test="cinit_rep_tgbt_tls_ano_checked = 'OUI'">
-                                                        <xsl:value-of select="cinit_rep_tgbt_tls_ano_checked"/>
-                                                    </xsl:when>
-                                                    <xsl:otherwise>
-                                                    </xsl:otherwise>
-                                                </xsl:choose>
-                                            </fo:inline>
-                                        </fo:block>
-                                    </fo:table-cell>
-                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="dotted" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#DEEAF6" display-align="center">
-                                        <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
-                                            <fo:inline font-size="8pt">
-                                                <fo:leader leader-length="0pt" />
-                                                <xsl:choose>
-                                                    <xsl:when test="cinit_rep_tgbt_tls_ano_repare = 'OUI'">
-                                                        <xsl:value-of select="cinit_rep_tgbt_tls_ano_repare"/>
-                                                    </xsl:when>
-                                                    <xsl:otherwise>
-                                                    </xsl:otherwise>
-                                                </xsl:choose>
-                                            </fo:inline>
-                                        </fo:block>
-                                    </fo:table-cell>
-                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="dotted" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#DEEAF6" display-align="center">
-                                        <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
-                                            <fo:inline font-size="8pt">
-                                                <fo:leader leader-length="0pt" />
-                                                <xsl:choose>
-                                                    <xsl:when test="cinit_rep_tgbt_tls_ano_renvoi_ordre = 'OUI'">
-                                                        <xsl:value-of select="cinit_rep_tgbt_tls_ano_renvoi_ordre"/>
-                                                    </xsl:when>
-                                                    <xsl:otherwise>
-                                                    </xsl:otherwise>
-                                                </xsl:choose>
-                                            </fo:inline>
-                                        </fo:block>
-                                    </fo:table-cell>
                                 </fo:table-row>
-                                <xsl:if test="cinit_rep_tgbt_tls_ano_checked = 'OUI'">
-                                    <fo:table-row>
-                                        <fo:table-cell padding-top="10pt" padding-left="5.4pt" padding-bottom="10pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="none" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" number-columns-spanned="7" background-color="white" display-align="left">
-                                            <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
-                                                <fo:inline font-size="8pt">
-                                                    <fo:leader leader-length="0pt" />&#160;&#160;&#9658;&#160;Description du problème constaté&#160;&#9668;&#160;&#160; 
-                                                    <xsl:value-of select="cinit_rep_tgbt_tls_ano_description"/>
-                                                </fo:inline>
-                                            </fo:block>
-                                            <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
-                                                <xsl:if test="cinit_rep_tgbt_tls_ano_photo_joined = 'OUI'">
-                                                    <fo:inline font-size="8pt">
-                                                        <fo:external-graphic margin-left="auto" margin-right="auto" content-height="scale-down-to-fit" height="300pt" content-width="350pt" scaling="uniform">
-                                                            <xsl:attribute name="src">
-                                                                <xsl:text>url('</xsl:text>
-                                                                <xsl:value-of select="cinit_rep_tgbt_tls_ano_photo_url"/>
-                                                                <xsl:text>')</xsl:text>
-                                                            </xsl:attribute>
-                                                        </fo:external-graphic>
-                                                    </fo:inline>
-                                                </xsl:if>
-                                            </fo:block>
-                                        </fo:table-cell>
-                                    </fo:table-row>
-                                </xsl:if>
                                 <fo:table-row>
                                     <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="none" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white" display-align="left">
                                         <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
@@ -1089,74 +759,7 @@
                                             </fo:inline>
                                         </fo:block>
                                     </fo:table-cell>
-                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="dotted" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#DEEAF6" display-align="center">
-                                        <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
-                                            <fo:inline font-size="8pt">
-                                                <fo:leader leader-length="0pt" />
-                                                <xsl:choose>
-                                                    <xsl:when test="cinit_appel_cntls_ano_checked = 'OUI'">
-                                                        <xsl:value-of select="cinit_appel_cntls_ano_checked"/>
-                                                    </xsl:when>
-                                                    <xsl:otherwise>
-                                                    </xsl:otherwise>
-                                                </xsl:choose>
-                                            </fo:inline>
-                                        </fo:block>
-                                    </fo:table-cell>
-                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="dotted" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#DEEAF6" display-align="center">
-                                        <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
-                                            <fo:inline font-size="8pt">
-                                                <fo:leader leader-length="0pt" />
-                                                <xsl:choose>
-                                                    <xsl:when test="cinit_appel_cntls_ano_repare = 'OUI'">
-                                                        <xsl:value-of select="cinit_appel_cntls_ano_repare"/>
-                                                    </xsl:when>
-                                                    <xsl:otherwise>
-                                                    </xsl:otherwise>
-                                                </xsl:choose>
-                                            </fo:inline>
-                                        </fo:block>
-                                    </fo:table-cell>
-                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="dotted" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#DEEAF6" display-align="center">
-                                        <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
-                                            <fo:inline font-size="8pt">
-                                                <fo:leader leader-length="0pt" />
-                                                <xsl:choose>
-                                                    <xsl:when test="cinit_appel_cntls_ano_renvoi_ordre = 'OUI'">
-                                                        <xsl:value-of select="cinit_appel_cntls_ano_renvoi_ordre"/>
-                                                    </xsl:when>
-                                                    <xsl:otherwise>
-                                                    </xsl:otherwise>
-                                                </xsl:choose>
-                                            </fo:inline>
-                                        </fo:block>
-                                    </fo:table-cell>
                                 </fo:table-row>
-                                <xsl:if test="cinit_appel_cntls_ano_checked = 'OUI'">
-                                    <fo:table-row>
-                                        <fo:table-cell padding-top="10pt" padding-left="5.4pt" padding-bottom="10pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="none" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" number-columns-spanned="7" background-color="white" display-align="center">
-                                            <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
-                                                <fo:inline font-size="8pt">
-                                                    <fo:leader leader-length="0pt" />&#160;&#160;&#9658;&#160;Description du problème constaté&#160;&#9668;&#160;&#160; 
-                                                    <xsl:value-of select="cinit_appel_cntls_ano_description"/>
-                                                </fo:inline>
-                                            </fo:block>
-                                            <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
-                                                <xsl:if test="cinit_appel_cntls_ano_photo_joined = 'OUI'">
-                                                    <fo:inline font-size="8pt">
-                                                        <fo:external-graphic margin-left="auto" margin-right="auto" content-height="scale-down-to-fit" height="300pt" content-width="350pt" scaling="uniform">
-                                                            <xsl:attribute name="src">
-                                                                <xsl:text>url('</xsl:text>
-                                                                <xsl:value-of select="cinit_appel_cntls_ano_photo_url"/>
-                                                                <xsl:text>')</xsl:text>
-                                                            </xsl:attribute>
-                                                        </fo:external-graphic>
-                                                    </fo:inline>
-                                                </xsl:if>
-                                            </fo:block>
-                                        </fo:table-cell>
-                                    </fo:table-row>
-                                </xsl:if>
                             </fo:table-body>
                         </fo:table>
                         <fo:block page-break-before="always" space-after="8pt" space-after.conditionality="retain" line-height="1.2378041666666666" font-family="Arial" font-size="11pt" language="FR" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
@@ -1247,7 +850,7 @@
                                         </fo:block>
                                     </fo:table-cell>
                                 </fo:table-row>
-                                <fo:table-row>
+                                <fo:table-row keep-with-next="always">
                                     <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="none" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white" display-align="left">
                                         <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                             <fo:inline font-size="8pt">
@@ -1348,9 +951,9 @@
                                     </fo:table-cell>
                                 </fo:table-row>
                                 <xsl:if test="au_caisse_princ_ano_checked = 'OUI'">
-                                    <fo:table-row>
+                                    <fo:table-row keep-with-next="always">
                                         <fo:table-cell padding-top="10pt" padding-left="5.4pt" padding-bottom="10pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="none" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" number-columns-spanned="7" background-color="white" display-align="left">
-                                            <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
+                                            <fo:block keep-with-next="always" space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                                 <fo:inline font-size="8pt">
                                                         <fo:leader leader-length="0pt" />&#160;&#160;&#9658;&#160;Description du problème constaté&#160;&#9668;&#160;&#160; 
                                                         <xsl:value-of select="au_caisse_princ_ano_description"/>
@@ -1358,7 +961,7 @@
                                             </fo:block>
                                             <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
                                                 <xsl:if test="au_caisse_princ_ano_photo_joined = 'OUI'">
-                                                    <fo:external-graphic margin-left="auto" margin-right="auto" content-height="scale-down-to-fit" height="300pt" content-width="350pt" scaling="uniform">
+                                                    <fo:external-graphic margin-left="auto" margin-right="auto" content-width="scale-down-to-fit" height="100%" width="450px" scaling="uniform">
                                                         <xsl:attribute name="src">
                                                             <xsl:text>url('</xsl:text>
                                                             <xsl:value-of select="au_caisse_princ_ano_photo_url"/>
@@ -1382,7 +985,7 @@
                                         </fo:block>
                                     </fo:table-cell>
                                 </fo:table-row>
-                                <fo:table-row>
+                                <fo:table-row keep-with-next="always">
                                     <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="none" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white" display-align="left">
                                         <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                             <fo:inline font-size="8pt">
@@ -1483,9 +1086,9 @@
                                     </fo:table-cell>
                                 </fo:table-row>
                                 <xsl:if test="au_caisse_sec1_ano_checked = 'OUI'">
-                                    <fo:table-row>
+                                    <fo:table-row keep-together.within-page="always">
                                         <fo:table-cell padding-top="10pt" padding-left="5.4pt" padding-bottom="10pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="none" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" number-columns-spanned="7" background-color="white" display-align="left">
-                                            <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
+                                            <fo:block keep-with-next="always" space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                                 <fo:inline font-size="8pt">
                                                     <fo:leader leader-length="0pt" />&#160;&#160;&#9658;&#160;Description du problème constaté&#160;&#9668;&#160;&#160; 
                                                     <xsl:value-of select="au_caisse_sec1_ano_description"/>
@@ -1493,7 +1096,7 @@
                                             </fo:block>
                                             <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
                                                 <xsl:if test="au_caisse_sec1_ano_photo_joined = 'OUI'">
-                                                    <fo:external-graphic margin-left="auto" margin-right="auto" content-height="scale-down-to-fit" height="300pt" content-width="350pt" scaling="uniform">
+                                                    <fo:external-graphic margin-left="auto" margin-right="auto" content-width="scale-down-to-fit" height="100%" width="450px" scaling="uniform">
                                                         <xsl:attribute name="src">
                                                             <xsl:text>url('</xsl:text>
                                                             <xsl:value-of select="au_caisse_sec1_ano_photo_url"/>
@@ -1505,7 +1108,7 @@
                                         </fo:table-cell>
                                     </fo:table-row>
                                 </xsl:if>
-                                <fo:table-row>
+                                <fo:table-row keep-with-next="always">
                                     <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="none" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white" display-align="left">
                                         <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                             <fo:inline font-size="8pt">
@@ -1606,9 +1209,9 @@
                                     </fo:table-cell>
                                 </fo:table-row>
                                 <xsl:if test="au_caisse_sec2_ano_checked = 'OUI'">
-                                    <fo:table-row>
+                                    <fo:table-row keep-together.within-page="always">
                                         <fo:table-cell padding-top="10pt" padding-left="5.4pt" padding-bottom="10pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="none" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" number-columns-spanned="7" background-color="white" display-align="left">
-                                            <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
+                                            <fo:block keep-with-next="always" space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                                 <fo:inline font-size="8pt">
                                                         <fo:leader leader-length="0pt" />&#160;&#160;&#9658;&#160;Description du problème constaté&#160;&#9668;&#160;&#160; 
                                                         <xsl:value-of select="au_caisse_sec2_ano_description"/>
@@ -1616,7 +1219,7 @@
                                             </fo:block>
                                             <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
                                                 <xsl:if test="au_caisse_sec2_ano_photo_joined = 'OUI'">
-                                                    <fo:external-graphic margin-left="auto" margin-right="auto" content-height="scale-down-to-fit" height="300pt" content-width="350pt" scaling="uniform">
+                                                    <fo:external-graphic margin-left="auto" margin-right="auto" content-width="scale-down-to-fit" height="100%" width="450px" scaling="uniform">
                                                         <xsl:attribute name="src">
                                                             <xsl:text>url('</xsl:text>
                                                             <xsl:value-of select="au_caisse_sec2_ano_photo_url"/>
@@ -1628,7 +1231,7 @@
                                         </fo:table-cell>
                                     </fo:table-row>
                                 </xsl:if>
-                                <fo:table-row>
+                                <fo:table-row keep-with-next="always">
                                     <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="none" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white" display-align="left">
                                         <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                             <fo:inline font-size="8pt">
@@ -1729,9 +1332,9 @@
                                     </fo:table-cell>
                                 </fo:table-row>
                                 <xsl:if test="au_kiosq1_ano_checked = 'OUI'">
-                                    <fo:table-row>
+                                    <fo:table-row keep-together.within-page="always">
                                         <fo:table-cell padding-top="10pt" padding-left="5.4pt" padding-bottom="10pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="none" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" number-columns-spanned="7" background-color="white" display-align="left">
-                                            <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
+                                            <fo:block keep-with-next="always" space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                                 <fo:inline font-size="8pt">
                                                         <fo:leader leader-length="0pt" />&#160;&#160;&#9658;&#160;Description du problème constaté&#160;&#9668;&#160;&#160; 
                                                         <xsl:value-of select="au_kiosq1_ano_description"/>
@@ -1739,7 +1342,7 @@
                                             </fo:block>
                                             <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
                                                 <xsl:if test="au_kiosq1_ano_photo_joined = 'OUI'">
-                                                    <fo:external-graphic margin-left="auto" margin-right="auto" content-height="scale-down-to-fit" height="300pt" content-width="350pt" scaling="uniform">
+                                                    <fo:external-graphic margin-left="auto" margin-right="auto" content-width="scale-down-to-fit" height="100%" width="450px" scaling="uniform">
                                                         <xsl:attribute name="src">
                                                             <xsl:text>url('</xsl:text>
                                                             <xsl:value-of select="au_kiosq1_ano_photo_url"/>
@@ -1751,7 +1354,7 @@
                                         </fo:table-cell>
                                     </fo:table-row>
                                 </xsl:if>
-                                <fo:table-row>
+                                <fo:table-row keep-with-next="always">
                                     <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="none" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white" display-align="left">
                                         <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                             <fo:inline font-size="8pt">
@@ -1852,9 +1455,9 @@
                                     </fo:table-cell>
                                 </fo:table-row>
                                 <xsl:if test="au_kiosq2_ano_checked = 'OUI'">
-                                    <fo:table-row>
+                                    <fo:table-row keep-together.within-page="always">
                                         <fo:table-cell padding-top="10pt" padding-left="5.4pt" padding-bottom="10pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="none" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" number-columns-spanned="7" background-color="white" display-align="left">
-                                            <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
+                                            <fo:block keep-with-next="always" space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                                 <fo:inline font-size="8pt">
                                                         <fo:leader leader-length="0pt" />&#160;&#160;&#9658;&#160;Description du problème constaté&#160;&#9668;&#160;&#160; 
                                                         <xsl:value-of select="au_kiosq2_ano_description"/>
@@ -1862,7 +1465,7 @@
                                             </fo:block>
                                             <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
                                                 <xsl:if test="au_kiosq2_ano_photo_joined = 'OUI'">
-                                                    <fo:external-graphic margin-left="auto" margin-right="auto" content-height="scale-down-to-fit" height="300pt" content-width="350pt" scaling="uniform">
+                                                    <fo:external-graphic margin-left="auto" margin-right="auto" content-width="scale-down-to-fit" height="100%" width="450px" scaling="uniform">
                                                         <xsl:attribute name="src">
                                                             <xsl:text>url('</xsl:text>
                                                             <xsl:value-of select="au_kiosq2_ano_photo_url"/>
@@ -1874,7 +1477,7 @@
                                         </fo:table-cell>
                                     </fo:table-row>
                                 </xsl:if>
-                                <fo:table-row>
+                                <fo:table-row keep-with-next="always">
                                     <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="none" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white" display-align="left">
                                         <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                             <fo:inline font-size="8pt">
@@ -1975,9 +1578,9 @@
                                     </fo:table-cell>
                                 </fo:table-row>
                                 <xsl:if test="au_piste_vl_ano_checked = 'OUI'">
-                                    <fo:table-row>
+                                    <fo:table-row keep-together.within-page="always">
                                         <fo:table-cell padding-top="10pt" padding-left="5.4pt" padding-bottom="10pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="none" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" number-columns-spanned="7" background-color="white" display-align="left">
-                                            <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
+                                            <fo:block keep-with-next="always" space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                                 <fo:inline font-size="8pt">
                                                         <fo:leader leader-length="0pt" />&#160;&#160;&#9658;&#160;Description du problème constaté&#160;&#9668;&#160;&#160; 
                                                         <xsl:value-of select="au_piste_vl_ano_description"/>
@@ -1985,7 +1588,7 @@
                                             </fo:block>
                                             <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
                                                 <xsl:if test="au_piste_vl_ano_photo_joined = 'OUI'">
-                                                    <fo:external-graphic margin-left="auto" margin-right="auto" content-height="scale-down-to-fit" height="300pt" content-width="350pt" scaling="uniform">
+                                                    <fo:external-graphic margin-left="auto" margin-right="auto" content-width="scale-down-to-fit" height="100%" width="450px" scaling="uniform">
                                                         <xsl:attribute name="src">
                                                             <xsl:text>url('</xsl:text>
                                                             <xsl:value-of select="au_piste_vl_ano_photo_url"/>
@@ -1997,7 +1600,7 @@
                                         </fo:table-cell>
                                     </fo:table-row>
                                 </xsl:if>
-                                <fo:table-row>
+                                <fo:table-row keep-with-next="always">
                                     <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="none" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white" display-align="left">
                                         <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                             <fo:inline font-size="8pt">
@@ -2098,9 +1701,9 @@
                                     </fo:table-cell>
                                 </fo:table-row>
                                 <xsl:if test="au_piste_pl_ano_checked = 'OUI'">
-                                    <fo:table-row>
+                                    <fo:table-row keep-together.within-page="always">
                                         <fo:table-cell padding-top="10pt" padding-left="5.4pt" padding-bottom="10pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="none" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" number-columns-spanned="7" background-color="white" display-align="left">
-                                            <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
+                                            <fo:block keep-with-next="always" space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                                 <fo:inline font-size="8pt">
                                                         <fo:leader leader-length="0pt" />&#160;&#160;&#9658;&#160;Description du problème constaté&#160;&#9668;&#160;&#160; 
                                                         <xsl:value-of select="au_piste_pl_ano_description"/>
@@ -2108,7 +1711,7 @@
                                             </fo:block>
                                             <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
                                                 <xsl:if test="au_piste_pl_ano_photo_joined = 'OUI'">
-                                                    <fo:external-graphic margin-left="auto" margin-right="auto" content-height="scale-down-to-fit" height="300pt" content-width="350pt" scaling="uniform">
+                                                    <fo:external-graphic margin-left="auto" margin-right="auto" content-width="scale-down-to-fit" height="100%" width="450px" scaling="uniform">
                                                         <xsl:attribute name="src">
                                                             <xsl:text>url('</xsl:text>
                                                             <xsl:value-of select="au_piste_pl_ano_photo_url"/>
@@ -2120,7 +1723,7 @@
                                         </fo:table-cell>
                                     </fo:table-row>
                                 </xsl:if>
-                                <fo:table-row>
+                                <fo:table-row keep-with-next="always">
                                     <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="none" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white" display-align="left">
                                         <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                             <fo:inline font-size="8pt">
@@ -2221,9 +1824,9 @@
                                     </fo:table-cell>
                                 </fo:table-row>
                                 <xsl:if test="au_armoire_lap_ano_checked = 'OUI'">
-                                    <fo:table-row>
+                                    <fo:table-row keep-together.within-page="always">
                                         <fo:table-cell padding-top="10pt" padding-left="5.4pt" padding-bottom="10pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="none" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" number-columns-spanned="7" background-color="white" display-align="left">
-                                            <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
+                                            <fo:block keep-with-next="always" space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                                 <fo:inline font-size="8pt">
                                                         <fo:leader leader-length="0pt" />&#160;&#160;&#9658;&#160;Description du problème constaté&#160;&#9668;&#160;&#160; 
                                                         <xsl:value-of select="au_armoire_lap_ano_description"/>
@@ -2231,7 +1834,7 @@
                                             </fo:block>
                                             <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
                                                 <xsl:if test="au_armoire_lap_ano_photo_joined = 'OUI'">
-                                                    <fo:external-graphic margin-left="auto" margin-right="auto" content-height="scale-down-to-fit" height="300pt" content-width="350pt" scaling="uniform">
+                                                    <fo:external-graphic margin-left="auto" margin-right="auto" content-width="scale-down-to-fit" height="100%" width="450px" scaling="uniform">
                                                         <xsl:attribute name="src">
                                                             <xsl:text>url('</xsl:text>
                                                             <xsl:value-of select="au_armoire_lap_ano_photo_url"/>
@@ -2243,7 +1846,7 @@
                                         </fo:table-cell>
                                     </fo:table-row>
                                 </xsl:if>
-                                <fo:table-row>
+                                <fo:table-row keep-with-next="always">
                                     <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="none" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white" display-align="left">
                                         <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                             <fo:inline font-size="8pt">
@@ -2344,9 +1947,9 @@
                                     </fo:table-cell>
                                 </fo:table-row>
                                 <xsl:if test="au_gpl_ano_checked = 'OUI'">
-                                    <fo:table-row>
+                                    <fo:table-row keep-together.within-page="always">
                                         <fo:table-cell padding-top="10pt" padding-left="5.4pt" padding-bottom="10pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="none" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" number-columns-spanned="7" background-color="white" display-align="left">
-                                            <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
+                                            <fo:block keep-with-next="always" space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                                 <fo:inline font-size="8pt">
                                                         <fo:leader leader-length="0pt" />&#160;&#160;&#9658;&#160;Description du problème constaté&#160;&#9668;&#160;&#160; 
                                                         <xsl:value-of select="au_gpl_ano_description"/>
@@ -2354,7 +1957,7 @@
                                             </fo:block>
                                             <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
                                                 <xsl:if test="au_gpl_ano_photo_joined = 'OUI'">
-                                                    <fo:external-graphic margin-left="auto" margin-right="auto" content-height="scale-down-to-fit" height="300pt" content-width="350pt" scaling="uniform">
+                                                    <fo:external-graphic margin-left="auto" margin-right="auto" content-width="scale-down-to-fit" height="100%" width="450px" scaling="uniform">
                                                         <xsl:attribute name="src">
                                                             <xsl:text>url('</xsl:text>
                                                             <xsl:value-of select="au_gpl_ano_photo_url"/>
@@ -2524,7 +2127,7 @@
                                         </fo:block>
                                     </fo:table-cell>
                                 </fo:table-row>
-                                <fo:table-row>
+                                <fo:table-row keep-with-next="always">
                                     <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="dotted" border-bottom-style="none" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white" display-align="left">
                                         <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                             <fo:inline font-size="8pt">
@@ -2635,9 +2238,9 @@
                                     </fo:table-cell>
                                 </fo:table-row>
                                 <xsl:if test="depass_n1_ano_checked = 'OUI'">
-                                    <fo:table-row>
+                                    <fo:table-row keep-with-previous="always">
                                         <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="none" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" number-columns-spanned="11" background-color="white" display-align="left">
-                                            <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
+                                            <fo:block keep-with-next="always" space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                                 <fo:inline font-size="8pt">
                                                     <fo:leader leader-length="0pt" />&#160;&#160;&#9658;&#160;Description du problème constaté&#160;&#9668;&#160;&#160; 
                                                     <xsl:value-of select="depass_n1_ano_description"/>
@@ -2646,7 +2249,7 @@
                                             <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
                                                 <xsl:if test="depass_n1_ano_photo_joined = 'OUI'">
                                                     <fo:inline font-size="8pt">
-                                                        <fo:external-graphic margin-left="auto" margin-right="auto" content-height="scale-down-to-fit" height="300pt" content-width="350pt" scaling="uniform">
+                                                        <fo:external-graphic margin-left="auto" margin-right="auto" content-width="scale-down-to-fit" height="100%" width="450px" scaling="uniform">
                                                             <xsl:attribute name="src">
                                                                 <xsl:text>url('</xsl:text>
                                                                 <xsl:value-of select="depass_n1_ano_photo_url"/>
@@ -2659,7 +2262,7 @@
                                         </fo:table-cell>
                                     </fo:table-row>
                                 </xsl:if>
-                                <fo:table-row>
+                                <fo:table-row keep-with-next="always">
                                     <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="dotted" border-bottom-style="none" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white" display-align="left">
                                         <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                             <fo:inline font-size="8pt">
@@ -2770,9 +2373,9 @@
                                     </fo:table-cell>
                                 </fo:table-row>
                                 <xsl:if test="depass_n2_ano_checked = 'OUI'">
-                                    <fo:table-row>
+                                    <fo:table-row keep-with-previous="always">
                                         <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="none" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" number-columns-spanned="11" background-color="white" display-align="left">
-                                            <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
+                                            <fo:block keep-with-next="always" space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                                 <fo:inline font-size="8pt">
                                                     <fo:leader leader-length="0pt" />&#160;&#160;&#9658;&#160;Description du problème constaté&#160;&#9668;&#160;&#160; 
                                                     <xsl:value-of select="depass_n2_ano_description"/>
@@ -2781,7 +2384,7 @@
                                             <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
                                                 <xsl:if test="depass_n2_ano_photo_joined = 'OUI'">
                                                     <fo:inline font-size="8pt">
-                                                        <fo:external-graphic margin-left="auto" margin-right="auto" content-height="scale-down-to-fit" height="300pt" content-width="350pt" scaling="uniform">
+                                                        <fo:external-graphic margin-left="auto" margin-right="auto" content-width="scale-down-to-fit" height="100%" width="450px" scaling="uniform">
                                                             <xsl:attribute name="src">
                                                                 <xsl:text>url('</xsl:text>
                                                                 <xsl:value-of select="depass_n2_ano_photo_url"/>
@@ -2794,7 +2397,7 @@
                                         </fo:table-cell>
                                     </fo:table-row>
                                 </xsl:if>
-                                <fo:table-row>
+                                <fo:table-row keep-with-next="always">
                                     <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="dotted" border-bottom-style="none" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white" display-align="left">
                                         <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                             <fo:inline font-size="8pt">
@@ -2905,9 +2508,9 @@
                                     </fo:table-cell>
                                 </fo:table-row>
                                 <xsl:if test="depass_n3_ano_checked = 'OUI'">
-                                    <fo:table-row>
+                                    <fo:table-row keep-with-previous="always">
                                         <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="none" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" number-columns-spanned="11" background-color="white" display-align="left">
-                                            <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
+                                            <fo:block keep-with-next="always" space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                                 <fo:inline font-size="8pt">
                                                     <fo:leader leader-length="0pt" />&#160;&#160;&#9658;&#160;Description du problème constaté&#160;&#9668;&#160;&#160; 
                                                     <xsl:value-of select="depass_n3_ano_description"/>
@@ -2916,7 +2519,7 @@
                                             <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
                                                 <xsl:if test="depass_n3_ano_photo_joined = 'OUI'">
                                                     <fo:inline font-size="8pt">
-                                                        <fo:external-graphic margin-left="auto" margin-right="auto" content-height="scale-down-to-fit" height="300pt" content-width="350pt" scaling="uniform">
+                                                        <fo:external-graphic margin-left="auto" margin-right="auto" content-width="scale-down-to-fit" height="100%" width="450px" scaling="uniform">
                                                             <xsl:attribute name="src">
                                                                 <xsl:text>url('</xsl:text>
                                                                 <xsl:value-of select="depass_n3_ano_photo_url"/>
@@ -2929,7 +2532,7 @@
                                         </fo:table-cell>
                                     </fo:table-row>
                                 </xsl:if>
-                                <fo:table-row>
+                                <fo:table-row keep-with-next="always">
                                     <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="dotted" border-bottom-style="none" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white" display-align="left">
                                         <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                             <fo:inline font-size="8pt">
@@ -3040,9 +2643,9 @@
                                     </fo:table-cell>
                                 </fo:table-row>
                                 <xsl:if test="depass_n4_ano_checked = 'OUI'">
-                                    <fo:table-row>
+                                    <fo:table-row keep-with-previous="always">
                                         <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="none" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" number-columns-spanned="11" background-color="white" display-align="left">
-                                            <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
+                                            <fo:block keep-with-next="always" space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                                 <fo:inline font-size="8pt">
                                                     <fo:leader leader-length="0pt" />&#160;&#160;&#9658;&#160;Description du problème constaté&#160;&#9668;&#160;&#160; 
                                                     <xsl:value-of select="depass_n4_ano_description"/>
@@ -3051,7 +2654,7 @@
                                             <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
                                                 <xsl:if test="depass_n4_ano_photo_joined = 'OUI'">
                                                     <fo:inline font-size="8pt">
-                                                        <fo:external-graphic margin-left="auto" margin-right="auto" content-height="scale-down-to-fit" height="300pt" content-width="350pt" scaling="uniform">
+                                                        <fo:external-graphic margin-left="auto" margin-right="auto" content-width="scale-down-to-fit" height="100%" width="450px" scaling="uniform">
                                                             <xsl:attribute name="src">
                                                                 <xsl:text>url('</xsl:text>
                                                                 <xsl:value-of select="depass_n4_ano_photo_url"/>
@@ -3064,7 +2667,7 @@
                                         </fo:table-cell>
                                     </fo:table-row>
                                 </xsl:if>
-                                <fo:table-row>
+                                <fo:table-row keep-with-next="always">
                                     <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="dotted" border-bottom-style="none" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white" display-align="left">
                                         <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                             <fo:inline font-size="8pt">
@@ -3175,9 +2778,9 @@
                                     </fo:table-cell>
                                 </fo:table-row>
                                 <xsl:if test="depass_n5_ano_checked = 'OUI'">
-                                    <fo:table-row>
+                                    <fo:table-row keep-with-previous="always">
                                         <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="none" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" number-columns-spanned="11" background-color="white" display-align="left">
-                                            <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
+                                            <fo:block keep-with-next="always" space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                                 <fo:inline font-size="8pt">
                                                     <fo:leader leader-length="0pt" />&#160;&#160;&#9658;&#160;Description du problème constaté&#160;&#9668;&#160;&#160; 
                                                     <xsl:value-of select="depass_n5_ano_description"/>
@@ -3186,7 +2789,7 @@
                                             <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
                                                 <xsl:if test="depass_n5_ano_photo_joined = 'OUI'">
                                                     <fo:inline font-size="8pt">
-                                                        <fo:external-graphic margin-left="auto" margin-right="auto" content-height="scale-down-to-fit" height="300pt" content-width="350pt" scaling="uniform">
+                                                        <fo:external-graphic margin-left="auto" margin-right="auto" content-width="scale-down-to-fit" height="100%" width="450px" scaling="uniform">
                                                             <xsl:attribute name="src">
                                                                 <xsl:text>url('</xsl:text>
                                                                 <xsl:value-of select="depass_n5_ano_photo_url"/>
@@ -3199,7 +2802,7 @@
                                         </fo:table-cell>
                                     </fo:table-row>
                                 </xsl:if>
-                                <fo:table-row>
+                                <fo:table-row keep-with-next="always">
                                     <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="dotted" border-bottom-style="none" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white" display-align="left">
                                         <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                             <fo:inline font-size="8pt">
@@ -3310,9 +2913,9 @@
                                     </fo:table-cell>
                                 </fo:table-row>
                                 <xsl:if test="depass_n6_ano_checked = 'OUI'">
-                                    <fo:table-row>
+                                    <fo:table-row keep-with-previous="always">
                                         <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="none" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" number-columns-spanned="11" background-color="white" display-align="left">
-                                            <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
+                                            <fo:block keep-with-next="always" space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                                 <fo:inline font-size="8pt">
                                                     <fo:leader leader-length="0pt" />&#160;&#160;&#9658;&#160;Description du problème constaté&#160;&#9668;&#160;&#160; 
                                                     <xsl:value-of select="depass_n6_ano_description"/>
@@ -3321,7 +2924,7 @@
                                             <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
                                                 <xsl:if test="depass_n6_ano_photo_joined = 'OUI'">
                                                     <fo:inline font-size="8pt">
-                                                        <fo:external-graphic margin-left="auto" margin-right="auto" content-height="scale-down-to-fit" height="300pt" content-width="350pt" scaling="uniform">
+                                                        <fo:external-graphic margin-left="auto" margin-right="auto" content-width="scale-down-to-fit" height="100%" width="450px" scaling="uniform">
                                                             <xsl:attribute name="src">
                                                                 <xsl:text>url('</xsl:text>
                                                                 <xsl:value-of select="depass_n6_ano_photo_url"/>
@@ -3334,7 +2937,7 @@
                                         </fo:table-cell>
                                     </fo:table-row>
                                 </xsl:if>
-                                <fo:table-row>
+                                <fo:table-row keep-with-next="always">
                                     <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="dotted" border-bottom-style="none" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white" display-align="left">
                                         <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                             <fo:inline font-size="8pt">
@@ -3445,9 +3048,9 @@
                                     </fo:table-cell>
                                 </fo:table-row>
                                 <xsl:if test="depass_n7_ano_checked = 'OUI'">
-                                    <fo:table-row>
+                                    <fo:table-row keep-with-previous="always">
                                         <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="none" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" number-columns-spanned="11" background-color="white" display-align="left">
-                                            <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
+                                            <fo:block keep-with-next="always" space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                                 <fo:inline font-size="8pt">
                                                     <fo:leader leader-length="0pt" />&#160;&#160;&#9658;&#160;Description du problème constaté&#160;&#9668;&#160;&#160; 
                                                     <xsl:value-of select="depass_n7_ano_description"/>
@@ -3456,7 +3059,7 @@
                                             <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
                                                 <xsl:if test="depass_n7_ano_photo_joined = 'OUI'">
                                                     <fo:inline font-size="8pt">
-                                                        <fo:external-graphic margin-left="auto" margin-right="auto" content-height="scale-down-to-fit" height="300pt" content-width="350pt" scaling="uniform">
+                                                        <fo:external-graphic margin-left="auto" margin-right="auto" content-width="scale-down-to-fit" height="100%" width="450px" scaling="uniform">
                                                             <xsl:attribute name="src">
                                                                 <xsl:text>url('</xsl:text>
                                                                 <xsl:value-of select="depass_n7_ano_photo_url"/>
@@ -3469,7 +3072,7 @@
                                         </fo:table-cell>
                                     </fo:table-row>
                                 </xsl:if>
-                                <fo:table-row>
+                                <fo:table-row keep-with-next="always">
                                     <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="dotted" border-bottom-style="none" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white" display-align="left">
                                         <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                             <fo:inline font-size="8pt">
@@ -3580,9 +3183,9 @@
                                     </fo:table-cell>
                                 </fo:table-row>
                                 <xsl:if test="depass_n8_ano_checked = 'OUI'">
-                                    <fo:table-row>
+                                    <fo:table-row keep-with-previous="always">
                                         <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="none" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" number-columns-spanned="11" background-color="white" display-align="left">
-                                            <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
+                                            <fo:block keep-with-next="always" space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                                 <fo:inline font-size="8pt">
                                                     <fo:leader leader-length="0pt" />&#160;&#160;&#9658;&#160;Description du problème constaté&#160;&#9668;&#160;&#160; 
                                                     <xsl:value-of select="depass_n8_ano_description"/>
@@ -3591,7 +3194,7 @@
                                             <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
                                                 <xsl:if test="depass_n8_ano_photo_joined = 'OUI'">
                                                     <fo:inline font-size="8pt">
-                                                        <fo:external-graphic margin-left="auto" margin-right="auto" content-height="scale-down-to-fit" height="300pt" content-width="350pt" scaling="uniform">
+                                                        <fo:external-graphic margin-left="auto" margin-right="auto" content-width="scale-down-to-fit" height="100%" width="450px" scaling="uniform">
                                                             <xsl:attribute name="src">
                                                                 <xsl:text>url('</xsl:text>
                                                                 <xsl:value-of select="depass_n8_ano_photo_url"/>
@@ -3604,7 +3207,7 @@
                                         </fo:table-cell>
                                     </fo:table-row>
                                 </xsl:if>
-                                <fo:table-row>
+                                <fo:table-row keep-with-next="always">
                                     <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="dotted" border-bottom-style="none" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white" display-align="left">
                                         <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                             <fo:inline font-size="8pt">
@@ -3715,9 +3318,9 @@
                                     </fo:table-cell>
                                 </fo:table-row>
                                 <xsl:if test="depass_n9_ano_checked = 'OUI'">
-                                    <fo:table-row>
+                                    <fo:table-row keep-with-previous="always">
                                         <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="none" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" number-columns-spanned="11" background-color="white" display-align="left">
-                                            <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
+                                            <fo:block keep-with-next="always" space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                                 <fo:inline font-size="8pt">
                                                     <fo:leader leader-length="0pt" />&#160;&#160;&#9658;&#160;Description du problème constaté&#160;&#9668;&#160;&#160; 
                                                     <xsl:value-of select="depass_n9_ano_description"/>
@@ -3726,7 +3329,7 @@
                                             <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
                                                 <xsl:if test="depass_n9_ano_photo_joined = 'OUI'">
                                                     <fo:inline font-size="8pt">
-                                                        <fo:external-graphic margin-left="auto" margin-right="auto" content-height="scale-down-to-fit" height="300pt" content-width="350pt" scaling="uniform">
+                                                        <fo:external-graphic margin-left="auto" margin-right="auto" content-width="scale-down-to-fit" height="100%" width="450px" scaling="uniform">>
                                                             <xsl:attribute name="src">
                                                                 <xsl:text>url('</xsl:text>
                                                                 <xsl:value-of select="depass_n9_ano_photo_url"/>
@@ -3739,7 +3342,7 @@
                                         </fo:table-cell>
                                     </fo:table-row>
                                 </xsl:if>
-                                <fo:table-row>
+                                <fo:table-row keep-with-next="always">
                                     <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="dotted" border-bottom-style="none" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white" display-align="left">
                                         <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                             <fo:inline font-size="8pt">
@@ -3850,9 +3453,9 @@
                                     </fo:table-cell>
                                 </fo:table-row>
                                 <xsl:if test="depass_n10_ano_checked = 'OUI'">
-                                    <fo:table-row>
+                                    <fo:table-row keep-with-previous="always">
                                         <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="none" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" number-columns-spanned="11" background-color="white" display-align="left">
-                                            <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
+                                            <fo:block keep-with-next="always" space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                                 <fo:inline font-size="8pt">
                                                     <fo:leader leader-length="0pt" />&#160;&#160;&#9658;&#160;Description du problème constaté&#160;&#9668;&#160;&#160; 
                                                     <xsl:value-of select="depass_n10_ano_description"/>
@@ -3861,7 +3464,7 @@
                                             <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
                                                 <xsl:if test="depass_n10_ano_photo_joined = 'OUI'">
                                                     <fo:inline font-size="8pt">
-                                                        <fo:external-graphic margin-left="auto" margin-right="auto" content-height="scale-down-to-fit" height="300pt" content-width="350pt" scaling="uniform">
+                                                        <fo:external-graphic margin-left="auto" margin-right="auto" content-width="scale-down-to-fit" height="100%" width="450px" scaling="uniform">
                                                             <xsl:attribute name="src">
                                                                 <xsl:text>url('</xsl:text>
                                                                 <xsl:value-of select="depass_n10_ano_photo_url"/>
@@ -3931,8 +3534,6 @@
                                         </fo:block>
                                     </fo:table-cell>
                                 </fo:table-row>
-
-
                             </fo:table-body>
                         </fo:table>
                         <fo:block page-break-before="always" space-after="8pt" space-after.conditionality="retain" line-height="1.2378041666666666" font-family="Arial" font-size="11pt" language="FR" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
@@ -4018,7 +3619,7 @@
                                     </fo:table-cell>
                                 </fo:table-row>
 
-                                <fo:table-row>
+                                <fo:table-row keep-with-next="always">
                                     <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="none" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white" display-align="left">
                                         <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                             <fo:inline font-size="8pt">
@@ -4122,7 +3723,7 @@
                                 <xsl:if test="celec_vigi_ano_checked = 'OUI'">
                                     <fo:table-row>
                                         <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="none" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" number-columns-spanned="9" background-color="white" display-align="left">
-                                            <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
+                                            <fo:block keep-with-next="always" space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                                 <fo:inline font-size="8pt">
                                                     <fo:leader leader-length="0pt" />&#160;&#160;&#9658;&#160;Description du problème constaté&#160;&#9668;&#160;&#160; 
                                                     <xsl:value-of select="celec_vigi_ano_description"/>
@@ -4131,7 +3732,7 @@
                                             <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
                                                 <xsl:if test="celec_vigi_ano_photo_joined = 'OUI'">
                                                     <fo:inline font-size="8pt">
-                                                        <fo:external-graphic margin-left="auto" margin-right="auto" content-height="scale-down-to-fit" height="300pt" content-width="350pt" scaling="uniform">
+                                                        <fo:external-graphic margin-left="auto" margin-right="auto" content-width="scale-down-to-fit" height="100%" width="450px" scaling="uniform">
                                                             <xsl:attribute name="src">
                                                                 <xsl:text>url('</xsl:text>
                                                                 <xsl:value-of select="celec_vigi_ano_photo_url"/>
@@ -4145,7 +3746,7 @@
                                     </fo:table-row>
                                 </xsl:if>
 
-                                <fo:table-row>
+                                <fo:table-row keep-with-next="always">
                                     <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="none" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#C00000" display-align="left">
                                         <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" color="#FFFFFF" language="FR" text-align="left">
                                             <fo:inline font-weight="bold" font-size="8pt">
@@ -4239,7 +3840,7 @@
                                 <xsl:if test="celec_tpi_ano_checked = 'OUI'">
                                     <fo:table-row>
                                         <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="none" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" number-columns-spanned="9" background-color="white" display-align="left">
-                                            <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
+                                            <fo:block keep-with-next="always" space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                                 <fo:inline font-size="8pt">
                                                     <fo:leader leader-length="0pt" />&#160;&#160;&#9658;&#160;Description du problème constaté&#160;&#9668;&#160;&#160; 
                                                     <xsl:value-of select="celec_tpi_ano_description"/>
@@ -4248,7 +3849,7 @@
                                             <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
                                                 <xsl:if test="celec_tpi_ano_photo_joined = 'OUI'">
                                                     <fo:inline font-size="8pt">
-                                                        <fo:external-graphic margin-left="auto" margin-right="auto" content-height="scale-down-to-fit" height="300pt" content-width="350pt" scaling="uniform">
+                                                        <fo:external-graphic margin-left="auto" margin-right="auto" content-width="scale-down-to-fit" height="100%" width="450px" scaling="uniform">
                                                             <xsl:attribute name="src">
                                                                 <xsl:text>url('</xsl:text>
                                                                 <xsl:value-of select="celec_tpi_ano_photo_url"/>
@@ -4356,7 +3957,7 @@
                                             </fo:block>
                                         </fo:table-cell>
                                     </fo:table-row>
-                                    <fo:table-row>
+                                    <fo:table-row keep-with-next="always">
                                         <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="none" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white" display-align="left">
                                             <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                                 <fo:inline font-size="8pt">
@@ -4449,7 +4050,7 @@
                                     <xsl:if test="bjn_desact_cell_crep_ano_checked = 'OUI'">
                                         <fo:table-row>
                                             <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="none" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" number-columns-spanned="9" background-color="white" display-align="left">
-                                                <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
+                                                <fo:block keep-with-next="always" space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                                     <fo:inline font-size="8pt">
                                                         <fo:leader leader-length="0pt" />&#160;&#160;&#9658;&#160;Description du problème constaté&#160;&#9668;&#160;&#160; 
                                                         <xsl:value-of select="bjn_desact_cell_crep_ano_description"/>
@@ -4458,7 +4059,7 @@
                                                 <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
                                                     <xsl:if test="bjn_desact_cell_crep_ano_photo_joined = 'OUI'">
                                                         <fo:inline font-size="8pt">
-                                                            <fo:external-graphic margin-left="auto" margin-right="auto" content-height="scale-down-to-fit" height="300pt" content-width="350pt" scaling="uniform">
+                                                            <fo:external-graphic margin-left="auto" margin-right="auto" content-width="scale-down-to-fit" height="100%" width="450px" scaling="uniform">
                                                                 <xsl:attribute name="src">
                                                                     <xsl:text>url('</xsl:text>
                                                                     <xsl:value-of select="bjn_desact_cell_crep_ano_photo_url"/>
@@ -4471,7 +4072,7 @@
                                             </fo:table-cell>
                                         </fo:table-row>
                                     </xsl:if>
-                                    <fo:table-row>
+                                    <fo:table-row keep-with-next="always">
                                         <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="none" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white" display-align="left">
                                             <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                                 <fo:inline font-size="8pt">
@@ -4564,7 +4165,7 @@
                                     <xsl:if test="bjn_action_bascule_ano_checked = 'OUI'">
                                         <fo:table-row>
                                             <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="none" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" number-columns-spanned="9" background-color="white" display-align="left">
-                                                <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
+                                                <fo:block keep-with-next="always" space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                                     <fo:inline font-size="8pt">
                                                         <fo:leader leader-length="0pt" />&#160;&#160;&#9658;&#160;Description du problème constaté&#160;&#9668;&#160;&#160; 
                                                         <xsl:value-of select="bjn_action_bascule_ano_description"/>
@@ -4573,7 +4174,7 @@
                                                 <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
                                                     <xsl:if test="bjn_action_bascule_ano_photo_joined = 'OUI'">
                                                         <fo:inline font-size="8pt">
-                                                            <fo:external-graphic margin-left="auto" margin-right="auto" content-height="scale-down-to-fit" height="300pt" content-width="350pt" scaling="uniform">
+                                                            <fo:external-graphic margin-left="auto" margin-right="auto" content-width="scale-down-to-fit" height="100%" width="450px" scaling="uniform">
                                                                 <xsl:attribute name="src">
                                                                     <xsl:text>url('</xsl:text>
                                                                     <xsl:value-of select="bjn_action_bascule_ano_photo_url"/>
@@ -4586,7 +4187,7 @@
                                             </fo:table-cell>
                                         </fo:table-row>
                                     </xsl:if>
-                                    <fo:table-row>
+                                    <fo:table-row keep-with-next="always">
                                         <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="none" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white" display-align="left">
                                             <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                                 <fo:inline font-size="8pt">
@@ -4679,7 +4280,7 @@
                                     <xsl:if test="bjn_ctrl_tempo_bascule_ano_checked = 'OUI'">
                                         <fo:table-row>
                                             <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="none" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" number-columns-spanned="9" background-color="white" display-align="left">
-                                                <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
+                                                <fo:block keep-with-next="always" space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                                     <fo:inline font-size="8pt">
                                                         <fo:leader leader-length="0pt" />&#160;&#160;&#9658;&#160;Description du problème constaté&#160;&#9668;&#160;&#160; 
                                                         <xsl:value-of select="bjn_ctrl_tempo_bascule_ano_description"/>
@@ -4688,7 +4289,7 @@
                                                 <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
                                                     <xsl:if test="bjn_ctrl_tempo_bascule_ano_photo_joined = 'OUI'">
                                                         <fo:inline font-size="8pt">
-                                                            <fo:external-graphic margin-left="auto" margin-right="auto" content-height="scale-down-to-fit" height="300pt" content-width="350pt" scaling="uniform">
+                                                            <fo:external-graphic margin-left="auto" margin-right="auto" content-width="scale-down-to-fit" height="100%" width="450px" scaling="uniform">
                                                                 <xsl:attribute name="src">
                                                                     <xsl:text>url('</xsl:text>
                                                                     <xsl:value-of select="bjn_ctrl_tempo_bascule_ano_photo_url"/>
@@ -4701,7 +4302,7 @@
                                             </fo:table-cell>
                                         </fo:table-row>
                                     </xsl:if>
-                                    <fo:table-row>
+                                    <fo:table-row keep-with-next="always">
                                         <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="none" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white" display-align="left">
                                             <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                                 <fo:inline font-size="8pt">
@@ -4794,7 +4395,7 @@
                                     <xsl:if test="bjn_remise_cell_crep_ano_checked = 'OUI'">
                                         <fo:table-row>
                                             <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="none" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" number-columns-spanned="9" background-color="white" display-align="left">
-                                                <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
+                                                <fo:block keep-with-next="always" space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                                     <fo:inline font-size="8pt">
                                                         <fo:leader leader-length="0pt" />&#160;&#160;&#9658;&#160;Description du problème constaté&#160;&#9668;&#160;&#160; 
                                                         <xsl:value-of select="bjn_remise_cell_crep_ano_description"/>
@@ -4803,7 +4404,7 @@
                                                 <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
                                                     <xsl:if test="bjn_remise_cell_crep_ano_photo_joined = 'OUI'">
                                                         <fo:inline font-size="8pt">
-                                                            <fo:external-graphic margin-left="auto" margin-right="auto" content-height="scale-down-to-fit" height="300pt" content-width="350pt" scaling="uniform">
+                                                            <fo:external-graphic margin-left="auto" margin-right="auto" content-width="scale-down-to-fit" height="100%" width="450px" scaling="uniform">
                                                                 <xsl:attribute name="src">
                                                                     <xsl:text>url('</xsl:text>
                                                                     <xsl:value-of select="bjn_remise_cell_crep_ano_photo_url"/>
@@ -4911,7 +4512,7 @@
                                             </fo:block>
                                         </fo:table-cell>
                                     </fo:table-row>
-                                    <fo:table-row>
+                                    <fo:table-row keep-with-next="always">
                                         <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="none" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white" display-align="left">
                                             <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                                 <fo:inline font-size="8pt">
@@ -5004,7 +4605,7 @@
                                     <xsl:if test="aecl_simu_intrus_ano_checked = 'OUI'">
                                         <fo:table-row>
                                             <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="none" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" number-columns-spanned="9" background-color="white" display-align="left">
-                                                <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
+                                                <fo:block keep-with-next="always" space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                                     <fo:inline font-size="8pt">
                                                         <fo:leader leader-length="0pt" />&#160;&#160;&#9658;&#160;Description du problème constaté&#160;&#9668;&#160;&#160; 
                                                         <xsl:value-of select="aecl_simu_intrus_ano_description"/>
@@ -5013,7 +4614,7 @@
                                                 <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
                                                     <xsl:if test="aecl_simu_intrus_ano_photo_joined = 'OUI'">
                                                         <fo:inline font-size="8pt">
-                                                            <fo:external-graphic margin-left="auto" margin-right="auto" content-height="scale-down-to-fit" height="300pt" content-width="350pt" scaling="uniform">
+                                                            <fo:external-graphic margin-left="auto" margin-right="auto" content-width="scale-down-to-fit" height="100%" width="450px" scaling="uniform">
                                                                 <xsl:attribute name="src">
                                                                     <xsl:text>url('</xsl:text>
                                                                     <xsl:value-of select="aecl_simu_intrus_ano_photo_url"/>
@@ -5026,7 +4627,7 @@
                                             </fo:table-cell>
                                         </fo:table-row>
                                     </xsl:if>
-                                    <fo:table-row>
+                                    <fo:table-row keep-with-next="always">
                                         <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="none" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white" display-align="left">
                                             <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                                 <fo:inline font-size="8pt">
@@ -5119,7 +4720,7 @@
                                     <xsl:if test="aecl_ctrl_tempo_eclair_ano_checked = 'OUI'">
                                         <fo:table-row>
                                             <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="none" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" number-columns-spanned="9" background-color="white" display-align="left">
-                                                <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
+                                                <fo:block keep-with-next="always" space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
                                                     <fo:inline font-size="8pt">
                                                         <fo:leader leader-length="0pt" />&#160;&#160;&#9658;&#160;Description du problème constaté&#160;&#9668;&#160;&#160; 
                                                         <xsl:value-of select="aecl_ctrl_tempo_eclair_ano_description"/>
@@ -5128,7 +4729,7 @@
                                                 <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
                                                     <xsl:if test="aecl_ctrl_tempo_eclair_ano_photo_joined = 'OUI'">
                                                         <fo:inline font-size="8pt">
-                                                            <fo:external-graphic margin-left="auto" margin-right="auto" content-height="scale-down-to-fit" height="300pt" content-width="350pt" scaling="uniform">
+                                                            <fo:external-graphic margin-left="auto" margin-right="auto" content-width="scale-down-to-fit" height="100%" width="450px" scaling="uniform">
                                                                 <xsl:attribute name="src">
                                                                     <xsl:text>url('</xsl:text>
                                                                     <xsl:value-of select="aecl_ctrl_tempo_eclair_ano_photo_url"/>
@@ -5155,12 +4756,9 @@
                             <fo:table-column column-number="2" column-width="42.55pt" />
                             <fo:table-column column-number="3" column-width="42.5pt" />
                             <fo:table-column column-number="4" column-width="42.55pt" />
-                            <fo:table-column column-number="5" column-width="42.5pt" />
-                            <fo:table-column column-number="6" column-width="42.55pt" />
-                            <fo:table-column column-number="7" column-width="42.5pt" />
                             <fo:table-body start-indent="0pt" end-indent="0pt">
                                 <fo:table-row>
-                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" number-columns-spanned="7" background-color="#FF0000" display-align="center">
+                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" number-columns-spanned="4" background-color="#FF0000" display-align="center">
                                         <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="10pt" language="FR" font-weight="bold" color="#FFFFFF">
                                             <fo:inline font-weight="bold" color="#FFFFFF" font-size="10pt">
                                                 <fo:leader leader-length="0pt" />Actions et contrôles finaux</fo:inline>
@@ -5190,24 +4788,6 @@
                                         <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center" font-weight="bold">
                                             <fo:inline font-weight="bold" font-size="8pt">
                                                 <fo:leader leader-length="0pt" />Délai action</fo:inline>
-                                        </fo:block>
-                                    </fo:table-cell>
-                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="dotted" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#DEEAF6" display-align="center">
-                                        <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
-                                            <fo:inline font-size="8pt">
-                                                <fo:leader leader-length="0pt" />Défaut majeur existant</fo:inline>
-                                        </fo:block>
-                                    </fo:table-cell>
-                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="dotted" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#DEEAF6" display-align="center">
-                                        <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
-                                            <fo:inline font-size="8pt">
-                                                <fo:leader leader-length="0pt" />Réparé sur site</fo:inline>
-                                        </fo:block>
-                                    </fo:table-cell>
-                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="dotted" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#DEEAF6" display-align="center">
-                                        <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
-                                            <fo:inline font-size="8pt">
-                                                <fo:leader leader-length="0pt" />Renvoi infos chez DO</fo:inline>
                                         </fo:block>
                                     </fo:table-cell>
                                 </fo:table-row>
@@ -5243,74 +4823,7 @@
                                             </fo:inline>
                                         </fo:block>
                                     </fo:table-cell>
-                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="dotted" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="dotted" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#DEEAF6" display-align="center">
-                                        <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
-                                            <fo:inline font-size="8pt">
-                                                <fo:leader leader-length="0pt" />
-                                                <xsl:choose>
-                                                    <xsl:when test="cfin_remise_plastrons_ano_checked = 'OUI'">
-                                                        <xsl:value-of select="cfin_remise_plastrons_ano_checked"/>
-                                                    </xsl:when>
-                                                    <xsl:otherwise>
-                                                    </xsl:otherwise>
-                                                </xsl:choose>
-                                            </fo:inline>
-                                        </fo:block>
-                                    </fo:table-cell>
-                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="dotted" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="dotted" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#DEEAF6" display-align="center">
-                                        <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
-                                            <fo:inline font-size="8pt">
-                                                <fo:leader leader-length="0pt" />
-                                                <xsl:choose>
-                                                    <xsl:when test="cfin_remise_plastrons_ano_repare = 'OUI'">
-                                                        <xsl:value-of select="cfin_remise_plastrons_ano_repare"/>
-                                                    </xsl:when>
-                                                    <xsl:otherwise>
-                                                    </xsl:otherwise>
-                                                </xsl:choose>
-                                            </fo:inline>
-                                        </fo:block>
-                                    </fo:table-cell>
-                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="dotted" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="dotted" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#DEEAF6" display-align="center">
-                                        <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
-                                            <fo:inline font-size="8pt">
-                                                <fo:leader leader-length="0pt" />
-                                                <xsl:choose>
-                                                    <xsl:when test="cfin_remise_plastrons_ano_renvoi_ordre = 'OUI'">
-                                                        <xsl:value-of select="cfin_remise_plastrons_ano_renvoi_ordre"/>
-                                                    </xsl:when>
-                                                    <xsl:otherwise>
-                                                    </xsl:otherwise>
-                                                </xsl:choose>
-                                            </fo:inline>
-                                        </fo:block>
-                                    </fo:table-cell>
                                 </fo:table-row>
-                                <xsl:if test="cfin_remise_plastrons_ano_checked = 'OUI'">
-                                    <fo:table-row>
-                                        <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="none" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" number-columns-spanned="7" background-color="white" display-align="left">
-                                            <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
-                                                <fo:inline font-size="8pt">
-                                                    <fo:leader leader-length="0pt" />&#160;&#160;&#9658;&#160;Description du problème constaté&#160;&#9668;&#160;&#160; 
-                                                    <xsl:value-of select="cfin_remise_plastrons_ano_description"/>
-                                                </fo:inline>
-                                            </fo:block>
-                                            <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
-                                                <xsl:if test="cfin_remise_plastrons_ano_photo_joined = 'OUI'">
-                                                    <fo:inline font-size="8pt">
-                                                        <fo:external-graphic margin-left="auto" margin-right="auto" content-height="scale-down-to-fit" height="300pt" content-width="350pt" scaling="uniform">
-                                                            <xsl:attribute name="src">
-                                                                <xsl:text>url('</xsl:text>
-                                                                <xsl:value-of select="cfin_remise_plastrons_ano_photo_url"/>
-                                                                <xsl:text>')</xsl:text>
-                                                            </xsl:attribute>
-                                                        </fo:external-graphic>
-                                                    </fo:inline>
-                                                </xsl:if>
-                                            </fo:block>
-                                        </fo:table-cell>
-                                    </fo:table-row>
-                                </xsl:if>
                                 <fo:table-row>
                                     <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="none" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white" display-align="left">
                                         <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
@@ -5349,74 +4862,7 @@
                                             </fo:inline>
                                         </fo:block>
                                     </fo:table-cell>
-                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="dotted" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#DEEAF6" display-align="center">
-                                        <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
-                                            <fo:inline font-size="8pt">
-                                                <fo:leader leader-length="0pt" />
-                                                <xsl:choose>
-                                                    <xsl:when test="cfin_appel_fin_cntls_ano_checked = 'OUI'">
-                                                        <xsl:value-of select="cfin_appel_fin_cntls_ano_checked"/>
-                                                    </xsl:when>
-                                                    <xsl:otherwise>
-                                                    </xsl:otherwise>
-                                                </xsl:choose>
-                                            </fo:inline>
-                                        </fo:block>
-                                    </fo:table-cell>
-                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="dotted" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#DEEAF6" display-align="center">
-                                        <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
-                                            <fo:inline font-size="8pt">
-                                                <fo:leader leader-length="0pt" />
-                                                <xsl:choose>
-                                                    <xsl:when test="cfin_appel_fin_cntls_ano_repare = 'OUI'">
-                                                        <xsl:value-of select="cfin_appel_fin_cntls_ano_repare"/>
-                                                    </xsl:when>
-                                                    <xsl:otherwise>
-                                                    </xsl:otherwise>
-                                                </xsl:choose>
-                                            </fo:inline>
-                                        </fo:block>
-                                    </fo:table-cell>
-                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="dotted" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#DEEAF6" display-align="center">
-                                        <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
-                                            <fo:inline font-size="8pt">
-                                                <fo:leader leader-length="0pt" />
-                                                <xsl:choose>
-                                                    <xsl:when test="cfin_appel_fin_cntls_ano_renvoi_ordre = 'OUI'">
-                                                        <xsl:value-of select="cfin_appel_fin_cntls_ano_renvoi_ordre"/>
-                                                    </xsl:when>
-                                                    <xsl:otherwise>
-                                                    </xsl:otherwise>
-                                                </xsl:choose>
-                                            </fo:inline>
-                                        </fo:block>
-                                    </fo:table-cell>
                                 </fo:table-row>
-                                <xsl:if test="cfin_appel_fin_cntls_ano_checked = 'OUI'">
-                                    <fo:table-row>
-                                        <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="none" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" number-columns-spanned="7" background-color="white" display-align="left">
-                                            <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
-                                                <fo:inline font-size="8pt">
-                                                    <fo:leader leader-length="0pt" />&#160;&#160;&#9658;&#160;Description du problème constaté&#160;&#9668;&#160;&#160; 
-                                                    <xsl:value-of select="cfin_appel_fin_cntls_ano_description"/>
-                                                </fo:inline>
-                                            </fo:block>
-                                            <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
-                                                <xsl:if test="cfin_appel_fin_cntls_ano_photo_joined = 'OUI'">
-                                                    <fo:inline font-size="8pt">
-                                                        <fo:external-graphic margin-left="auto" margin-right="auto" content-height="scale-down-to-fit" height="300pt" content-width="350pt" scaling="uniform">
-                                                            <xsl:attribute name="src">
-                                                                <xsl:text>url('</xsl:text>
-                                                                <xsl:value-of select="cfin_appel_fin_cntls_ano_photo_url"/>
-                                                                <xsl:text>')</xsl:text>
-                                                            </xsl:attribute>
-                                                        </fo:external-graphic>
-                                                    </fo:inline>
-                                                </xsl:if>
-                                            </fo:block>
-                                        </fo:table-cell>
-                                    </fo:table-row>
-                                </xsl:if>
                                 <fo:table-row>
                                     <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="none" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white" display-align="left">
                                         <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" font-weight="bold" text-align="left">
@@ -5449,74 +4895,7 @@
                                             </fo:inline>
                                         </fo:block>
                                     </fo:table-cell>
-                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="dotted" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#DEEAF6" display-align="center">
-                                        <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
-                                            <fo:inline font-size="8pt">
-                                                <fo:leader leader-length="0pt" />
-                                                <xsl:choose>
-                                                    <xsl:when test="cfin_reouv_com_ano_checked = 'OUI'">
-                                                        <xsl:value-of select="cfin_reouv_com_ano_checked"/>
-                                                    </xsl:when>
-                                                    <xsl:otherwise>
-                                                    </xsl:otherwise>
-                                                </xsl:choose>
-                                            </fo:inline>
-                                        </fo:block>
-                                    </fo:table-cell>
-                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="dotted" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#DEEAF6" display-align="center">
-                                        <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
-                                            <fo:inline font-size="8pt">
-                                                <fo:leader leader-length="0pt" />
-                                                <xsl:choose>
-                                                    <xsl:when test="cfin_reouv_com_ano_repare = 'OUI'">
-                                                        <xsl:value-of select="cfin_reouv_com_ano_repare"/>
-                                                    </xsl:when>
-                                                    <xsl:otherwise>
-                                                    </xsl:otherwise>
-                                                </xsl:choose>
-                                            </fo:inline>
-                                        </fo:block>
-                                    </fo:table-cell>
-                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="dotted" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#DEEAF6" display-align="center">
-                                        <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
-                                            <fo:inline font-size="8pt">
-                                                <fo:leader leader-length="0pt" />
-                                                <xsl:choose>
-                                                    <xsl:when test="cfin_reouv_com_ano_renvoi_ordre = 'OUI'">
-                                                        <xsl:value-of select="cfin_reouv_com_ano_renvoi_ordre"/>
-                                                    </xsl:when>
-                                                    <xsl:otherwise>
-                                                    </xsl:otherwise>
-                                                </xsl:choose>
-                                            </fo:inline>
-                                        </fo:block>
-                                    </fo:table-cell>
                                 </fo:table-row>
-                                <xsl:if test="cfin_reouv_com_ano_checked = 'OUI'">
-                                    <fo:table-row>
-                                        <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="none" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" number-columns-spanned="7" background-color="white" display-align="left">
-                                            <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
-                                                <fo:inline font-size="8pt">
-                                                    <fo:leader leader-length="0pt" />&#160;&#160;&#9658;&#160;Description du problème constaté&#160;&#9668;&#160;&#160; 
-                                                    <xsl:value-of select="cfin_reouv_com_ano_description"/>
-                                                </fo:inline>
-                                            </fo:block>
-                                            <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
-                                                <xsl:if test="cfin_reouv_com_ano_photo_joined = 'OUI'">
-                                                    <fo:inline font-size="8pt">
-                                                        <fo:external-graphic margin-left="auto" margin-right="auto" content-height="scale-down-to-fit" height="300pt" content-width="350pt" scaling="uniform">
-                                                            <xsl:attribute name="src">
-                                                                <xsl:text>url('</xsl:text>
-                                                                <xsl:value-of select="cfin_reouv_com_ano_photo_url"/>
-                                                                <xsl:text>')</xsl:text>
-                                                            </xsl:attribute>
-                                                        </fo:external-graphic>
-                                                    </fo:inline>
-                                                </xsl:if>
-                                            </fo:block>
-                                        </fo:table-cell>
-                                    </fo:table-row>
-                                </xsl:if>
                                 <fo:table-row>
                                     <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="none" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="white" display-align="left">
                                         <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
@@ -5549,82 +4928,16 @@
                                             </fo:inline>
                                         </fo:block>
                                     </fo:table-cell>
-                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="dotted" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#DEEAF6" display-align="center">
-                                        <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
-                                            <fo:inline font-size="8pt">
-                                                <fo:leader leader-length="0pt" />
-                                                <xsl:choose>
-                                                    <xsl:when test="cfin_cloture_ppj_ano_checked = 'OUI'">
-                                                        <xsl:value-of select="cfin_cloture_ppj_ano_checked"/>
-                                                    </xsl:when>
-                                                    <xsl:otherwise>
-                                                    </xsl:otherwise>
-                                                </xsl:choose>
-                                            </fo:inline>
-                                        </fo:block>
-                                    </fo:table-cell>
-                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="dotted" border-right-style="dotted" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#DEEAF6" display-align="center">
-                                        <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
-                                            <fo:inline font-size="8pt">
-                                                <fo:leader leader-length="0pt" />
-                                                <xsl:choose>
-                                                    <xsl:when test="cfin_cloture_ppj_ano_repare = 'OUI'">
-                                                        <xsl:value-of select="cfin_cloture_ppj_ano_repare"/>
-                                                    </xsl:when>
-                                                    <xsl:otherwise>
-                                                    </xsl:otherwise>
-                                                </xsl:choose>
-                                            </fo:inline>
-                                        </fo:block>
-                                    </fo:table-cell>
-                                    <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="dotted" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#DEEAF6" display-align="center">
-                                        <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
-                                            <fo:inline font-size="8pt">
-                                                <fo:leader leader-length="0pt" />
-                                                <xsl:choose>
-                                                    <xsl:when test="cfin_cloture_ppj_ano_renvoi_ordre = 'OUI'">
-                                                        <xsl:value-of select="cfin_cloture_ppj_ano_renvoi_ordre"/>
-                                                    </xsl:when>
-                                                    <xsl:otherwise>
-                                                    </xsl:otherwise>
-                                                </xsl:choose>
-                                            </fo:inline>
-                                        </fo:block>
-                                    </fo:table-cell>
                                 </fo:table-row>
-                                <xsl:if test="cfin_cloture_ppj_ano_checked = 'OUI'">
-                                    <fo:table-row>
-                                        <fo:table-cell padding-top="1pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="none" border-bottom-style="dotted" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" number-columns-spanned="7" background-color="white" display-align="left">
-                                            <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="left">
-                                                <fo:inline font-size="8pt">
-                                                    <fo:leader leader-length="0pt" />&#160;&#160;&#9658;&#160;Description du problème constaté&#160;&#9668;&#160;&#160; 
-                                                    <xsl:value-of select="cfin_cloture_ppj_ano_description"/>
-                                                </fo:inline>
-                                            </fo:block>
-                                            <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="8pt" language="FR" text-align="center">
-                                                <xsl:if test="cfin_cloture_ppj_ano_photo_joined = 'OUI'">
-                                                    <fo:inline font-size="8pt">
-                                                        <fo:external-graphic margin-left="auto" margin-right="auto" content-height="scale-down-to-fit" height="300pt" content-width="350pt" scaling="uniform">
-                                                            <xsl:attribute name="src">
-                                                                <xsl:text>url('</xsl:text>
-                                                                <xsl:value-of select="cfin_cloture_ppj_ano_photo_url"/>
-                                                                <xsl:text>')</xsl:text>
-                                                            </xsl:attribute>
-                                                    </fo:external-graphic>
-                                                    </fo:inline>
-                                                </xsl:if>
-                                            </fo:block>
-                                        </fo:table-cell>
-                                    </fo:table-row>
-                                </xsl:if>
                             </fo:table-body>
                         </fo:table>
                         <fo:block space-after="8pt" space-after.conditionality="retain" line-height="1.2378041666666666" font-family="Arial" font-size="12pt" language="FR" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
                             <fo:leader leader-length="0pt" />
                         </fo:block>
                     
+                        <fo:block id="IDSR3JLZDKTWW0JJJ45DOYJQZMHM0VSP3ONBQLLYKTDHDTA0ADZEDD" />
 
-                    <fo:block id="IDSR3JLZDKTWW0JJJ45DOYJQZMHM0VSP3ONBQLLYKTDHDTA0ADZEDD" />
+                    </fo:block>                    
                 </fo:flow>
             </fo:page-sequence>
         </fo:root>

@@ -81,7 +81,7 @@ function load_category()
 	    		item_cat_menu += '<div id="id_itemCatMenu_' + i + '" class="col-lg-2 col-md-3 col-sm-4 col-xs-6 col-centered">'
 					+ '<a class="text-center" onclick="load_product(\'' + var_tuto_col[i].category +'\');">'
 					+ '<i class="homeImage">'
-					+ '<img class="homeIcon" src="' + var_tuto_col[i].media_url + '"><br>'
+					+ '<img class="homeIcon" src="' + var_tuto_col[i].media_url + '?P_mode={P_mode}"><br>'
 					+ '<div class="homeThumbnail">'
 					+ '<span class="homeTitle">' + var_tuto_col[i].category + '</span>'
 					+ '</div></i></a></div>';
@@ -144,7 +144,7 @@ function load_product_ok(result)
 						item_prod_menu += '<div id="id_itemProdMenu_' + i + '" class="col-lg-2 col-md-3 col-sm-4 col-xs-6 col-centered">'
 							+ '<a class="text-center" onclick="load_type(\'' + var_tuto_col[i].product +'\');">'
 							+ '<i class="homeImage">'
-							+ '<img class="homeIcon" src="' + var_tuto_col[i].media_url + '"><br>'
+							+ '<img class="homeIcon" src="' + var_tuto_col[i].media_url + '?P_mode={P_mode}"><br>'
 							+ '<div class="homeThumbnail">'
 							+ '<span class="homeTitle">' + var_tuto_col[i].product + '</span>'
 							+ '</div></i></a></div>';
@@ -220,7 +220,7 @@ function load_type_ok(result)
 						item_type_menu += '<div id="id_itemTypeMenu_' + i + '" class="col-lg-2 col-md-3 col-sm-4 col-xs-6 col-centered">'
 							+ '<a class="text-center" onclick="select_tuto(\'' + var_tuto_col[i].type +'\');">'
 							+ '<i class="homeImage">'
-							+ '<img class="homeIcon" src="' + var_tuto_col[i].media_url + '"><br>'
+							+ '<img class="homeIcon" src="' + var_tuto_col[i].media_url + '?P_mode={P_mode}"><br>'
 							+ '<div class="homeThumbnail">'
 							+ '<span class="homeTitle">' + var_tuto_col[i].type + '</span>'
 							+ '</div></i></a></div>';
@@ -286,7 +286,7 @@ function select_tuto_ok(result)
 
 				divTuto += '<div class="text-center">'
 					+ '<h5 class="homeTitle"><strong>' + var_tuto_col[i].media_name + '</strong></h5><br>'
-					+ '<a href="'  + var_tuto_col[i].media_url + '"  target="_blank">'
+					+ '<a href="'  + var_tuto_col[i].media_url + '?P_mode={P_mode}" target="_blank">'
 					+ '<img class="homeIcon" src="https://live.runmyprocess.com/live/112501480325272109/upload/831cfda0-2694-11e7-aa47-0639651b3341/video_play.png"><br>'
 					+ '</a>'
 					// + '<div class="embed-responsive embed-responsive-4by3">'

@@ -1,0 +1,6 @@
+
+/******** Center alignment for Action Icon in different reports ********/
+#id_report .GBCBR3SCAF div
+{
+    text-align: center;
+}

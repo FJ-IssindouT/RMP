@@ -1,0 +1,70 @@
+<!-- HTML contact -->
+<div class="container">
+	<div class="row margin-top-bottom-10px">
+	</div>
+	<div id="id_rowContatDetails" class="row">
+		<div class="col-md-3 col-sm-3">
+			<div class="input-group" data-toggle="tooltip" data-placement="top" title="${i18n('tooltip_contact', 'Email Contact')}">
+			  <span class="input-group-addon">
+			    <i class="fa fa-envelope" aria-hidden="true"></i>
+			  </span>
+			  <input id="id_contact" name="contact" class="form-control" type="text" readonly="readonly" placeholder="">
+			</div>
+		</div>
+		<div class="col-md-3 col-sm-3">
+			<div class="input-group has-success" data-toggle="tooltip" data-placement="top" title="${i18n('tooltip_phone', 'N° Mobile  (en cas de rappel)')}">
+			  <span class="input-group-addon">
+			    <i class="fa fa-phone" aria-hidden="true"></i>
+			  </span>
+			  <input id="id_phone" name="phone" class="form-control" type="text" placeholder="">
+			</div>
+		</div>
+		<div class="col-md-3 col-sm-3">
+		</div>
+		<div class="col-md-3 col-sm-3">
+			<div class="input-group" data-toggle="tooltip" data-placement="top" title="${i18n('tooltip_dateDemande', 'Date de la demande')}">
+			  <span class="input-group-addon">
+			    <i class="fa fa-calendar" aria-hidden="true"></i>
+			  </span>
+			  <input id="id_dateDemande" name="dateDemande" class="form-control" type="text" readonly="readonly" placeholder="">
+			</div>
+		</div>
+	</div>
+	<div id="id_rowLocationDetails" class="row">
+		<div class="col-md-3 col-sm-3">
+			<div class="invisible">Enseigne</div>
+			<div class="input-group has-success" data-toggle="tooltip" data-placement="top" title="${i18n('tooltip_affiliate', 'Choix enseigne(s)')}">
+			  <span class="input-group-addon">
+			    <i class="fa fa-tag" aria-hidden="true"></i>
+			  </span>
+			  <select id="id_affiliateFilter" name="affiliateFilter" class="form-control" type="text" size="1"></select>
+			</div>
+		</div>
+		<div class="col-md-3 col-sm-3">
+			<div class="invisible">Pays</div>
+			<div class="input-group has-success" data-toggle="tooltip" data-placement="top" title="${i18n('tooltip_country', 'Choix pays')}">
+			  <span class="input-group-addon">
+			    <i class="fa fa-globe" aria-hidden="true"></i>
+			  </span>
+			  <select id="id_countryFilter" name="countryFilter" class="form-control" type="text" size="1"></select>
+			</div>
+		</div>
+		<div class="col-md-3 col-sm-3">
+			<div class="invisible">Site impacté</div>
+			<div class="input-group has-success" data-toggle="tooltip" data-placement="top" title="${i18n('tooltip_location', 'Choix du site impacté')}">
+		  	<span class="input-group-addon">
+		    	<i class="fa fa-font-awesome" aria-hidden="true"></i>
+		  	</span>
+			  <select id="id_locationFilter" name="locationFilter" class="form-control" type="text" size="5"></select>
+			</div>
+		</div>
+		<div class="col-md-3 col-sm-3 text-center">
+			<div class="invisible">Avant de poursuivre,</div>
+            <button id="id_location_set" name="id_location_set" class="btn btn-success execute_script-Button" onclick="load_location();"><i class="fa fa-arrow-circle-o-right fa-lg"></i>&nbsp;&nbsp; ${i18n('location_set_text', 'Valider le site')}</button>
+		</div>
+	</div>
+
+	<div class="row margin-top-bottom-10px">
+	</div>
+</div>
+<div class="row margin-top-bottom-10px"></div>

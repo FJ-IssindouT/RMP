@@ -1,0 +1,39 @@
+(wo_company=co_sys_id) && ((co_parent='449fb7fb3743860087c95aa543990e6b') || (co_parent='cdb42dc8db71f200c06cfddabf96195e') || (co_parent='dc9fb7fb3743860087c95aa543990e7c') || (co_parent='b09b5d554f8b72001e5cecd18110c78c')) 
+
+// SAVE // (wo_company=co_sys_id) && ((co_parent='449fb7fb3743860087c95aa543990e6b') || (co_parent='cdb42dc8db71f200c06cfddabf96195e') || (co_parent='dc9fb7fb3743860087c95aa543990e7c') || (co_parent='b09b5d554f8b72001e5cecd18110c78c')) 
+// AUCHAN - KD- VIVARTE - RMSDEMO
+
+Parents - co_parent
+
+KD cdb42dc8db71f200c06cfddabf96195e
+VIVARTE dc9fb7fb3743860087c95aa543990e7c
+RMSDEMO b09b5d554f8b72001e5cecd18110c78c
+(AUCHAN 449fb7fb3743860087c95aa543990e6b)
+================
+Contrats / Filiales - co_sys_id
+(KELLYDELI 44d4ed0cdb31f200c06cfddabf96190e)
+ISS400 d09fb7fb3743860087c95aa543990e7c
+
+
+ // (wo_company=co_sys_id) && ((co_sys_id='d09fb7fb3743860087c95aa543990e7c') || (co_parent='44d4ed0cdb31f200c06cfddabf96190e') || (co_parent='dc9fb7fb3743860087c95aa543990e7c') || (co_parent='b09b5d554f8b72001e5cecd18110c78c')) 
+// ISS400 = 'd09fb7fb3743860087c95aa543990e7c'
+// SAVE // (wo_company=co_sys_id) && ((co_parent='449fb7fb3743860087c95aa543990e6b') || (co_parent='44d4ed0cdb31f200c06cfddabf96190e') || (co_parent='dc9fb7fb3743860087c95aa543990e7c') || (co_parent='b09b5d554f8b72001e5cecd18110c78c')) 
+// AUCHAN - KELLYDELI - VIVARTE - RMSDEMO
+ &&  (co_parent='44d4ed0cdb31f200c06cfddabf96190e')
+
+==================================================================
+==================================================================
+ Categories à exclure d'AUCHAN
+ CAISSES ICL HARD   3bff9a3a37961e00990c304643990e1b
+ REJET              3fff9a3a37961e00990c304643990e1b
+ INSTALLATION       7fff9a3a37961e00990c304643990e1b
+ MONETIQUE          bbff9a3a37961e00990c304643990e1b
+ CAISSES IBM HARD   f7ff9a3a37961e00990c304643990e1b
+
+MAINTENANT
+ (wo_u_category=cat_sys_id) && ((cat_sys_id!='3bff9a3a37961e00990c304643990e1b') || (cat_sys_id!='3fff9a3a37961e00990c304643990e1b') || (cat_sys_id!='7fff9a3a37961e00990c304643990e1b') || (cat_sys_id!='bbff9a3a37961e00990c304643990e1b') || (cat_sys_id!='f7ff9a3a37961e00990c304643990e1b'))
+//For Auchan Cie , we exclude all other categories than CAISSES MINUTE FUJITSU & RAPID AUCHAN
+
+AVANT
+(wo_u_category=cat_sys_id) && ((cat_sys_id='7bff9a3a37961e00990c304643990e1b') || (cat_sys_id='fbff9a3a37961e00990c304643990e1b'))
+// CAISSES MINUTE FUJITSU - RAPID AUCHAN

@@ -117,7 +117,7 @@ function dispatchWorkOrder()
             var increment_k_soon = false;
             var increment_k_over = false;
             var sla_location_name = reduced_wos_loc_name[j];
-            // c_debug(debug.sla, "=> dispatchWorkOrder: sla_loc_code = ", sla_loc_code);
+            // c_debug(debug.sla, "=> dispatchWorkOrder: sla_location_name = ", sla_location_name);
             sla_loc_name[j] = {};
             sla_loc_name[j].loc_name = reduced_wos_loc_name[j];
             sla_loc_name[j].wo_list = [];
@@ -227,8 +227,8 @@ function showMarkers(arr_loc)
 {
     RMPApplication.debug("begin showMarkers");
     if ( (arr_loc.length == undefined) || (arr_loc.length == 0) ) {
-        var  title = ${P_quoted(i18n("error_showMarkers_title", "Information"))};
-        var  content = ${P_quoted(i18n("error_showMarkers_msg", "Aucun incident en cours n'est concerné par ce statut de SLA!"))};
+        var title = ${P_quoted(i18n("error_showMarkers_title", "Information"))};
+        var content = ${P_quoted(i18n("error_showMarkers_msg", "Aucun incident en cours n'est concerné par ce statut de SLA!"))};
         notify_error(title, content);
         return;
     }
@@ -332,6 +332,7 @@ function setSiteInfo(w_order_arr)
     for (var i=0; i<w_order_arr.wo_list.length; i++) {
         var end_time_utc = moment.tz(w_order_arr.wo_list[i].tasksla_planned_end_time, "UTC");
         var end_time = moment(end_time_utc, "YYYY-MM-DD HH:mm:ss").tz(login.timezone).format("DD/MM/YYYY HH:mm:ss");
+        // wo_correlation_id if customer reference is preferred, else wo_number
         siteInfo += '<p>- ' + w_order_arr.wo_list[i].wo_correlation_id + ' &#10143; ' + ${P_quoted(i18n('popup_id2', 'Fin SLA'))} + ': ' + end_time  + ' - <span style="color: ' + w_order_arr.wo_list[i].sla_def.color + ';"><i class=\"fa fa-' +  w_order_arr.wo_list[i].sla_def.sign + ' fa-lg\" aria-hidden=\"true\"></i></span> [' + w_order_arr.wo_list[i].tasksla_percentage + '%]</p>';
     }
 

@@ -8,11 +8,11 @@
     }, {
         "title" : "Rapports",
         "url" : "https://live.runmyprocess.com/live/112501487582701289/appli/365678?P_mode=${P_mode}",
-        "visible" : "${has_right('412616')=='true' || has_right('407893')=='true'}"
+        "visible" : "${has_right('412307')=='true' || has_right('412616')=='true' || has_right('407893')=='true'}"
     }, {
         "title" : "(Gestion des intervenants)",
         "url" : "https://live.runmyprocess.com/live/112501487582701289/appli/?P_mode=${P_mode}",
-        "visible" : "${has_right('412616')=='true' || has_right('407893')=='true'}"
+        "visible" : "${has_right('407893')=='true'}"
     }, {
         "title" : "Gestions des sociétés",
         "url" : "https://live.runmyprocess.com/live/112501487582701289/appli/360645?P_mode=${P_mode}",

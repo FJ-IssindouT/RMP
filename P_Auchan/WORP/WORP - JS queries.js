@@ -11,8 +11,8 @@ function getWoNumberQuery()
     var wm_number = $("#id_numberFilter").val();
     var wm_number_query = (isEmpty(wm_number)) ? "" : "^wo_number=" + $.trim(wm_number);
     c_debug(debug.query, "=> getWoNumberQuery: wm_number_query = ", wm_number_query);
-    return wm_number_query;
     RMPApplication.debug("end getWoNumberQuery");
+    return wm_number_query;
 }
 
 // ===========================
@@ -24,8 +24,8 @@ function getCorrelationIdQuery()
     var referenceClient = $("#id_clientReferenceFilter").val();
     var corr_id_query = (isEmpty(referenceClient)) ? "" : "^wo_correlation_id=" + $.trim(referenceClient);
     c_debug(debug.query, "=> getCorrelationIdQuery: corr_id_query = ", corr_id_query);
-    return corr_id_query;
     RMPApplication.debug("end getcorrelationIdQuery");
+    return corr_id_query;
 }
 
 // ===========================
@@ -50,13 +50,13 @@ function getStatusQuery()
         }
     }
     c_debug(debug.query, "=> getStatusQuery: statusQuery = ", statusQuery);
-    return statusQuery;
     RMPApplication.debug("end getStatusQuery");
+    return statusQuery;
 }
 
-// ===================================
-//  Category Filter definition
-// ===================================
+// ==================================================
+//  Category Filter definition - Specific for AUCHAN
+// ==================================================
 function getCategoryQuery()
 {
     RMPApplication.debug("begin getCategoryQuery");
@@ -90,8 +90,8 @@ function getCategoryQuery()
         }
     }
     c_debug(debug.query, "=> getCategoryQuery: categoryQuery = ", categoryQuery);
-    return categoryQuery;
     RMPApplication.debug("end getCategoryQuery");
+    return categoryQuery;
 }
 
 // ===================================
@@ -107,8 +107,8 @@ function getWoTypeQuery()
         var woTypeQuery = "^wo_u_work_order_type=" + $.trim(wo_type);
     }
     c_debug(debug.query, "=> getWoTypeQuery: woTypeQuery = ", woTypeQuery);
-    return woTypeQuery;
     RMPApplication.debug("end getWoTypeQuery");
+    return woTypeQuery;
 }
 
 // ===============================
@@ -120,13 +120,13 @@ function getDescriptionQuery()
     var description = $("#id_descriptionFilter").val();
     var descriptionQuery = (isEmpty(description)) ? "" : "^wo_short_descriptionLIKE" + $.trim(description);
     c_debug(debug.query, "=> getDescriptionQuery: descriptionQuery = ", descriptionQuery);
-    return descriptionQuery;
     RMPApplication.debug("end getDescriptionQuery");
+    return descriptionQuery;
 }
 
-// ==================================
-//  Period Date filter definition
-// ==================================
+// ======================================================
+//  Period Date filter definition - Specific for AUCHAN
+// ======================================================
 function getPeriodQuery()
 {
     RMPApplication.debug("begin getPeriodQuery");
@@ -168,8 +168,8 @@ function getPeriodQuery()
     // c_debug(debug.query, "=> getPeriodQuery: last_day = ", last_day);
     getPeriodQuery = "^wo_opened_atBETWEEN" + first_day + "@" + last_day;
     c_debug(debug.query, "=> getPeriodQuery: getPeriodQuery = ", getPeriodQuery);
-    return getPeriodQuery;
     RMPApplication.debug("end getPeriodQuery");
+    return getPeriodQuery;
 }
 
 // ==================================
@@ -200,8 +200,8 @@ function getOpenedAtQuery()
         openedAtQuery = "^wo_opened_at&lt;=" + date[2] + service_now_separator + date[1] + service_now_separator + date[0];
     }
     c_debug(debug.query, "=> getOpenedAtQuery: openedAtQuery = ", openedAtQuery);
-    return openedAtQuery;
     RMPApplication.debug("end getOpenedAtQuery");
+    return openedAtQuery;
 }
 
 // ==================================
@@ -231,8 +231,8 @@ function getClosedAtQuery()
         closedAtQuery = "^wo_closed_at&lt;=" + date[2] + service_now_separator + date[1] + service_now_separator + date[0];
     }
     c_debug(debug.query, "=> getClosedAtQuery: closedAtQuery = ", closedAtQuery);
-    return closedAtQuery;
     RMPApplication.debug("end getClosedAtQuery");
+    return closedAtQuery;
 }
 
 // =========================================================================================
@@ -408,8 +408,8 @@ function affiliate_ok(result)
         affiliate_obj = result.records[0];
         var contract = affiliate_obj.company + "\\" + affiliate_obj.abbreviation;   // contract definition
         var contract_query = "^co_u_full_name=" + contract;
-        c_debug(debug.query, "=> affiliate_ok: contract_query = ", sn_query);
         sn_query += contract_query;
+        c_debug(debug.query, "=> affiliate_ok: contract_query = ", sn_query);
         getLocationQuery();     // precise geographical area to limit search time
     }
     RMPApplication.debug("end affiliate_ok");

@@ -17,18 +17,18 @@ function set_image()
 	var printer_out_of_paper_fr = "https://live.runmyprocess.com/live/112501480325272109/upload/c28cf820-568f-11e7-ba78-0639651b3341/SD_PRN_manque_papier.png";
 	switch (language) {
 		case "fr" : 
-			paper_jam ='<img class="img-responsive" src="' + paper_jam_fr +'">';
-			unknown_error =  '<img class="img-responsive" src="' + unknown_error_fr + '">';
+			paper_jam = '<img class="img-responsive" src="' + paper_jam_fr +'">';
+			unknown_error = '<img class="img-responsive" src="' + unknown_error_fr + '">';
 			printer_out_of_paper = '<img class="img-responsive" src="' + printer_out_of_paper_fr + '">';
 			break;
 		case "es" :
-			paper_jam ='<img class="img-responsive" src="' + paper_jam_sp + '">';
-			unknown_error =  '<img class="img-responsive" src="' + unknown_error_sp + '">';
+			paper_jam = '<img class="img-responsive" src="' + paper_jam_sp + '">';
+			unknown_error = '<img class="img-responsive" src="' + unknown_error_sp + '">';
 			printer_out_of_paper = '<img class="img-responsive" src="' + printer_out_of_paper_sp + '">';
-			break;;
+			break;
 		default : 
-			paper_jam ='<img class="img-responsive" src="' + paper_jam_fr + '">';
-			unknown_error =  '<img class="img-responsive" src="' + unknown_error_fr + '">';
+			paper_jam = '<img class="img-responsive" src="' + paper_jam_fr + '">';
+			unknown_error = '<img class="img-responsive" src="' + unknown_error_fr + '">';
 			printer_out_of_paper = '<img class="img-responsive" src="' + printer_out_of_paper_fr + '">';
 			break;
 	}

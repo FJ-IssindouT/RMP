@@ -1,0 +1,1258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsl:stylesheet version="1.1" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fo="http://www.w3.org/1999/XSL/Format" exclude-result-prefixes="fo">
+	<xsl:output method="xml" version="1.0" omit-xml-declaration="no" indent="yes"/>
+	<xsl:template match="my_var_main">
+		<fo:root font-family="Arial" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:w="http://schemas.microsoft.com/office/word/2003/wordml">
+			<fo:layout-master-set xmlns:rx="http://www.renderx.com/XSL/Extensions" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:wx="http://schemas.microsoft.com/office/word/2003/auxHint" xmlns:aml="http://schemas.microsoft.com/aml/2001/core" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+				<fo:simple-page-master master-name="section1-first-page" page-width="8.268055555555555in" page-height="11.693055555555556in" margin-top="21.25pt" margin-bottom="35.4pt" margin-right="70.85pt" margin-left="70.85pt">
+					<fo:region-body margin-top="56.7pt" margin-bottom="21.25pt"></fo:region-body>
+					<fo:region-before region-name="first-page-header" extent="11in"></fo:region-before>
+					<fo:region-after region-name="first-page-footer" extent="11in" display-align="after"></fo:region-after>
+				</fo:simple-page-master>
+				<fo:simple-page-master master-name="section1-odd-page" page-width="8.268055555555555in" page-height="11.693055555555556in" margin-top="21.25pt" margin-bottom="35.4pt" margin-right="70.85pt" margin-left="70.85pt">
+					<fo:region-body margin-top="56.7pt" margin-bottom="21.25pt"></fo:region-body>
+					<fo:region-before region-name="odd-page-header" extent="11in"></fo:region-before>
+					<fo:region-after region-name="odd-page-footer" extent="11in" display-align="after"></fo:region-after>
+				</fo:simple-page-master>
+				<fo:simple-page-master master-name="section1-even-page" page-width="8.268055555555555in" page-height="11.693055555555556in" margin-top="21.25pt" margin-bottom="35.4pt" margin-right="70.85pt" margin-left="70.85pt">
+					<fo:region-body margin-top="56.7pt" margin-bottom="21.25pt"></fo:region-body>
+					<fo:region-before region-name="even-page-header" extent="11in"></fo:region-before>
+					<fo:region-after region-name="even-page-footer" extent="11in" display-align="after"></fo:region-after>
+				</fo:simple-page-master>
+				<fo:page-sequence-master master-name="section1-page-sequence-master">
+					<fo:repeatable-page-master-alternatives>
+						<fo:conditional-page-master-reference page-position="first" master-reference="section1-first-page" />
+						<fo:conditional-page-master-reference page-position="rest" master-reference="section1-odd-page" />
+						<!-- <fo:conditional-page-master-reference odd-or-even="odd" master-reference="section1-odd-page" />
+						<fo:conditional-page-master-reference odd-or-even="even" master-reference="section1-even-page" /> -->
+					</fo:repeatable-page-master-alternatives>
+				</fo:page-sequence-master>
+			</fo:layout-master-set>
+			<fo:page-sequence master-reference="section1-page-sequence-master" format="1" xmlns:rx="http://www.renderx.com/XSL/Extensions" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:wx="http://schemas.microsoft.com/office/word/2003/auxHint" xmlns:aml="http://schemas.microsoft.com/aml/2001/core" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+                <fo:static-content flow-name="first-page-header">
+                    <fo:retrieve-marker retrieve-class-name="first-page-header" retrieve-position="first-including-carryover" retrieve-boundary="page" />
+                </fo:static-content>
+                <fo:static-content flow-name="first-page-footer">
+                    <fo:retrieve-marker retrieve-class-name="first-page-footer" retrieve-position="first-including-carryover" retrieve-boundary="page" />
+                </fo:static-content>
+                <fo:static-content flow-name="odd-page-header">
+                    <fo:retrieve-marker retrieve-class-name="odd-page-header" retrieve-position="first-including-carryover" retrieve-boundary="page" />
+                </fo:static-content>
+                <fo:static-content flow-name="odd-page-footer">
+                    <fo:retrieve-marker retrieve-class-name="odd-page-footer" retrieve-position="first-including-carryover" retrieve-boundary="page" />
+                </fo:static-content>
+                <fo:static-content flow-name="even-page-header">
+                    <fo:retrieve-marker retrieve-class-name="even-page-header" retrieve-position="first-including-carryover" retrieve-boundary="page" />
+                </fo:static-content>
+                <fo:static-content flow-name="even-page-footer">
+                    <fo:retrieve-marker retrieve-class-name="even-page-footer" retrieve-position="first-including-carryover" retrieve-boundary="page" />
+                </fo:static-content>
+                <fo:static-content flow-name="xsl-footnote-separator">
+                    <fo:block>
+                        <fo:leader leader-pattern="rule" leader-length="144pt" rule-thickness="0.5pt" rule-style="solid" color="gray" />
+                    </fo:block>
+                </fo:static-content>
+                <fo:flow flow-name="xsl-region-body">
+                    <fo:block widows="2" orphans="2" font-size="10pt" line-height="1.147" white-space-collapse="false">
+                        <fo:marker marker-class-name="first-page-header" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+                            <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="11pt" language="FR" text-align="center">
+                                <fo:external-graphic content-height="80pt" content-width="50pt" padding-left="2pt" src="url(https://live.runmyprocess.com/pub/112501412000161590/upload/6e716860-fa4d-11e5-858c-0619bd984419/total_logo.png?method=GET)" />
+                            </fo:block>
+                        </fo:marker>                        	
+                        <fo:marker marker-class-name="first-page-footer" xmlns:st1="urn:schemas-microsoft-com:office:smarttags" />
+                        <fo:marker marker-class-name="odd-page-header" xmlns:st1="urn:schemas-microsoft-com:office:smarttags" />
+                        <fo:marker marker-class-name="odd-page-footer" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+                            <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="11pt" language="FR" text-align="center">
+                                <fo:inline>
+                                    <fo:leader leader-length="0pt" />
+                                    <fo:page-number />
+                                </fo:inline>
+                                <fo:inline>
+                                    <fo:leader leader-length="0pt" /> / </fo:inline>
+                                <fo:inline>
+                                    <fo:leader leader-length="0pt" />
+                                    <fo:page-number-citation ref-id="ID1A2WWHPOC0QLDGUBACIXJA04BICJVD30RIZ5LZH4WBNZ0Q0RHO" />
+                                </fo:inline>
+                            </fo:block>
+                        </fo:marker>
+                        <fo:marker marker-class-name="even-page-header" xmlns:st1="urn:schemas-microsoft-com:office:smarttags" />
+                        <fo:marker marker-class-name="even-page-footer" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+                            <fo:block space-after="0pt" space-after.conditionality="retain" line-height="1.147" font-family="Arial" font-size="11pt" language="FR" text-align="center">
+                                <fo:inline>
+                                    <fo:leader leader-length="0pt" />
+                                    <fo:page-number />
+                                </fo:inline>
+                                <fo:inline>
+                                    <fo:leader leader-length="0pt" /> / </fo:inline>
+                                <fo:inline>
+                                    <fo:leader leader-length="0pt" />
+                                    <fo:page-number-citation ref-id="ID1A2WWHPOC0QLDGUBACIXJA04BICJVD30RIZ5LZH4WBNZ0Q0RHO" />
+                                </fo:inline>
+                            </fo:block>
+                        </fo:marker>
+
+						<fo:block space-after="8pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="16pt" language="FR" text-align="center" font-weight="bold" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+                            <fo:leader />
+                        </fo:block>
+						<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="18pt" language="FR" text-align="center" font-weight="bold" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+							<fo:inline font-weight="bold" font-size="18pt">
+								<fo:leader leader-length="0pt" />CAMPAGNE REMPLACEMENT TPI
+							</fo:inline>
+						</fo:block>
+						<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="18pt" language="FR" text-align="center" font-weight="bold" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+							<fo:inline font-weight="bold" font-size="18pt">
+								<fo:leader leader-length="0pt" />APPLICATION DE RÉCEPTION DES CHANTIERS
+							</fo:inline>
+						</fo:block>
+						<fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="12pt" language="FR" text-align="center" font-weight="bold" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+							<fo:leader />
+						</fo:block>
+
+
+
+<!-- ======================= -->
+<!-- FIN DE LA PREMIERE PAGE -->
+<!-- ======================= -->
+
+<!-- Vision d'ensemble signalétique Entrée d'îlot et Poteau d'auvent -->
+                        <fo:table font-family="Arial" language="FR" start-indent="0pt" border-top-style="solid" border-top-color="black" border-top-width="0.5pt" border-left-style="solid" border-left-color="black" border-left-width="0.5pt" border-bottom-style="solid" border-bottom-color="black" border-bottom-width="0.5pt" border-right-style="solid" border-right-color="black" border-right-width="0.5pt" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+                            <fo:table-column column-number="1" column-width="482pt" />
+                            <fo:table-body start-indent="0pt" end-indent="0pt">
+
+                                <xsl:call-template name="domain_template">
+                                    <xsl:with-param name="domain_title"><xsl:value-of select="domaine_ilot_et_auvent" /></xsl:with-param>
+                                </xsl:call-template>
+
+                                <xsl:call-template name="photos_array_test">
+                                    <xsl:with-param name="domain_title"><xsl:value-of select="domaine_ilot_et_auvent" /></xsl:with-param>
+                                </xsl:call-template>
+
+                                <xsl:call-template name="comments_template">
+                                    <xsl:with-param name="commentaires"><xsl:value-of select="commentaires_ilot_et_auvent" /></xsl:with-param>
+                                </xsl:call-template>
+
+                            </fo:table-body>
+                        </fo:table>
+
+                        <fo:block page-break-after="always" space-after="8pt" space-after.conditionality="retain" line-height="1.2378041666666666" font-family="Arial" font-size="12pt" language="FR" font-weight="bold" xmlns:st1="urn:schemas-microsoft-com:office:smarttags" />
+
+<!-- Vue de chaque Face Appareil Distributeur Modifié (AD complet + TPI + EPEC) -->
+                        <fo:table font-family="Arial" language="FR" start-indent="0pt" border-top-style="solid" border-top-color="black" border-top-width="0.5pt" border-left-style="solid" border-left-color="black" border-left-width="0.5pt" border-bottom-style="solid" border-bottom-color="black" border-bottom-width="0.5pt" border-right-style="solid" border-right-color="black" border-right-width="0.5pt" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+                            <fo:table-column column-number="1" column-width="482pt" />
+                            <fo:table-body start-indent="0pt" end-indent="0pt">
+
+                                <xsl:call-template name="domain_template">
+                                    <xsl:with-param name="domain_title"><xsl:value-of select="domaine_ilot_et_auvent" /></xsl:with-param>
+                                </xsl:call-template>
+
+                                <xsl:call-template name="photos_array_test">
+                                    <xsl:with-param name="domain_title"><xsl:value-of select="domaine_ilot_et_auvent" /></xsl:with-param>
+                                </xsl:call-template>
+
+                                <xsl:call-template name="comments_template">
+                                    <xsl:with-param name="commentaires"><xsl:value-of select="commentaires_ilot_et_auvent" /></xsl:with-param>
+                                </xsl:call-template>
+
+                            </fo:table-body>
+                        </fo:table>
+
+                        <fo:block page-break-after="always" space-after="8pt" space-after.conditionality="retain" line-height="1.2378041666666666" font-family="Arial" font-size="12pt" language="FR" font-weight="bold" xmlns:st1="urn:schemas-microsoft-com:office:smarttags" />
+
+<!-- Vue des bonbonnes Depass installées et des Arrêts d'urgence créés -->
+                        <fo:table font-family="Arial" language="FR" start-indent="0pt" border-top-style="solid" border-top-color="black" border-top-width="0.5pt" border-left-style="solid" border-left-color="black" border-left-width="0.5pt" border-bottom-style="solid" border-bottom-color="black" border-bottom-width="0.5pt" border-right-style="solid" border-right-color="black" border-right-width="0.5pt" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+                            <fo:table-column column-number="1" column-width="482pt" />
+                            <fo:table-body start-indent="0pt" end-indent="0pt">
+
+                                <xsl:call-template name="domain_template">
+                                    <xsl:with-param name="domain_title"><xsl:value-of select="domaine_ilot_et_auvent" /></xsl:with-param>
+                                </xsl:call-template>
+
+                                <xsl:call-template name="photos_array_test">
+                                    <xsl:with-param name="domain_title"><xsl:value-of select="domaine_ilot_et_auvent" /></xsl:with-param>
+                                </xsl:call-template>
+
+                                <xsl:call-template name="comments_template">
+                                    <xsl:with-param name="commentaires"><xsl:value-of select="commentaires_ilot_et_auvent" /></xsl:with-param>
+                                </xsl:call-template>
+
+                            </fo:table-body>
+                        </fo:table>
+
+                        <fo:block page-break-after="always" space-after="8pt" space-after.conditionality="retain" line-height="1.2378041666666666" font-family="Arial" font-size="12pt" language="FR" font-weight="bold" xmlns:st1="urn:schemas-microsoft-com:office:smarttags" />
+
+<!-- Vue du Noyau à l'intérieur de la Tête Calculateur de chaque AD modifié -->
+                        <fo:table font-family="Arial" language="FR" start-indent="0pt" border-top-style="solid" border-top-color="black" border-top-width="0.5pt" border-left-style="solid" border-left-color="black" border-left-width="0.5pt" border-bottom-style="solid" border-bottom-color="black" border-bottom-width="0.5pt" border-right-style="solid" border-right-color="black" border-right-width="0.5pt" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+                            <fo:table-column column-number="1" column-width="482pt" />
+                            <fo:table-body start-indent="0pt" end-indent="0pt">
+
+                                <xsl:call-template name="domain_template">
+                                    <xsl:with-param name="domain_title"><xsl:value-of select="domaine_ilot_et_auvent" /></xsl:with-param>
+                                </xsl:call-template>
+
+                                <xsl:call-template name="photos_array_test">
+                                    <xsl:with-param name="domain_title"><xsl:value-of select="domaine_ilot_et_auvent" /></xsl:with-param>
+                                </xsl:call-template>
+
+                                <xsl:call-template name="comments_template">
+                                    <xsl:with-param name="commentaires"><xsl:value-of select="commentaires_ilot_et_auvent" /></xsl:with-param>
+                                </xsl:call-template>
+
+                            </fo:table-body>
+                        </fo:table>
+
+                        <fo:block page-break-after="always" space-after="8pt" space-after.conditionality="retain" line-height="1.2378041666666666" font-family="Arial" font-size="12pt" language="FR" font-weight="bold" xmlns:st1="urn:schemas-microsoft-com:office:smarttags" />
+
+<!-- Vue de la Palette filmée des matériels déposés -->
+                        <fo:table font-family="Arial" language="FR" start-indent="0pt" border-top-style="solid" border-top-color="black" border-top-width="0.5pt" border-left-style="solid" border-left-color="black" border-left-width="0.5pt" border-bottom-style="solid" border-bottom-color="black" border-bottom-width="0.5pt" border-right-style="solid" border-right-color="black" border-right-width="0.5pt" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+                            <fo:table-column column-number="1" column-width="482pt" />
+                            <fo:table-body start-indent="0pt" end-indent="0pt">
+
+                                <xsl:call-template name="domain_template">
+                                    <xsl:with-param name="domain_title"><xsl:value-of select="domaine_ilot_et_auvent" /></xsl:with-param>
+                                </xsl:call-template>
+
+                                <xsl:call-template name="photos_array_test">
+                                    <xsl:with-param name="domain_title"><xsl:value-of select="domaine_ilot_et_auvent" /></xsl:with-param>
+                                </xsl:call-template>
+
+                                <xsl:call-template name="comments_template">
+                                    <xsl:with-param name="commentaires"><xsl:value-of select="commentaires_ilot_et_auvent" /></xsl:with-param>
+                                </xsl:call-template>
+
+                            </fo:table-body>
+                        </fo:table>
+
+                        <fo:block page-break-after="always" space-after="8pt" space-after.conditionality="retain" line-height="1.2378041666666666" font-family="Arial" font-size="12pt" language="FR" font-weight="bold" xmlns:st1="urn:schemas-microsoft-com:office:smarttags" />
+
+<!-- Vue du Switch en caisse -->
+                        <fo:table font-family="Arial" language="FR" start-indent="0pt" border-top-style="solid" border-top-color="black" border-top-width="0.5pt" border-left-style="solid" border-left-color="black" border-left-width="0.5pt" border-bottom-style="solid" border-bottom-color="black" border-bottom-width="0.5pt" border-right-style="solid" border-right-color="black" border-right-width="0.5pt" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+                            <fo:table-column column-number="1" column-width="482pt" />
+                            <fo:table-body start-indent="0pt" end-indent="0pt">
+
+                                <xsl:call-template name="domain_template">
+                                    <xsl:with-param name="domain_title"><xsl:value-of select="domaine_ilot_et_auvent" /></xsl:with-param>
+                                </xsl:call-template>
+
+                                <xsl:call-template name="photos_array_test">
+                                    <xsl:with-param name="domain_title"><xsl:value-of select="domaine_ilot_et_auvent" /></xsl:with-param>
+                                </xsl:call-template>
+
+                                <xsl:call-template name="comments_template">
+                                    <xsl:with-param name="commentaires"><xsl:value-of select="commentaires_ilot_et_auvent" /></xsl:with-param>
+                                </xsl:call-template>
+
+                            </fo:table-body>
+                        </fo:table>
+
+                        <fo:block page-break-after="always" space-after="8pt" space-after.conditionality="retain" line-height="1.2378041666666666" font-family="Arial" font-size="12pt" language="FR" font-weight="bold" xmlns:st1="urn:schemas-microsoft-com:office:smarttags" />
+
+<!-- Vue des Arrivées Réseau créées au niveau de la Baie LAN WAN -->
+                        <fo:table font-family="Arial" language="FR" start-indent="0pt" border-top-style="solid" border-top-color="black" border-top-width="0.5pt" border-left-style="solid" border-left-color="black" border-left-width="0.5pt" border-bottom-style="solid" border-bottom-color="black" border-bottom-width="0.5pt" border-right-style="solid" border-right-color="black" border-right-width="0.5pt" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+                            <fo:table-column column-number="1" column-width="482pt" />
+                            <fo:table-body start-indent="0pt" end-indent="0pt">
+
+                                <xsl:call-template name="domain_template">
+                                    <xsl:with-param name="domain_title"><xsl:value-of select="domaine_ilot_et_auvent" /></xsl:with-param>
+                                </xsl:call-template>
+
+                                <xsl:call-template name="photos_array_test">
+                                    <xsl:with-param name="domain_title"><xsl:value-of select="domaine_ilot_et_auvent" /></xsl:with-param>
+                                </xsl:call-template>
+
+                                <xsl:call-template name="comments_template">
+                                    <xsl:with-param name="commentaires"><xsl:value-of select="commentaires_ilot_et_auvent" /></xsl:with-param>
+                                </xsl:call-template>
+
+                            </fo:table-body>
+                        </fo:table>
+
+                        <fo:block page-break-after="always" space-after="8pt" space-after.conditionality="retain" line-height="1.2378041666666666" font-family="Arial" font-size="12pt" language="FR" font-weight="bold" xmlns:st1="urn:schemas-microsoft-com:office:smarttags" />
+
+<!-- Vue des modifications réalisées au TGBT -->
+                        <fo:table font-family="Arial" language="FR" start-indent="0pt" border-top-style="solid" border-top-color="black" border-top-width="0.5pt" border-left-style="solid" border-left-color="black" border-left-width="0.5pt" border-bottom-style="solid" border-bottom-color="black" border-bottom-width="0.5pt" border-right-style="solid" border-right-color="black" border-right-width="0.5pt" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+                            <fo:table-column column-number="1" column-width="482pt" />
+                            <fo:table-body start-indent="0pt" end-indent="0pt">
+
+                                <xsl:call-template name="domain_template">
+                                    <xsl:with-param name="domain_title"><xsl:value-of select="domaine_ilot_et_auvent" /></xsl:with-param>
+                                </xsl:call-template>
+
+                                <xsl:call-template name="photos_array_test">
+                                    <xsl:with-param name="domain_title"><xsl:value-of select="domaine_ilot_et_auvent" /></xsl:with-param>
+                                </xsl:call-template>
+
+                                <xsl:call-template name="comments_template">
+                                    <xsl:with-param name="commentaires"><xsl:value-of select="commentaires_ilot_et_auvent" /></xsl:with-param>
+                                </xsl:call-template>
+
+                            </fo:table-body>
+                        </fo:table>
+
+                        <fo:block page-break-after="always" space-after="8pt" space-after.conditionality="retain" line-height="1.2378041666666666" font-family="Arial" font-size="12pt" language="FR" font-weight="bold" xmlns:st1="urn:schemas-microsoft-com:office:smarttags" />
+
+<!-- Autres Photos intéressantes -->
+                        <fo:table font-family="Arial" language="FR" start-indent="0pt" border-top-style="solid" border-top-color="black" border-top-width="0.5pt" border-left-style="solid" border-left-color="black" border-left-width="0.5pt" border-bottom-style="solid" border-bottom-color="black" border-bottom-width="0.5pt" border-right-style="solid" border-right-color="black" border-right-width="0.5pt" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+                            <fo:table-column column-number="1" column-width="482pt" />
+                            <fo:table-body start-indent="0pt" end-indent="0pt">
+
+                                <xsl:call-template name="domain_template">
+                                    <xsl:with-param name="domain_title"><xsl:value-of select="domaine_ilot_et_auvent" /></xsl:with-param>
+                                </xsl:call-template>
+
+                                <xsl:call-template name="photos_array_test">
+                                    <xsl:with-param name="domain_title"><xsl:value-of select="domaine_ilot_et_auvent" /></xsl:with-param>
+                                </xsl:call-template>
+
+                                <xsl:call-template name="comments_template">
+                                    <xsl:with-param name="commentaires"><xsl:value-of select="commentaires_ilot_et_auvent" /></xsl:with-param>
+                                </xsl:call-template>
+
+                            </fo:table-body>
+                        </fo:table>
+
+                        <fo:block page-break-after="always" space-after="8pt" space-after.conditionality="retain" line-height="1.2378041666666666" font-family="Arial" font-size="12pt" language="FR" font-weight="bold" xmlns:st1="urn:schemas-microsoft-com:office:smarttags" />
+
+<!-- Vue de la fiche de Mise en service de chaque Face TPI -->
+                        <fo:table font-family="Arial" language="FR" start-indent="0pt" border-top-style="solid" border-top-color="black" border-top-width="0.5pt" border-left-style="solid" border-left-color="black" border-left-width="0.5pt" border-bottom-style="solid" border-bottom-color="black" border-bottom-width="0.5pt" border-right-style="solid" border-right-color="black" border-right-width="0.5pt" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+                            <fo:table-column column-number="1" column-width="482pt" />
+                            <fo:table-body start-indent="0pt" end-indent="0pt">
+
+                                <xsl:call-template name="domain_template">
+                                    <xsl:with-param name="domain_title"><xsl:value-of select="domaine_ilot_et_auvent" /></xsl:with-param>
+                                </xsl:call-template>
+
+                                <xsl:call-template name="photos_array_test">
+                                    <xsl:with-param name="domain_title"><xsl:value-of select="domaine_ilot_et_auvent" /></xsl:with-param>
+                                </xsl:call-template>
+
+                                <xsl:call-template name="comments_template">
+                                    <xsl:with-param name="commentaires"><xsl:value-of select="commentaires_ilot_et_auvent" /></xsl:with-param>
+                                </xsl:call-template>
+
+                            </fo:table-body>
+                        </fo:table>
+
+                        <fo:block page-break-after="always" space-after="8pt" space-after.conditionality="retain" line-height="1.2378041666666666" font-family="Arial" font-size="12pt" language="FR" font-weight="bold" xmlns:st1="urn:schemas-microsoft-com:office:smarttags" />
+
+<!-- Fiche de Mouvement Matériel (matériels TPI/face) -->
+                        <fo:table font-family="Arial" language="FR" start-indent="0pt" border-top-style="solid" border-top-color="black" border-top-width="0.5pt" border-left-style="solid" border-left-color="black" border-left-width="0.5pt" border-bottom-style="solid" border-bottom-color="black" border-bottom-width="0.5pt" border-right-style="solid" border-right-color="black" border-right-width="0.5pt" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+                            <fo:table-column column-number="1" column-width="482pt" />
+                            <fo:table-body start-indent="0pt" end-indent="0pt">
+
+                                <xsl:call-template name="domain_template">
+                                    <xsl:with-param name="domain_title"><xsl:value-of select="domaine_ilot_et_auvent" /></xsl:with-param>
+                                </xsl:call-template>
+
+                                <xsl:call-template name="photos_array_test">
+                                    <xsl:with-param name="domain_title"><xsl:value-of select="domaine_ilot_et_auvent" /></xsl:with-param>
+                                </xsl:call-template>
+
+                                <xsl:call-template name="comments_template">
+                                    <xsl:with-param name="commentaires"><xsl:value-of select="commentaires_ilot_et_auvent" /></xsl:with-param>
+                                </xsl:call-template>
+
+                            </fo:table-body>
+                        </fo:table>
+
+                        <fo:block page-break-after="always" space-after="8pt" space-after.conditionality="retain" line-height="1.2378041666666666" font-family="Arial" font-size="12pt" language="FR" font-weight="bold" xmlns:st1="urn:schemas-microsoft-com:office:smarttags" />
+
+<!-- Vue du Bon de livraison des TPI et des kits associés -->
+                        <fo:table font-family="Arial" language="FR" start-indent="0pt" border-top-style="solid" border-top-color="black" border-top-width="0.5pt" border-left-style="solid" border-left-color="black" border-left-width="0.5pt" border-bottom-style="solid" border-bottom-color="black" border-bottom-width="0.5pt" border-right-style="solid" border-right-color="black" border-right-width="0.5pt" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+                            <fo:table-column column-number="1" column-width="482pt" />
+                            <fo:table-body start-indent="0pt" end-indent="0pt">
+
+                                <xsl:call-template name="domain_template">
+                                    <xsl:with-param name="domain_title"><xsl:value-of select="domaine_ilot_et_auvent" /></xsl:with-param>
+                                </xsl:call-template>
+
+                                <xsl:call-template name="photos_array_test">
+                                    <xsl:with-param name="domain_title"><xsl:value-of select="domaine_ilot_et_auvent" /></xsl:with-param>
+                                </xsl:call-template>
+
+                                <xsl:call-template name="comments_template">
+                                    <xsl:with-param name="commentaires"><xsl:value-of select="commentaires_ilot_et_auvent" /></xsl:with-param>
+                                </xsl:call-template>
+
+                            </fo:table-body>
+                        </fo:table>
+
+                        <fo:block page-break-after="always" space-after="8pt" space-after.conditionality="retain" line-height="1.2378041666666666" font-family="Arial" font-size="12pt" language="FR" font-weight="bold" xmlns:st1="urn:schemas-microsoft-com:office:smarttags" />
+
+<!-- Vue de la fiche de Mise en service TPI installé, signée par le gérant -->
+                        <fo:table font-family="Arial" language="FR" start-indent="0pt" border-top-style="solid" border-top-color="black" border-top-width="0.5pt" border-left-style="solid" border-left-color="black" border-left-width="0.5pt" border-bottom-style="solid" border-bottom-color="black" border-bottom-width="0.5pt" border-right-style="solid" border-right-color="black" border-right-width="0.5pt" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+                            <fo:table-column column-number="1" column-width="482pt" />
+                            <fo:table-body start-indent="0pt" end-indent="0pt">
+
+                                <xsl:call-template name="domain_template">
+                                    <xsl:with-param name="domain_title"><xsl:value-of select="domaine_ilot_et_auvent" /></xsl:with-param>
+                                </xsl:call-template>
+
+                                <xsl:call-template name="photos_array_test">
+                                    <xsl:with-param name="domain_title"><xsl:value-of select="domaine_ilot_et_auvent" /></xsl:with-param>
+                                </xsl:call-template>
+
+                                <xsl:call-template name="comments_template">
+                                    <xsl:with-param name="commentaires"><xsl:value-of select="commentaires_ilot_et_auvent" /></xsl:with-param>
+                                </xsl:call-template>
+
+                            </fo:table-body>
+                        </fo:table>
+
+                        <fo:block page-break-after="always" space-after="8pt" space-after.conditionality="retain" line-height="1.2378041666666666" font-family="Arial" font-size="12pt" language="FR" font-weight="bold" xmlns:st1="urn:schemas-microsoft-com:office:smarttags" />
+
+
+<!-- ======================= -->
+<!-- BAS DE LA DERNERE PAGE  -->
+<!-- ======================= -->
+                        <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="11pt" language="FR" xmlns:st1="urn:schemas-microsoft-com:office:smarttags">
+                            <fo:leader leader-length="0pt" />
+                        </fo:block>
+                        
+                        <fo:block id="ID1A2WWHPOC0QLDGUBACIXJA04BICJVD30RIZ5LZH4WBNZ0Q0RHO" />
+
+                    </fo:block>
+                </fo:flow>
+            </fo:page-sequence>
+        </fo:root>
+    </xsl:template>
+
+<!-- ============== -->
+<!-- CHILD TEMPLATE -->
+<!-- ============== -->
+
+    <!-- Template for images  -->
+    <xsl:template name="photos_array_test">
+        <xsl:param name="domain_title" />
+        <xsl:choose>
+            <xsl:when test="contains($domain_title, 'auvent')">
+                 <xsl:call-template name="photos_template_ilot_et_auvent">
+                    <xsl:with-param name="nb_photos_ilot_et_auvent"><xsl:value-of select="nb_photos_ilot_et_auvent" /></xsl:with-param>
+                    <xsl:with-param name="photo_ilot_et_auvent_0"><xsl:value-of select="photo_ilot_et_auvent_0" /></xsl:with-param>
+                    <xsl:with-param name="photo_ilot_et_auvent_1"><xsl:value-of select="photo_ilot_et_auvent_1" /></xsl:with-param>
+                    <xsl:with-param name="photo_ilot_et_auvent_2"><xsl:value-of select="photo_ilot_et_auvent_2" /></xsl:with-param>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise></xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+
+<!-- Template for url image -->
+    <xsl:template name="url_template">
+        <xsl:param name="img_url" />
+        <fo:table-row>
+            <fo:table-cell padding-top="5pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="none" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0pt" background-color="white">
+                <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="11pt" language="FR" text-align="center">
+                    <fo:external-graphic margin-left="auto" margin-right="auto" content-width="scale-down-to-fit" height="100%" width="450px" scaling="uniform">
+                        <xsl:attribute name="src">
+                            <xsl:text>url('data:auto;base64,</xsl:text><xsl:value-of select="$img_url"/><xsl:text>')</xsl:text>
+                        </xsl:attribute>
+                    </fo:external-graphic>
+                </fo:block>
+                <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="9pt" language="FR">
+                </fo:block>
+            </fo:table-cell>
+        </fo:table-row>
+    </xsl:template>
+
+<!-- Template for domain title -->
+    <xsl:template name="domain_template">
+        <xsl:param name="domain_title" />
+        <fo:table-row>
+            <fo:table-cell padding-top="5pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="solid" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0.25pt" border-bottom-width="0.25pt" background-color="#0070C0">
+                <fo:block space-after="5pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="11pt" language="FR" text-align="center" font-weight="bold">
+                    <fo:inline font-weight="bold" color="#FFFFFF" font-size="12pt" language="">
+                        <fo:leader leader-length="0pt" /><xsl:value-of select="$domain_title" />
+                    </fo:inline>
+                </fo:block>
+            </fo:table-cell>
+        </fo:table-row>
+    </xsl:template>
+
+<!-- Template for commentaires -->
+    <xsl:template name="comments_template">
+        <xsl:param name="commentaires" />
+        <fo:table-row>
+            <fo:table-cell padding-top="10pt" padding-left="5.4pt" padding-bottom="0pt" padding-right="5.4pt" border-left-style="solid" border-right-style="solid" border-left-color="black" border-right-color="black" border-left-width="0.25pt" border-right-width="0.25pt" border-top-style="none" border-bottom-style="solid" border-top-color="black" border-bottom-color="black" border-top-width="0pt" border-bottom-width="0.25pt" background-color="white">
+                <fo:block space-after="10pt" space-after.conditionality="retain" line-height="1.3190500000000002" font-family="Arial" font-size="9pt" language="FR">
+                    <xsl:choose>
+                        <xsl:when test="$commentaires != ''">
+                            <fo:inline font-weight="bold">Commentaires: </fo:inline>
+                            <fo:inline><xsl:value-of select="$commentaires" /></fo:inline>
+                        </xsl:when>
+                        <xsl:otherwise><fo:inline>Aucun commentaire</fo:inline>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </fo:block>
+            </fo:table-cell>
+        </fo:table-row>
+    </xsl:template>
+
+<!-- =============== -->
+<!-- DOMAIN TEMPLATE -->
+<!-- =============== -->
+
+<!-- Template for photos_ilot_et_auvent (3 images MAX) -->
+    <xsl:template name="photos_template_ilot_et_auvent">
+        <xsl:param name="nb_photos_ilot_et_auvent" />
+        <xsl:param name="photo_ilot_et_auvent_0" />
+        <xsl:param name="photo_ilot_et_auvent_1" />
+        <xsl:param name="photo_ilot_et_auvent_2" />
+        <xsl:if test="$nb_photos_ilot_et_auvent != '0'">
+            <xsl:if test="$photo_ilot_et_auvent_0 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_ilot_et_auvent_0" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_ilot_et_auvent_1 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_ilot_et_auvent_1" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_ilot_et_auvent_2 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_ilot_et_auvent_2" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+        </xsl:if>
+    </xsl:template>
+
+<!-- Template for photos_face_appareil_modifie (25 images MAX) -->
+    <xsl:template name="photos_face_appareil_modifie">
+        <xsl:param name="nb_photos_face_appareil_modifie" />
+        <xsl:param name="photo_face_appareil_modifie_0" />
+        <xsl:param name="photo_face_appareil_modifie_1" />
+        <xsl:param name="photo_face_appareil_modifie_2" />
+        <xsl:param name="photo_face_appareil_modifie_3" />
+        <xsl:param name="photo_face_appareil_modifie_4" />
+        <xsl:param name="photo_face_appareil_modifie_5" />
+        <xsl:param name="photo_face_appareil_modifie_6" />
+        <xsl:param name="photo_face_appareil_modifie_7" />
+        <xsl:param name="photo_face_appareil_modifie_8" />
+        <xsl:param name="photo_face_appareil_modifie_9" />
+        <xsl:param name="photo_face_appareil_modifie_10" />
+        <xsl:param name="photo_face_appareil_modifie_11" />
+        <xsl:param name="photo_face_appareil_modifie_12" />
+        <xsl:param name="photo_face_appareil_modifie_13" />
+        <xsl:param name="photo_face_appareil_modifie_14" />
+        <xsl:param name="photo_face_appareil_modifie_15" />
+        <xsl:param name="photo_face_appareil_modifie_16" />
+        <xsl:param name="photo_face_appareil_modifie_17" />
+        <xsl:param name="photo_face_appareil_modifie_18" />
+        <xsl:param name="photo_face_appareil_modifie_19" />
+        <xsl:param name="photo_face_appareil_modifie_20" />
+        <xsl:param name="photo_face_appareil_modifie_21" />
+        <xsl:param name="photo_face_appareil_modifie_22" />
+        <xsl:param name="photo_face_appareil_modifie_23" />
+        <xsl:param name="photo_face_appareil_modifie_24" />
+        <xsl:if test="$nb_photos_ilot_et_auvent != '0'">
+            <xsl:if test="$photo_ilot_et_auvent_0 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_ilot_et_auvent_0" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_ilot_et_auvent_1 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_ilot_et_auvent_1" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_ilot_et_auvent_2 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_ilot_et_auvent_2" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_ilot_et_auvent_3 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_ilot_et_auvent_3" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_ilot_et_auvent_4 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_ilot_et_auvent_4" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_ilot_et_auvent_5 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_ilot_et_auvent_5" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_ilot_et_auvent_6 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_ilot_et_auvent_6" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_ilot_et_auvent_7 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_ilot_et_auvent_7" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_ilot_et_auvent_8 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_ilot_et_auvent_8" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_ilot_et_auvent_9 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_ilot_et_auvent_9" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_ilot_et_auvent_10 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_ilot_et_auvent_10" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_ilot_et_auvent_11 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_ilot_et_auvent_11" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_ilot_et_auvent_12 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_ilot_et_auvent_12" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_ilot_et_auvent_13 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_ilot_et_auvent_13" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_ilot_et_auvent_14 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_ilot_et_auvent_14" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_ilot_et_auvent_15 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_ilot_et_auvent_15" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_ilot_et_auvent_16 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_ilot_et_auvent_16" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_ilot_et_auvent_17 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_ilot_et_auvent_17" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_ilot_et_auvent_18 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_ilot_et_auvent_18" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_ilot_et_auvent_19 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_ilot_et_auvent_19" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_ilot_et_auvent_20 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_ilot_et_auvent_20" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_ilot_et_auvent_21 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_ilot_et_auvent_21" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_ilot_et_auvent_22 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_ilot_et_auvent_22" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_ilot_et_auvent_23 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_ilot_et_auvent_23" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_ilot_et_auvent_24 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_ilot_et_auvent_24" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+        </xsl:if>
+    </xsl:template>
+
+<!-- Template for photos_depass_et_arrets_urgence (3 images MAX) -->
+    <xsl:template name="photos_depass_et_arrets_urgence">
+        <xsl:param name="nb_photos_depass_et_arrets_urgence" />
+        <xsl:param name="photo_depass_et_arrets_urgence_0" />
+        <xsl:param name="photo_depass_et_arrets_urgence_1" />
+        <xsl:param name="photo_depass_et_arrets_urgence_2" />
+        <xsl:if test="$nb_photos_ilot_et_auvent != '0'">
+            <xsl:if test="$photo_depass_et_arrets_urgence_0 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_depass_et_arrets_urgence_0" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_depass_et_arrets_urgence_1 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_depass_et_arrets_urgence_1" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_depass_et_arrets_urgence_2 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_depass_et_arrets_urgence_2" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+        </xsl:if>
+    </xsl:template>
+
+<!-- Template for photos_noyau_interieur_tete_calculateur (25 images MAX) -->
+    <xsl:template name="photos_noyau_interieur_tete_calculateur">
+        <xsl:param name="nb_photos_noyau_interieur_tete_calculateur" />
+        <xsl:param name="photo_noyau_interieur_tete_calculateur_0" />
+        <xsl:param name="photo_noyau_interieur_tete_calculateur_1" />
+        <xsl:param name="photo_noyau_interieur_tete_calculateur_2" />
+        <xsl:param name="photo_noyau_interieur_tete_calculateur_3" />
+        <xsl:param name="photo_noyau_interieur_tete_calculateur_4" />
+        <xsl:param name="photo_noyau_interieur_tete_calculateur_5" />
+        <xsl:param name="photo_noyau_interieur_tete_calculateur_6" />
+        <xsl:param name="photo_noyau_interieur_tete_calculateur_7" />
+        <xsl:param name="photo_noyau_interieur_tete_calculateur_8" />
+        <xsl:param name="photo_noyau_interieur_tete_calculateur_9" />
+        <xsl:param name="photo_noyau_interieur_tete_calculateur_10" />
+        <xsl:param name="photo_noyau_interieur_tete_calculateur_11" />
+        <xsl:param name="photo_noyau_interieur_tete_calculateur_12" />
+        <xsl:param name="photo_noyau_interieur_tete_calculateur_13" />
+        <xsl:param name="photo_noyau_interieur_tete_calculateur_14" />
+        <xsl:param name="photo_noyau_interieur_tete_calculateur_15" />
+        <xsl:param name="photo_noyau_interieur_tete_calculateur_16" />
+        <xsl:param name="photo_noyau_interieur_tete_calculateur_17" />
+        <xsl:param name="photo_noyau_interieur_tete_calculateur_18" />
+        <xsl:param name="photo_noyau_interieur_tete_calculateur_19" />
+        <xsl:param name="photo_noyau_interieur_tete_calculateur_20" />
+        <xsl:param name="photo_noyau_interieur_tete_calculateur_21" />
+        <xsl:param name="photo_noyau_interieur_tete_calculateur_22" />
+        <xsl:param name="photo_noyau_interieur_tete_calculateur_23" />
+        <xsl:param name="photo_noyau_interieur_tete_calculateur_24" />
+        <xsl:if test="$nb_photos_noyau_interieur_tete_calculateur != '0'">
+            <xsl:if test="$photo_noyau_interieur_tete_calculateur_0 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_noyau_interieur_tete_calculateur_0" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_noyau_interieur_tete_calculateur_1 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_noyau_interieur_tete_calculateur_1" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_noyau_interieur_tete_calculateur_2 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_noyau_interieur_tete_calculateur_2" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_noyau_interieur_tete_calculateur_3 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_noyau_interieur_tete_calculateur_3" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_noyau_interieur_tete_calculateur_4 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_noyau_interieur_tete_calculateur_4" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_noyau_interieur_tete_calculateur_ != ''">
+                <xsl:call-template name="url_template">5
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_noyau_interieur_tete_calculateur_5" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_noyau_interieur_tete_calculateur_6 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_noyau_interieur_tete_calculateur_6" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_noyau_interieur_tete_calculateur_7 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_noyau_interieur_tete_calculateur_7" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_noyau_interieur_tete_calculateur_8 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_noyau_interieur_tete_calculateur_8" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_noyau_interieur_tete_calculateur_9 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_noyau_interieur_tete_calculateur_9" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_noyau_interieur_tete_calculateur_10 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_noyau_interieur_tete_calculateur_10" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_noyau_interieur_tete_calculateur_11 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_noyau_interieur_tete_calculateur_11" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_noyau_interieur_tete_calculateur_12 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_noyau_interieur_tete_calculateur_12" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_noyau_interieur_tete_calculateur_13 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_noyau_interieur_tete_calculateur_13" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_noyau_interieur_tete_calculateur_14 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_noyau_interieur_tete_calculateur_14" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_noyau_interieur_tete_calculateur_15 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_noyau_interieur_tete_calculateur_15" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_noyau_interieur_tete_calculateur_16 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_noyau_interieur_tete_calculateur_16" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_noyau_interieur_tete_calculateur_17 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_noyau_interieur_tete_calculateur_17" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_noyau_interieur_tete_calculateur_18 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_noyau_interieur_tete_calculateur_18" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_noyau_interieur_tete_calculateur_19 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_noyau_interieur_tete_calculateur_19" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_noyau_interieur_tete_calculateur_20 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_noyau_interieur_tete_calculateur_20" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_noyau_interieur_tete_calculateur_21 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_noyau_interieur_tete_calculateur_21" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_noyau_interieur_tete_calculateur_22 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_noyau_interieur_tete_calculateur_22" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_noyau_interieur_tete_calculateur_23 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_noyau_interieur_tete_calculateur_23" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_noyau_interieur_tete_calculateur_24 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_noyau_interieur_tete_calculateur_24" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+        </xsl:if>
+    </xsl:template>
+
+<!-- Template for photos_palette_filmee (3 images MAX) -->
+    <xsl:template name="photos_palette_filmee">
+        <xsl:param name="nb_photos_palette_filmee" />
+        <xsl:param name="photo_palette_filmee_0" />
+        <xsl:param name="photo_palette_filmee_1" />
+        <xsl:param name="photo_palette_filmee_2" />
+        <xsl:if test="$nb_photos_palette_filmee != '0'">
+            <xsl:if test="$photo_palette_filmee_0 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_palette_filmee_0" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_palette_filmee_1 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_palette_filmee_1" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_palette_filmee_2 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_palette_filmee_2" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+        </xsl:if>
+    </xsl:template>
+
+<!-- Template for photos_switch_caisse (6 images MAX) -->
+    <xsl:template name="photos_switch_caisse">
+        <xsl:param name="nb_photos_switch_caisse" />
+        <xsl:param name="photo_switch_caisse_0" />
+        <xsl:param name="photo_switch_caisse_1" />
+        <xsl:param name="photo_switch_caisse_2" />
+        <xsl:param name="photo_switch_caisse_3" />
+        <xsl:param name="photo_switch_caisse_4" />
+        <xsl:param name="photo_switch_caisse_5" />
+        <xsl:if test="$nb_photos_switch_caisse != '0'">
+            <xsl:if test="$photo_switch_caisse_0 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_switch_caisse_0" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_switch_caisse_1 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_switch_caisse_1" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_switch_caisse_2 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_switch_caisse_2" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_switch_caisse_3 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_switch_caisse_3" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_switch_caisse_4 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_switch_caisse_4" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_switch_caisse_5 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_switch_caisse_5" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+        </xsl:if>
+    </xsl:template>
+
+<!-- Template for photos_arrivees_reseau_baie (3 images MAX) -->
+    <xsl:template name="photos_arrivees_reseau_baie">
+        <xsl:param name="nb_photos_arrivees_reseau_baie" />
+        <xsl:param name="photo_arrivees_reseau_baie_0" />
+        <xsl:param name="photo_arrivees_reseau_baie_1" />
+        <xsl:param name="photo_arrivees_reseau_baie_2" />
+        <xsl:if test="$nb_photos_arrivees_reseau_baie != '0'">
+            <xsl:if test="$photo_arrivees_reseau_baie_0 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_arrivees_reseau_baie_0" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_arrivees_reseau_baie_1 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_arrivees_reseau_baie_1" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_arrivees_reseau_baie_2 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_arrivees_reseau_baie_2" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+        </xsl:if>
+    </xsl:template>
+
+<!-- Template for photos_modifications_tgbt (5 images MAX) -->
+    <xsl:template name="photos_modifications_tgbt">
+        <xsl:param name="nb_photos_modifications_tgbt" />
+        <xsl:param name="photo_modifications_tgbt_0" />
+        <xsl:param name="photo_modifications_tgbt_1" />
+        <xsl:param name="photo_modifications_tgbt_2" />
+        <xsl:param name="photo_modifications_tgbt_3" />
+        <xsl:param name="photo_modifications_tgbt_4" />
+        <xsl:if test="$nb_photos_modifications_tgbt != '0'">
+            <xsl:if test="$photo_modifications_tgbt_0 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_modifications_tgbt_0" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_modifications_tgbt_1 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_modifications_tgbt_1" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_modifications_tgbt_2 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_modifications_tgbt_2" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_modifications_tgbt_3 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_modifications_tgbt_2" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_modifications_tgbt_4 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_modifications_tgbt_2" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+        </xsl:if>
+    </xsl:template>
+
+<!-- Template for photos_photos_autres (5 images MAX) -->
+    <xsl:template name="photos_photos_autres">
+        <xsl:param name="nb_photos_photos_autres" />
+        <xsl:param name="photo_photos_autres_0" />
+        <xsl:param name="photo_photos_autres_1" />
+        <xsl:param name="photo_photos_autres_2" />
+        <xsl:param name="photo_photos_autres_3" />
+        <xsl:param name="photo_photos_autres_4" />
+        <xsl:if test="$nb_photos_photos_autres != '0'">
+            <xsl:if test="$photo_photos_autres_0 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_photos_autres_0" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_photos_autres_1 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_photos_autres_1" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_photos_autres_2 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_photos_autres_2" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_photos_autres_3 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_photos_autres_3" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_photos_autres_4 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_photos_autres_4" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+        </xsl:if>
+    </xsl:template>
+
+<!-- Template for photos_mise_service_face_tpi (25 images MAX) -->
+    <xsl:template name="photos_mise_service_face_tpi">
+        <xsl:param name="nb_photos_mise_service_face_tpi" />
+        <xsl:param name="photo_mise_service_face_tpi_0" />
+        <xsl:param name="photo_mise_service_face_tpi_1" />
+        <xsl:param name="photo_mise_service_face_tpi_2" />
+        <xsl:param name="photo_mise_service_face_tpi_" />
+        <xsl:param name="photo_mise_service_face_tpi_" />
+        <xsl:param name="photo_mise_service_face_tpi_" />
+        <xsl:param name="photo_mise_service_face_tpi_" />
+        <xsl:param name="photo_mise_service_face_tpi_" />
+        <xsl:param name="photo_mise_service_face_tpi_" />
+        <xsl:param name="photo_mise_service_face_tpi_" />
+        <xsl:param name="photo_mise_service_face_tpi_1" />
+        <xsl:param name="photo_mise_service_face_tpi_1" />
+        <xsl:param name="photo_mise_service_face_tpi_1" />
+        <xsl:param name="photo_mise_service_face_tpi_1" />
+        <xsl:param name="photo_mise_service_face_tpi_1" />
+        <xsl:param name="photo_mise_service_face_tpi_1" />
+        <xsl:param name="photo_mise_service_face_tpi_1" />
+        <xsl:param name="photo_mise_service_face_tpi_1" />
+        <xsl:param name="photo_mise_service_face_tpi_1" />
+        <xsl:param name="photo_mise_service_face_tpi_1" />
+        <xsl:param name="photo_mise_service_face_tpi_2" />
+        <xsl:param name="photo_mise_service_face_tpi_2" />
+        <xsl:param name="photo_mise_service_face_tpi_2" />
+        <xsl:param name="photo_mise_service_face_tpi_2" />
+        <xsl:param name="photo_mise_service_face_tpi_2" />
+        <xsl:if test="$nb_photos_mise_service_face_tpi != '0'">
+            <xsl:if test="$photo_mise_service_face_tpi_0 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_mise_service_face_tpi_0" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_mise_service_face_tpi_1 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_mise_service_face_tpi_1" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_mise_service_face_tpi_2 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_mise_service_face_tpi_2" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_mise_service_face_tpi_3 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_mise_service_face_tpi_3" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_mise_service_face_tpi_4 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_mise_service_face_tpi_4" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_mise_service_face_tpi_5 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_mise_service_face_tpi_5" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_mise_service_face_tpi_6 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_mise_service_face_tpi_6" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_mise_service_face_tpi_7 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_mise_service_face_tpi_7" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_mise_service_face_tpi_8 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_mise_service_face_tpi_8" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_mise_service_face_tpi_9 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_mise_service_face_tpi_9" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_mise_service_face_tpi_10 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_mise_service_face_tpi_10" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_mise_service_face_tpi_11 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_mise_service_face_tpi_11" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_mise_service_face_tpi_12 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_mise_service_face_tpi_12" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_mise_service_face_tpi_13 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_mise_service_face_tpi_13" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_mise_service_face_tpi_14 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_mise_service_face_tpi_14" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_mise_service_face_tpi_15 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_mise_service_face_tpi_15" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_mise_service_face_tpi_16 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_mise_service_face_tpi_16" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_mise_service_face_tpi_17 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_mise_service_face_tpi_17" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_mise_service_face_tpi_18 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_mise_service_face_tpi_18" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_mise_service_face_tpi_19 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_mise_service_face_tpi_19" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_mise_service_face_tpi_20 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_mise_service_face_tpi_20" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_mise_service_face_tpi_21 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_mise_service_face_tpi_21" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_mise_service_face_tpi_22 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_mise_service_face_tpi_22" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_mise_service_face_tpi_23 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_mise_service_face_tpi_23" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_mise_service_face_tpi_24 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_mise_service_face_tpi_24" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+        </xsl:if>
+    </xsl:template>
+
+<!-- Template for photos_fiche_mouvement_materiel (3 images MAX) -->
+    <xsl:template name="photos_fiche_mouvement_materiel">
+        <xsl:param name="nb_photos_fiche_mouvement_materiel" />
+        <xsl:param name="photo_fiche_mouvement_materiel_0" />
+        <xsl:param name="photo_fiche_mouvement_materiel_1" />
+        <xsl:param name="photo_ilot_et_auvent_2" />
+        <xsl:if test="$nb_photos_fiche_mouvement_materiel != '0'">
+            <xsl:if test="$photo_fiche_mouvement_materiel_0 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_fiche_mouvement_materiel_0" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_fiche_mouvement_materiel_1 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_fiche_mouvement_materiel_1" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_fiche_mouvement_materiel_2 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_fiche_mouvement_materiel_2" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+        </xsl:if>
+    </xsl:template>
+
+<!-- Template for photos_bon_livraison_tpi_kits (5 images MAX) -->
+    <xsl:template name="photos_bon_livraison_tpi_kits">
+        <xsl:param name="nb_photos_bon_livraison_tpi_kits" />
+        <xsl:param name="photo_bon_livraison_tpi_kits_0" />
+        <xsl:param name="photo_bon_livraison_tpi_kits_1" />
+        <xsl:param name="photo_bon_livraison_tpi_kits_2" />
+        <xsl:param name="photo_bon_livraison_tpi_kits_3" />
+        <xsl:param name="photo_bon_livraison_tpi_kits_4" />
+        <xsl:if test="$nb_photos_bon_livraison_tpi_kits != '0'">
+            <xsl:if test="$photo_bon_livraison_tpi_kits_0 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_bon_livraison_tpi_kits_0" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_bon_livraison_tpi_kits_1 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_bon_livraison_tpi_kits_1" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_bon_livraison_tpi_kits_2 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_bon_livraison_tpi_kits_2" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_bon_livraison_tpi_kits_3 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_bon_livraison_tpi_kits_3" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+            <xsl:if test="$photo_bon_livraison_tpi_kits_4 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_bon_livraison_tpi_kits_4" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+        </xsl:if>
+    </xsl:template>
+
+<!-- Template for photos_fiche_mise_service_tpi (1 image MAX) -->
+    <xsl:template name="photos_fiche_mise_service_tpi">
+        <xsl:param name="nb_photos_fiche_mise_service_tpi" />
+        <xsl:param name="photo_fiche_mise_service_tpi_0" />
+        <xsl:if test="$nb_photos_fiche_mise_service_tpi != '0'">
+            <xsl:if test="$photo_fiche_mise_service_tpi_0 != ''">
+                <xsl:call-template name="url_template">
+                    <xsl:with-param name="img_url"><xsl:value-of select="$photo_fiche_mise_service_tpi_0" /></xsl:with-param> 
+                </xsl:call-template>
+            </xsl:if>
+        </xsl:if>
+    </xsl:template>
+
+
+</xsl:stylesheet>

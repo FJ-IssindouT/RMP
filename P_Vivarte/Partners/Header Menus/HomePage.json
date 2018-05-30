@@ -1,0 +1,17 @@
+[
+    {
+        "title" : "Update Ticket",
+        "url" : "https://live.runmyprocess.com/live/112501480325272109/appli/347187?P_mode=${P_mode}"
+    }, {
+        "title" : "Close Ticket",
+        "url" : "https://live.runmyprocess.com/live/112501480325272109/appli/343229?P_mode=${P_mode}"
+    }, {
+        "title" : "Ticket Tracking",
+        "visible" : "${has_right('408328')=='true' || has_right('399469')=='true' || has_right('380783')=='true'}",
+        "url" : "https://live.runmyprocess.com/live/112501480325272109/appli/356546?P_mode=${P_mode}"
+    }
+]
+
+// 408328 => VIVARTE - Partner ITANCIA
+// 399469 => VIVARTE - Fujitsu Countries
+// 380783 => VIVARTE - Designers
