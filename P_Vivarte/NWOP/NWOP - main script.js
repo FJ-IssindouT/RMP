@@ -11,21 +11,41 @@ RMPApplication.debug("New Work Order : Application started");
 // ========================
 // Variables declaration
 // ========================
+
+// if "true", logs will be showed on the browser console
+var dbug = {
+    "init" : false,
+    "box" : false,
+    "location" : false,
+    "affiliate" : false,
+    "catalog" : false,
+    "family" : false,
+    "category" : false,
+    "brand" : false,
+    "model" : false,
+    "back" : false,
+    "request" : false,
+    "sms" : false
+};
+
 var view;
 var login = {};
 var affiliateList = null;       // group of affiliates for specific GRP_AFF view/scope
-// var locationList = [];          // list of locations for selected filters
 var selected_model = {};        // selected model according to input's user
 var selected_location = null;   // selected location according to input's user
-var enseigne = null;            // affiliate's login user
 var selected_affiliate = {};    // selected affiliate according to input's user
+var enseigne = null;            // affiliate's login user
 var wm_order = null;            // work order details saved in Service Now
 var var_catalog_col = null;     // temporary catalog collection object in memory
 var cat_target = null;          // valid categories according preselection during execution
 var brand_target = null;        // valid brands according preselection during execution
 var model_target = null;        // valid models according preselection during execution
 var short_cat = null;           // to keep the selected category's short name
-// var prob_type = null;           // to keep the selected problem type's as labeled in Service Now
+
+
+var error_title_notify = ${P_quoted(i18n("error_title_notify", "Erreur"))};
+var error_thanks_notify = ${P_quoted(i18n("error_thanks_notify", "Merci de signaler cette erreur !"))};
+var btn_ok = ${P_quoted(i18n("btn_ok", "OK"))};
 
 // execute main program
 init();
@@ -42,19 +62,20 @@ function init()
 	var options = {};
 	var pattern = {};
 	pattern.login = RMPApplication.get("login");
-    // console.log("=> init: pattern = ", pattern);
+    c_debug(dbug.init, "=> init: pattern = ", pattern);
 
     // CAPI for getting user information
 	id_get_user_info_as_admin_api.trigger (pattern, options , get_info_ok, get_info_ko); 
 	RMPApplication.debug("end init");
 }
 
-// ======================
-//   Reset interface
-// ======================
+// ===========================================
+//   Reset Web Interface before any action
+// ===========================================
 function resetWI()
 {
 	RMPApplication.debug("begin resetWI");
+    c_debug(dbug.init, "=> resetWI");
 
 	// Equipment model tree's choice 
 	$("#id_familyRow").hide();	
@@ -91,6 +112,7 @@ function resetWI()
 function resetAction() 
 {
 	RMPApplication.debug("begin resetAction");
+    c_debug(dbug.init, "=> resetAction");
 	resetWI();
 	load_family();
 	RMPApplication.debug("end resetAction");
@@ -102,23 +124,25 @@ function resetAction()
 function get_info_ok(result)
 {
 	RMPApplication.debug("begin get_info_ok: result =  " + JSON.stringify(result));
-	// console.log("=> get_info_ok: result = ", result);
+	c_debug(dbug.init, "=> get_info_ok: result = ", result);
 
     // define "login" variable properties
 	login.user = result.user;
-	login.email = result.user;
-	login.phone = result.phone;
+	login.email = (!isEmpty(result.user)) ? result.user.trim() : '';
+    login.phone = (!isEmpty(result.phone)) ? result.phone.trim() : '';
     login.timezone = result.timezone;
+    login.profil = result.profil;
     login.company = (!isEmpty(result.compagnie)) ? result.compagnie.trim().toUpperCase() : '';
     login.grp_affiliates = (!isEmpty(result.grp_ens)) ? result.grp_ens.trim().toUpperCase() : '';
     login.affiliate = (!isEmpty(result.enseigne)) ? result.enseigne.trim().toUpperCase() : '';
+    login.acces_affiliates = (!isEmpty(result.acces_enseignes)) ? result.acces_enseignes.trim().toUpperCase() : '';
     login.country = (!isEmpty(result.pays)) ? result.pays.trim().toUpperCase() : '';
     login.location_code = (!isEmpty(result.code_magasin)) ? result.code_magasin.trim().toUpperCase() : '';
     login.division = (!isEmpty(result.division)) ? result.division.trim().toUpperCase() : '';
     login.region = (!isEmpty(result.region)) ? result.region.trim().toUpperCase() : '';
 	login.is_super_user = (!isEmpty(result.is_super_user)) ? result.is_super_user.toUpperCase() : '';
 	enseigne = login.affiliate;
-    // console.log("=> get_info_ok: login = ", login);
+    c_debug(dbug.init, "=> get_info_ok: login = ", login);
 
 	// Fill contact fields on screen
 	id_contact.value = login.user;
@@ -139,24 +163,23 @@ function get_info_ok(result)
     } else if ( (!isEmpty(login.grp_affiliates)) && (login.grp_affiliates != "NOT DEFINED") ) {    // a group of affiliates
         view = "GRP_AFF";
 
-    } else if ( (login.region == login.affiliate) || (login.division == login.affiliate) ) {    // One affiliate, but country can be selected
+    } else if ( (!isEmpty(login.affiliate)) && ((login.region == login.affiliate) || (login.division == login.affiliate)) ) {    // One affiliate, but country can be selected
         view = "AFFILIATE";
 
-	} else if ( (login.region == login.country) || (login.division == login.country) ) {    // One country, but affiliate can be selected
-	    view = "COUNTRY";
+    } else if ( (!isEmpty(login.country)) && ((login.region == login.country) || (login.division == login.country)) ) {    // One country, but affiliate can be selected
+        view = "COUNTRY";
 
+    } else if ( !isEmpty(login.division) && (login.division != "NOT DEFINED") && (login.profil == "DIVISION") ) {
+        view = "DIVISION";
 
-	} else if ( !isEmpty(login.division) && (login.division != "NOT DEFINED") ) {
-	    view = "DIVISION";
-
-	} else if ( !isEmpty(login.region) && (login.region != "NOT DEFINED") ) {
-	    view = "REGION";
+    } else if ( !isEmpty(login.region) && (login.region != "NOT DEFINED") && (login.profil == "REGION") ) {
+        view = "REGION";
 
 	} else {               // Only one site: 1 country - 1 affiliate - 1 location
 	    view = "LOCAL";   
 	}
 
-    // console.log("get_info_ok: view = ", view);
+    c_debug(dbug.init, "get_info_ok: view = ", view);
     fillAffiliateBox(view);
     fillCountryBox(view);
 	getFilteredLocations();
@@ -167,10 +190,9 @@ function get_info_ok(result)
 function get_info_ko(error) 
 {
     RMPApplication.debug("begin get_info_ko: error = " + JSON.stringify(error));
-    // console.log("=> get_info_ko: error = ", error);
-
-    var error_msg = ${P_quoted(i18n("get_info_ko_msg", "Erreur lors de la récupération des informations utilisateur!"))};
-    alertify.error(error_msg);
+    c_debug(dbug.init, "=> get_info_ko: error = ", error);
+    var error_msg = ${P_quoted(i18n("get_info_ko_msg", "Récupération impossible des informations utilisateur!"))};
+    ror(error_title_notify, error_msg + ' ' + error_thanks_notify);
     RMPApplication.debug("end get_info_ko"); 
 } 
 
@@ -180,10 +202,10 @@ function get_info_ko(error)
 function fillAffiliateBox(vue) 
 {
     RMPApplication.debug("begin fillAffiliateBox : vue = ", vue);
-    // console.log("=>  fillAffiliateBox: vue = ", vue);
+    c_debug(dbug.box, "=>  fillAffiliateBox: vue = ", vue);
 
     var affiliateListTemp = JSON.parse(id_affiliate_cl.getList()).list;
-    // console.log("=>  fillAffiliateBox: affiliateListTemp = ", affiliateListTemp);
+    c_debug(dbug.box, "=>  fillAffiliateBox: affiliateListTemp = ", affiliateListTemp);
     var text_affiliateFilter = "";
 
     // Complete affiliate selection filter according connected profile
@@ -191,7 +213,7 @@ function fillAffiliateBox(vue)
         case "SUPERUSER" :
         case "COMPANY" : // see "COUNTRY"
         case "COUNTRY" :
-            // Following line can be disabled if the concerned company only have one affiliate 
+            // Following 2 lines can be disabled if the concerned company only have one affiliate 
             text_affiliateFilter = ${P_quoted(i18n("affiliateFilter_text", "TOUTES LES ENSEIGNES"))};
             $("#id_affiliateFilter").append($("<option selected />").val('tous').html(text_affiliateFilter));
             affiliateList = JSON.parse(id_affiliate_cl.getList()).list;
@@ -232,7 +254,7 @@ function fillAffiliateBox(vue)
                      affiliateList = [{ 'label': affiliateListTemp[i].label.toUpperCase(), 'value': affiliateListTemp[i].value }];
                 }
             }
-            // console.log("fillAffiliateBox: affiliateList = ", affiliateList);
+            c_debug(dbug.box, "fillAffiliateBox: affiliateList = ", affiliateList);
             $("#id_affiliateFilter").append($("<option selected />").val(affiliateList[0].value).html(affiliateList[0].label.toUpperCase()));
             $("#id_affiliateFilter").attr('readonly', 'readonly');
             break;
@@ -249,7 +271,7 @@ function fillAffiliateBox(vue)
 function fillCountryBox(vue) 
 {
     RMPApplication.debug("begin fillCountryBox: vue = " + JSON.stringify(vue));
-    // console.log("=>  fillCountryBox: vue = ", vue);
+    c_debug(dbug.box, "=>  fillCountryBox: vue = ", vue);
 
     var text_countryFilter = "";
 
@@ -301,8 +323,8 @@ function fillCountryBox(vue)
 function fillLocationBox(locations_array)
 {
     RMPApplication.debug("begin fillLocationBox : locations_array = " + JSON.stringify(locations_array));
-    // console.log("=>  fillLocationBox: locations_array = ", locations_array);
-    
+    c_debug(dbug.box, "=>  fillLocationBox: locations_array = ", locations_array);
+
     // Reset especially products navigation part
     resetWI();
     
@@ -332,9 +354,10 @@ function fillLocationBox(locations_array)
 
     } else {    
         // if locations_array is empty, "false" is affected to "value"
-        var text_locationFilter = ${P_quoted(i18n("locationFilter_text", "Aucun site pour la selection"))};
+        var text_locationFilter = ${P_quoted(i18n("locationFilter_text", "Aucun site pour la selection !"))};
         $("#id_locationFilter").append($("<option selected />").val('false').html(text_locationFilter));
     }
+    c_debug(dbug.box, "=> end fillLocationBox: locations_array = ", locations_array);
 
     // Listen changes before populating dynamically locations select box
     $("#id_locationFilter").change(load_location);
@@ -348,7 +371,6 @@ function fillLocationBox(locations_array)
 function getFilteredLocations()
 {   
     RMPApplication.debug("begin getFilteredLocations");
-    // console.log("=>  getFilteredLocations");
 
     // reset WI in case end-user change current filter, which be validated again !
     resetWI();
@@ -356,7 +378,7 @@ function getFilteredLocations()
     // Retrieving user's input values 
     var country_value = $("#id_countryFilter").val();
     var affiliate_value = $("#id_affiliateFilter").val();
-    // console.log("=>  getFilteredLocations: affiliate_value = ", affiliate_value);
+    c_debug(dbug.location, "=>  getFilteredLocations: affiliate_value = ", affiliate_value);
     var affiliate_label = $("#id_affiliateFilter").text();
     var division_value = login.division; 
     var region_value = login.region;
@@ -370,7 +392,7 @@ function getFilteredLocations()
         // we propose only one value for all locations "Ensemble des sites"
         $("#id_locationFilter").empty();    // previous value reset
         $("#id_locationFilter").append($("<option selected />").val('tous').html(text_locationFilter));
-        // console.log('getFilteredLocations: => Ensemble des sites');
+        c_debug(dbug.location, "getFilteredLocations: => Ensemble des sites");
 
     } else {
 
@@ -383,14 +405,14 @@ function getFilteredLocations()
             for (var i=0; i < affiliateList.length; i++) {
                 if ( affiliate_value.toUpperCase() ==  affiliateList[i].value.toUpperCase() ) {
                     affiliate_value = affiliateList[i].label.toUpperCase();
-                    // console.log("getFilteredLocations: affiliate_value = ", affiliate_value);
+                    c_debug(dbug.location, "getFilteredLocations: affiliate_value = ", affiliate_value);
                 }
             }
         }
 
+        c_debug(dbug.location, "=> getFilteredLocations: switch view = ", view);
         switch (view) {
             case "COMPANY" :
-                // console.log("switch COMPANY");
                 if ( (country_value !== "tous") && (!isEmpty(country_value)) ) {
                     input.country = { "$regex" : country_value, "$options" : "i"};   
                 }
@@ -400,7 +422,6 @@ function getFilteredLocations()
                 break;
 
             case "GRP_AFF" :
-                // console.log("switch GRP_AFF");
                 if ( (country_value !== "tous") && (!isEmpty(country_value)) ) {
                     input.country = { "$regex" : country_value, "$options" : "i"};   
                 }
@@ -432,7 +453,6 @@ function getFilteredLocations()
                 break;
 
             case "AFFILIATE" :
-                // console.log("switch AFFILIATE");
                 if ( (country_value !== "tous") && (!isEmpty(country_value)) ) {
                     input.country = { "$regex" : country_value, "$options" : "i"};   
                 }
@@ -442,7 +462,6 @@ function getFilteredLocations()
                 break;
 
             case "COUNTRY" :
-                // console.log("switch COUNTRY");
                 if ( (country_value !== "tous") && (!isEmpty(country_value)) ) {
                     input.country = { "$regex" : country_value, "$options" : "i"}; 
                 } 
@@ -452,7 +471,6 @@ function getFilteredLocations()
                 break;
 
             case "DIVISION" :
-                // console.log("switch DIVISION");
                 if ( (country_value !== "tous") && (!isEmpty(country_value)) ) {
                     input.country = { "$regex" : country_value, "$options" : "i"};  
                 }
@@ -465,7 +483,6 @@ function getFilteredLocations()
                 break;
 
             case "REGION" :
-                // console.log("switch REGION");
                 if ( (country_value !== "tous") && (!isEmpty(country_value)) ) {
                     input.country = { "$regex" : country_value, "$options" : "i"};  
                 } 
@@ -478,7 +495,6 @@ function getFilteredLocations()
                 break;
 
             case "LOCAL" :
-                // console.log("switch LOCAL");
                 if ( (country_value !== "tous") && (!isEmpty(country_value)) ) {
                     input.country = { "$regex" : country_value, "$options" : "i"};  
                 } 
@@ -491,7 +507,7 @@ function getFilteredLocations()
         }
         
         //call api to location collection
-        // console.log("getFilteredLocations : input = ", input);
+        c_debug(dbug.location, "getFilteredLocations : input = ", input);
         id_get_filtered_locations_api.trigger(input, options, get_locations_ok, get_locations_ko);
     }
     RMPApplication.debug("end getFilteredLocations");
@@ -500,19 +516,19 @@ function getFilteredLocations()
 function get_locations_ok(result)
 {
     RMPApplication.debug("begin get_locations_ok : result = " + JSON.stringify(result));
-    // console.log("begin get_locations_ok : result = ", result);
+    c_debug(dbug.location, "=> get_locations_ok : result = ", result);
     var result_array = result.res ;
+    // Fill locations select box with locations result
     fillLocationBox(result_array);
-
     RMPApplication.debug("end get_locations_ok");
 }
 
 function get_locations_ko(error)
 {
     RMPApplication.debug("begin get_locations_ko : error = " + JSON.stringify(error));
-    // console.log("=> get_locations_ko: error = ", error);
-    var error_msg = ${P_quoted(i18n("get_locations_ko_msg", "Erreur lors de la récupération des informations du site!"))};
-    alertify.error(error_msg);
+    c_debug(dbug.location, "=> get_locations_ko: error = ", error);
+    var error_msg = ${P_quoted(i18n("get_locations_ko_msg", "Récupération impossible des informations du site !"))};
+    notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify);
     RMPApplication.debug("end get_locations_ko");
 }
 
@@ -522,19 +538,21 @@ function get_locations_ko(error)
 function load_location()
 {
     RMPApplication.debug("begin load_location");
-	// console.log("=> load_location");
+	c_debug(dbug.location, "=> begin load_location");
 	var locationCode = $('#id_locationFilter').val();
-    if (isEmpty(locationCode) || locationCode === "false") {
+    if (isEmpty(locationCode) || locationCode === "false" || locationCode === "tous") {
         $("#id_locationFilter").select2("close");
         /*var  title = ${P_quoted(i18n("error_location_title", "Erreur"))};
         var  content = ${P_quoted(i18n("location_selection", "Veuillez sélectionner un seul site, en utilisant si besoin les filtres PAYS et/ou ENSEIGNE..."))};
-        RMPApplication.showErrorBox(title, content);*/
+        dialog_error(title, content, btn_ok);*/
+        c_debug(dbug.location, "=> load_location : pas de site sélectionné !");
         return;
     }
-    // capi
+
     var my_pattern = {};
     var options = {};
     my_pattern.location_code = locationCode;
+    c_debug(dbug.location, "=> load_location: my_pattern =", my_pattern);
     id_get_location_by_code_api.trigger(my_pattern , options, load_location_ok, load_location_ko);
     RMPApplication.debug ("end load_location");
 }
@@ -542,13 +560,18 @@ function load_location()
 function load_location_ok(result)
 {
     RMPApplication.debug("begin load_location_ok : result = " + JSON.stringify(result));
-	// console.log("=> load_location_ok: result = ", result);
+	c_debug(dbug.location, "=> load_location_ok: result = ", result);
     selected_location = result;
+
+    // =====================================
+    // Following line is enabled for a company with only one affiliate 
+    // enseigne = selected_location.affiliate.toUpperCase();
+    // -------------------------------------
+    // Following 3 lines can be disabled if the concerned company only have one affiliate 
     selected_affiliate.affiliate = selected_location.affiliate.toUpperCase();
     $("#id_countryFilter").val(selected_location.country);
-    
-    // get abbreviate name of affiliate
-    getAffiliate(selected_affiliate.affiliate);
+    getAffiliate(selected_affiliate.affiliate);                 // get abbreviate name of affiliate
+    // =====================================
 
     RMPApplication.debug ("end load_location_ok");    
 }
@@ -556,9 +579,9 @@ function load_location_ok(result)
 function load_location_ko(error) 
 {
     RMPApplication.debug ("begin load_location_ko : error = " + JSON.stringify(error)); 
-    // console.log("=> load_location_ko: error = ", error);
-    var error_msg = ${P_quoted(i18n("load_location_ko_msg", "Erreur lors de la récupération des informations du site!"))};
-    alertify.error(error_msg);
+    c_debug(dbug.location, "=> load_location_ko: error = ", error);
+    var error_msg = ${P_quoted(i18n("load_location_ko_msg", "Récupération impossible des informations du site !"))};
+    notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify);
     RMPApplication.debug ("end load_location_ko");    
 }
 
@@ -568,16 +591,13 @@ function load_location_ko(error)
 function getAffiliate(affiliate_value)
 {
     RMPApplication.debug("=> begin getAffiliate: affiliate_value = ", affiliate_value);
-    // console.log("=> getAffiliate: affiliate_value = ", affiliate_value);
-
+    c_debug(dbug.affiliate, "=> getAffiliate: affiliate_value = ", affiliate_value);
     var options = {};
     var input = {};
     var query = {};
-
-    // query.abbreviation = { "$regex" : affiliate_value, "$options" : "i"};    // get selected affiliate value
     query.affiliate = { "$regex" : affiliate_value, "$options" : "i"};    // options for case INSENSITIVE
     input.input_query = query; 
-    // console.log("getAffiliate: input = ", input);
+    c_debug(dbug.affiliate, "=> getAffiliate: input = ", input);
     id_get_affiliate_api.trigger(input, options, affiliate_ok, affiliate_ko);
     RMPApplication.debug("end getAffiliate");
 }
@@ -585,7 +605,7 @@ function getAffiliate(affiliate_value)
 function affiliate_ok(result)
 {
     RMPApplication.debug("begin affiliate_ok : result = " + JSON.stringify(result));
-    // console.log("=> affiliate_ok: result = ",result);
+    c_debug(dbug.affiliate, "=> affiliate_ok: result = ", result);
     selected_affiliate = result.records[0];
 
     $("#id_affiliateFilter").val(selected_affiliate.abbreviation);
@@ -599,9 +619,9 @@ function affiliate_ok(result)
 function affiliate_ko(error)
 {
     RMPApplication.debug("begin affiliate_ko : error = " + JSON.stringify(error));
-    // console.log("=> affiliate_ko: error = ", error);
-    var error_msg = ${P_quoted(i18n("affiliate_ko_msg", "Erreur lors de la récupération des informations de la filiale! Merci de reporter votre incident!"))};
-    alertify.error(error_msg);  
+    c_debug(dbug.affiliate, "=> affiliate_ko: error = ", error);
+    var error_msg = ${P_quoted(i18n("affiliate_ko_msg", "Récupération impossible des informations de la filiale !"))};
+    notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify);  
     RMPApplication.debug("end affiliate_ko");
 }
 
@@ -611,21 +631,18 @@ function affiliate_ko(error)
 function load_catalog()
 {
 	RMPApplication.debug ("begin load_catalog");
-    // console.log("=> load_catalog");
-
-    // query catalog collection (capi)
+    c_debug(dbug.catalog, "=> load_catalog");
     var input = {};
     var options = {};
     input.input_query = {};     // we load all catalog's items from collection (max 1000)
     id_get_catalog_api.trigger(input, options, load_catalog_ok, load_catalog_ko);
-
     RMPApplication.debug ("end load_catalog"); 
 }
 
 function load_catalog_ok(result) 
 {	
     RMPApplication.debug ("begin load_catalog_ok: result = " + JSON.stringify(result));
-	// console.log("=> load_catalog_ok: result = ", result);
+	c_debug(dbug.catalog, "=> load_catalog_ok: result = ", result);
 
 	// define global variable to store catalog collection
 	var_catalog_col = result.records;
@@ -636,9 +653,9 @@ function load_catalog_ok(result)
 function load_catalog_ko(error) 
 {
     RMPApplication.debug ("begin load_catalog_ko : " + JSON.stringify(error));
-    // console.log("=> load_catalog_ko: error = ", error);
-    var error_msg = ${P_quoted(i18n("load_catalog_ko_msg", "ERREUR lors du chargement de la collection Catalogue!"))};
-    alertify.error(error_msg);
+    c_debug(dbug.catalog, "=> load_catalog_ko: error = ", error);
+    var error_msg = ${P_quoted(i18n("load_catalog_ko_msg", "Chargement impossible de la collection Catalogue !"))};
+    notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify);
     RMPApplication.debug ("end load_catalog_ko");    
 }
 
@@ -648,13 +665,11 @@ function load_catalog_ko(error)
 function load_family(catalog)
 {
 	RMPApplication.debug ("begin load_family: catalog = " + JSON.stringify(catalog));
-    // console.log("=> load_family: catalog = ", catalog);
+    c_debug(dbug.family, "=> load_family: catalog = ", catalog);
 	if ( (var_catalog_col.length == 0) || isEmpty(var_catalog_col) ) {
-		var error_msg = ${P_quoted(i18n("load_family_error_msg", "Erreur: le catalogue des équipements est VIDE !"))};
-        alertify.error(error_msg);
-        var  title = ${P_quoted(i18n("error_family_title", "Catalogue"))};
+		var  title = ${P_quoted(i18n("error_family_title", "Information"))};
         var  content = ${P_quoted(i18n("error_family_msg", "Désolé, la collection Catalogue est VIDE !"))};
-        RMPApplication.showErrorBox(title, content);
+        dialog_warning(title, content + ' ' + error_thanks_notify, btn_ok);
 		return;
 	}
 
@@ -678,7 +693,7 @@ function load_family(catalog)
 			}
 		}
 	}
-	// console.log("item_fam_menu = ", item_fam_menu);
+	c_debug(dbug.family, "=> load_family: item_fam_menu = ", item_fam_menu);
 	// hide all sub-level rows
 	$("#id_categoryRow").hide();
 	$("#id_brandRow").hide();
@@ -697,7 +712,7 @@ function load_family(catalog)
 function load_category(fam) 
 {
 	RMPApplication.debug ("begin load_category: fam = " + JSON.stringify(fam));
-	// console.log('fam = ', fam);
+	c_debug(dbug.category, "=> load_category: fam = ", fam);
 	
     $("#id_selectedFamily").attr("value", fam);     // store the selected family
 
@@ -706,17 +721,16 @@ function load_category(fam)
     var input_obj = {};
     var query_obj = {};
     query_obj.family = fam;
-    input_obj.input_query = query_obj;      // retrieve elements with 'family=fam' matching; 
+    input_obj.input_query = query_obj;      // retrieve elements with 'family=fam' matching;
+    c_debug(dbug.category, "=> load_category: input_obj = ", input_obj);
     id_get_catalog_api.trigger(input_obj, options, load_category_ok, load_category_ko);
-
     RMPApplication.debug ("end load_category");
 }
 
 function load_category_ok(result) 
 {
-
 	RMPApplication.debug ("begin load_category_ok: result = " + JSON.stringify(result));
-	// console.log('=> load_category_ok: result = ', result);
+	c_debug(dbug.category, "=> load_category_ok: result = ", result);
 
 	var selectedFam = $("#id_selectedFamily").val();
 	var item_cat_menu = "";
@@ -737,12 +751,13 @@ function load_category_ok(result)
 			}
 		}		
 	}
-	// console.log('reduce_cat_list = ', reduce_cat_list);
+	c_debug(dbug.category, "=> load_category_ok: reduce_cat_list = ", reduce_cat_list);
+
 
 	if (reduce_cat_list.length == 0) {
 		var title = ${P_quoted(i18n("error_category_title", "Catalogue"))};
-        var content = ${P_quoted(i18n("category_error_msg", "Aucun modèle n'est disponible pour cette branche"))};
-        RMPApplication.showErrorBox(title, content + ": \n" + selectedFam);
+        var content = ${P_quoted(i18n("category_error_msg", "Aucun modèle n'est disponible pour cette branche !"))};
+        dialog_warning(title, content + ": \n" + selectedFam, btn_ok);
 		resetAction();
 		return;
 	} else {
@@ -768,7 +783,7 @@ function load_category_ok(result)
 			}
 		}
 	}
-	// console.log("item_cat_menu = ", item_cat_menu);
+	c_debug(dbug.category, "=> load_category_ok: item_cat_menu = ", item_cat_menu);
 	$("#id_familyRow").hide();						// hide other levels
 	$("#id_brandRow").hide();	
 	$("#id_modelRow").hide();
@@ -783,9 +798,9 @@ function load_category_ok(result)
 function load_category_ko(error) 
 {
     RMPApplication.debug ("begin load_category_ko : error = " + JSON.stringify(error));
-    // console.log("=> load_category_ko: error = ", error);
-    var error_msg = ${P_quoted(i18n("load_category_error_msg", "Erreur lors du chargement de la catégorie!"))};
-    alertify.error(error_msg);    
+    c_debug(dbug.category, "=> load_category_ko: error = ", error);
+    var error_msg = ${P_quoted(i18n("load_category_error_msg", "Chargement impossible de la catégorie !"))};
+    notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify);      
     RMPApplication.debug ("end load_category_ko");    
 }
 
@@ -795,7 +810,7 @@ function load_category_ko(error)
 function load_brand(cat) 
 {
 	RMPApplication.debug ("begin load_brand: cat = " + JSON.stringify(cat));
-	// console.log('cat = ', cat);
+	c_debug(dbug.brand, "=> load_brand: cat = ", cat);
 
 	$("#id_selectedCategory").attr("value", cat);           // store the selected category
 
@@ -806,6 +821,7 @@ function load_brand(cat)
     query_obj.family = $("#id_selectedFamily").val() ;
     query_obj.category = cat;
     input_obj.input_query = query_obj;       // retrieve elements with family already defined & 'category=cat' matching
+    c_debug(dbug.brand, "=> load_brand: input_obj = ", input_obj);
     id_get_catalog_api.trigger(input_obj, options, load_brand_ok, load_brand_ko);
 
     RMPApplication.debug ("end load_brand");
@@ -814,7 +830,7 @@ function load_brand(cat)
 function load_brand_ok(result)
 {
 	RMPApplication.debug ("begin load_brand_ok: result = " + JSON.stringify(result));
-	// console.log('=> load_brand_ok : result =  ', result);
+	c_debug(dbug.brand, "=> load_brand_ok: result =  ", result);
 
 	var selectedFam = $("#id_selectedFamily").val();
 	var selectedCat = $("#id_selectedCategory").val();
@@ -835,12 +851,12 @@ function load_brand_ok(result)
 			}
 		}	
 	}
-	// console.log('reduce_brand_list: ', reduce_brand_list);
+	c_debug(dbug.brand, "=> load_brand_ok: reduce_brand_list =  ", reduce_brand_list);
 
 	if (reduce_brand_list.length == 0) {
 		var title = ${P_quoted(i18n("error_brand_title", "Catalogue"))};
-        var content = ${P_quoted(i18n("brand_error_msg", "Aucun modèle n'est disponible pour cette branche"))};
-        RMPApplication.showErrorBox(title, content + ": \n" + selectedFam + ' - ' + selectedCat);
+        var content = ${P_quoted(i18n("brand_error_msg", "Aucun modèle n'est disponible pour cette branche !"))};
+        dialog_warning(title, content + ": \n" + selectedFam + ' - ' + selectedCat, btn_ok);
 		resetAction();
 		return;		
 	} else {
@@ -872,14 +888,14 @@ function load_brand_ok(result)
 					if (var_catalog_col[i].affiliates.indexOf(selected_affiliate.affiliate) >-1 ) {		// Select lines only if available for this affiliate
 
 						short_cat = var_catalog_col[i].short_cat;
-						// console.log("short_cat = ", short_cat);
+						// c_debug(dbug.brand, "=> load_brand_ok: short_cat =  ", short_cat);
 					}
 				}
 			}
 
 		}
 	}
-	// console.log("item_brand_menu = ", item_brand_menu);
+	c_debug(dbug.brand, "=> load_brand_ok: item_brand_menu =  ", item_brand_menu);
 	$("#id_familyRow").hide();						// hide other levels
 	$("#id_categoryRow").hide();	
 	$("#id_modelRow").hide();
@@ -894,9 +910,9 @@ function load_brand_ok(result)
 function load_brand_ko(error) 
 {
     RMPApplication.debug ("begin load_brand_ko : error = " + JSON.stringify(error));
-    // console.log("load_brand_ko: error = ", error);
-    var error_msg = ${P_quoted(i18n("load_brand_error_msg", "Erreur lors du chargement de la marque!"))};
-    alertify.error(error_msg);     
+    c_debug(dbug.brand, "=> load_brand_ko: error = ", error);
+    var error_msg = ${P_quoted(i18n("load_brand_error_msg", "Chargement impossible de la marque !"))};
+    notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify);  
     RMPApplication.debug ("end load_brand_ko");    
 }
 
@@ -906,7 +922,7 @@ function load_brand_ko(error)
 function load_model(bra) 
 {
 	RMPApplication.debug ("begin load_model : bra = " + JSON.stringify(bra));
-	// console.log('bra = ', bra);
+	c_debug(dbug.model, "=> load_model: bra = ", bra);
 
 	$("#id_selectedBrand").attr("value", bra);     // store the selected brand
 
@@ -918,7 +934,7 @@ function load_model(bra)
     query_obj.category = $("#id_selectedCategory").val();
     query_obj.brand = bra;
     input_obj.input_query = query_obj;
-    
+    c_debug(dbug.model, "=> load_model: input_obj = ", input_obj);
     // load entries matching selected family & category & brand
     id_get_catalog_api.trigger(input_obj, options, load_model_ok, load_model_ko);
 	RMPApplication.debug ("end load_model");
@@ -927,7 +943,7 @@ function load_model(bra)
 function load_model_ok(result) 
 {
 	RMPApplication.debug ("begin load_model_ok : result = " + JSON.stringify(result));
-    // console.log('=> load_model_ok : result =  ', result);
+    c_debug(dbug.model, "=> load_model_ok: result =  ", result);
 
 	var selectedFam = $("#id_selectedFamily").val();
 	var selectedCat = $("#id_selectedCategory").val();
@@ -938,7 +954,6 @@ function load_model_ok(result)
 	var account_id = RMPApplication.get("account");
 	var model_img_path = 'https://live.runmyprocess.com/live/' + account_id + '/upload';	// compose path to RMP instance images
 	model_target = result.records;
-	// console.log('=> load_model_ok : result =  ', result);
 
 	// resume models into a reduce array, available for selected family & category & brand
 	for (var i=0; i<model_target.length; i++) {
@@ -953,7 +968,7 @@ function load_model_ok(result)
 			}
 		}		
 	}
-	// console.log('reduce_model_list = ', reduce_model_list);
+	c_debug(dbug.model, "=> load_model_ok: reduce_model_list =  ", reduce_model_list);
 
 	// find the chosen model if existing according previous selections and show it
 	for (var i=0; i<var_catalog_col.length; i++) {
@@ -962,7 +977,7 @@ function load_model_ok(result)
 			if (!isEmpty(var_catalog_col[i].affiliates)) {
 				if (var_catalog_col[i].affiliates.indexOf(selected_affiliate.affiliate) >-1 ) {		// Select lines only if available for this affiliate
 
-				// console.log('i:', i, 'var_catalog_col[i] = ', var_catalog_col[i]);
+					// c_debug(dbug.model, '=> load_model_ok: i:', i, 'var_catalog_col[i] = ', var_catalog_col[i]);
 				
 					for (var j=0; j<reduce_model_list.length; j++) {
 						if ( (var_catalog_col[i].model == reduce_model_list[j]) && (var_catalog_col[i].family == selectedFam) && (var_catalog_col[i].category == selectedCat) && (var_catalog_col[i].brand == selectedBrand) ) {
@@ -976,7 +991,6 @@ function load_model_ok(result)
 							
 							item_model_menu += '<div id="id_itemModelMenu_' + i + '" class="col-lg-2 col-md-3 col-sm-4 col-xs-6 col-centered">'
 										+ '<a class="text-center" onclick="select_model(\'' + var_catalog_col[i].model + '\',\'' + model_img_url + '\',\'' + var_catalog_col[i].sn_category + '\',\'' + var_catalog_col[i].problem_type + '\',\'' + var_catalog_col[i].sn_u_product_type + '\');">'
-                                        // + '<a class="text-center" onclick="select_model(' + var_catalog_col[i] + ',\'' + model_img_url + '\');">'
 										+ '<i class="homeImage">'
 										+ '<img class="homeIcon" src="' + model_img_url + '"><br>'
 										+ '<div class="homeThumbnail">'
@@ -989,11 +1003,11 @@ function load_model_ok(result)
 			}
 		}
 	}
-	// console.log('item_model_menu = ', item_model_menu);
+	c_debug(dbug.model, "=> load_model_ok: item_model_menu =  ", item_model_menu);
 	if (isEmpty(item_model_menu)) {
 		var title = ${P_quoted(i18n("error_model_title", "Catalogue"))};
-        var content = ${P_quoted(i18n("model_error_msg", "Aucun modèle existant pour cet équipement"))};
-        RMPApplication.showErrorBox(title, content + ": \n" + selectedFam + ' - ' + selectedCat + ' - ' + selectedBrand);
+        var content = ${P_quoted(i18n("model_error_msg", "Aucun modèle existant pour cet équipement !"))};
+        dialog_warning(title, content + ": \n" + selectedFam + ' - ' + selectedCat + ' - ' + selectedBrand, btn_ok);
 		resetAction();
 		return;	
 	} else {
@@ -1012,9 +1026,9 @@ function load_model_ok(result)
 function load_model_ko(error) 
 {
     RMPApplication.debug ("begin load_model_ko : error = " + JSON.stringify(error));
-    // console.log("load_model_ko: error = ", error);
-    var error_msg = ${P_quoted(i18n("load_model_error_msg", "Erreur lors du chargement du modèle!"))};
-    alertify.error(error_msg);  
+    c_debug(dbug.model, "=> load_model_ko: error = ", error);
+    var error_msg = ${P_quoted(i18n("load_model_error_msg", "Chargement impossible du modèle !"))};
+    notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify);  
     RMPApplication.debug ("end load_model_ko");
 }
 
@@ -1022,12 +1036,10 @@ function load_model_ko(error)
 //  According to previous choices => model image is visible or not
 // ===================================================================
 function select_model(mod_mod, mod_img, mod_cat, mod_prob, mod_prod) 
-// function select_model(mod, mod_img, pb_type) 
 {
-	// RMPApplication.debug ("begin select_model : mod = " + mod + "\n pb_type = " + pb_type);
     RMPApplication.debug ("begin select_model : mod_mod = " + mod_mod + "\n mod_img = " + mod_img);
-	// console.log('select_model: mod_mod = ', mod_mod);
-    // console.log('\nselect_model: mod_img = ', mod_img);
+	c_debug(dbug.model, "=> select_model: mod_mod = ", mod_mod);
+    c_debug(dbug.model, "\n=> select_model: mod_img = ", mod_img);
     selected_model.model = mod_mod;
     selected_model.sn_category = mod_cat;
     selected_model.sn_u_problem_type = mod_prob;
@@ -1039,7 +1051,6 @@ function select_model(mod_mod, mod_img, mod_cat, mod_prob, mod_prod)
 	var selectedCat = $("#id_selectedCategory").val();
 	var selectedBrand = $("#id_selectedBrand").val();
 	var selectedModel = $("#id_selectedModel").val();
-	// prob_type = pb_type;
 	
 	// Only one entry from catalog matches with selected family & category & brand & model
     divModel += '<i class="homeImage">'
@@ -1047,7 +1058,7 @@ function select_model(mod_mod, mod_img, mod_cat, mod_prob, mod_prod)
 			+ '<div class="homeThumbnail">'
 			+ '<span class="homeTitle">' + selectedCat + '<br>' + selectedBrand + ' - ' + selectedModel + '</span>'
 			+ '</div></i>';
-	// console.log('divModel = ', divModel);
+	c_debug(dbug.model, "=> select_model: divModel = ", divModel);
 	$("#id_familyRow").hide();
 	$("#id_categoryRow").hide();
 	$("#id_brandRow").hide();
@@ -1069,12 +1080,12 @@ function select_model(mod_mod, mod_img, mod_cat, mod_prob, mod_prod)
 function backAction()
 {
 	RMPApplication.debug ("begin backAction");
-    // console.log('=> backAction');
+
 	var selectedFam = $("#id_selectedFamily").val();
 	var selectedCat = $("#id_selectedCategory").val();
 	var selectedBrand = $("#id_selectedBrand").val();
 	var selectedModel = $("#id_selectedModel").val();
-	// console.log(selectedFam, '-', selectedCat, '-', selectedBrand, '-', selectedModel);
+	c_debug(dbug.back, "=> backAction: ", selectedFam + '-' + selectedCat + '-', selectedBrand + '-' + selectedModel);
 
 	if (!isEmpty(selectedModel)) {
 		$("#id_selectedModel").removeAttr("value");
@@ -1106,13 +1117,12 @@ function backAction()
 function show_details_request()
 {
 	RMPApplication.debug ("begin show_details_request");
-    // console.log('=> show_details_request');
+    c_debug(dbug.request, "=> show_details_request");
 	fillPosBox();
     fillPriorityBox();
 	fillRequestBox();
 	$("#id_selectedModelRow").show();
 	$("#id_rowButton").show();
-
 	RMPApplication.debug ("end show_details_request");	
 }
 
@@ -1122,7 +1132,7 @@ function show_details_request()
 function fillPosBox() 
 {
 	RMPApplication.debug("begin fillPosBox");
-    // console.log('=> fillPosBox');
+    c_debug(dbug.box, "=> fillPosBox");
 
 	var numberPOS = 10;		// Value to change according to number of POS
 	$("#id_numPOS").html('');
@@ -1143,7 +1153,7 @@ function fillPosBox()
 function fillPriorityBox() 
 {
     RMPApplication.debug("begin fillPriorityBox");
-    // console.log('=> fillPriorityBox');
+    c_debug(dbug.box, "=> fillPriorityBox");
 
     var defaultPriority = "2";
     // ATTENTION: we use a hidden CustomRMP component List to generate our own list
@@ -1163,7 +1173,7 @@ function fillPriorityBox()
 function fillRequestBox() 
 {
 	RMPApplication.debug("begin fillRequestBox");
-    // console.log('=> fillRequestBox');
+    c_debug(dbug.box, "=> fillRequestBox");
 
 	var defaultType = "intervention";
     // ATTENTION: we use a hidden CustomRMP component List to generate our own list
@@ -1188,7 +1198,7 @@ function fillRequestBox()
 function createRequest()
 {
 	RMPApplication.debug("begin createRequest");
-    // console.log("=> begin createRequest");
+    c_debug(dbug.request, "=> createRequest");
 
 	var num_pos = $("#id_numPOS").val();
 	var selectedFam = $("#id_selectedFamily").val();
@@ -1201,11 +1211,7 @@ function createRequest()
 	switch (selected_location.affiliate) {
 
         case 'CAROLL':
-            // caller = (login.is_super_user == "NON") ? login.user : "hotline@caroll.com";
-            caller = "hotline@caroll.com";
-            // separator = "-";
             location = $.trim(selected_location.location_name);
-            // category = (requestType.toUpperCase() == "INTERVENTION") ? "Maintenance Normale" : null;
             // logical_name format => MAG00BxxxCAI01
             logical_name = "MAG00" + selected_location.location_code + short_cat + num_pos;
             break;
@@ -1213,8 +1219,6 @@ function createRequest()
 		default:
             separator = "-";
             location = $.trim(selected_location.location) + separator + $.trim(selected_location.location_code);
-			// caller = login.user;
-            caller = "Resp " + location;
             logical_name = "MAG" + selected_location.location_code + short_cat + num_pos;
 	}
 
@@ -1232,7 +1236,8 @@ function createRequest()
     // issue description will contain informations about impacted equipement
     var description_head = "- Matériel: " + selectedCat + " (" + selectedBrand + " - " + selectedModel + ")";
     var description_body = $("#id_descripton").val();
-    var short_description = (isEmpty(description_body)) ? "Non renseigné" : description_body.substring(0,99);
+    var not_filled = ${P_quoted(i18n("not_filled", "Non renseigné"))};
+    var short_description = (isEmpty(description_body)) ? not_filled : description_body.substring(0,99);
     var description = description_head + "\n" + "- Information: " + description_body;
     var expected_start = "";
     // var expected_start = getExpectedStartDateSN(7);
@@ -1249,12 +1254,10 @@ function createRequest()
 	// define insertion query before sending to Service Now
 	var options = {};
     var work_order = {};
-	work_order.sn_caller = caller;
 	work_order.sn_contract = contract;
 	work_order.sn_contact_type = contact_type;
 	work_order.sn_correlation_id = customer_reference;
 	work_order.sn_description = description;
-	work_order.sn_location = location;
 	work_order.sn_state = state;
 	work_order.sn_qualification_group = qualification_group;
 	work_order.sn_short_description = short_description;
@@ -1270,7 +1273,7 @@ function createRequest()
 
     $("#id_spinner_insert").show();
 
-  	console.log("=> createRequest: work_order = ", work_order);
+  	c_debug(dbug.request, "=> createRequest: work_order = ", work_order);
 	id_insert_work_order_api.trigger (work_order, options, insert_ok, insert_ko);
 
 	// after insertion in Service Now => reload a new work order request screen
@@ -1281,12 +1284,13 @@ function createRequest()
 function insert_ok(result) 
 {
 	RMPApplication.debug("begin insert_ok : " + JSON.stringify(result));
-	// console.log("=> insert_ok: result = ", result);
+	c_debug(dbug.request, "=> insert_ok: result = ", result);
 	$("#id_spinner_insert").hide();
 	wm_order = result;
     var title = ${P_quoted(i18n("insert_ok_title", "Information Suivi Demande"))};
-    var content = ${P_quoted(i18n("insert_ok_msg", "Demande créée sous la référence:"))};
-    RMPApplication.showErrorBox(title, content + ": \n" + wm_order.insertResponse.number + "\n");
+    var content = ${P_quoted(i18n("insert_ok_msg", "Demande créée sous la référence :"))};
+    var content2 = ${P_quoted(i18n("id_msg_2", "Vous allez être contacté dans les plus brefs délais."))};
+    dialog_success(title, content + "<br><strong>" + wm_order.insertResponse.number + "</strong><br>" + content2, btn_ok);
     
     resetWI();      // reset web interface before a new request
 
@@ -1309,9 +1313,9 @@ function insert_ok(result)
 function insert_ko(error) 
 {
     RMPApplication.debug("begin insert_ko : error = " + JSON.stringify(error));
-    // console.log("=> insert_ko: error = ", error);
-    var error_msg = ${P_quoted(i18n("insert_ko_msg", "Erreur lors de la création du ticket!"))};
-    alertify.error(error_msg);
+    c_debug(dbug.request, "=> insert_ko: error = ", error);
+    var error_msg = ${P_quoted(i18n("insert_ko_msg", "Création impossible du ticket !"))};
+    notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify);
 	$("#id_spinner_insert").hide();
 	RMPApplication.debug("end insert_ko");		
 }
@@ -1319,8 +1323,8 @@ function insert_ko(error)
 function sms_ok(result) 
 {
 	RMPApplication.debug("begin sms_ok : " + JSON.stringify(result));
-    // console.log("=> sms_ok: result = ", result);
-	var success_msg = ${P_quoted(i18n("sms_ok_msg", "SMS envoyé avec succès!"))};
+    c_debug(dbug.request, "=> sms_ok: result = ", result);
+    var success_msg = ${P_quoted(i18n("sms_ok_msg", "SMS envoyé avec succès !"))};
     alertify.success(success_msg);
 	RMPApplication.debug("end sms_ok");		
 }
@@ -1328,8 +1332,8 @@ function sms_ok(result)
 function sms_ko(error) 
 {
     RMPApplication.debug("begin sms_ko : error = " + JSON.stringify(error));
-    // console.log("=> sms_ko: error = ", error);
-    var error_msg = ${P_quoted(i18n("sms_ko_msg", "Erreur: SMS non envoyé!"))};
-    alertify.error(error_msg);
+    c_debug(dbug.request, "=> sms_ko: error = ", error);
+    var error_msg = ${P_quoted(i18n("sms_ko_msg", "SMS non envoyé !"))};
+    notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify);
 	RMPApplication.debug("end sms_ko");	    
 }

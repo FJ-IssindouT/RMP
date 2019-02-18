@@ -70,9 +70,9 @@ function init()
 	RMPApplication.debug("end init");
 }
 
-// ====================================================================================
-//   Reset Action ("Réinitialiser" button or after a new Work Order request creation)
-// ====================================================================================
+// ===========================================
+//   Reset Web Interface before any action
+// ===========================================
 function resetWI()
 {
 	RMPApplication.debug("begin resetWI");
@@ -633,13 +633,10 @@ function load_catalog()
 {
 	RMPApplication.debug ("begin load_catalog");
     c_debug(dbug.catalog, "=> load_catalog");
-
-    // query catalog collection (capi)
     var input = {};
     var options = {};
     input.input_query = {};     // we load all catalog's items from collection (max 1000)
     id_get_catalog_api.trigger(input, options, load_catalog_ok, load_catalog_ko);
-
     RMPApplication.debug ("end load_catalog"); 
 }
 
@@ -728,13 +725,11 @@ function load_category(fam)
     input_obj.input_query = query_obj;      // retrieve elements with 'family=fam' matching; 
     c_debug(dbug.category, "=> load_category: input_obj = ", input_obj);
     id_get_catalog_api.trigger(input_obj, options, load_category_ok, load_category_ko);
-
     RMPApplication.debug ("end load_category");
 }
 
 function load_category_ok(result) 
 {
-
 	RMPApplication.debug ("begin load_category_ok: result = " + JSON.stringify(result));
     c_debug(dbug.category, "=> load_category_ok: result = ", result);
 
@@ -982,7 +977,7 @@ function load_model_ok(result)
 			if (!isEmpty(var_catalog_col[i].affiliates)) {
 				if (var_catalog_col[i].affiliates.indexOf(selected_affiliate.affiliate) >-1 ) {		// Select lines only if available for this affiliate
 
-				// console.log('i:', i, 'var_catalog_col[i] = ', var_catalog_col[i]);
+				    // c_debug(dbug.model, '=> load_model_ok: i:', i, 'var_catalog_col[i] = ', var_catalog_col[i]);
 
 					for (var j=0; j<reduce_model_list.length; j++) {
 						if ( (var_catalog_col[i].model == reduce_model_list[j]) && (var_catalog_col[i].family == selectedFam) && (var_catalog_col[i].category == selectedCat) && (var_catalog_col[i].brand == selectedBrand) ) {

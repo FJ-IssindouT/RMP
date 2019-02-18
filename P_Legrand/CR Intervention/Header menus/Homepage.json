@@ -5,7 +5,7 @@
         "url" : "https://live.runmyprocess.com/live/112501480325272109/appli/395400?P_mode=${P_mode}&P_language=${P_language}"
     }, {
         "title" : "New intervention",
-        "visible" : "${has_right('452695')=='true' || has_right('452558')=='true'}",
+        "visible" : "${has_right('452695')=='true'}",
         "url" : "https://live.runmyprocess.com/live/112501480325272109/appli/395541?P_mode=${P_mode}&P_language=${P_language}"
     }, {
         "title" : "My Tasks",
@@ -13,43 +13,23 @@
         "url" : "https://live.runmyprocess.com/live/112501480325272109/appli/396333?P_mode=${P_mode}&P_language=${P_language}"
     }, {
         "title" : "Dashboard",
-        "visible" : "${has_right('452637')=='false' && has_right('453483')=='false' && has_right('452638')=='false' && has_right('452593')=='false'}",
+        "visible" : "${has_right('452558')=='true'}",
         "url" : ""
     }, {
         "title" : "Account Management",
-        "visible" : "${has_right('452695')=='true' || has_right('453117')=='true' || has_right('452558')=='true'}",
+        "visible" : "${has_right('452695')=='true'}",
         "url" : "https://live.runmyprocess.com/live/112501480325272109/appli/395704?P_mode=${P_mode}&P_language=${P_language}"
     }
 ]
 
 
+// 452558  => LEGRAND - Designers
 
-
-
-
-// 453483  => LEGRAND - Legrand Desk
-// 452593  => LEGRAND - Onsite Engineers
-
-
-// 454990 => LEGRAND - Observers ( gdc/ country desk / engineer / sdmo)
-
-
-// LEGRAND - All Users => 453185
-// LEGRAND - CRI => 456085 
-// LEGRAND - Designers => 452558  
-// LEGRAND - FJ PSE GDC => 454989
-// LEGRAND - FJ Country Desk => 452638
-// LEGRAND - FJ GDC => 452695
-// LEGRAND - FJ SDMO => 453117
-// LEGRAND - Legrand Desk => 453483
-
-// LEGRAND - Observers - ( Engineer screen => gdc/ country desk / engineer / sdmo) => 454990 
-// LEGRAND - Obervers - ( CD screen => gdc / sdmo / PSE ) => 456893
-// LEGRAND - Obervers - ( BO screen => SDMO) => ) 95
-
-
-// LEGRAND - Obervers - ( GDC screen => gdc / sdmo / PSE )=> 456894
-
-
-// LEGRAND - Onsite Engineers => 452593
-// LEGRAND - Users => 452637
+// 457883  => LEGRAND - Onsite Engineers
+// 452638  => LEGRAND - FJ Country Desk
+// 452695  => LEGRAND - Editors (GDC screen)
+// 452638  => LEGRAND - Editors (CD screen)
+// 452593  => LEGRAND - Editors (Onsite Engineers screen)
+// 457914  => LEGRAND - FJ GDC
+// 453117  => LEGRAND - FJ SDMO
+// 454989  => LEGRAND - FJ PSE GDC (included SDMO)

@@ -846,7 +846,7 @@ function get_locations_ko(error)
 {
     RMPApplication.debug("begin get_locations_ko : error = " + JSON.stringify(error));
     c_debug(dbug.site, "=> get_locations_ko: error = ", error);
-    var error_msg = ${P_quoted(i18n("get_locations_ko_msg", "Récupération impossible des informations du site!"))};
+    var error_msg = ${P_quoted(i18n("get_locations_ko_msg", "Récupération impossible des informations du site !"))};
     notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify);
     RMPApplication.debug("end get_locations_ko");
 }
@@ -1403,7 +1403,7 @@ function load_img_model_ko(error)
 {
     RMPApplication.debug ("begin load_img_model_ko : " + JSON.stringify(error));
     c_debug(dbug.model, "=> load_img_model_ko: error", error);
-    var error_msg = ${P_quoted(i18n("load_img_model_ko_msg", "Chargement impossible de l'image de l'équipement!"))};
+    var error_msg = ${P_quoted(i18n("load_img_model_ko_msg", "Chargement impossible de l'image de l'équipement !"))};
     notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify); 
     RMPApplication.debug ("end load_img_model_ko");    
 }
