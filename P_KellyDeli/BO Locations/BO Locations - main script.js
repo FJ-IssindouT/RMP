@@ -63,14 +63,14 @@ function add_item()
     c_debug(debug.item, "=> begin add_item");
     var my_object = eval('(' + RMPApplication.get("my_item") + ')');
 
-    for (key in var_list)  {
-        if ( RMPApplication.validate() == false ) {
-            var error_msg1 = ${P_quoted(i18n("add_item_msg1", "Tous les champs doivent être remplis !"))};
-            notify_error(error_title_notify, error_msg1);
-            RMPApplication.debug ("all fields must be set!");
-            return;
-        }
+    // for (key in var_list)  {
+    if ( RMPApplication.validate() == false ) {
+        var error_msg1 = ${P_quoted(i18n("add_item_msg1", "Tous les champs obligatoires doivent être remplis !"))};
+        notify_error(error_title_notify, error_msg1);
+        RMPApplication.debug ("all mandatory fields must be set!");
+        return;
     }
+    // }
     
     if (!item_already_exists(my_object)) {
 

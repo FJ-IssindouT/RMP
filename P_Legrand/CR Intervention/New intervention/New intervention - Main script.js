@@ -169,13 +169,14 @@ function set_required_current_pc()
     set_required_option_cw(obj_cw, true);
 }
 
+
 function set_required_swap_pc()
 {
     c_debug(dbug.function, "=> begin set_required_swap_pc");
     var instal_type_val = RMPApplication.get("installation_type");
     var swap_pc_requested = (instal_type_val == "computer_swap") ? true : false;
     var obj_cw = {
-        "id": "id_my_new_pc_confirm",
+        "id": "id_my_new_pc_swap",
         "widgets_var_list" : ["windows_version", "pc_name", "pc_model", "serial_number"]
     };
     set_required_option_cw(obj_cw, swap_pc_requested);
@@ -279,6 +280,7 @@ function load_data_for_country_desk_screen()
         id_my_issue_intervention.id_cancellation_attention.setVisible(true);
         id_my_issue_intervention.id_new_cancellation_reason.setVisible(true);
 
+		
 		// set "delivery_done" variable before to continue process
 		var id_intervention_num_previous = "id_my_intervention_" + RMPApplication.get("visit_counter") + ".id_reason";
 		var last_cancellation_str = eval(id_intervention_num_previous).getValue();
@@ -299,6 +301,7 @@ function string_compare(st1, st2)
 // prepare data from Country Desk to Engineer
 function prepare_data_for_engineer()
 {
+
     c_debug(dbug.function, "=> begin prepare_data_for_engineer: visit_counter = ", visit_counter);
 
     function confirm_OK()
@@ -338,6 +341,8 @@ function prepare_data_for_engineer()
         confirm_OK(); 
     }            
 }
+
+
 
 // prepare engineer data screen
 function load_data_for_engineer_screen()
@@ -501,10 +506,40 @@ function close_request()
 }
 
 
-
 function testswitch(){
-
-    if ($("#id_close_request_btn").is(":visible")) {
+    if ($("#id_visit_done_btn").is(":visible")) {
+        // Engineer => GDC for closure
+        console.log("Engineer => GDC for closure");
+        $("#id_title1").css("color","#33CA33");
+        $("#id_label1").css("color","white");
+        $("#id_circle1").css({"border-color":"#33CA33","background-color":"#33CA33"});
+        $("#id_bar1").css("background-color","#33CA33");
+        $("#id_title2").css("color","#33CA33");
+        $("#id_label2").css("color","white");
+        $("#id_circle2").css({"border-color":"#33CA33","background-color":"#33CA33"});
+        $("#id_bar2").css("background-color","#33CA33");
+        $("#id_title3").css({"color": "#69f94c", "font-weight":"bold"});
+        $("#id_label3").css({"color": "#69f94c", "font-weight":"bold"});
+        $("#id_circle3").css({"border-color":"#69f94c", "background-color":"#d1ffd1"});
+    } else if ($("#id_request_to_engineer_btn").is(":visible")) {
+        // Country to Engineer
+        console.log("Country to Engineer");
+        $("#id_title1").css("color","#33CA33");
+        $("#id_label1").css("color","white");
+        $("#id_circle1").css({"border-color":"#33CA33","background-color":"#33CA33"});
+        $("#id_bar1").css("background-color","#33CA33");
+        $("#id_title2").css({"color": "#69f94c", "font-weight":"bold"});
+        $("#id_label2").css({"color": "#69f94c", "font-weight":"bold"});
+        $("#id_circle2").css({"border-color":"#69f94c", "background-color":"#d1ffd1"});
+    } else if ($("#id_transfer_to_country_btn").is(":visible"))  {
+        // GDC to CD
+        console.log("GDC to CD");
+      $("#id_title1").css({"color": "#69f94c", "font-weight":"bold"});
+      $("#id_label1").css({"color": "#69f94c", "font-weight":"bold"});
+      $("#id_circle1").css({"border-color":"#69f94c", "background-color":"#d1ffd1"});
+    } else if ((id_close_request_btn.isActive() == true) || (($("#id_close_request_btn").prop("disabled")))&& ($("#id_close_request_btn").is(":hidden"))) {
+        // To be closed
+        console.log("To be closed");
         $("#id_title1").css("color","#33CA33");
         $("#id_label1").css("color","white");
         $("#id_circle1").css({"border-color":"#33CA33","background-color":"#33CA33"});
@@ -518,34 +553,12 @@ function testswitch(){
         $("#id_label3").css("color","white");
         $("#id_circle3").css({"border-color":"#33CA33","background-color":"#33CA33"});
         $("#id_bar4").css("background-color","#33CA33");
-        $("#id_title4").css({"color": "#69f94c", "font-weight":"bold"});
-        $("#id_label4").css({"color": "#69f94c", "font-weight":"bold"});
-        $("#id_circle4").css({"border-color":"#69f94c", "background-color":"#d1ffd1"});
-    } else if ($("#id_visit_done_btn").is(":visible")) {
-        $("#id_title1").css("color","#33CA33");
-        $("#id_label1").css("color","white");
-        $("#id_circle1").css({"border-color":"#33CA33","background-color":"#33CA33"});
-        $("#id_bar1").css("background-color","#33CA33");
-        $("#id_title2").css("color","#33CA33");
-        $("#id_label2").css("color","white");
-        $("#id_circle2").css({"border-color":"#33CA33","background-color":"#33CA33"});
-        $("#id_bar2").css("background-color","#33CA33");
-        $("#id_title3").css({"color": "#69f94c", "font-weight":"bold"});
-        $("#id_label3").css({"color": "#69f94c", "font-weight":"bold"});
-        $("#id_circle3").css({"border-color":"#69f94c", "background-color":"#d1ffd1"});
-    } else if ($("#id_request_to_engineer_btn").is(":visible")) {
-        $("#id_title1").css("color","#33CA33");
-        $("#id_label1").css("color","white");
-        $("#id_circle1").css({"border-color":"#33CA33","background-color":"#33CA33"});
-        $("#id_bar1").css("background-color","#33CA33");
-        $("#id_title2").css({"color": "#69f94c", "font-weight":"bold"});
-        $("#id_label2").css({"color": "#69f94c", "font-weight":"bold"});
-        $("#id_circle2").css({"border-color":"#69f94c", "background-color":"#d1ffd1"});
-    } else if ($("#id_transfer_to_country_btn").is(":visible"))  {
-      $("#id_title1").css({"color": "#69f94c", "font-weight":"bold"});
-      $("#id_label1").css({"color": "#69f94c", "font-weight":"bold"});
-      $("#id_circle1").css({"border-color":"#69f94c", "background-color":"#d1ffd1"});
-    }  else if (($("#id_closed_comments").is(":active")) == false ){
+        $("#id_title4").css("color","#69f94c");
+        $("#id_label4").css("color","#69f94c");
+        $("#id_circle4").css({"border-color":"#69f94c","background-color":"#d1ffd1"});
+        } else if (($("#id_close_request_btn").prop("disabled")) && ($("#id_close_request_btn").is(":visible"))){
+        // Closed
+        console.log("Closed");
         $("#id_title1").css("color","#33CA33");
         $("#id_label1").css("color","white");
         $("#id_circle1").css({"border-color":"#33CA33","background-color":"#33CA33"});
@@ -562,10 +575,10 @@ function testswitch(){
         $("#id_title4").css("color","#33CA33");
         $("#id_label4").css("color","white");
         $("#id_circle4").css({"border-color":"#33CA33","background-color":"#33CA33"});
-    }   
+    }  else {
+        console.log("Pas de traitement");
+    }
 }
-
-
 
 // save datas from basic info fields
 var var_data_pdf = {};      // data collected ready to be imported in final PDF report
@@ -576,6 +589,7 @@ function get_basic_info()
     var basic_info = {
         "type": RMPApplication.get("type"),
         "legrand_ref": RMPApplication.get("legrand_ref"),
+        "location_info": RMPApplication.get("location_filter"),
         "priority": id_priority.getSelectedLabel()
     };
     // stocke ident dans le widget var_ident
@@ -823,6 +837,7 @@ function prepare_data()
     get_pc_check_info();
 
     setTimeout (consolide_data, 1000);
+
 }
 
 function consolide_data()
@@ -843,5 +858,52 @@ function consolide_data()
     "pc_check_info": JSON.parse(RMPApplication.get("var_pc_check_info"))
     };
 
+
     RMPApplication.set("var_data_pdf_front", JSON.stringify(var_data_pdf));
 }
+
+
+function display_anchor(){
+	var visit_counter = parseInt(RMPApplication.get("visit_counter"));
+
+	if ($("#id_close_request_btn").is(":visible")) {
+	    // closure or closed screen
+	    console.log("closure ou closed screen");
+	    ($("#btn_closure_global").show());
+	    ($("#btn_closure_issue").show());
+	    ($("#btn_closure_intervention").show());
+	    ($("#btn_intervention_global").show());
+	    ($("#btn_intervention_issue").show());
+	    ($("#btn_intervention_closure").show());
+	    ($("#btn_issue_global").show());
+	    ($("#btn_issue_intervention").show());
+	    ($("#btn_issue_closure").show());
+	    ($("#btn_global_issue").show());
+	    ($("#btn_global_intervention").show());
+	    ($("#btn_global_closure").show())
+	} else if (visit_counter >= 1)  {
+	    // Engineer screen
+	    console.log("Engineer screen");
+	    ($("#btn_intervention_global").show());
+	    ($("#btn_intervention_issue").show());
+	    ($("#btn_issue_global").show());
+	    ($("#btn_issue_intervention").show());
+	    ($("#btn_global_issue").show());
+	    ($("#btn_global_intervention").show());
+	    ($("#btn_intervention_closure").hide());
+	    ($("#btn_issue_closure").hide());
+	    ($("#btn_global_closure").hide());
+	} else if ((visit_counter == 0 )&& ($("#id_my_issue_intervention").is(":visible"))) {
+	    // Country Desk screen
+	    console.log("Country Desk screen");
+	    ($("#btn_issue_global").show());
+	    ($("#btn_global_issue").show());
+	    ($("#btn_issue_closure").hide());
+        ($("#btn_issue_intervention").hide());
+        ($("#btn_global_closure").hide());
+        ($("#btn_global_intervention").hide());
+    } else {
+        console.log('prout')
+    } 
+}
+
