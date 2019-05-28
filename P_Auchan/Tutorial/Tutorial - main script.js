@@ -12,7 +12,7 @@ var tuto_target = null;		// valid tutorials according preselection during execut
 
 var error_title_notify = ${P_quoted(i18n("error_title_notify", "Erreur"))};
 var info_title_notify = ${P_quoted(i18n("info_title_notify", "Information"))};
-var error_thanks_notify = ${P_quoted(i18n("error_thanks_notify", "Merci de signaler cette erreur!"))};
+var error_thanks_notify = ${P_quoted(i18n("error_thanks_notify", "Merci de signaler cette erreur !"))};
 var btn_ok = ${P_quoted(i18n("btn_ok", "OK"))};
 
 // used collections list
@@ -46,7 +46,7 @@ function load_tutorial_ko(error)
 {
     RMPApplication.debug ("begin load_tutorial_ko : error = " + JSON.stringify(error));
     // console.log("=> load_tutorial_ko: error = ", error);
-    var error_msg = ${P_quoted(i18n("load_tutorial_ko_msg", "Chargement impossible de la collection Tutoriels!"))};
+    var error_msg = ${P_quoted(i18n("load_tutorial_ko_msg", "Chargement impossible de la collection Tutoriels !"))};
     notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify);
     RMPApplication.debug ("end load_tutorial_ko");    
 }
@@ -142,7 +142,7 @@ function load_product_ok(result)
 
 	if (reduce_prod_list.length == 0) {
 		var title = ${P_quoted(i18n("error_load_product_ok_title", "Tutoriel"))};
-        var content = ${P_quoted(i18n("error_load_product_ok_msg", "Aucun tutoriel n'est disponible pour cette branche"))};
+        var content = ${P_quoted(i18n("error_load_product_ok_msg", "Aucun tutoriel n'est disponible pour cette branche !"))};
         var content_msg = content + ": <br>" + selectedCat;
         dialog_error(title, content_msg, btn_ok);
 		reset();
@@ -177,7 +177,7 @@ function load_product_ok(result)
 function load_product_ko(error) 
 {
     RMPApplication.debug ("begin load_product_ok : error = " + JSON.stringify(error));
-    var error_msg = ${P_quoted(i18n("load_product_ko_msg", "Chargement impossible du produit!"))};
+    var error_msg = ${P_quoted(i18n("load_product_ko_msg", "Chargement impossible du produit !"))};
 	notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify);
     RMPApplication.debug ("end load_product_ko");    
 }
@@ -219,7 +219,7 @@ function load_type_ok(result)
 
 	if (reduce_type_list.length == 0) {
 		var title = ${P_quoted(i18n("error_load_type_ok_title", "Tutoriel"))};
-        var content = ${P_quoted(i18n("error_load_type_ok_msg", "Aucun tutoriel n'est disponible pour cette branche!"))};
+        var content = ${P_quoted(i18n("error_load_type_ok_msg", "Aucun tutoriel n'est disponible pour cette branche !"))};
         var content_msg = content + ": <br>" + selectedCat + ' - ' + selectedProd;
         dialog_error(title, content_msg, btn_ok);
 		reset();
@@ -254,7 +254,7 @@ function load_type_ok(result)
 function load_type_ko(error) 
 {
     RMPApplication.debug ("begin load_type_ko : error = " + JSON.stringify(error));
-    var error_msg = ${P_quoted(i18n("load_type_ko_msg", "Chargement impossible du type de tutoriel!"))};
+    var error_msg = ${P_quoted(i18n("load_type_ko_msg", "Chargement impossible du type de tutoriel !"))};
 	notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify);
     RMPApplication.debug ("end load_type_ko");    
 }
@@ -313,7 +313,7 @@ function select_tuto_ok(result)
 	// console.log('divTuto', divTuto);
 	if (isEmpty(divTuto)) {
 		var  title = ${P_quoted(i18n("error_select_tuto_ok_title", "Tutoriel"))};
-        var  content = ${P_quoted(i18n("error_select_tuto_ok_msg", "Il n'y a pas de video pour cet équipement"))};
+        var  content = ${P_quoted(i18n("error_select_tuto_ok_msg", "Il n'y a pas de video pour cet équipement !"))};
         var content_msg = content + ": <br>" + selectedType + ' - ' + selectedCat + ' - ' + selectedProd;
         dialog_error(title, content_msg, btn_ok);
 		reset();
@@ -331,7 +331,7 @@ function select_tuto_ok(result)
 function select_tuto_ko(error) 
 {
     RMPApplication.debug ("begin select_tuto_ko : error = " + JSON.stringify(error));
-    var error_msg = ${P_quoted(i18n("select_tuto_ko_msg", "Chargement impossible du tutoriel!"))};
+    var error_msg = ${P_quoted(i18n("select_tuto_ko_msg", "Chargement impossible du tutoriel !"))};
 	notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify);
     RMPApplication.debug ("end select_tuto_ko");    
 }
