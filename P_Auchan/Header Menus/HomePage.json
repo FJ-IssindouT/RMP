@@ -7,7 +7,7 @@
         "url" : "https://live.runmyprocess.com/live/112501480325272109/appli/356700?P_mode=${P_mode}&P_language=${P_language}"
     }, {
         "title" : "Mes actions",
-        "visible" : "${has_right('408344')=='false'}",
+        "visible" : "${has_right('408343')=='true'}",
         "url" : "https://live.runmyprocess.com/live/112501480325272109/appli/356750?P_mode=${P_mode}&P_language=${P_language}"
     }, {
         "title" : "Tableaux de bord",

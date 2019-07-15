@@ -40,7 +40,7 @@ var iso_code ='fr';
 
 var error_title_notify = ${P_quoted(i18n("error_title_notify", "Erreur"))};
 var info_title_notify = ${P_quoted(i18n("info_title_notify", "Information"))};
-var error_thanks_notify = ${P_quoted(i18n("error_thanks_notify", "Merci de signaler cette erreur!"))};
+var error_thanks_notify = ${P_quoted(i18n("error_thanks_notify", "Merci de signaler cette erreur !"))};
 var btn_ok = ${P_quoted(i18n("btn_ok", "OK"))};
 
 // used collections list
@@ -159,7 +159,7 @@ function get_info_ko(error)
 {
     RMPApplication.debug("begin get_info_ko: error = " + JSON.stringify(error));
     c_debug(debug.init, "=> get_info_ko: error = ", error);
-    var error_msg = ${P_quoted(i18n("get_info_ko_msg", "Récupération impossible des informations utilisateur!"))};
+    var error_msg = ${P_quoted(i18n("get_info_ko_msg", "Récupération impossible des informations utilisateur !"))};
     notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify);
     RMPApplication.debug("end get_info_ko");
 } 
@@ -194,22 +194,30 @@ function fillQuarterBox()
 {
     RMPApplication.debug("begin fillQuarterBox");
     c_debug(debug.box, "=> fillQuarterBox");
-    var text_quarterFilter = ${P_quoted(i18n("statusQuarter_text", "Trimestre"))};
+    var text_quarterFilter = "Trimestre";
     var text_minQuarter = text_quarterFilter.charAt(0).toUpperCase();
-    var today = new Date(), current_quarter = getCurrentQuarter();
+    var today = new Date(), current_quarter_full = getCurrentQuarter();
+    var current_quarter = current_quarter_full.num;
 
     var quarterList = JSON.parse(id_quarter_cl.getList()).list;
-    var indice = Number(current_quarter.num) - 1;
+    // var indice = Number(current_quarter.num) - 1;
+    var indice = Number(FIRSTQUARTEROFEXERCISE) -1;                // we retrieve the first quarter of fiscal year (in CONST file)
+    c_debug(debug.box, "=> fillQuarterBox: indice = ", indice);
+
     for (i=0; i < quarterList.length; i++) {
-        // TO DO: take into account FIRSTQUARTEROFEXERCISE constante in formula
         var num_quarter = ((i+indice) >= 4) ? i+indice-4 : i+indice;
         // c_debug(debug.box, "=> fillQuarterBox: num_quarter = ", num_quarter);
-        var quarter_details = quarterList[num_quarter].label;
-        // c_debug(debug.box, "=> fillQuarterBox: quarter_details = ", quarter_details);
-        if ( i === num_quarter ) {
-            $("#id_quarterFilter").append($("<option selected />").val(quarterList[i].value).html(text_minQuarter + quarterList[i].value + "  &#10143;  [" + quarter_details + "]"));
+        var new_indice = ((i+current_quarter-1) >=4) ? (i+current_quarter-1)-4  : i+current_quarter-1;        
+        // c_debug(debug.box, "=> fillQuarterBox: new_indice = ", new_indice);
+        var quarter_details = quarterList[new_indice].label;
+        // c_debug(debug.box, "=> fillQuarterBox: quarter_details = ", quarter_details)
+        c_debug(debug.box, "=> fillQuarterBox: new_indice = ", new_indice);
+        if ( i === new_indice ) {
+            $("#id_quarterFilter").append($("<option selected />").val(quarterList[new_indice].value).html(text_minQuarter + quarterList[new_indice].value + "  &#10143;  [" + quarter_details + "]"));
+            // c_debug(debug.box, "=> label = ", text_minQuarter + quarterList[new_indice].value + "  &#10143;  [" + quarter_details + "]");
         } else {
-            $("#id_quarterFilter").append($("<option />").val(quarterList[i].value).html(text_minQuarter + quarterList[i].value + "  &#10143;  [" + quarter_details + "]"));
+            $("#id_quarterFilter").append($("<option />").val(quarterList[new_indice].value).html(text_minQuarter + quarterList[new_indice].value + "  &#10143;  [" + quarter_details + "]"));
+            // c_debug(debug.box, "=> label = ", text_minQuarter + quarterList[new_indice].value + "  &#10143;  [" + quarter_details + "]");
         }
     }
     RMPApplication.debug("end fillQuarterBox");
@@ -496,7 +504,7 @@ function load_site_ko(error)
     RMPApplication.debug ("begin load_site_ko: error = " + JSON.stringify(error));
     c_debug(debug.site, "=> load_site_ko: error = ", JSON.stringify(error));
     site = {};
-    var error_msg = ${P_quoted(i18n("load_site_ko_msg", "Récupération impossible des informations du site!"))};
+    var error_msg = ${P_quoted(i18n("load_site_ko_msg", "Récupération impossible des informations du site !"))};
     notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify);
     RMPApplication.debug ("end load_site_ko");    
 }
@@ -654,7 +662,7 @@ function get_locations_ko(error)
 {
     RMPApplication.debug("begin get_locations_ko : error = " + JSON.stringify(error));
     c_debug(debug.site, "=> get_locations_ko: error = ", error);
-    var error_msg = ${P_quoted(i18n("get_locations_ko_msg", "Récupération impossible des informations du site!"))};
+    var error_msg = ${P_quoted(i18n("get_locations_ko_msg", "Récupération impossible des informations du site !"))};
     notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify);
     RMPApplication.debug("end get_locations_ko");
 }
@@ -686,10 +694,9 @@ function getWorkOrderListFromServiceNow()
             break;
         default:
             var  title = ${P_quoted(i18n("error_getWOListFromSN_title", "Type de Work Order"))};
-            var  content = ${P_quoted(i18n("error_getWOListFromSN_msg", "La recherche pour le type de Work Order sélectionné n'est pas encore implémentée!"))};
+            var  content = ${P_quoted(i18n("error_getWOListFromSN_msg", "La recherche pour le type de Work Order sélectionné n'est pas encore implémentée !"))};
             dialog_error(title, content, btn_ok);
-            return;
-            break;
+            return "Ret OK";
     }
     getFilter();
 
@@ -745,13 +752,14 @@ function favoriteFilter(favQuery)
             // We prefer use u_resolution_time which register the last actions in Service Now
             // sn_query += "^closed_at&gt;=" + dat;
             sn_query += "^wo_u_resolution_time&gt;=" + dat;
-            break;*/
+            break;
+        */
         /*case 'lastOne' :        // by default, all ordered by creation date
             var  title = ${P_quoted(i18n("error_favoriteFilter_title", "INFO Recherche"))};
             var  content = ${P_quoted(i18n("error_favoriteFilter_msg", "Ce résultat peut être obtenu en cliquant directement sur le bouton [Rechercher] situé en bas de l'écran."))};
             dialog_info(title, content, btn_ok);
-            return;
-            break;*/
+            return "Ret OK";
+        */
         default:     
             break;
     }
@@ -828,13 +836,13 @@ function order_ok(result)
         c_debug(debug.order, "=> order_ok: var_order_list (null) = ", var_order_list);
 
         var  title = ${P_quoted(i18n("order_ok_title", "Résultat de la recherche"))};
-        var  content = ${P_quoted(i18n("order_ok_msg", "Aucun ticket ne correspond aux critères donnés!"))};
+        var  content = ${P_quoted(i18n("order_ok_msg", "Aucun ticket ne correspond aux critères donnés !"))};
         dialog_info(title, content, btn_ok);
 
         id_search_results.setVisible(false);
         $("#id_spinner_search_top").hide();
         $("#id_spinner_search_bottom").hide();
-        return;
+        return "Ret OK";
     } else {
 
         var_order_list = result.result;
@@ -852,7 +860,7 @@ function order_ko(error)
     $("#id_spinner_search_top").hide();
     $("#id_spinner_search_bottom").hide();
 
-    var error_msg = ${P_quoted(i18n("order_ko_msg", "Récupération impossible des informations de Work Order!"))};
+    var error_msg = ${P_quoted(i18n("order_ko_msg", "Récupération impossible des informations de Work Order !"))};
     notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify); 
     RMPApplication.debug("end order_ko");
 }
@@ -890,7 +898,7 @@ function fillOrderArray()
         var  title1 = ${P_quoted(i18n("error_fillOrderArray_title1", "Résultat de la recherche"))};
         var  content1 = ${P_quoted(i18n("error_fillOrderArray_msg1", "Aucune demande ne correspond à votre recherche! <br> (var_order_list non défini)"))};
         dialog_info(title1, content1, btn_ok);
-        return;
+        return "Ret OK";
     }
     $('#id_tab_wm_order').DataTable().clear();
     
@@ -1007,7 +1015,7 @@ function task_ko(error)
     $("#id_spinner_search_top").hide();
     $("#id_spinner_search_bottom").hide();
     clearTaskDataTable();
-    var error_msg = ${P_quoted(i18n("task_ko_msg", "Récupération impossible des interventions!"))};
+    var error_msg = ${P_quoted(i18n("task_ko_msg", "Récupération impossible des interventions !"))};
     notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify);
     RMPApplication.debug("end task_ko");
 }
@@ -1051,7 +1059,7 @@ function wo_details_ok(result)
     id_search_results.setVisible(false);
     id_ticket_details.setVisible(true);
 
-    var text_error_detail = ${P_quoted(i18n("error_detail_text", "Non trouvé!"))};
+    var text_error_detail = ${P_quoted(i18n("error_detail_text", "Non trouvé !"))};
     var company_detail = (isEmpty(login.company)) ? v_ol.co_u_full_name.toUpperCase() : login.company;
     var affiliate_detail = (isEmpty(v_ol.co_name)) ? v_ol.co_u_full_name : v_ol.co_name;
     var country_detail = (isEmpty(v_ol.loc_country)) ? text_error_detail : v_ol.loc_country.toUpperCase();
@@ -1118,7 +1126,7 @@ function wo_details_ko(error)
     c_debug(debug.detail, "=> wo_details_ko : error = ", error);
     $("#id_spinner_search_top").hide();
     $("#id_spinner_search_bottom").hide();
-    var error_msg = ${P_quoted(i18n("wo_details_ko_msg", "Récupération impossible des informations de Work Order!"))};
+    var error_msg = ${P_quoted(i18n("wo_details_ko_msg", "Récupération impossible des informations de Work Order !"))};
     notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify); 
     RMPApplication.debug("end wo_details_ko");
 }
@@ -1208,7 +1216,7 @@ function load_img_pb_type_ko(error)
 {
     RMPApplication.debug ("begin load_img_pb_type_ko : " + JSON.stringify(error));
     c_debug(debug.image, "=> load_img_pb_type_ko: error = ", error);
-    var error_msg = ${P_quoted(i18n("load_img_pb_type_ko", "Chargement impossible de l'image associée!"))};
+    var error_msg = ${P_quoted(i18n("load_img_pb_type_ko", "Chargement impossible de l'image associée !"))};
     notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify); 
     RMPApplication.debug ("end load_img_pb_type_ko");    
 }
@@ -1223,7 +1231,7 @@ function fillTaskArray(wm_order_num)
 
     if (var_task_list == null) {
         c_debug(debug.task, "=> fillTaskArray: var_task_list (null)");
-        return;
+        return "Ret OK";
     }
 
     $('#id_tab_wm_task').DataTable().clear();
@@ -1334,8 +1342,8 @@ function setNotation(note, indice)
         column_notation = '<span id="id_notation' + indice + '"><span ' + style + '>' + star + '</span></span>';  
     }
     c_debug(debug.eval, "=> setNotation: column_notation = ", column_notation);
-    return column_notation;
     RMPApplication.debug("end setNotation");
+    return column_notation;
 }
 // ==================================
 // Get notation value from user input
@@ -1430,7 +1438,7 @@ function setProgression(numb)
     }
     c_debug(debug.progress, "=> setProgression: selectedValue : ", selectedValue);
     if (selectedValue == 0) {
-        return;                 // progression row should not be showed
+        return "Ret OK";                 // progression row should not be showed
     }
 
     // Draw the progression bar according the current work order status
