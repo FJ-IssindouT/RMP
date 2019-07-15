@@ -1,0 +1,13 @@
+https://live.runmyprocess.com/config/112501480325272109/user/?P_metadata={"compagnie":"KD"}&P_mode=TEST
+https://live.runmyprocess.com/config/112501480325272109/user?P_metadata=%7b"compagnie":"KD"%7d&P_mode=TEST
+
+https://api.twilio.com/2010-04-01/Accounts/{AccountSid}/Messages.json
+
+{"from_tel":"+447723473589","AuthToken":"855e44b6eb00b7037b83e41fe267f16d","message":"Message de test from RMP via Twilio par SMS","to_tel":"+33642422170","AccountSid":"ACa150b07a8f8e42033eb11c1437c85873"}
+
+P_metadata={"$and":[{"metadata1":"value1"},{"metadata2":"value2"}]}
+P_metadata={"$or":[{"metadata1":"value1"},{"metadata2":"value2"}]}
+P_metadata={"metadata1":"value1","metadata2":"value2"}
+
+https://live.runmyprocess.com/config/112501480325272109/user?P_metadata={"compagnie":"KD"}&P_mode=TEST
+

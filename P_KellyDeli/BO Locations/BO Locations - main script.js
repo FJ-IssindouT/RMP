@@ -25,7 +25,7 @@ var var_list =
     "location" : "location",
     "location_name" : "location_name",
     "kiosk_reference" : "kiosk_reference",
-    "email" : "email",
+    // "email" : "email",
     "phone" : "phone",
     "address1" : "address1",
     "postal_code" : "postal_code",
@@ -255,4 +255,3 @@ function exists_ko(error)
     notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify);
     RMPApplication.debug ("end exists_ko");
 }
-

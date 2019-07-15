@@ -1,4 +1,5 @@
-[{
+[
+    {
         "title" : "Accueil",
         "image" : "https://rmp-public.s3.amazonaws.com/public/icons/home-icon.png",
         "url" : "https://live.runmyprocess.com/live/112501480325272109/appli/345846?P_mode=${P_mode}&P_language=${P_language}"
@@ -10,8 +11,23 @@
         "title" : "Gestion Langues",
         "visible" : "${has_right('398372')=='true' || has_right('398369')=='true'}",
         "url" : "https://live.runmyprocess.com/live/112501480325272109/appli/378886?P_mode=${P_mode}&P_language=${P_language}"
+    }, {
+        "title" : "Gestion Problèmes",
+        "visible" : "${has_right('398372')=='true' || has_right('398369')=='true'}",
+        "url" : "https://live.runmyprocess.com/live/112501480325272109/appli/405085?P_mode=${P_mode}&P_language=${P_language}"
+    }, {
+        "title" : "Import/Export Users",
+        "visible" : "${has_right('443419')=='true' || has_right('398372')=='true' || has_right('398369')=='true'}",
+        "url" : "https://live.runmyprocess.com/live/112501480325272109/appli/397697?P_mode=${P_mode}&P_language=${P_language}"
+    }, {
+        "title" : "Gestion Utilisateurs",
+        "visible" : "${has_right('398369')=='true'}",
+        "url" : "https://live.runmyprocess.com/live/112501480325272109/appli/385824?P_mode=${P_mode}&P_language=${P_language}"
     }
 ]
 
 // 398369 => KELLYDELI - Designers
 // 398372 => KELLYDELI - SDMO Fujitsu
+// 443419 => KELLYDELI - Supervisors
+// 401915 => KELLYDELI - Support Managers
+// 439766 => KELLYDELI - Support DESK KD
