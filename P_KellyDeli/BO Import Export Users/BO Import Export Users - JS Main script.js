@@ -24,7 +24,7 @@ var btn_ok = ${P_quoted(i18n("btn_ok", "OK"))};
 // ======================================================================
 //  Create a list of Kelly Deli users and send by email to requestor
 // ======================================================================
-function export_users_list()
+/* function export_users_list()
 {
     RMPApplication.debug ("begin export_users_list");
     c_debug(dbug.export, "=> export_users_list");
@@ -53,4 +53,40 @@ function export_users_list_ko(error)
     notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify);
     $("#id_spinner_export").hide();
     RMPApplication.debug ("end export_users_list_ko");
+} */
+
+function trigger_users_export()
+{
+    RMPApplication.debug ("begin export_users_list_started");
+    c_debug(dbug.export, "=> export_users_list_started");
+    RMPApplication.set("start_users_export", "YES");
+    RMPApplication.debug ("end export_users_list_started");
+}
+
+function export_users_list_started()
+{
+    RMPApplication.debug ("begin export_users_list_started");
+    c_debug(dbug.export, "=> export_users_list_started");
+    $("#id_spinner_export").show();
+    RMPApplication.debug ("end export_users_list_started");
+}
+
+function export_users_list_completed()
+{
+    RMPApplication.debug ("begin export_users_list_completed");
+    c_debug(dbug.export, "=> export_users_list_completed");
+    var success_msg = ${P_quoted(i18n("export_users_list_completed_msg", "Users export was processed with success! It could take several minutes before you receive the export list by email."))};
+    notify_success(info_title_notify, success_msg);
+    $("#id_spinner_export").hide();
+    RMPApplication.debug ("end export_users_list_completed");
+}
+
+function export_users_list_aborted()
+{
+    RMPApplication.debug ("begin export_users_list_aborted");
+    c_debug(dbug.export, "=> export_users_list_aborted");
+    var error_msg = ${P_quoted(i18n("export_users_list_aborted_msg", "Users export process has been aborted!"))};
+    notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify);
+    $("#id_spinner_export").hide();
+    RMPApplication.debug ("end export_users_list_aborted");
 }
