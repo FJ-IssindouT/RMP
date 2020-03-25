@@ -24,9 +24,9 @@ function getFilteredLocations()
 		// according to the location filter, we define a pattern to query RMP locations collection to obtain full informations about selected locations
 		var input  = {};
 
+		c_debug(dbug.site, "=> getFilteredLocations: switch | view = ", view);
 		switch (view) {
 			case "COMPANY" :
-				// console.log("switch COMPANY");
 				if (country_value !== "tous") {
 					input.country = country_value;	
 				}
@@ -36,7 +36,6 @@ function getFilteredLocations()
 				break;
 
 			case "COUNTRY" :
-				// console.log("switch COUNTRY");
 				input.country = country_value;
 				if (affiliate_value !== "tous") {
 					input.affiliate = affiliate_value;
@@ -44,21 +43,18 @@ function getFilteredLocations()
 				break;
 
 			case "DIVISION" :
-				// console.log("switch DIVISION");
 				input.country = country_value;
 				input.affiliate = affiliate_value;
 				input.division = division_value;
 				break;
 
 			case "REGION" :
-				// console.log("switch REGION");
 				input.country = country_value;
 				input.affiliate = affiliate_value;
 				input.region = region_value;
 				break;
 
 			case "LOCAL" :
-				// console.log("switch LOCAL");
 				input.country = country_value;
 				input.affiliate = affiliate_value;
 				input.location_code = location_code_value;
@@ -73,8 +69,9 @@ function getFilteredLocations()
 function get_locations_ok(result)
 {
 	RMPApplication.debug("begin get_locations_ok : result = " + JSON.stringify(result));
-	console.log("begin get_locations_ok : result = ", result);
 	var result_array = result.res ;
+	c_debug(dbug.site, "=> get_locations_ok : var_location_list = ", var_location_list);
+	
 
 	// Define an array with composed locations name
 	var location_names_array = [];

@@ -1,0 +1,50 @@
+<!-- Selection Box -->
+<div class="row">
+    <div class="col-sm-6 col-md-5 col-lg-4">
+        <label for="type_radio" class="control-label input-group">${i18n("type_message", "Sélectionner le type de message")}</label>
+        <div class="btn-group" data-toggle="buttons">
+            <label id="lbl_type_warning" class="btn btn-warning active">
+                <input type="radio" name="type_radio" value="warning">
+                <i class="fa fa-exclamation-circle" aria-hidden="true"></i>&nbsp;${i18n("type_option_warning", "Avertissement")}
+            </label>
+            <label id="lbl_type_info" class="btn btn-default">
+                <input type="radio" name="type_radio" value="normal">
+                <i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;${i18n("type_option_info", "Normal")}
+            </label>
+            <label id="lbl_type_critical" class="btn btn-danger">
+                <input type="radio" name="type_radio" value="critical">
+                <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;${i18n("type_option_critical", "Critique")}
+            </label>
+        </div>
+    </div>
+    <div class="row margin-top-bottom-10px">
+    </div>
+    <div class="col-sm-6 col-md-6 col-lg-4 bkg-light-blue padding-top-bottom-10px">
+        <label for="recipients_radio" class="control-label input-group">${i18n("recipients_title", "Destinataires du message")} &nbsp;<i class="fa fa-users" aria-hidden="true"></i></label>
+        <div class="radio">
+            <label id="lbl_recipients_everybody">
+                <input type="radio" name="recipients_radio" value="everybody">
+                ${i18n("recipients_radio_1", "Tout le monde")}
+            </label>
+        </div>
+        <div class="radio">
+            <label id="lbl_recipients_all_stores">
+                <input type="radio" name="recipients_radio" value="all_stores">
+                ${i18n("recipients_radio_2", "Uniquement les magasins")}
+            </label>
+        </div>
+        <div class="radio">
+            <label id="lbl_recipients_support_only" class="active">
+                <input type="radio" name="recipients_radio" value="support_only" checked="checked" >
+                ${i18n("recipients_radio_3", "Uniquement le Help Desk (test interne avant envoi)")}
+            </label>
+        </div>
+        <div class="radio">
+            <label id="lbl_recipients_test_grp_only" class="displayme_${has_right('405161')=='false'}">
+                <input type="radio" name="recipients_radio" value="test_grp_only">
+                ${i18n("recipients_radio_4", "Uniquement un groupe de test (TEST-ACCEPTANCE)")}
+            </label>
+        </div>
+    </div>
+</div>
+<hr>

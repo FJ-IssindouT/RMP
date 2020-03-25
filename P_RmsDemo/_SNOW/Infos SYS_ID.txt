@@ -1,0 +1,29 @@
+Assignment Rule
+RMSDEMO - Fujitsu France WO
+current.qualification_group = '16b3fcef4ff083001e5cecd18110c70e'; //  RMSDEMO - Fujitsu France => sys_id => OK
+current.assignment_group = '16b3fcef4ff083001e5cecd18110c70e'; //  RMSDEMO - Fujitsu France
+
+Assignment groups
+RMSDEMO - Fujitsu France    16b3fcef4ff083001e5cecd18110c70e
+RMSDEMO - Global Partner    32f30e1a4ff18f00aa5344f18110c7f8
+RMSDEMO - Fujitsu Espagne   2a70ce564ff18f00aa5344f18110c7af
+RMSDEMO - Fujitsu Belgique  2d1efd564ff18f00aa5344f18110c7a7
+
+Dispatch groups
+Dispatchers RMSDEMO                 968dd08a4ff2b700aa5344f18110c73b
+Dispatch RMSDEMO - Belgique         3a141ffa4f7ef300aa5344f18110c7bf
+Dispatch RMSDEMO - Espagne          3334db3e4f7ef300aa5344f18110c733
+Dispatch RMSDEMO - France           aba2573a4f7ef300aa5344f18110c7f9
+Dispatch RMSDEMO - Global Partner   b5549f3e4f7ef300aa5344f18110c7bd
+
+Companies [vendor view]
+RMSDEMO - Fujitsu Belgique      2d1efd564ff18f00aa5344f18110c7a7
+RMSDEMO - Fujitsu Espagne       2a70ce564ff18f00aa5344f18110c7af
+RMSDEMO - Fujitsu France        16b3fcef4ff083001e5cecd18110c70e
+RMSDEMO - Global Partner        32f30e1a4ff18f00aa5344f18110c7f8
+
+Users
+Generique Fujitsu Belgique RMSDEMO  582d35964ff18f00aa5344f18110c7f3
+Generique Fujitsu Espagne RMSDEMO   0fbd79524ff18f00aa5344f18110c77c
+Generique Fujitsu France RMSDEMO    081338ef4ff083001e5cecd18110c77d
+Generique Global Partner RMSDEMO    1c8614e74ff083001e5cecd18110c7f3

@@ -7,11 +7,19 @@ RMPApplication.debug("Stock : Application started");
 // Variables declaration
 // ========================
 
+// if "true", logs will be showed on the browser console
+var dbug = {
+  "init" : false,
+  "box" : false
+};
+
 var stock_data = null;
 // Identify special DIV on HTML page
 var id_last_update = $("#id_last_update");
 var id_phys_stock_title = $("#id_physical_stock_title");
 var id_move_report_title = $("#id_move_report_title");
+var error_title_notify = ${P_quoted(i18n("error_title_notify", "Erreur"))};
+var error_thanks_notify = ${P_quoted(i18n("error_thanks_notify", "Merci de signaler cette erreur !"))};
 var btn_ok = ${P_quoted(i18n("btn_ok", "OK"))};
 
 mainExec();
@@ -22,9 +30,9 @@ mainExec();
 function mainExec()
 {
   RMPApplication.debug("begin mainExec");
-  // console.log("=> mainExec");
 
   var contexte = id_context.getValue();
+  c_debug(dbug.init, "=> begin mainExec: contexte = ", contexte);
   // contexte == "web" for desktop screen; otherwise (for tablet & mobile) warehouse Module is not available as actual data report's presentation is poor with Google tables
 
   if (contexte == "web") {       // desktop
@@ -39,9 +47,10 @@ function mainExec()
 
     id_stock_section.setVisible(false);
     var title = ${P_quoted(i18n("error_mainExec_title", "Avertissement"))};
-    var content = ${P_quoted(i18n("error_mainExec_msg", "La consultation des stocks n'est pas disponible sous tablette et mobile!"))};
+    var content = ${P_quoted(i18n("error_mainExec_msg", "La consultation des stocks n'est pas disponible sous tablette et mobile !"))};
     dialog_warning(title, content, btn_ok);
   }
+
   RMPApplication.debug("end mainExec");
 }
 
@@ -51,7 +60,7 @@ function mainExec()
 function load_data_ok(result) 
 {
   RMPApplication.debug("begin load_data_ok : result = " + JSON.stringify(result));
-  // console.log("=> load_data_ok: result = ", result);
+  c_debug(dbug.init, "=> load_data_ok: result = ", result);
   stock_data = result;
   $("#id_spinner_stock").hide();
   
@@ -65,11 +74,12 @@ function load_data_ok(result)
   RMPApplication.debug("end load_data_ok");
 }
 
-function load_data_ko(result) 
+function load_data_ko(error) 
 {
-  RMPApplication.debug("load_data_ko : " + JSON.stringify(result));
-  // console.log("=> load_data_ko: result = ", result);
-  alertify.error("Error while loading CSV datas!");
+  RMPApplication.debug("load_data_ko : " + JSON.stringify(error));
+  c_debug(dbug.init, "=> load_data_ko: error = ", error);
+  var error_msg = ${P_quoted(i18n("load_data_ko_msg", "Récupération impossible des données CSV !"))};
+  notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify);
   id_last_update.hide();
   $("#id_spinner_stock").hide();
   RMPApplication.debug("end load_data_ko");
@@ -81,7 +91,7 @@ function load_data_ko(result)
 function loadLibrary() 
 {
   RMPApplication.debug("begin loadLibrary");
-  // console.log("=> loadLibrary");
+  c_debug(dbug.init, "=> loadLibrary");
 
   // load Google Table Library
   google.charts.load('current', {'packages':['table']});
@@ -95,7 +105,7 @@ function loadLibrary()
 function prepareTable() 
 {
   RMPApplication.debug("begin prepareTable");
-  // console.log("=> prepareTable");
+  c_debug(dbug.init, "=> prepareTable");
   // var virtual_stock_data = null;
 
   // Options giver before drawing the table "Physical Stock"
@@ -141,7 +151,7 @@ function prepareTable()
 function drawTable(d_obj, opt)
 {
   RMPApplication.debug("begin drawTable");
-  // console.log("=> drawTable: d_obj = ", d_obj, "\n opt = ", opt);
+  c_debug(dbug.init, "=> drawTable: d_obj = ", d_obj, "\n opt = ", opt);
 
   $("#id_spinner_stock").show();
   var data = new google.visualization.DataTable();
@@ -159,17 +169,18 @@ function drawTable(d_obj, opt)
           data.addColumn('string', d_obj[i][j]);      // otherwise, data belong to string type
         }
       }
+
     } else {    // entries in the table
 
       var data_row = [];
       for (j=0; j<d_obj[i].length; j++) {
         data_row[j] = d_obj[i][j];
       }
-      // console.log("=> drawTable: data_row = ", data_row);
+      c_debug(dbug.init, "=> drawTable: data_row = ", data_row);
       array_data.push(data_row);
     }
   }
-  // console.log("=> drawTable: array_data = ", array_data);
+  c_debug(dbug.init, "=> drawTable: array_data = ", array_data);
   data.addRows(array_data);
 
   var cssClassNames = {

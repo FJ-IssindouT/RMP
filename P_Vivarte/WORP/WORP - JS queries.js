@@ -1,5 +1,5 @@
 var queries_title_notify = ${P_quoted(i18n("queries_title_notify", "Erreur"))};
-var queries_thanks_notify = ${P_quoted(i18n("queries_thanks_notify", "Merci de signaler cette erreur!"))};
+var queries_thanks_notify = ${P_quoted(i18n("queries_thanks_notify", "Merci de signaler cette erreur !"))};
 var queries_btn_ok = ${P_quoted(i18n("btn_ok", "OK"))};
 
 // ===========================
@@ -10,7 +10,7 @@ function getWoNumberQuery()
     RMPApplication.debug("begin getWoNumberQuery");
     var wm_number = $("#id_numberFilter").val();
     var wm_number_query = (isEmpty(wm_number)) ? "" : "^number=" + $.trim(wm_number);
-    c_debug(debug.query, "=> getWoNumberQuery: wm_number_query = ", wm_number_query);
+    c_debug(d_bug.query, "=> getWoNumberQuery: wm_number_query = ", wm_number_query);
     RMPApplication.debug("end getWoNumberQuery");
     return wm_number_query;
 }
@@ -23,7 +23,7 @@ function getCorrelationIdQuery()
     RMPApplication.debug("begin getcorrelationIdQuery");
     var referenceClient = $("#id_clientReferenceFilter").val();
     var corr_id_query = (isEmpty(referenceClient)) ? "" : "^correlation_id=" + $.trim(referenceClient);
-    c_debug(debug.query, "=> getCorrelationIdQuery: corr_id_query = ", corr_id_query);
+    c_debug(d_bug.query, "=> getCorrelationIdQuery: corr_id_query = ", corr_id_query);
     RMPApplication.debug("end getcorrelationIdQuery");
     return corr_id_query;
 }
@@ -49,7 +49,7 @@ function getStatusQuery()
             }
         }
     }
-    c_debug(debug.query, "=> getStatusQuery: statusQuery = ", statusQuery);
+    c_debug(d_bug.query, "=> getStatusQuery: statusQuery = ", statusQuery);
     RMPApplication.debug("end getStatusQuery");
     return statusQuery;
 }
@@ -66,7 +66,7 @@ function getWoTypeQuery()
     if (!isEmpty(wo_type) && (wo_type != "tous")) {
         var woTypeQuery = "^u_work_order_type=" + $.trim(wo_type);
     }
-    c_debug(debug.query, "=> getWoTypeQuery: woTypeQuery = ", woTypeQuery);
+    c_debug(d_bug.query, "=> getWoTypeQuery: woTypeQuery = ", woTypeQuery);
     RMPApplication.debug("end getWoTypeQuery");
     return woTypeQuery;
 }
@@ -79,7 +79,7 @@ function getDescriptionQuery()
     RMPApplication.debug("begin getDescriptionQuery");
     var description = $("#id_descriptionFilter").val();
     var descriptionQuery = (isEmpty(description)) ? "" : "^short_descriptionLIKE" + $.trim(description);
-    c_debug(debug.query, "=> getDescriptionQuery: descriptionQuery = ", descriptionQuery);
+    c_debug(d_bug.query, "=> getDescriptionQuery: descriptionQuery = ", descriptionQuery);
     RMPApplication.debug("end getDescriptionQuery");
     return descriptionQuery;
 }
@@ -111,7 +111,7 @@ function getOpenedAtQuery()
         var date = end_opened_date.split(datebox_separator);
         openedAtQuery = "^opened_at&lt;=" + date[2] + service_now_separator + date[1] + service_now_separator + date[0];
     }
-    c_debug(debug.query, "=> getOpenedAtQuery: openedAtQuery = ", openedAtQuery);
+    c_debug(d_bug.query, "=> getOpenedAtQuery: openedAtQuery = ", openedAtQuery);
     RMPApplication.debug("end getOpenedAtQuery");
     return openedAtQuery;
 }
@@ -142,7 +142,7 @@ function getClosedAtQuery()
         var date = end_closed_date.split(datebox_separator);
         closedAtQuery = "^closed_at&lt;=" + date[2] + service_now_separator + date[1] + service_now_separator + date[0];
     }
-    c_debug(debug.query, "=> getClosedAtQuery: closedAtQuery = ", closedAtQuery);
+    c_debug(d_bug.query, "=> getClosedAtQuery: closedAtQuery = ", closedAtQuery);
     RMPApplication.debug("end getClosedAtQuery");
     return closedAtQuery;
 }
@@ -159,7 +159,7 @@ function getLocations()
     var allAffiliates = (affiliate_value === "tous") ? true : false;
 
     // Set SCOPE variable: check if "tous" value is selected for country & affiliate filters
-    c_debug(debug.query, "=> getLocations: switch | view = ", view);
+    c_debug(d_bug.query, "=> getLocations: switch | view = ", view);
     switch (view) {
         case "COMPANY" :
             if (allCountries && allAffiliates) {    // "tous" + "tous" => company is enough
@@ -239,12 +239,12 @@ function getCompanyQuery()
     RMPApplication.debug("begin getCompanyQuery");
     var company = login.company;
     if (isEmpty(company)) {
-        var error_msg = ${P_quoted(i18n("error_getCompanyQuery_msg", "Le nom de la compagnie n'est pas pas défini!"))};
+        var error_msg = ${P_quoted(i18n("error_getCompanyQuery_msg", "Le nom de la compagnie n'est pas pas défini !"))};
         notify_error(queries_title_notify, error_msg + ' ' + queries_thanks_notify); 
         return;
     } else {
         var companyQuery = "^company.u_full_nameLIKE" + login.company;
-        c_debug(debug.query, "=> getCompanyQuery: companyQuery = ", companyQuery);  
+        c_debug(d_bug.query, "=> getCompanyQuery: companyQuery = ", companyQuery);  
         sn_query += companyQuery;       // query is completed
         getContractFullName();          // to define contract name
     }
@@ -257,12 +257,12 @@ function getCompanyQuery()
 function getContractFullName()
 {
     RMPApplication.debug("begin getContractFullName");
-    c_debug(debug.query, "=> getContractFullName: view = ", view);
+    c_debug(d_bug.query, "=> getContractFullName: view = ", view);
     var affiliate_value = $("#id_affiliateFilter").val();          //get selected affiliate value (only one can be selected)
     var affiliate_label = $("#id_affiliateFilter").text();          //get selected affiliate label value (only one can be selected)
     var allAffiliates = (affiliate_value.toLowerCase() === "tous") ? true : false;
 
-    c_debug(debug.query, "=> getContractFullName: switch | scope = ", scope);
+    c_debug(d_bug.query, "=> getContractFullName: switch | scope = ", scope);
     switch (scope) {
         case "COUNTRY" :
         case "GRP_AFF" :         // affiliate_value = 'tous'
@@ -285,7 +285,7 @@ function getContractFullName()
                 default :
                     break;
             }
-            c_debug(debug.query, "=> getContractFullName: contractQuery = ", contractQuery);
+            c_debug(d_bug.query, "=> getContractFullName: contractQuery = ", contractQuery);
             sn_query += contractQuery;
             getLocationQuery();
             break;
@@ -299,7 +299,7 @@ function getContractFullName()
                 var query = {};
                 query.abbreviation = { "$regex" : affiliate_value, "$options" : "i"};      // options for case INSENSITIVE
                 input.input_query = query; 
-                c_debug(debug.query, "=> getContractFullName: switch default: input = ", input);
+                c_debug(d_bug.query, "=> getContractFullName: switch default: input = ", input);
                 id_get_affiliate_api.trigger(input, {}, affiliate_ok, affiliate_ko);
             }
             break;
@@ -310,10 +310,10 @@ function getContractFullName()
 function affiliate_ok(result)
 {
     RMPApplication.debug("begin affiliate_ok : result = " + JSON.stringify(result));
-    c_debug(debug.query, "=> affiliate_ok: result = ", result);
+    c_debug(d_bug.query, "=> affiliate_ok: result = ", result);
     if ( (result.records.length == undefined) || (result.records.length == 0) ) {
         var  error_affiliate_ok_title = ${P_quoted(i18n("error_affiliate_ok_title", "Résultat de la recherche"))};
-        var  error_affiliate_ok_msg = ${P_quoted(i18n("error_affiliate_ok_msg", "Aucun contrat ne répond aux critères!"))};
+        var  error_affiliate_ok_msg = ${P_quoted(i18n("error_affiliate_ok_msg", "Aucun contrat ne répond aux critères !"))};
         dialog_error(error_affiliate_ok_title, error_affiliate_ok_msg, queries_btn_ok);
         return;
     } else {
@@ -321,7 +321,7 @@ function affiliate_ok(result)
         var contract = affiliate_obj.company + "\\" + affiliate_obj.abbreviation;   // contract definition
         var contract_query = "^company.u_full_name=" + contract;
         sn_query += contract_query;
-        c_debug(debug.query, "=> affiliate_ok: contract_query = ", sn_query);
+        c_debug(d_bug.query, "=> affiliate_ok: contract_query = ", sn_query);
         getLocationQuery();     // precise geographical area to limit search time
     }
     // RMPApplication.debug("end affiliate_ok");
@@ -330,8 +330,8 @@ function affiliate_ok(result)
 function affiliate_ko(error)
 {
     RMPApplication.debug("begin affiliate_ko : error = " + JSON.stringify(error));
-    c_debug(debug.query, "=> affiliate_ko: error = ", error);
-    var error_msg = ${P_quoted(i18n("affiliate_ko_msg", "Récupération impossible des informations du contrat!"))};
+    c_debug(d_bug.query, "=> affiliate_ko: error = ", error);
+    var error_msg = ${P_quoted(i18n("affiliate_ko_msg", "Récupération impossible des informations du contrat !"))};
     notify_error(queries_title_notify, error_msg + ' ' + queries_thanks_notify); 
     RMPApplication.debug("end affiliate_ko");
 }
@@ -342,7 +342,7 @@ function affiliate_ko(error)
 function getLocationQuery()
 {
     RMPApplication.debug("begin getLocationQuery");
-    c_debug(debug.query, "=> getLocationQuery: scope = ", scope);
+    c_debug(d_bug.query, "=> getLocationQuery: scope = ", scope);
     var country_value = $("#id_countryFilter").val();
     var affiliate_value = $("#id_affiliateFilter").val();
     var locations_value = $("#id_locationFilter").val();
@@ -388,7 +388,7 @@ function getLocationQuery()
         if (locations_value[0] === 'false') {        // no location matching
             $("#id_spinner_search").hide();
             var  error_location_title = ${P_quoted(i18n("error_location_title", "Suivi des incidents"))};
-            var  error_location_text = ${P_quoted(i18n("error_location_text", "Il n'existe aucun site répondant aux critères de recherche!"))};
+            var  error_location_text = ${P_quoted(i18n("error_location_text", "Il n'existe aucun site répondant aux critères de recherche !"))};
             dialog_warning(error_location_title, error_location_text, queries_btn_ok);
 
         } else {
@@ -411,7 +411,7 @@ function getLocationQuery()
                                 rule_name = "loca_rule_2";
                                 break;
                         }
-                        // c_debug(debug.query, "=> getLocationQuery: rule_name = ", rule_name);
+                        // c_debug(d_bug.query, "=> getLocationQuery: rule_name = ", rule_name);
 
                         switch (rule_name) {
                             case 'loca_rule_1':         // CAROLL
@@ -421,8 +421,8 @@ function getLocationQuery()
                                 var loca_name = $.trim(var_location_list[j].location) + separator + $.trim(var_location_list[j].location_code);
                                 break;
                         }   // -- end switch (rule_name)
-                        // c_debug(debug.query, "=> getLocationQuery: i = ", i);
-                        // c_debug(debug.query, "=> getLocationQuery: loca_name = ", loca_name);
+                        // c_debug(d_bug.query, "=> getLocationQuery: i = ", i);
+                        // c_debug(d_bug.query, "=> getLocationQuery: loca_name = ", loca_name);
 
                         if (first == true) {
                             first = false;
@@ -440,7 +440,7 @@ function getLocationQuery()
         return;
 
     } else {
-        c_debug(debug.query, "=> getLocationQuery: locationQuery = ", locationQuery);
+        c_debug(d_bug.query, "=> getLocationQuery: locationQuery = ", locationQuery);
         sn_query += locationQuery;          // query is complete
         queryServiceNow();                  // request Service Now with sn_query    sn_query += locationQuery;
     }

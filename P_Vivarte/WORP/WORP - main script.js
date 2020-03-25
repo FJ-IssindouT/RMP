@@ -1,6 +1,6 @@
-// ========================
+// ============================
 //   Work Order Report : MAIN
-// ========================
+// ============================
 RMPApplication.debug("Main : Application started");
 
 // ========================
@@ -8,7 +8,7 @@ RMPApplication.debug("Main : Application started");
 // ========================
 
 // if "true", logs will be showed on the browser console
-var debug = {
+var d_bug = {
     "init" : false,
     "box" : false,
     "site" : false,
@@ -39,7 +39,7 @@ var iso_code ='fr';
 
 var error_title_notify = ${P_quoted(i18n("error_title_notify", "Erreur"))};
 var info_title_notify = ${P_quoted(i18n("info_title_notify", "Information"))};
-var error_thanks_notify = ${P_quoted(i18n("error_thanks_notify", "Merci de signaler cette erreur!"))};
+var error_thanks_notify = ${P_quoted(i18n("error_thanks_notify", "Merci de signaler cette erreur !"))};
 var btn_ok = ${P_quoted(i18n("btn_ok", "OK"))};
 
 // used collections list
@@ -61,7 +61,7 @@ function init()
     var option = {};
     var pattern = {};
     pattern.login = RMPApplication.get("login");
-    c_debug(debug.init, "=> init: pattern = ", pattern);
+    c_debug(d_bug.init, "=> init: pattern = ", pattern);
 
     id_get_user_info_as_admin_api.trigger(pattern, option , get_info_ok, get_info_ko); 
     RMPApplication.debug("end init");
@@ -73,7 +73,7 @@ function init()
 function resetWI()
 {
     RMPApplication.debug("begin resetWI");
-    c_debug(debug.init, "=> resetWI");
+    c_debug(d_bug.init, "=> resetWI");
 
     // Show only the necessary section: search
     id_search_filters.setVisible(true);
@@ -112,8 +112,8 @@ function resetWI()
             themeDate: "info",
             themeDatePick: "warning",
             useLang: selectedLang,
-            minYear: 2016,
-            maxYear: 2022,
+            minYear: 2017,
+            maxYear: 2023,
             useSetButton: true,
             themeSetButton: "primary",
             //overrideSetDateButtonLabel: "Valider",
@@ -138,7 +138,7 @@ function resetWI()
 function get_info_ok(result) 
 {
     RMPApplication.debug("begin get_info_ok: result =  " + JSON.stringify(result));
-    c_debug(debug.init, "=> get_info_ok: result = ", result);
+    c_debug(d_bug.init, "=> get_info_ok: result = ", result);
 
     // define "login" variable properties
     login.user = result.user;
@@ -154,7 +154,7 @@ function get_info_ok(result)
     login.division = (!isEmpty(result.division)) ? result.division.trim().toUpperCase() : '';
     login.region = (!isEmpty(result.region)) ? result.region.trim().toUpperCase() : '';
     login.is_super_user = (!isEmpty(result.is_super_user)) ? result.is_super_user.toUpperCase() : '';
-    c_debug(debug.init, "=> get_info_ok: login = ", login);
+    c_debug(d_bug.init, "=> get_info_ok: login = ", login);
 
     // Define 'view' global variable, used to filter locations scope
     // Different profiles are: SUPERUSER-COMPANY-COUNTRY-DIVISION-REGION-LOCAL
@@ -195,8 +195,8 @@ function get_info_ok(result)
 function get_info_ko(error) 
 {
     RMPApplication.debug("begin get_info_ko: error = " + JSON.stringify(error));
-    // console.log("=> get_info_ko: error = ", error);
-    var error_msg = ${P_quoted(i18n("get_info_ko_msg", "Récupération impossible des informations utilisateur!"))};
+    c_debug(d_bug.init, "=> get_info_ko: error = ", error);
+    var error_msg = ${P_quoted(i18n("get_info_ko_msg", "Récupération impossible des informations utilisateur !"))};
     notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify);
     RMPApplication.debug("end get_info_ko");
 } 
@@ -209,7 +209,7 @@ function get_info_ko(error)
 function fillStateBox() 
 {
     RMPApplication.debug("begin fillStateBox");
-    c_debug(debug.box, "=> fillStateBox");
+    c_debug(d_bug.box, "=> fillStateBox");
     var text_statusFilter = ${P_quoted(i18n("statusFilter_text", "Tous les statuts"))};
 
     $("#id_statusFilter").append($("<option selected />").val('tous').html(text_statusFilter));
@@ -224,7 +224,7 @@ function fillStateBox()
 function fillWoTypeBox() 
 {
     RMPApplication.debug("begin fillWoTypeBox");
-    c_debug(debug.box, "=> fillWoTypeBox");
+    c_debug(d_bug.box, "=> fillWoTypeBox");
     var text_woTypeFilter = ${P_quoted(i18n("woTypeFilter_text", "Tous"))};
 
     $("#id_woTypeFilter").append($("<option selected />").val('tous').html(text_woTypeFilter));
@@ -241,10 +241,10 @@ function fillWoTypeBox()
 function fillAffiliateBox(vue) 
 {
     RMPApplication.debug("begin fillAffiliateBox : vue = ", vue);
-    c_debug(debug.box, "=> fillAffiliateBox: vue = ", vue);
+    c_debug(d_bug.box, "=> fillAffiliateBox: vue = ", vue);
 
     var affiliateListTemp = JSON.parse(id_affiliate_cl.getList()).list;
-    c_debug(debug.box, "=> fillAffiliateBox: affiliateListTemp = ", affiliateListTemp);
+    c_debug(d_bug.box, "=> fillAffiliateBox: affiliateListTemp = ", affiliateListTemp);
     var text_affiliateFilter = ${P_quoted(i18n("affiliateFilter_text", "TOUTES LES ENSEIGNES"))};
 
     // Complete affiliate selection filter according connected profile
@@ -291,7 +291,7 @@ function fillAffiliateBox(vue)
                      affiliateList = [{ 'label': affiliateListTemp[i].label.toUpperCase(), 'value': affiliateListTemp[i].value }];
                 }
             }
-            c_debug(debug.box, "=> fillAffiliateBox: affiliateList = ", affiliateList);
+            c_debug(d_bug.box, "=> fillAffiliateBox: affiliateList = ", affiliateList);
             $("#id_affiliateFilter").append($("<option selected />").val(affiliateList[0].value).html(affiliateList[0].label.toUpperCase()));
             $("#id_affiliateFilter").attr('readonly', 'readonly');
             break;
@@ -311,7 +311,7 @@ function fillAffiliateBox(vue)
 function fillCountryBox(vue) 
 {
     RMPApplication.debug("begin fillCountryBox: vue = " + JSON.stringify(vue));
-    c_debug(debug.box, "=> fillCountryBox: vue = ", vue);
+    c_debug(d_bug.box, "=> fillCountryBox: vue = ", vue);
 
     var text_countryFilter = "";
 
@@ -363,7 +363,7 @@ function fillCountryBox(vue)
 function fillLocationBox(locations_array)
 {
     RMPApplication.debug("begin fillLocationBox: locations_array = " + JSON.stringify(locations_array));
-    c_debug(debug.box, "=> fillLocationBox: locations_array = ", locations_array);
+    c_debug(d_bug.box, "=> fillLocationBox: locations_array = ", locations_array);
 
     $("#id_locationFilter").empty();    // field reset
 
@@ -378,7 +378,7 @@ function fillLocationBox(locations_array)
 
             text_locationFilter = ${P_quoted(i18n("locationFilter_text", "Ensemble des sites"))}; 
             $("#id_locationFilter").append($("<option selected />").val('tous').html(text_locationFilter));
-            c_debug(debug.box, "=> fillLocationBox: Add => Ensemble des sites");
+            c_debug(d_bug.box, "=> fillLocationBox: Add => Ensemble des sites");
         }
 
         // locations_array is alphabetically ordered
@@ -388,7 +388,7 @@ function fillLocationBox(locations_array)
         $.each(locations_array, function() {
             var id_i = this.location_code;
             var text_i = "&#10143; " + this.location_code + " - " + this.city.toUpperCase();
-            // c_debug(debug.box, "=> fillLocationBox: location_code = ", this.location_code);
+            // c_debug(d_bug.box, "=> fillLocationBox: location_code = ", this.location_code);
             if (locations_array.length == 1) {
                 $("#id_locationFilter").append($("<option selected />").val(id_i).html(text_i));
             } else {  
@@ -411,7 +411,7 @@ function fillLocationBox(locations_array)
 function load_site(locationCode) 
 {
     RMPApplication.debug ("begin load_site: locationCode = " + JSON.stringify(locationCode));
-    c_debug(debug.site, "=> load_site: locationCode = ", locationCode);
+    c_debug(d_bug.site, "=> load_site: locationCode = ", locationCode);
     var my_pattern = {};
     var options = {};
     my_pattern.location_code = locationCode;
@@ -425,16 +425,16 @@ function load_site_ok(result)
 {
     RMPApplication.debug ("begin load_site_ok: result = " + JSON.stringify(result)); 
     site = result;
-    c_debug(debug.site, "=> load_site_ok: site = ", site);
+    c_debug(d_bug.site, "=> load_site_ok: site = ", site);
     RMPApplication.debug ("end load_site_ok");    
 }
 
 function load_site_ko(error) 
 {
     RMPApplication.debug ("begin load_site_ko: result = " + JSON.stringify(error));
-    c_debug(debug.site, "=> load_site_ko: error = ", JSON.stringify(error));
+    c_debug(d_bug.site, "=> load_site_ko: error = ", JSON.stringify(error));
     site = {};
-    var error_msg = ${P_quoted(i18n("get_load_site_ko_msg", "Récupération impossible des informations du site!"))};
+    var error_msg = ${P_quoted(i18n("get_load_site_ko_msg", "Récupération impossible des informations du site !"))};
     notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify);
     RMPApplication.debug ("end load_site_ko");    
 }
@@ -445,12 +445,12 @@ function load_site_ko(error)
 function getFilteredLocations()
 {
     RMPApplication.debug("begin getFilteredLocations");
-    c_debug(debug.site, "=> getFilteredLocations");
+    c_debug(d_bug.site, "=> getFilteredLocations");
 
     // Retrieving user's input value
     var country_value = $("#id_countryFilter").val();
     var affiliate_value = $("#id_affiliateFilter").val();
-    c_debug(debug.site, "=> getFilteredLocations: affiliate_value = ", affiliate_value);
+    c_debug(d_bug.site, "=> getFilteredLocations: affiliate_value = ", affiliate_value);
     var affiliate_label = $("#id_affiliateFilter").text();
     var division_value = login.division; 
     var region_value = login.region;
@@ -464,7 +464,7 @@ function getFilteredLocations()
         // we propose only one value for all locations "Ensemble des sites"
         $("#id_locationFilter").empty();    // previous value reset
         $("#id_locationFilter").append($("<option selected />").val('tous').html(text_locationFilter));
-        c_debug(debug.site, "=> getFilteredLocations: ADD => => Ensemble des sites");
+        c_debug(d_bug.site, "=> getFilteredLocations: ADD => => Ensemble des sites");
 
     } else {
 
@@ -477,12 +477,12 @@ function getFilteredLocations()
             for (var i=0; i < affiliateList.length; i++) {
                 if ( affiliate_value.toUpperCase() ==  affiliateList[i].value.toUpperCase() ) {
                     affiliate_value = affiliateList[i].label.toUpperCase();
-                    c_debug(debug.site, "=> getFilteredLocations: affiliate_value = ", affiliate_value);
+                    c_debug(d_bug.site, "=> getFilteredLocations: affiliate_value = ", affiliate_value);
                 }
             }
         }
 
-        c_debug(debug.site, "=> getFilteredLocations: switch | view = ", view);
+        c_debug(d_bug.site, "=> getFilteredLocations: switch | view = ", view);
         switch (view) {
             case "COMPANY" :
                 if ( (country_value !== "tous") && (!isEmpty(country_value)) ) {
@@ -579,7 +579,7 @@ function getFilteredLocations()
         }
         
         //call api to location collection
-        c_debug(debug.site, "=> getFilteredLocations: input = ", input);
+        c_debug(d_bug.site, "=> getFilteredLocations: input = ", input);
         id_get_filtered_locations_api.trigger(input, options, get_locations_ok, get_locations_ko);
     }
     RMPApplication.debug("end getFilteredLocations");
@@ -589,7 +589,7 @@ function get_locations_ok(result)
 {
     RMPApplication.debug("begin get_locations_ok : result = " + JSON.stringify(result));
     var_location_list = result.res;
-    c_debug(debug.site, "=> get_locations_ok : var_location_list = ", var_location_list);
+    c_debug(d_bug.site, "=> get_locations_ok : var_location_list = ", var_location_list);
 
     // Fill locations select box with locations result
     fillLocationBox(var_location_list);
@@ -599,8 +599,8 @@ function get_locations_ok(result)
 function get_locations_ko(error)
 {
     RMPApplication.debug("begin get_locations_ko : error = " + JSON.stringify(error));
-    c_debug(debug.site, "=> get_locations_ko: error = ", error);
-    var error_msg = ${P_quoted(i18n("get_locations_ko_msg", "Récupération impossible des informations du site!"))};
+    c_debug(d_bug.site, "=> get_locations_ko: error = ", error);
+    var error_msg = ${P_quoted(i18n("get_locations_ko_msg", "Récupération impossible des informations du site !"))};
     notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify);
     RMPApplication.debug("end get_locations_ko");
 }
@@ -611,21 +611,21 @@ function get_locations_ko(error)
 function get_all_siteinfo() 
 {
     RMPApplication.debug("begin get_all_siteinfo");
-    c_debug(debug.site, "=> get_all_siteinfo");
+    c_debug(d_bug.site, "=> get_all_siteinfo");
     // TO DO: tenter de faire un appel API pour récupérer toutes les informations
     //     des locations concernées par le filtre de recherche
     //     PUIS pour chaque entrée de var_order_list, associer les informations de SITE
 
     curr_indice = 0;
     var v_ol_len = var_order_list.length;
-    c_debug(debug.site, "=> get_all_siteinfo: v_ol_l = ", v_ol_len);
+    c_debug(d_bug.site, "=> get_all_siteinfo: v_ol_l = ", v_ol_len);
     if (var_order_list.length == undefined) {       // only one search's result
        var buf = var_order_list.location.split('-');
         var loc_code = $.trim(buf[buf.length - 1]);
         var input = {};
         input.location_code = loc_code;
         input.indice = "0";
-        c_debug(debug.site, "=> get_all_siteinfo: loc_code = ", loc_code);
+        c_debug(d_bug.site, "=> get_all_siteinfo: loc_code = ", loc_code);
         //call api to location collection
         id_get_filtered_locations_api.trigger(input, {}, get_all_siteinfo_ok, get_all_siteinfo_ko);
     } else {
@@ -635,13 +635,13 @@ function get_all_siteinfo()
             
             // test par exemple sur le 3ème enregistrement
             /*if (i == 3) {
-                c_debug(debug.site, "=> get_all_siteinfo: \n +var_order_list[i].location = ", var_order_list[i].location, "\n +loc_code = ", loc_code);
+                c_debug(d_bug.site, "=> get_all_siteinfo: \n +var_order_list[i].location = ", var_order_list[i].location, "\n +loc_code = ", loc_code);
             }*/
 
             var input = {};
             input.location_code = loc_code;
             input.indice = i;
-            c_debug(debug.site, "=> get_all_siteinfo: loc_code = ", loc_code);
+            c_debug(d_bug.site, "=> get_all_siteinfo: loc_code = ", loc_code);
             //call api to location collection
             id_get_filtered_locations_api.trigger(input, {}, get_all_siteinfo_ok, get_all_siteinfo_ko);
         }
@@ -652,7 +652,7 @@ function get_all_siteinfo()
 function get_all_siteinfo_ok(result)
 {
     RMPApplication.debug("begin get_all_siteinfo_ok : result = " + JSON.stringify(result));
-    c_debug(debug.site, "=> get_all_siteinfo_ok : result = ", result);
+    c_debug(d_bug.site, "=> get_all_siteinfo_ok : result = ", result);
     if (var_order_list.length == undefined) {       // only one work order => 1 object with non length
         var_order_list.site = result.res;
         fillOrderArray();
@@ -662,9 +662,9 @@ function get_all_siteinfo_ok(result)
 
         // test par exemple sur le 3ème enregistrement
         /*if (curr_indice == 3) {
-            c_debug(debug.site, '=> get_all_siteinfo_ok : \n +c_indice = ', c_indice);
-            c_debug(debug.site, '\n +var_order_list[c_indice].location = ', var_order_list[c_indice].location);
-            c_debug(debug.site, '\n +var_order_list[c_indice].site = ', var_order_list[c_indice].site);
+            c_debug(d_bug.site, '=> get_all_siteinfo_ok : \n +c_indice = ', c_indice);
+            c_debug(d_bug.site, '\n +var_order_list[c_indice].location = ', var_order_list[c_indice].location);
+            c_debug(d_bug.site, '\n +var_order_list[c_indice].site = ', var_order_list[c_indice].site);
         }*/
 
         if (curr_indice == var_order_list.length-1) {
@@ -679,8 +679,8 @@ function get_all_siteinfo_ok(result)
 function get_all_siteinfo_ko(error)
 {
     RMPApplication.debug("begin get_all_siteinfo_ko : error = " + JSON.stringify(error));
-    // console.log("=> get_all_siteinfo_ko: error = ", error);
-    var error_msg = ${P_quoted(i18n("get_all_siteinfo_ko_msg", "Récupération impossible des informations de tous les sites!"))};
+    c_debug(d_bug.site, "=> get_all_siteinfo_ko : error = ", error);
+    var error_msg = ${P_quoted(i18n("get_all_siteinfo_ko_msg", "Récupération impossible des informations de tous les sites !"))};
     notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify);
     RMPApplication.debug("end get_all_siteinfo_ko");
 }
@@ -691,7 +691,7 @@ function get_all_siteinfo_ko(error)
 function getWorkOrderListFromServiceNow() 
 {
     RMPApplication.debug("begin getWorkOrderListFromServiceNow");
-    c_debug(debug.order, "=> getWorkOrderListFromServiceNow");
+    c_debug(d_bug.order, "=> getWorkOrderListFromServiceNow");
 
     initDataTable();
     clearOrderDataTable();
@@ -709,7 +709,7 @@ function getWorkOrderListFromServiceNow()
             break;
         default:
             var  title = ${P_quoted(i18n("error_getWOListFromSN_title", "Type de Work Order"))};
-            var  content = ${P_quoted(i18n("error_getWOListFromSN_msg", "La recherche pour le type de Work Order sélectionné n'est pas encore implémentée!"))};
+            var  content = ${P_quoted(i18n("error_getWOListFromSN_msg", "La recherche pour le type de Work Order sélectionné n'est pas encore implémentée !"))};
             dialog_error(title, content, btn_ok);
             return;
             break;
@@ -725,7 +725,7 @@ function getWorkOrderListFromServiceNow()
 function favoriteFilter(favQuery)
 {
     RMPApplication.debug("begin favoriteFilter: favQuery = ", favQuery);
-    c_debug(debug.query, "=> favoriteFilter: favQuery = ", favQuery);
+    c_debug(d_bug.query, "=> favoriteFilter: favQuery = ", favQuery);
     initDataTable();
     clearOrderDataTable();
 
@@ -780,7 +780,7 @@ function favoriteFilter(favQuery)
 function getFilter()
 {
     RMPApplication.debug("begin getFilter");
-    c_debug(debug.query, "=> getFilter");
+    c_debug(d_bug.query, "=> getFilter");
 
     // retrieve values and prepare query
     sn_query = "";
@@ -801,7 +801,7 @@ function getFilter()
 function queryServiceNow()
 {
     RMPApplication.debug("begin queryServiceNow: sn_query = ", sn_query);
-    c_debug(debug.query, "=> queryServiceNow: sn_query = ", sn_query);
+    c_debug(d_bug.query, "=> queryServiceNow: sn_query = ", sn_query);
     $("#id_spinner_search_top").show();
     $("#id_spinner_search_bottom").show();
     clearOrderDataTable();
@@ -820,14 +820,14 @@ function queryServiceNow()
 function order_ok(result)
 {
     RMPApplication.debug("order_ok : httpCode =  " + result.httpCode);
-    c_debug(debug.order, '=> order_ok: result', result);
+    c_debug(d_bug.order, '=> order_ok: result', result);
 
     if (isEmpty(result.wm_order_list)) {
         var_order_list = null;
-        c_debug(debug.order, "=> order_ok: var_order_list 1 = ", var_order_list);
+        c_debug(d_bug.order, "=> order_ok: var_order_list 1 = ", var_order_list);
 
         var  title = ${P_quoted(i18n("order_ok_title", "Résultat de la recherche"))};
-        var  content = ${P_quoted(i18n("order_ok_msg", "Aucun ticket ne correspond aux critères donnés!"))};
+        var  content = ${P_quoted(i18n("order_ok_msg", "Aucun ticket ne correspond aux critères donnés !"))};
         dialog_info(title, content, btn_ok);
 
         id_search_results.setVisible(false);
@@ -837,7 +837,7 @@ function order_ok(result)
     } else {
 
         var_order_list = result.wm_order_list.getRecordsResult;
-        c_debug(debug.order, "=> order_ok: var_order_list = ", var_order_list);
+        c_debug(d_bug.order, "=> order_ok: var_order_list = ", var_order_list);
 
     }
     
@@ -851,7 +851,7 @@ function order_ko(error)
     $("#id_spinner_search_top").hide();
     $("#id_spinner_search_bottom").hide();
 
-    var error_msg = ${P_quoted(i18n("order_ko_msg", "Récupération impossible des informations de Work Order!"))};
+    var error_msg = ${P_quoted(i18n("order_ko_msg", "Récupération impossible des informations de Work Order !"))};
     notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify); 
     RMPApplication.debug("end order_ko");
 }
@@ -862,7 +862,7 @@ function order_ko(error)
 function getWorkOrderList() 
 {
     RMPApplication.debug("begin getWorkOrderList");
-    c_debug(debug.order, "getWorkOrderList");
+    c_debug(d_bug.order, "getWorkOrderList");
 
     var query = "";
     if (var_order_list == null) {
@@ -871,7 +871,7 @@ function getWorkOrderList()
     }
     if (var_order_list.length == undefined) {
         query = "parent.number=" + var_order_list.number;
-        c_debug(debug.order, "=> getWorkOrderList: query 1 = ", query);
+        c_debug(d_bug.order, "=> getWorkOrderList: query 1 = ", query);
     } else {
         for (i=0; i < var_order_list.length; i++) {
             if (query == "") {
@@ -884,13 +884,13 @@ function getWorkOrderList()
                 query += "," + var_order_list[i].number;
             }
         }
-        c_debug(debug.order, "=> getWorkOrderList: query 2 = ", query);
+        c_debug(d_bug.order, "=> getWorkOrderList: query 2 = ", query);
     }
     RMPApplication.debug("query = " + query);
 
     var option = {};
     var pattern =  {"wm_task_query": query};
-    c_debug(debug.order, "=> getWorkOrderList: pattern = ", pattern);
+    c_debug(d_bug.order, "=> getWorkOrderList: pattern = ", pattern);
     id_get_work_order_tasks_list_api.trigger(pattern, option, task_ok, task_ko);
     RMPApplication.debug("end getWorkOrderList");
 }
@@ -899,10 +899,10 @@ function task_ok(result)
 {
     RMPApplication.debug("begin task_ok : result =  " + JSON.stringify(result)); 
     RMPApplication.debug("=> task_ok : httpCode =  " + result.httpCode); 
-    c_debug(debug.task, "2=> task_ok: result = ", result);
+    c_debug(d_bug.task, "2=> task_ok: result = ", result);
     if (result.wm_task_list == "") {
         var_task_list = null;
-        c_debug(debug.task, "task_ok: var_task_list 1 = ", var_task_list);
+        c_debug(d_bug.task, "task_ok: var_task_list 1 = ", var_task_list);
         clearTaskDataTable();
         id_search_results.setVisible(true);
         $("#id_spinner_search_top").hide();
@@ -910,7 +910,7 @@ function task_ok(result)
         // return;
     } else {
         var_task_list = result.wm_task_list.getRecordsResult;
-        c_debug(debug.task, "task_ok: var_task_list 2 = ", var_task_list);
+        c_debug(d_bug.task, "task_ok: var_task_list 2 = ", var_task_list);
     }
     
     if (var_order_list.length != 0) {
@@ -928,7 +928,7 @@ function task_ko(error)
     $("#id_spinner_search_top").hide();
     $("#id_spinner_search_bottom").hide();
     clearTaskDataTable();
-    var error_msg = ${P_quoted(i18n("task_ko_msg", "Récupération impossible des interventions!"))};
+    var error_msg = ${P_quoted(i18n("task_ko_msg", "Récupération impossible des interventions !"))};
     notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify);
     RMPApplication.debug("end task_ko");
 }
@@ -939,27 +939,27 @@ function task_ko(error)
 function fillOrderArray()  
 {
     RMPApplication.debug("begin fillOrderArray");
-    c_debug(debug.order, "=> fillOrderArray: var_order_list = ", var_order_list);
+    c_debug(d_bug.order, "=> fillOrderArray: var_order_list = ", var_order_list);
 
     if (var_order_list == null) {
         $("#id_spinner_search_top").hide();
         $("#id_spinner_search_bottom").hide();
         RMPApplication.debug("fillOrderArray : var_order_list not set ");
         var  title1 = ${P_quoted(i18n("error_fillOrderArray_title1", "Résultat de la recherche"))};
-        var  content1 = ${P_quoted(i18n("error_fillOrderArray_msg1", "Aucune demande ne correspond à votre recherche! <br> (var_order_list non défini)"))};
+        var  content1 = ${P_quoted(i18n("error_fillOrderArray_msg1", "Aucune demande ne correspond à votre recherche ! <br> (var_order_list non défini)"))};
         dialog_info(title1, content1, btn_ok);
         return;
     }
     $('#id_tab_wm_order').DataTable().clear();
     // Dealing with a single object or an array of objects
     var var_ol = (var_order_list.length == undefined) ? [var_order_list] : var_order_list;
-    c_debug(debug.order, "=> fillOrderArray: var_ol = ", var_ol);
+    c_debug(d_bug.order, "=> fillOrderArray: var_ol = ", var_ol);
     for (i=0; i < var_ol.length; i++) {
         try {
 
             if (var_ol[i].site[0] == undefined) {
-                c_debug(debug.order, "Pb pour le WO: ", var_ol[i].number, "\nMerci de référencer ce site sur RMS: ", var_ol[i].u_customer_site, " - ", var_ol[i].location);
-                c_debug(debug.order, "\n=> Détail demande: ", var_ol[i]);
+                c_debug(d_bug.order, "Pb pour le WO: ", var_ol[i].number, "\nMerci de référencer ce site sur RMS: ", var_ol[i].u_customer_site, " - ", var_ol[i].location);
+                c_debug(d_bug.order, "\n=> Détail demande: ", var_ol[i]);
                 var title2 = ${P_quoted(i18n("error_fillOrderArray_title2", "INFORMATION"))};
                 var content2 = ${P_quoted(i18n("error_fillOrderArray_msg2","Demander au SDMO de créer le site manquant sous RunMyStore"))};
                 var content_msg2 = content2 + ": " + var_ol[i].u_customer_site + " <br>" + "#WO: " + var_ol[i].number;
@@ -975,8 +975,8 @@ function fillOrderArray()
             // var buf = var_ol[i].location.split('-');
             // var site_code = $.trim(buf[buf.length - 1]);
             var site_code = (var_ol[i].site[0] == undefined) ? "" : var_ol[i].site[0].location_code;
-            c_debug(debug.order, '[i] = ', i);
-            c_debug(debug.order, '\nvar_ol[i] = ', var_ol[i]);
+            c_debug(d_bug.order, '[i] = ', i);
+            c_debug(d_bug.order, '\nvar_ol[i] = ', var_ol[i]);
 
             var notation = (isEmpty(var_ol[i].u_customer_satisfaction)) ? "" : setNotation(var_ol[i].u_customer_satisfaction, i);
 
@@ -1011,7 +1011,7 @@ function fillOrderArray()
                 // site_code,
                 // expected_start,
             );
-            // c_debug(debug.order, "=> fillOrderArray: row = ", row);
+            // c_debug(d_bug.order, "=> fillOrderArray: row = ", row);
             $('#id_tab_wm_order').DataTable().row.add(row);
         } catch (ee) {
             alert(ee.message);
@@ -1069,7 +1069,7 @@ function fillTaskArray(wm_order_num)
 function setNotation(note, indice)
 {
     RMPApplication.debug("begin setNotation: note = ", note);
-    c_debug(debug.eval, "=> setNotation: note = ", note);
+    c_debug(d_bug.eval, "=> setNotation: note = ", note);
     var column_notation = "";
     var style = 'style="font-size: 1.2em; color: ';
     var heart = '<i class="fa fa-heart"></i>';
@@ -1101,7 +1101,7 @@ function setNotation(note, indice)
         column_notation = '<span id="id_notation' + indice + '"><span ' + style + '>' + star + '</span></span>';  
     }
     RMPApplication.debug("=> setNotation : column_notation = " + column_notation);
-    c_debug(debug.eval, "=> setNotation: column_notation = ", column_notation);
+    c_debug(d_bug.eval, "=> setNotation: column_notation = ", column_notation);
     RMPApplication.debug("end setNotation");
     return column_notation;
 }
@@ -1112,8 +1112,8 @@ function setNotation(note, indice)
 function fillSatisfaction(note, evalComment)
 {
     RMPApplication.debug("begin fillSatisfaction");
-    c_debug(debug.eval, "=> fillSatisfaction: note = ", note);
-    c_debug(debug.eval, "=> fillSatisfaction: evalComment = ", evalComment);
+    c_debug(d_bug.eval, "=> fillSatisfaction: note = ", note);
+    c_debug(d_bug.eval, "=> fillSatisfaction: evalComment = ", evalComment);
 
     if (!isEmpty(note)) {                             // already evaluated
         $("#id_divEvaluation").show();
@@ -1127,20 +1127,20 @@ function fillSatisfaction(note, evalComment)
         });
         $("#id_evaluation").rating('update', note);
         $("#id_evaluation").rating('refresh', {readonly: true});
-        c_debug(debug.eval, "=> fillSatisfaction: #1");
+        c_debug(d_bug.eval, "=> fillSatisfaction: #1");
         if (!isEmpty(evalComment)) {                  // show comment only if not empty
             $("#id_divEvalComment").show();
             $("#id_evalComment").val (evalComment);
             $("#id_evalComment").attr('readonly', 'readonly');
-            c_debug(debug.eval, "=> fillSatisfaction: #2");
+            c_debug(d_bug.eval, "=> fillSatisfaction: #2");
         } else {                                
             $("#id_divEvalComment").hide();
-            c_debug(debug.eval, "=> fillSatisfaction: #3");
+            c_debug(d_bug.eval, "=> fillSatisfaction: #3");
         }
     } else {
         $("#id_divEvaluation").hide();
         $("#id_divEvalComment").hide();
-        c_debug(debug.eval, "=> fillSatisfaction: #4");
+        c_debug(d_bug.eval, "=> fillSatisfaction: #4");
     } 
     RMPApplication.debug("end fillSatisfaction");
 }
@@ -1151,7 +1151,7 @@ function fillSatisfaction(note, evalComment)
 function setNotationValue(note)
 {
     RMPApplication.debug("begin setNotationValue");
-    c_debug(debug.eval, "=> setNotationValue: note = ", note);
+    c_debug(d_bug.eval, "=> setNotationValue: note = ", note);
     $("#id_selectedNotation").val(note);
     RMPApplication.debug("end setNotationValue");
 }
@@ -1175,7 +1175,7 @@ function displayDetail(indice)
 
     // Code optimized with ternaire condition
     v_ol = (var_order_list.length == undefined) ? var_order_list : var_order_list[indice];
-    c_debug(debug.detail, "=>displayDetail: v_ol = ", v_ol);
+    c_debug(d_bug.detail, "=>displayDetail: v_ol = ", v_ol);
 
     var affiliate_detail, country_detail, city_detail, location_detail;
     if (!isEmpty(v_ol.u_customer_site)) {
@@ -1185,7 +1185,7 @@ function displayDetail(indice)
         load_site(loc_code);    // => define "site" variable with all concerned site's informations 
         setTimeout(function() {     // to be sure "site" variable is defined by load_site
             if ((site.length == 0) || (site.length == undefined)) {
-                var text_error_detail = ${P_quoted(i18n("error_detail_text", "Non trouvé!"))};
+                var text_error_detail = ${P_quoted(i18n("error_detail_text", "Non trouvé !"))};
                 affiliate_detail = (isEmpty(v_ol.company)) ? text_error_detail : v_ol.company;
                 country_detail = text_error_detail;
                 city_detail = text_error_detail;
@@ -1262,7 +1262,7 @@ function displayDetail(indice)
 function load_img_model() 
 {
     RMPApplication.debug ("begin load_img_model");
-    c_debug(debug.image, "=> load_img_model");
+    c_debug(d_bug.image, "=> load_img_model");
     // for reminder, description saved during the ticket registering:
     //  description: "- Matériel: " + selectedCat + " (" + selectedBrand + " - " + selectedModel + ")"
     var descrip = v_ol.description;
@@ -1270,7 +1270,7 @@ function load_img_model()
     var selectedBrand = "";
     var selectedModel = "";
     var item_model_img = "";    
-    c_debug(debug.image,'descrip: ',descrip);
+    c_debug(d_bug.image,'descrip: ',descrip);
     if (descrip.substr(0, 11) == "- Matériel:") {
         var start = descrip.indexOf(":");
         var first = descrip.indexOf("(");
@@ -1284,7 +1284,7 @@ function load_img_model()
             }
         }
     }
-    c_debug(debug.image,'selectedCat: [' + selectedCat + '] - selectedBrand: [' + selectedBrand + '] - selectedModel: [' + selectedModel + ']');
+    c_debug(d_bug.image,'selectedCat: [' + selectedCat + '] - selectedBrand: [' + selectedBrand + '] - selectedModel: [' + selectedModel + ']');
     if ( (!isEmpty(selectedCat)) && (!isEmpty(selectedBrand)) && (!isEmpty(selectedModel)) ) {
         RMPApplication.debug ("retrieve image details in catalog collection");   
 
@@ -1313,7 +1313,7 @@ function load_img_model()
 function load_img_model_ok(result) 
 {
     RMPApplication.debug ("begin load_img_model_ok");
-    c_debug(debug.image, "=> load_img_model_ok(: result = ", result);
+    c_debug(d_bug.image, "=> load_img_model_ok(: result = ", result);
     var selectedFam = $("#id_selectedFamily").val();
     var selectedCat = $("#id_selectedCategory").val();
     var selectedBrand = $("#id_selectedBrand").val();
@@ -1322,7 +1322,7 @@ function load_img_model_ok(result)
     var model_list = [];
     var reduce_model_list = [];
     model_target = result.records;
-    c_debug(debug.image, "=> load_img_model_ok: model_target = ", model_target);
+    c_debug(d_bug.image, "=> load_img_model_ok: model_target = ", model_target);
     if (model_target.length == 0) {
         item_model_img += '<div id="id_item_model_img">'
                         + '<img id="id_product_img" src="https://live.runmyprocess.com/live/112501480325272109/upload/e4359180-c210-11e6-9cf7-02b3a23437c9/no_image_available.png" height="200" width="200" alt="Image associée au produit" class="img-thumbnail"><br>'
@@ -1344,7 +1344,7 @@ function load_img_model_ok(result)
         
     }
 
-    c_debug(debug.image, "=> load_img_model_ok: item_model_img = ", item_model_img);
+    c_debug(d_bug.image, "=> load_img_model_ok: item_model_img = ", item_model_img);
     $("#id_product_img_div").html(''); 
     $("#id_product_img_div").append(item_model_img);
     $("#id_product_img_div").show();
@@ -1354,8 +1354,8 @@ function load_img_model_ok(result)
 function load_img_model_ko(error) 
 {
     RMPApplication.debug ("begin load_img_model_ko : " + JSON.stringify(error));
-    c_debug(debug.image, "=> load_img_model_ko: error = ", error);
-    var error_msg = ${P_quoted(i18n("load_img_model_ko", "Chargement impossible de l'image associée!"))};
+    c_debug(d_bug.image, "=> load_img_model_ko: error = ", error);
+    var error_msg = ${P_quoted(i18n("load_img_model_ko", "Chargement impossible de l'image associée !"))};
     notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify);    
     RMPApplication.debug ("end load_img_model_ko");    
 }
@@ -1366,7 +1366,7 @@ function load_img_model_ko(error)
 function displayDetailClose()
 {
     RMPApplication.debug("begin displayDetailClose");
-    c_debug(debug.detail, "=> displayDetailClose");
+    c_debug(d_bug.detail, "=> displayDetailClose");
     id_search_filters.setVisible(true);
     id_search_results.setVisible(true);
     id_ticket_details.setVisible(false);
@@ -1399,7 +1399,7 @@ function setProgression(numb)
     RMPApplication.debug("begin setProgression : numb =  " + numb);
     var selectedValue = 0; 
     var state = $("#id_state_detail").val();
-    c_debug(debug.progress, "=> setProgression: state : ", state);
+    c_debug(d_bug.progress, "=> setProgression: state : ", state);
     switch (getStatusValue(state))
     {
         case '1':                   // "Draft"
@@ -1433,7 +1433,7 @@ function setProgression(numb)
         default:
             break;         
     }
-    c_debug(debug.progress, "=> setProgression: selectedValue : ", selectedValue);
+    c_debug(d_bug.progress, "=> setProgression: selectedValue : ", selectedValue);
     if (selectedValue == 0) {
         return;                 // progression row should not be showed
     }
@@ -1495,7 +1495,7 @@ function setProgression(numb)
 function getStatusValue (libelle)
 {
     RMPApplication.debug("begin getStatusValue");
-    c_debug(debug.status, "=> getStatusValue: libelle = ", libelle);
+    c_debug(d_bug.status, "=> getStatusValue: libelle = ", libelle);
 
     switch (libelle)  {
         case "Brouillon" :
@@ -1569,7 +1569,7 @@ function getStatusValue (libelle)
 function StatusFromUkToFr (libelle)
 {
     RMPApplication.debug("begin StatusFromUkToFr");
-    c_debug(debug.status, "=> StatusFromUkToFr: libelle = ", libelle);
+    c_debug(d_bug.status, "=> StatusFromUkToFr: libelle = ", libelle);
     switch (libelle)  {
         case "Draft" :
             return "Transmis";
@@ -1624,7 +1624,7 @@ function StatusFromUkToFr (libelle)
 function getStatusLabel (status)
 {
     RMPApplication.debug("begin getStatusLabel");
-    c_debug(debug.status, "=> getStatusLabel: status = ", status);
+    c_debug(d_bug.status, "=> getStatusLabel: status = ", status);
 
     switch (status)  {
         case '1' :
@@ -1674,7 +1674,7 @@ function getStatusLabel (status)
 function getPrioriyLabel (priority)
 {
     RMPApplication.debug("begin getPrioriyLabel");
-    c_debug(debug.status, "=> getPrioriyLabel: priority = ", priority);
+    c_debug(d_bug.status, "=> getPrioriyLabel: priority = ", priority);
 
     switch (priority)  {
         case '1':

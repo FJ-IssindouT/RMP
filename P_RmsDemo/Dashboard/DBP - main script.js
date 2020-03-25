@@ -8,7 +8,7 @@ RMPApplication.debug("Dashboard : Application started");
 // ========================
 
 // if "true", logs will be showed on the browser console
-var debug = {
+var dbug = {
     "init" : false,
     "box" : false,
     "site" : false,
@@ -49,7 +49,7 @@ function init()
     var option = {};
     var pattern = {};
     pattern.login = RMPApplication.get("login");
-    c_debug(debug.init, "=> init: pattern = ", pattern);
+    c_debug(dbug.init, "=> init: pattern = ", pattern);
 
     id_get_user_info_as_admin_api.trigger (pattern, option , get_info_ok, get_info_ko);
     RMPApplication.debug("end init");
@@ -61,7 +61,7 @@ function init()
 function get_info_ok(result) 
 {
     RMPApplication.debug("begin get_info_ok : result = " + JSON.stringify(result));
-    c_debug(debug.init, "=> get_info_ok: result = ", result);
+    c_debug(dbug.init, "=> get_info_ok: result = ", result);
 
     // define "login" variable properties
     login.user = result.user;
@@ -78,7 +78,7 @@ function get_info_ok(result)
     login.region = (!isEmpty(result.region)) ? result.region.trim().toUpperCase() : '';
     login.is_super_user = (!isEmpty(result.is_super_user)) ? result.is_super_user.toUpperCase() : '';
     enseigne = login.affiliate;
-    c_debug(debug.init, "=> get_info_ok: login = ", login);
+    c_debug(dbug.init, "=> get_info_ok: login = ", login);
 
     // Define 'view' global variable, used to filter locations scope
     // Different profiles are: SUPERUSER-COMPANY-COUNTRY-DIVISION-REGION-LOCAL
@@ -112,7 +112,7 @@ function get_info_ok(result)
     id_profile.attr('readonly', 'readonly');
     id_company.attr("value", login.company);
     id_company.attr('readonly', 'readonly');
-    c_debug(debug.init, "=> get_info_ok: view = ", view);
+    c_debug(dbug.init, "=> get_info_ok: view = ", view);
 
     fillCountryBox(view);       // Country selection if authorized
     fillAffiliateBox(view);     // Affiliate selection if authorized
@@ -124,7 +124,7 @@ function get_info_ok(result)
 function get_info_ko(error) 
 {
     RMPApplication.debug("get_info_ko : " + JSON.stringify(error));
-    c_debug(debug.init, "=> get_info_ko: error = ", error);
+    c_debug(dbug.init, "=> get_info_ko: error = ", error);
     var error_msg = ${P_quoted(i18n("get_info_ko_msg", "Récupération impossible des informations utilisateur!"))};
     notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify);
     RMPApplication.debug("end get_info_ko");
@@ -140,7 +140,7 @@ function get_info_ko(error)
 function fillCountryBox(vue) 
 {
     RMPApplication.debug("begin fillCountryBox");
-    c_debug(debug.box, "=> fillCountryBox: vue = ", vue);
+    c_debug(dbug.box, "=> fillCountryBox: vue = ", vue);
 
     var text_countryFilter = "";
 
@@ -191,10 +191,10 @@ function fillCountryBox(vue)
 function fillAffiliateBox(vue) 
 {
     RMPApplication.debug("begin fillAffiliateBox");
-    c_debug(debug.box, "=> fillAffiliateBox: vue = ", vue);
+    c_debug(dbug.box, "=> fillAffiliateBox: vue = ", vue);
 
     var affiliateListTemp = JSON.parse(id_affiliate_cl.getList()).list;
-    c_debug(debug.box, "=> fillAffiliateBox: affiliateListTemp = ", affiliateListTemp);
+    c_debug(dbug.box, "=> fillAffiliateBox: affiliateListTemp = ", affiliateListTemp);
 
     var text_affiliateFilter = ${P_quoted(i18n("affiliateFilter_text", "TOUTES LES ENSEIGNES"))};
 
@@ -251,7 +251,7 @@ function fillAffiliateBox(vue)
                      affiliateList = [{ 'label': affiliateListTemp[i].label.toUpperCase(), 'value': affiliateListTemp[i].value }];
                 }
             }
-            c_debug(debug.box, "=> fillAffiliateBox: affiliateList = ", affiliateList);
+            c_debug(dbug.box, "=> fillAffiliateBox: affiliateList = ", affiliateList);
             $("#id_affiliateFilter").append($("<option selected />").val(affiliateList[0].value).html(affiliateList[0].label.toUpperCase()));
             $("#id_affiliateFilter").attr('readonly', 'readonly');
             break;
@@ -271,7 +271,7 @@ function fillAffiliateBox(vue)
 function fillOtherInfo(vue) 
 {
     RMPApplication.debug("begin fillOtherInfo");
-    c_debug(debug.box, "=> fillOtherInfo: vue = ", vue);
+    c_debug(dbug.box, "=> fillOtherInfo: vue = ", vue);
 
     // Adapt this info area according the previous selection (country & affiliate)
     switch (vue) {
@@ -303,14 +303,14 @@ function fillOtherInfo(vue)
 function getFilteredLocations()
 {
     RMPApplication.debug("begin getFilteredLocations");
-    c_debug(debug.site, "=> getFilteredLocations");
+    c_debug(dbug.site, "=> getFilteredLocations");
 
     $("#id_spinner_search").show();         // show spinner before querying Service Now
 
     // Retrieving user's input value
     var country_value = $("#id_countryFilter").val();
     var affiliate_value = $("#id_affiliateFilter").val();
-    c_debug(debug.site, "=> getFilteredLocations: affiliate_value = ", affiliate_value);
+    c_debug(dbug.site, "=> getFilteredLocations: affiliate_value = ", affiliate_value);
     var affiliate_label = $("#id_affiliateFilter").text(); 
     var division_value = login.division; 
     var region_value = login.region;
@@ -325,12 +325,12 @@ function getFilteredLocations()
         for (var i=0; i < affiliateList.length; i++) {
             if ( affiliate_value.toUpperCase() ==  affiliateList[i].value.toUpperCase() ) {
                 affiliate_value = affiliateList[i].label.toUpperCase();
-                c_debug(debug.site, "=> getFilteredLocations: affiliate_value = ", affiliate_value);
+                c_debug(dbug.site, "=> getFilteredLocations: affiliate_value = ", affiliate_value);
             }
         }
     }
 
-    c_debug(debug.site, "=> getFilteredLocations: switch | view = ", view);
+    c_debug(dbug.site, "=> getFilteredLocations: switch | view = ", view);
     switch (view) {
             case "COMPANY" :
                 if ( (country_value !== "tous") && (!isEmpty(country_value)) ) {
@@ -429,7 +429,7 @@ function getFilteredLocations()
         }
     
     //call api to location collection
-    c_debug(debug.site, "=> getFilteredLocations: input = ", input);
+    c_debug(dbug.site, "=> getFilteredLocations: input = ", input);
     id_get_filtered_locations_api.trigger(input, options, get_locations_ok, get_locations_ko);
 
     RMPApplication.debug("end getFilteredLocations");
@@ -440,7 +440,7 @@ function get_locations_ok(result)
 {
     RMPApplication.debug("begin get_locations_ok : result = " + JSON.stringify(result));
     var_location_list = result.res;
-    c_debug(debug.site, "=> get_locations_ok : var_location_list = ", var_location_list);
+    c_debug(dbug.site, "=> get_locations_ok : var_location_list = ", var_location_list);
 
     // Define an array with composed locations name
     var location_names_array = [];
@@ -457,7 +457,7 @@ function get_locations_ok(result)
                 rule_name = "loca_rule_2";
                 break;
         }
-        // c_debug(debug.site, "=> get_locations_ok : rule_name = ", rule_name);
+        // c_debug(dbug.site, "=> get_locations_ok : rule_name = ", rule_name);
 
         switch (rule_name) {
             case 'loca_rule_1':         //  case "XXXXXX" affiliate
@@ -467,14 +467,14 @@ function get_locations_ok(result)
                 var loca_name = $.trim(var_location_list[j].location) + separator + $.trim(var_location_list[j].location_code);
                 break;
         }   // -- end switch (rule_name)
-        // c_debug(debug.site, "=> get_locations_ok : j = ", j);
-        // c_debug(debug.site, "=> get_locations_ok : loca_name = ", loca_name);
+        // c_debug(dbug.site, "=> get_locations_ok : j = ", j);
+        // c_debug(dbug.site, "=> get_locations_ok : loca_name = ", loca_name);
 
         location_names_array.push(loca_name);
     }
 
     var selected_dashboard_tab = id_selected_dashboard_tab.getValue();
-    c_debug(debug.site, "=> get_locations_ok : selected_dashboard_tab = ", selected_dashboard_tab);
+    c_debug(dbug.site, "=> get_locations_ok : selected_dashboard_tab = ", selected_dashboard_tab);
     switch (selected_dashboard_tab) {
         case "kpi" :
             break;
@@ -491,7 +491,7 @@ function get_locations_ok(result)
 function get_locations_ko(error)
 {
     RMPApplication.debug("begin get_locations_ko : error = " + JSON.stringify(error));
-    c_debug(debug.site, "=> get_locations_ko: error = ", error);
+    c_debug(dbug.site, "=> get_locations_ko: error = ", error);
     var error_msg = ${P_quoted(i18n("get_locations_ko_msg", "Récupération impossible des informations du site!"))};
     notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify);
     RMPApplication.debug("end get_locations_ko");
@@ -504,7 +504,7 @@ function get_locations_ko(error)
 function setScopeLocations() 
 {
     RMPApplication.debug("begin setScopeLocations");
-    c_debug(debug.site, "=> setScopeLocations");
+    c_debug(dbug.site, "=> setScopeLocations");
     var country_value = $("#id_countryFilter").val();
     var affiliate_value = $("#id_affiliateFilter").val();
     var allCountries = (country_value.toLowerCase() === "tous") ? true : false;
@@ -513,7 +513,7 @@ function setScopeLocations()
     sn_query = "";      // previous query reset
 
     // Set SCOPE variable: check if "tous" value is selected for country & affiliate filters
-    c_debug(debug.site, "=> setScopeLocations: switch | view = ", view);
+    c_debug(dbug.site, "=> setScopeLocations: switch | view = ", view);
     switch (view) {
         case "COMPANY" :
             if (allCountries && allAffiliates) {    // "tous" + "tous" => company is enough
@@ -582,7 +582,7 @@ function setScopeLocations()
             getContractFullName();          // by requesting affiliate collection
             break;
     }
-    c_debug(debug.site, "=> setScopeLocations: scope = ", scope);
+    c_debug(dbug.site, "=> setScopeLocations: scope = ", scope);
 
     RMPApplication.debug("end setScopeLocations");
 }
@@ -600,7 +600,7 @@ function getCompanyQuery()
         return;
     } else {
         var companyQuery = "^wo_companyLIKE" + login.company;
-        c_debug(debug.query, "=> getCompanyQuery: companyQuery = ", companyQuery);  
+        c_debug(dbug.query, "=> getCompanyQuery: companyQuery = ", companyQuery);  
         sn_query += companyQuery;       // query is completed
         getContractFullName();          // to define contract name
     }
@@ -613,12 +613,12 @@ function getCompanyQuery()
 function getContractFullName()
 {
     RMPApplication.debug("begin getContractFullName");
-    c_debug(debug.query, "=> getContractFullName: view = ", view);
+    c_debug(dbug.query, "=> getContractFullName: view = ", view);
     var affiliate_value = $("#id_affiliateFilter").val();          //get selected affiliate value (only one can be selected)
     var allAffiliates = (affiliate_value.toLowerCase() === "tous") ? true : false;
     contractsListQuery = '';    // reset of previous query
 
-    c_debug(debug.query, "=> getContractFullName: switch | scope = ", scope);
+    c_debug(dbug.query, "=> getContractFullName: switch | scope = ", scope);
     switch (scope) {
         case "COUNTRY" :
         case "GRP_AFF" :         // affiliate_value = 'tous'
@@ -643,7 +643,7 @@ function getContractFullName()
                 default :
                     break;
             }
-            c_debug(debug.query, "=> getContractFullName: contractQuery = ", contractQuery);
+            c_debug(dbug.query, "=> getContractFullName: contractQuery = ", contractQuery);
             sn_query += contractQuery;          // query is completed
             getLocationQuery();                 // precise geographical area to limit search time
             break;
@@ -657,7 +657,7 @@ function getContractFullName()
                 var query = {};
                 query.abbreviation = { "$regex" : affiliate_value, "$options" : "i"};       // options for case INSENSITIVE
                 input.input_query = query; 
-                c_debug(debug.query, "=> getContractFullName: switch default: input = ", input);
+                c_debug(dbug.query, "=> getContractFullName: switch default: input = ", input);
                 id_get_affiliate_api.trigger(input, {}, affiliate_ok, affiliate_ko);
             }
             break;
@@ -668,7 +668,7 @@ function getContractFullName()
 function affiliate_ok(result)
 {
     RMPApplication.debug("begin affiliate_ok : result = " + JSON.stringify(result));
-    c_debug(debug.query, "=> affiliate_ok: result = ", result);
+    c_debug(dbug.query, "=> affiliate_ok: result = ", result);
     if ( (result.records.length == undefined) || (result.records.length == 0) ) {
         var  error_affiliate_ok_title = ${P_quoted(i18n("error_affiliate_ok_title", "Résultat de la recherche"))};
         var  error_affiliate_ok_msg = ${P_quoted(i18n("error_affiliate_ok_msg", "Aucune enseigne ne répond aux critères!"))};
@@ -679,10 +679,10 @@ function affiliate_ok(result)
         var contract = affiliate_obj.company + "\\" + affiliate_obj.abbreviation;   // contract definition
         var contract_query = "^co_u_full_name=" + contract.toUpperCase();
         sn_query += contract_query;            // query is completed; special SN view
-        c_debug(debug.query, "=> affiliate_ok: sn_query = ", sn_query);
+        c_debug(dbug.query, "=> affiliate_ok: sn_query = ", sn_query);
 
         contractsListQuery += "^co_u_full_nameIN" + contract.toUpperCase();    // standard SN table
-        c_debug(debug.query, "=> affiliate_ok: contractsListQuery = ", contractsListQuery);
+        c_debug(dbug.query, "=> affiliate_ok: contractsListQuery = ", contractsListQuery);
 
         getLocationQuery();     // precise geographical area to limit search time
     }
@@ -692,7 +692,7 @@ function affiliate_ok(result)
 function affiliate_ko(error)
 {
     RMPApplication.debug("begin affiliate_ko : error = " + JSON.stringify(error));
-    c_debug(debug.query, "=> affiliate_ko: error = ", error);
+    c_debug(dbug.query, "=> affiliate_ko: error = ", error);
     var error_msg = ${P_quoted(i18n("affiliate_ko_msg", "Récupération impossible des informations de la filiale!"))};
     notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify); 
     RMPApplication.debug("end affiliate_ko");
@@ -704,7 +704,7 @@ function affiliate_ko(error)
 function getLocationQuery()
 {
     RMPApplication.debug("begin getLocationQuery");
-    c_debug(debug.query, "=> getLocationQuery: scope = ", scope);
+    c_debug(dbug.query, "=> getLocationQuery: scope = ", scope);
     var country_value = $("#id_countryFilter").val();
     var affiliate_value = $("#id_affiliateFilter").val();
     var locationQuery = "";     // temporary query
@@ -754,8 +754,8 @@ function getLocationQuery()
 
     }   // -- end switch (scope)
 
-    c_debug(debug.query, "=> getLocationQuery: locationQuery = ", locationQuery);
-    c_debug(debug.query, "=> getLocationQuery: locationsListQuery = ", locationsListQuery);
+    c_debug(dbug.query, "=> getLocationQuery: locationQuery = ", locationQuery);
+    c_debug(dbug.query, "=> getLocationQuery: locationsListQuery = ", locationsListQuery);
     sn_query += locationQuery;          // query is complete
     queryServiceNow();                  // request Service Now with sn_query
 
@@ -779,7 +779,7 @@ function queryServiceNow()
     var input = {};
     var options = {};
     input.query = sn_query;
-    c_debug(debug.query, "=> queryServiceNow: sn_query = ", sn_query);
+    c_debug(dbug.query, "=> queryServiceNow: sn_query = ", sn_query);
 
     id_get_work_order_sla_api.trigger(input, options, get_wos_sla_ok, get_wos_sla_ko);
 
@@ -789,13 +789,13 @@ function queryServiceNow()
 function get_wos_sla_ok(result)
 {
     RMPApplication.debug("begin get_wos_sla_ok : result = " + JSON.stringify(result));
-    c_debug(debug.sla, "=> get_wos_sla_ok: result = ", result);
+    c_debug(dbug.sla, "=> get_wos_sla_ok: result = ", result);
 
     wos_array = result.result;          // array of work orders with active SLA
     $("#id_spinner_search").hide();
 
     var selected_dashboard_tab = id_selected_dashboard_tab.getValue();
-    c_debug(debug.sla, "=> get_wos_sla_ok: selected_dashboard_tab = ", selected_dashboard_tab);   
+    c_debug(dbug.sla, "=> get_wos_sla_ok: selected_dashboard_tab = ", selected_dashboard_tab);   
     
     switch (selected_dashboard_tab) {
         case "kpi" :
@@ -816,7 +816,7 @@ function get_wos_sla_ok(result)
 function get_wos_sla_ko(error)
 {
     RMPApplication.debug("begin get_wos_sla_ko : error = " + JSON.stringify(error));
-    c_debug(debug.sla, "=> get_wos_sla_ko: error", error);
+    c_debug(dbug.sla, "=> get_wos_sla_ko: error", error);
     $("#id_spinner_search").hide();
     var error_msg = ${P_quoted(i18n("get_wos_sla_ko_msg", "Récupération impossible des interventions avec SLA en cours!"))};
     notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify); 

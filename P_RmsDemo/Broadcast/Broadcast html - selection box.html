@@ -1,0 +1,74 @@
+<!-- Selection Box -->
+<div class="row">
+    <h3>${i18n("type_message", "Sélectionner le type de message")}</h3>
+</div>
+<div class="row">
+    <!-- <div class="form-group">
+        <div id="grpTypeBtn" class="btn-group" role="group" aria-label="Message Type">
+            <button id="id_type_warning_btn" type="button" class="btn btn-lg btn-warning active" data-toggle="button" aria-pressed="true">
+                <i class="fa fa-exclamation-circle" aria-hidden="true"></i>&nbsp;${i18n("type_option_warning", "Avertissement")}
+            </button>
+            <button id="id_type_info_btn" type="button" class="btn btn-lg btn-light" data-toggle="button" aria-pressed="false">
+                <i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;${i18n("type_option_info", "Normal")}
+            </button>
+            <button id="id_type_critical_btn" type="button" class="btn btn-lg btn-danger" data-toggle="button" aria-pressed="false">
+                <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;${i18n("type_option_critical", "Critique")}
+            </button>
+        </div>
+    </div> -->
+
+    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        <label id="id_type_warning_lbl" class="btn btn-lg btn-warning active focus">
+          <input type="radio" name="options" id="id_type_warning_btn" autocomplete="off">
+          <i class="fa fa-exclamation-circle" aria-hidden="true"></i>&nbsp;${i18n("type_option_warning", "Avertissement")}
+        </label>
+        <label id="id_type_info_lbl" class="btn btn-lg btn-light">
+          <input type="radio" name="options" id="id_type_info_btn" autocomplete="off">
+          <i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;${i18n("type_option_info", "Normal")}
+        </label>
+        <label id="id_type_critical_lbl" class="btn btn-lg btn-danger">
+          <input type="radio" name="options" id="id_type_critical_btn" autocomplete="off">
+          <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;${i18n("type_option_critical", "Critique")}
+        </label>
+      </div>
+
+</div>
+<div class="row margin-top-bottom-10px">
+</div>
+<div class="row">
+    <div class="col-sm-6 col-md-8 col-lg-6 bkg-light-blue padding-top-bottom-10px">
+        <h3>${i18n("recipients_title", "Destinataires du message")} &nbsp;<i class="fa fa-users" aria-hidden="true"></i></h3>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="recipients_radios" id="lbl_recipients_everybody" value="everybody">
+            <label class="form-check-label" for="lbl_recipients_everybody">
+                ${i18n("recipients_radio_1", "Tout le monde")}
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="recipients_radios" id="lbl_recipients_all_stores" value="all_stores">
+            <label class="form-check-label" for="lbl_recipients_all_stores">
+                ${i18n("recipients_radio_2", "Uniquement les magasins")}
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="recipients_radios" id="lbl_recipients_support_only" value="support_only">
+            <label class="form-check-label" for="lbl_recipients_support_only">
+                ${i18n("recipients_radio_3", "Uniquement le Help Desk (test interne avant envoi global)")}
+            </label>
+        </div>
+        <div class="form-check displayme_${has_right('405161')=='false'}">
+            <input class="form-check-input" type="radio" name="recipients_radios" id="lbl_recipients_test_grp_only" value="test_grp_only">
+            <label class="form-check-label" for="lbl_recipients_test_grp_only">
+                ${i18n("recipients_radio_4", "Uniquement un groupe de test (TEST-ACCEPTANCE)")}
+            </label>
+        </div>
+        <div class="form-check displayme_${has_right('405161')=='false'}">
+            <input class="form-check-input" type="radio" name="recipients_radios" id="lbl_recipients_my_self_only" value="my_self_only" checked>
+            <label class="form-check-label" for="lbl_recipients_my_self_only">
+                ${i18n("recipients_radio_5", "Juste à moi-même (TEST-ACCEPTANCE)")}
+            </label>
+        </div>
+    </div>
+</div>
+<div class="row margin-top-bottom-10px">
+</div>

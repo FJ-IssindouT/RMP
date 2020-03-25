@@ -1,5 +1,21 @@
+/******** Specific RMP Grid options ********/
+.Table-gridBOOdd {
+    background-color: #e8ffff;
+}
+.Table-gridBOEven {
+    background-color: #ffffd1;
+}
+.Table-gridBOStart {
+    background-color: #e0ffe0;
+}
+.Table-gridBOOdd>tbody tr>td, .Table-gridBOEven>tbody tr>td, .Table-gridBOStart>tbody tr>td {
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-right: 10px;
+}
+
 /******** responsive button options ********/
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .btn-responsive {
         padding: 1rem !important;
         width: auto;
@@ -11,7 +27,7 @@
         opacity: 1;
     }
 }
-@media (min-width: 769px) and (max-width: 992px) {
+@media (min-width: 768px) and (max-width: 991px) {
     .btn-responsive {
         padding: 1rem !important;
         width: auto;
@@ -23,8 +39,33 @@
         opacity: 1;
     }
 }
+@media (min-width: 992px) and (max-width: 1199px) {
+    .btn-responsive {
+        padding: 1rem !important;
+        width: auto;
+        /*padding:4px 9px;*/
+        line-height: 1.2;
+    }
+    .checkbox-inline input[type=checkbox],
+    .radio-inline  input[type=radio] {
+        opacity: 1;
+    }
+}
+@media (min-width: 1200px) {
+    .btn-responsive {
+        padding: 1rem !important;
+        width: auto;
+        /*padding:4px 9px;*/
+        line-height: 1.2;
+    }
+    .checkbox-inline input[type=checkbox],
+    .radio-inline  input[type=radio] {
+        opacity: 1;
+    }
+}
+
 /******** Specific alignment for Service Desk Buttons ********/
-.button-25p
+.button-25pc
 {
     width: 25%;
     text-align: center;
@@ -68,6 +109,23 @@
 .pointer
 {
     cursor: pointer;
+}
+
+/******** Broadcast Message CSS ********/
+.gwt-Button-bcast {
+    color: #FFFFFF;
+    font-size: 20px;
+    padding: 8px 16px;
+    border-radius: .3rem;
+}
+
+.gwt-Button-bcast:before {
+    content: "\f1d8";
+    font-family: FontAwesome;
+    text-decoration: inherit;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
 }
 
 /******** Service Desk CSS ********/
@@ -449,7 +507,7 @@
 }
 .bkg-light-blue
 {
-    background-color: #D9EDF7;
+    background-color: #C6E2F1;
 }
 .bkg-light-yellow
 {
@@ -457,7 +515,7 @@
 }
 .bkg-light-green
 {
-    background-color: #CCFFCC;
+    background-color: #E1FFE1;
 }
 .padding-top-bottom-10px
 {
@@ -536,6 +594,17 @@
     padding: 10px;
     background-color: #FFBB33;
 }
+#id_cancellation_reason_label
+{
+    text-align: right;
+    color: #F00;
+    margin-right: 25px;
+    font-weight: bold;
+}
+#id_cancellation_reason_label
+{
+    margin-right: 15px;
+}
 #id_progressbar .nowrap
 {
     white-space:nowrap;
@@ -560,6 +629,7 @@
 {
     line-height: 1em;
 }
+
 
 /* ********************************** */
 /*  Used for responsive dataTable     */
@@ -704,4 +774,118 @@ div.dataTables_wrapper select.input-sm
 {
     display: flex;
     align-items: center;
+}
+
+/* ********************************** */
+/*  CSS for Contact page         */
+/* ********************************** */
+
+/*text style*/
+
+.contact
+{
+    color: black;
+    font-size:1em;
+}
+
+.contact strong{
+    color: black;
+    font-size:1.2em;
+}
+
+.contact_link a
+{
+    color: black;
+    text-decoration: none;
+    font-size:1em;
+}
+
+/* ************************* */
+/*  CSS for Help box         */
+/* ************************* */
+
+bi-14
+{
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.panel-heading 
+{
+    height: 40px;
+}
+
+.panel-heading .panel-title
+{
+    width: 90%;
+}
+
+.panel-heading button
+{
+    position: relative;
+    top: -23px;
+    border-color: #FFFFFF;
+}
+
+.card h5 {
+    font-weight: bold;
+}
+
+/******** Specific CSS for Contextual Help button ********/
+.context_help_btn 
+{
+   position: relative;
+    left: 96%;
+    top: -38px;
+    border-color: #FFFFFF;
+    min-width: 38px;
+    max-width: 38px;
+    padding: 6px 10px;
+}
+
+@media(max-width:767px) { 
+    .context_help_btn { 
+        left: 87%; 
+        top: -54px;
+    }
+    .new_context_help_btn { 
+        font-size: 0.7em;
+    }
+}
+@media(min-width:768px) and (max-width:991px) { 
+    .context_help_btn {
+        left: 94%; 
+        top: -48px;
+    }
+    .new_context_help_btn { 
+        font-size: 0.7em;
+    }
+    button.btn {
+        background-image: none;
+    }
+}
+@media(min-width:992px) and (max-width:1365px) { 
+    .context_help_btn {
+        left: 95%; 
+        top: -48px;
+    }
+    .new_context_help_btn { 
+        font-size: 0.7em;
+    }
+    button.btn {
+        background-image: none;
+    }
+}
+@media(min-width:1366px) { 
+    .context_help_btn {
+        left: 96%; 
+        top: -38px;
+    }
+    .new_context_help_btn { 
+        font-size: 0.7em;
+    }
+    button.btn {
+        background-image: none;
+    }
 }

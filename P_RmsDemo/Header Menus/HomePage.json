@@ -9,7 +9,7 @@
         "title" : "Suivi demandes",
         "url" : "https://live.runmyprocess.com/live/112501480325272109/appli/353936?P_mode=${P_mode}&P_language=${P_language}"
     }, {
-        "title" : "Mes actions",
+        "title" : "Mes tâches",
         "visible" : "${has_right('405161')=='false'}",
         "url" : "https://live.runmyprocess.com/live/112501480325272109/appli/353937?P_mode=${P_mode}&P_language=${P_language}"
     }, {
@@ -18,7 +18,6 @@
         "url" : "https://live.runmyprocess.com/live/112501480325272109/appli/353935?P_mode=${P_mode}&P_language=${P_language}"
     }, {
         "title" : "Base de connaissances",
-        "visible" : "${has_right('405111')=='true' || has_right('405201')=='true' || has_right('405202')=='true'}",
         "url" : "https://live.runmyprocess.com/live/112501480325272109/appli/354713?P_mode=${P_mode}&P_language=${P_language}"       
     }, {
         "title" : "Autres modules",

@@ -14,7 +14,7 @@
         "url" : "https://live.runmyprocess.com/live/112501480325272109/appli/328697?P_mode=${P_mode}"
     }, {
         "title" : "Mes actions",
-        "visible" : "${has_right('405109')=='false'}",
+        "visible" : "${has_right('392101')=='false' && has_right('405109')=='false'}",
         "url" : "https://live.runmyprocess.com/live/112501480325272109/appli/330811?P_mode=${P_mode}"
     }, {
         "title" : "Tableaux de bord",
@@ -22,11 +22,11 @@
         "url" : "https://live.runmyprocess.com/live/112501480325272109/appli/327295?P_mode=${P_mode}"
     }, {
         "title" : "Tutoriels",
-        "visible" : "${has_right('391720')=='true' || has_right('380783')=='true'}",
+        "visible" : "${has_right('473565')=='true' || has_right('391720')=='true' || has_right('380783')=='true'}",
         "url" : "https://live.runmyprocess.com/live/112501480325272109/appli/331344?P_mode=${P_mode}"
     }, {
         "title" : "Vue Stocks",
-        "visible" : "${has_right('408485')=='false' && has_right('392101')=='false' && has_right('384675')=='false' && has_right('396042')=='false' && has_right('405109')=='false'}",
+        "visible" : "${has_right('380783')=='true'}",
         "url" : "https://live.runmyprocess.com/live/112501480325272109/appli/332420?P_mode=${P_mode}"
     }, {
         "title" : "Gestion Compte",
@@ -42,6 +42,8 @@
 // 390583 => Vivarte IMAC - Validator
 // 405109 => Vivarte - Support Desk
 // 384643 => Vivarte - IT Managers
+// 384642 => Vivarte - Affiliate Managers
 // 392101 => Vivarte - Local users
+// 473565 => Vivarte - LA HALLE users
 // 384675 => Region-Division Managers
 // 391720 => SDMO Fujitsu

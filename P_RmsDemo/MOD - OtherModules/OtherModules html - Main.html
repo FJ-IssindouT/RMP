@@ -1,18 +1,8 @@
+<!-- Other Modules - Images Menu Choice -->
 <div class="container text-center nav_img">
   <div class="row row-centered">
-    <div id="warehouse" class="col-md-2 col-sm-4 col-xs-6 displayme_${has_right('405229')=='false' && has_right('405110')=='false' && has_right('405230')=='false' && has_right('405161')=='false'}">
-      <a href="https://live.runmyprocess.com/live/112501480325272109/appli/353939?P_mode=${P_mode}&P_language=${P_language}">
-        <div class="well col-centered">
-          <div class="homeThumbnail">
-            <span class="homeTitle">${i18n('text_warehouse', 'Vue stocks')}</span>
-          </div>
-          <br>
-          <i class="homeImage">
-              <img class="homeIcon img-thumbnail" src="https://live.runmyprocess.com/live/112501480325272109/upload/54859650-25c7-11e7-869b-02b3a23437c9/warehouse_200.png" title="Vue stocks"/>
-          </i>
-        </div>
-      </a>
-    </div>
+
+  <!-- Module Fermeture de ticket -->    
     <div id="ticketClosure" class="col-md-2 col-sm-4 col-xs-6">
       <a href="https://live.runmyprocess.com/live/112501480325272109/appli/354597?P_mode=${P_mode}&P_language=${P_language}">
         <div class="well col-centered">
@@ -26,6 +16,38 @@
         </div>
       </a>
     </div>
+
+  <!-- Module Boite à idées -->
+    <div id="idea_box" class="col-md-2 col-sm-4 col-xs-6 displayme_${has_right('405227')=='true'}">
+      <a href="https://live.runmyprocess.com/live/112501480325272109/appli/409734?P_mode=${P_mode}&P_language=${P_language}">
+        <div class="well col-centered">
+          <div class="homeThumbnail">
+            <span class="homeTitle">${i18n('text_id7', 'Boîte à idées')}</span>
+          </div>
+          <br>
+          <i class="homeImage">
+             <img class="homeIcon img-thumbnail" src="https://live.runmyprocess.com/live/112501480325272109/upload/3ba49190-25c7-11e7-b214-066d75fba2ef/suggestion_box_200.png" title="Boîte à idées"/>
+          </i>
+        </div>
+      </a>
+    </div>
+
+  <!-- Module Vue Stocks -->
+    <div id="warehouse" class="col-md-2 col-sm-4 col-xs-6 displayme_${has_right('405229')=='false' && has_right('405110')=='false' && has_right('405230')=='false' && has_right('405161')=='false'}">
+      <a href="https://live.runmyprocess.com/live/112501480325272109/appli/353939?P_mode=${P_mode}&P_language=${P_language}">
+        <div class="well col-centered">
+          <div class="homeThumbnail">
+            <span class="homeTitle">${i18n('text_warehouse', 'Vue stocks')}</span>
+          </div>
+          <br>
+          <i class="homeImage">
+              <img class="homeIcon img-thumbnail" src="https://live.runmyprocess.com/live/112501480325272109/upload/54859650-25c7-11e7-869b-02b3a23437c9/warehouse_200.png" title="Vue stocks"/>
+          </i>
+        </div>
+      </a>
+    </div>
+
+  <!-- Module Prise Caméra à distance -->     
     <div id="videoAssistance" class="col-md-2 col-sm-4 col-xs-6">
       <a href="https://live.runmyprocess.com/live/112501480325272109/appli/354720?P_mode=${P_mode}&P_language=${P_language}">
         <div class="well col-centered">
@@ -39,6 +61,23 @@
         </div>
       </a>
     </div>
+
+  <!-- Module Transmission Message -->    
+    <div id="messageBroadcast" class="col-md-2 col-sm-4 col-xs-6">
+      <a href="https://live.runmyprocess.com/live/112501480325272109/appli/384186?P_mode=${P_mode}&P_language=${P_language}">
+        <div class="well col-centered">
+          <div class="homeThumbnail">
+            <span class="homeTitle">${i18n('text_messageBroadcast', 'Transmission Message')}</span>
+          </div>
+          <br>
+          <i class="homeImage">
+              <img class="homeIcon img-thumbnail" src="https://live.runmyprocess.com/live/112501480325272109/upload/dd9e7080-75ec-11e8-b09e-02b3a23437c9/gal_msg_200.png" title="Message Général"/>
+          </i>
+        </div>
+      </a>
+    </div>
+
+  <!-- Module Gestion Compte -->   
     <div id="account" class="col-md-2 col-sm-4 col-xs-6 displayme_${has_right('405111')=='true' || has_right('405201')=='true'}">
       <a href="https://live.runmyprocess.com/live/112501480325272109/appli/353984?P_mode=${P_mode}&P_language=${P_language}">
         <div class="well col-centered">
@@ -51,6 +90,22 @@
           </i>
         </div>
       </a>
-    </div>  
-  </div> 
+    </div>
+
+  <!-- Module Contacts -->    
+    <div id="contacts" class="col-md-2 col-sm-4 col-xs-6">
+      <a href="https://live.runmyprocess.com/live/112501480325272109/appli/410899?P_mode=${P_mode}&P_language=${P_language}">
+        <div class="well col-centered">
+          <div class="homeThumbnail">
+            <span class="homeTitle">${i18n('text_contacts', 'Contacts')}</span>
+          </div>
+          <br>
+          <i class="homeImage">
+              <img class="homeIcon img-thumbnail" src="https://live.runmyprocess.com/live/112501480325272109/upload/1d1c8730-c4be-11e9-a083-02b3a23437c9/contact_200.png" title="Contacts"/>
+          </i>
+        </div>
+      </a>
+    </div>
+
+  </div>
 </div> 

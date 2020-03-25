@@ -68,6 +68,9 @@ function export_users_list_started()
     RMPApplication.debug ("begin export_users_list_started");
     c_debug(dbug.export, "=> export_users_list_started");
     $("#id_spinner_export").show();
+    var success_msg = ${P_quoted(i18n("export_users_list_started_msg", "Users export processes was launched. In case of success, it could take several minutes before you receive the export list by email."))};
+    var export_users_list_started_dialog_info_btn = "OK";
+    dialog_info(info_title_notify, success_msg, export_users_list_started_dialog_info_btn);
     RMPApplication.debug ("end export_users_list_started");
 }
 
@@ -75,7 +78,7 @@ function export_users_list_completed()
 {
     RMPApplication.debug ("begin export_users_list_completed");
     c_debug(dbug.export, "=> export_users_list_completed");
-    var success_msg = ${P_quoted(i18n("export_users_list_completed_msg", "Users export was processed with success! It could take several minutes before you receive the export list by email."))};
+    var success_msg = ${P_quoted(i18n("export_users_list_completed_msg", "Users export was processed with success! You will receive an email with an CSV file of user accounts list."))};
     notify_success(info_title_notify, success_msg);
     $("#id_spinner_export").hide();
     RMPApplication.debug ("end export_users_list_completed");
@@ -85,7 +88,7 @@ function export_users_list_aborted()
 {
     RMPApplication.debug ("begin export_users_list_aborted");
     c_debug(dbug.export, "=> export_users_list_aborted");
-    var error_msg = ${P_quoted(i18n("export_users_list_aborted_msg", "Users export process has been aborted!"))};
+    var error_msg = ${P_quoted(i18n("export_users_list_aborted_msg", "Users export process has been aborted due to an encountered error!"))};
     notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify);
     $("#id_spinner_export").hide();
     RMPApplication.debug ("end export_users_list_aborted");

@@ -1,17 +1,34 @@
-// ========================
+// ================================
 //   VideoAssistancePage : MAIN
-// ========================
+// ================================
 RMPApplication.debug("Video Assistance : Application started");
 
 // ========================
 // Variables declaration
 // ========================
+
+// if "true", logs will be showed on the browser console
+var dbug = {
+	"init": false,
+	"intervention": false,
+    "sight": false
+};
+
 var login = {};
+var wt_ol = [];
+var rmp_interf_tz = "Europe/Paris";
+var col_all_lang = {};
+var default_lang = "fr";									// Service Now Closure codes are defined in french 
+var selected_lang = RMPApplication.get("language");			// What language was selected by user
+
+var success_title_notify = ${P_quoted(i18n("success_title_notify", "Succès"))};
 var error_title_notify = ${P_quoted(i18n("error_title_notify", "Erreur"))};
 var warning_title_notify = ${P_quoted(i18n("warning_title_notify", "Information"))};
-var error_thanks_notify = ${P_quoted(i18n("error_thanks_notify", "Merci de signaler cette erreur!"))};
+var error_thanks_notify = ${P_quoted(i18n("error_thanks_notify", "Merci de signaler cette erreur !"))};
 var btn_ok = ${P_quoted(i18n("btn_ok", "OK"))};
-var alert_note = "<strong>" + ${P_quoted(i18n("alert_note_", "Note"))} + ":</strong>";
+
+var alert_note = "<strong>" + ${P_quoted(i18n("alert_note_", "Note :"))} + "</strong> ";
+
 
 // execute main program
 init();
@@ -21,12 +38,13 @@ init();
 // ===============================
 function init() 
 {
-	RMPApplication.debug("begin init : login = " + login);
+	RMPApplication.debug("begin init: login = " + login);
 	resetWI();
+
 	var options = {};
 	var pattern = {};
 	pattern.login = RMPApplication.get("login");
-    // console.log("=> init: pattern = ", pattern);
+	c_debug(dbug.init, "=> init: pattern = ", pattern);
 
     // CAPI for getting user information
 	id_get_user_info_as_admin_api.trigger (pattern, options , get_info_ok, get_info_ko); 
@@ -39,9 +57,10 @@ function init()
 function resetWI()
 {
     RMPApplication.debug("begin resetWI");
+    c_debug(dbug.init, "=> resetWI");
 
     // Change information zone's content
-    var request_alert_content = ${P_quoted(i18n("request_alert_content", "Vous allez établir une demande d'assistance par vidéo.<br>Le support IT va être notifié de votre demande et vous rappelera pour convenir d'un rendez-vous afin d'établir une liaison par vidéo"))} + ".";     
+    var request_alert_content = ${P_quoted(i18n("request_alert_content", "Vous allez établir une demande d'assistance par vidéo.<br>Le support IT va être notifié de votre demande et vous rappelera pour convenir d'un rendez-vous afin d'établir une liaison par vidéo."))};     
     $("#id_video_assistance_note").html(alert_note + request_alert_content);
 
     // var contexte = id_context.getValue();
@@ -63,7 +82,7 @@ function resetWI()
 function get_info_ok(result)
 {
 	RMPApplication.debug("begin get_info_ok: result =  " + JSON.stringify(result));
-	// console.log("=> get_info_ok: result = ", result);
+	c_debug(dbug.init, "=> get_info_ok: result = ", result);
 
     // define "login" variable properties
 	login.user = result.user;
@@ -78,12 +97,11 @@ function get_info_ok(result)
     login.division = (!isEmpty(result.division)) ? result.division.trim().toUpperCase() : '';
     login.region = (!isEmpty(result.region)) ? result.region.trim().toUpperCase() : '';
 	login.is_super_user = (!isEmpty(result.is_super_user)) ? result.is_super_user.toUpperCase() : '';
-    // console.log("=> get_info_ok: login = ", login);
+    c_debug(dbug.init, "=> get_info_ok: login = ", login);
 
 	// Fill contact fields on screen
-	// id_date.value = getDateTimeNow();
-	id_email_login.setValue(login.email);
-	id_phone_login.setValue(login.phone);
+	RMPApplication.set ("id_email_login", login.email);
+	RMPApplication.set ("id_phone_login", login.phone);
 
     // Set Service Now dispatch group
     setDispatchGroup();
@@ -94,9 +112,9 @@ function get_info_ok(result)
 function get_info_ko(error) 
 {
     RMPApplication.debug("begin get_info_ko: error = " + JSON.stringify(error));
-    // console.log("=> get_info_ko: error = ", error);
+    c_debug(dbug.init, "=> get_info_ok: error = ", error);
 
-    var error_msg = ${P_quoted(i18n("get_info_ko_msg", "Récupération impossible des informations utilisateur!"))};
+    var error_msg = ${P_quoted(i18n("get_info_ko_msg", "Récupération impossible des informations utilisateur !"))};
     notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify);
     RMPApplication.debug("end get_info_ko"); 
 } 
@@ -107,36 +125,28 @@ function get_info_ko(error)
 function setDispatchGroup() 
 {
 	RMPApplication.debug("begin setDispatchGroup");
-	// console.log("=> setDispatchGroup");
+		c_debug(dbug.init, "=> setDispatchGroup");
+    RMPApplication.set("country", login.country);
+    RMPApplication.set("timezone", login.timezone);
 
+	// Match with SNOW Format
 	var dispatch_group;
 	id_country.setValue(login.country);
-	// RMPApplication.set("country", login.country);
-
-	// Dispatch group definition according to country's user
 	switch (login.country) {
 		case "SPAIN": 
-			dispatch_group = "Fujitsu Espagne";
+			dispatch_group = "RMSDEMO - Fujitsu Espagne";
 			break;
 		case "BELGIUM":		
-			dispatch_group = "Fujitsu Belgique";
+			dispatch_group = "RMSDEMO - Fujitsu Belgique";
+			break;
+		case "FRANCE":
+			dispatch_group = "RMSDEMO - Fujitsu France";
 			break;
 		default:
-			dispatch_group = "Fujitsu France";
+			dispatch_group = "RMSDEMO - Global Partner";
 			break;
 	}
-	id_dispatch_group.setValue(dispatch_group);
-	// RMPApplication.set("=> setDispatchGroup: dispatch_group = ", dispatch_group);
-
-	var options = {};
-	var my_pattern = {};
-	if (include_string(id_dispatch_group.getValue(), "Fujitsu")) {
-		my_pattern.dispatch_group = "Fujitsu";
-	}
-	else {
-		my_pattern.dispatch_group = id_dispatch_group.getValue();
-	}
-	// console.log('=> setDispatchGroup: my_pattern = ', my_pattern);
+	RMPApplication.set("dispatch_group", dispatch_group);
 
 	// Load Work order and Intervention from Service Now
 	load_WO_InvFromSN();
@@ -149,100 +159,52 @@ function setDispatchGroup()
 // ==============================================================
 function load_WO_InvFromSN() 
 {
-	RMPApplication.debug("begin load_WO_InvFromSN");
-	// console.log("=> load_WO_InvFromSN");
+    RMPApplication.debug("begin load_WO_InvFromSN");
+    c_debug(dbug.intervention, "=> load_WO_InvFromSN");
 
-	var sn_query = "";											// query to be defined with following criterias
-	sn_query += "^company.u_full_nameLIKE" + login.company;		// contract definition
-	sn_query += "^stateIN10,11,13,15,16,18";					// different states ready to be closed
-
+	var dispatch_group = RMPApplication.get("dispatch_group");
+	var sn_query = "";												// query to be defined with following criterias
+	sn_query += "co_u_full_nameSTARTSWITH" + login.company;			// contract definition
+	sn_query += "^task_stateIN16,17,18";							// Intervention different states ready to be closed
+	sn_query += "^wo_stateIN10,11,13,15,16,18";						// WO different states ready to be closed
+	sn_query += "^usergrp_name=" + dispatch_group;
+	
 	var options = {};
-	var input = {"wm_order_query": sn_query};
-    // console.log("=> load_WO_InvFromSN: input = ", input);
-	id_get_work_order_list_api.trigger(input, options, order_ok, order_ko);
+	var input = {"query": sn_query};
+    c_debug(dbug.intervention, "=> load_WO_InvFromSN: sn_query = ", sn_query);
+	id_get_interventions_list_api.trigger(input, options, inv_ok, inv_ko);
 
 	RMPApplication.debug("end load_WO_InvFromSN");
 }
 
-function order_ok(result)
-{
-	RMPApplication.debug("order_ok : result =  " + result);
-	// console.log('=> order_ok: result = ', result);
-
-	var wm_ol = result.wm_order_list.getRecordsResult;
-	// console.log('=> order_ok: wm_ol = ', wm_ol);
-
-	if (typeof(wm_ol) == 'undefined') {					// Aucun résultat
-
-    	var error_msg = ${P_quoted(i18n("order_ok_msg", "Aucun Work Order n'a été trouvé!"))};
-	    notify_warning(warning_title_notify, error_msg);
-
-	} else {
-		var wo_list = "";								// list of work orders
-
-		if (typeof(wm_ol[0]) == 'undefined') {			// 1 Seul résultat
-			wo_list = wm_ol.number;
-		} else {										// 1 liste de résultats
-			for (i=0; i<wm_ol.length; i++) {
-				wo_list += ((i==0) ? "" : ",") + wm_ol[i].number;
-			}
-		}
-		var sn_query = "parent.numberIN" + wo_list;
-		sn_query += "^stateIN10,11,13,15,16,18";
-		var input = {"wm_task_query": sn_query};		// different states ready to be closed
-		var options = {};
-		// console.log("=> order_ok: input = ", input);
-		id_get_work_order_tasks_list_api.trigger(input, options, inv_ok, inv_ko);
-	}
-	id_spinner.setVisible(false);
-	RMPApplication.debug("end order_ok");
-}
-
-function order_ko(error)
-{
-    RMPApplication.debug("begin order_ko : error =  " + JSON.stringify(error));
-	id_spinner.setVisible(false);
-    var error_msg = ${P_quoted(i18n("order_ko_msg", "Récupération impossible des Work Order!"))};
-    notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify);
-    RMPApplication.debug("end order_ko");
-}
-
-
 function inv_ok(result)
 {
 	RMPApplication.debug("inv_ok : result =  " + result);
-	// console.log('=> inv_ok: result = ', result);
 
-	var wt_ol = result.wm_task_list.getRecordsResult;
-	// console.log('=> inv_ok: wt_ol = ', wt_ol);
+	wt_ol = result.result;
+	c_debug(dbug.intervention, "=> inv_ok: wt_ol = ", wt_ol);
 
-	if (typeof(wt_ol) == 'undefined') {				// Aucun résultat
+	if (typeof(wt_ol) == 'undefined') {					// Aucun résultat
 		
-    	var error_msg = ${P_quoted(i18n("inv_ok_msg", "Aucune intervention encore ouverte n'a été trouvée!"))};
-	    notify_warning(warning_title_notify, error_msg);
+		var error_msg = ${P_quoted(i18n("inv_ok_msg", "Aucune intervention encore ouverte n'a été trouvée !"))};
+    	notify_warning(warning_title_notify, error_msg);
 
 	} else {
-		var dispatch_group = id_dispatch_group.getValue();
+		var dispatch_group = RMPApplication.get("dispatch_group");
 		var vb_wo = new Array();
-		if (typeof(wt_ol[0]) == 'undefined') {		// 1 Seul résultat
-			if ( include_string(wt_ol.dispatch_group, "Fujitsu") || include_string(wt_ol.dispatch_group, "Dispatch") ||	include_string(wt_ol.assignment_group, "Fujitsu") || include_string(wt_ol.assignment_group, "Dispatch") ) {
-				vb_wo.push({"label": wt_ol.number + "-" + wt_ol.location, "value": wt_ol.sys_id});
-				// console.log("inv_ok 1");
-			}
-			// console.log("inv_ok 2");
+		if (typeof(wt_ol[0]) == 'undefined') {			// 1 Seul résultat
+				vb_wo.push({"label": wt_ol.task_number + " [" +  wt_ol.wo_number + "] - " + wt_ol.loc_name, "value": wt_ol.task_sys_id});
 
-		} else {											// 1 liste de résultats
+		} else {										// 1 liste de résultats
 			for(i=0; i<wt_ol.length; i++) {
-				if ( include_string(wt_ol[i].dispatch_group, "Fujitsu") || include_string(wt_ol[i].dispatch_group, "Dispatch") || include_string(wt_ol[i].assignment_group, "Fujitsu") || include_string(wt_ol[i].assignment_group, "Dispatch") ) {
-					vb_wo.push({"label": wt_ol[i].number + "-" + wt_ol[i].location, "value": wt_ol[i].sys_id});
-					// console.log("inv_ok 3");
-				}
+					vb_wo.push({"label": wt_ol[i].task_number + " [" +  wt_ol[i].wo_number + "] - " + wt_ol[i].loc_name, "value": wt_ol[i].task_sys_id});
 			}			
 		}
-		// console.log("inv_ok 4");
 		var a = new RMP_List();
 		a.fromArray(vb_wo);
-		RMPApplication.setList("vb_wo", a);		// List of interventions
+		c_debug(dbug.intervention, "=> inv_ok: vb_wo = ", vb_wo);
+		RMPApplication.setList("vb_wo", a);			// List of interventions
+		id_spinner.setVisible(false);
 	}
 
 	RMPApplication.debug("end inv_ok");
@@ -251,8 +213,9 @@ function inv_ok(result)
 function inv_ko(error)
 {
     RMPApplication.debug("begin inv_ko : error =  " + JSON.stringify(error));
+    c_debug(dbug.intervention, "=> inv_ko: error = ", error);
 	id_spinner.setVisible(false);
-    var error_msg = ${P_quoted(i18n("inv_ko_msg", "Récupération impossible des interventions!"))};
+    var error_msg = ${P_quoted(i18n("inv_ko_msg", "Récupération impossible des interventions !"))};
     notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify);
     RMPApplication.debug("end inv_ko");
 }

@@ -38,7 +38,7 @@ var sla_def = [
 function initMap()
 {
     RMPApplication.debug("begin initMap");
-    c_debug(debug.sla, "=> initMap");
+    c_debug(dbug.sla, "=> initMap");
     map = null;
     bounds = null;
     infoWindow = null;
@@ -58,7 +58,7 @@ function initMap()
     // select the DIV container where the map will be shown
     map = new google.maps.Map(document.getElementById('pan_map'), mapOptions);
     bounds = new google.maps.LatLngBounds();
-    // c_debug(debug.sla, "=> initmap: bounds = ", bounds);
+    // c_debug(dbug.sla, "=> initmap: bounds = ", bounds);
     infoWindow = new google.maps.InfoWindow();
 
     var selected_dashboard_tab = id_selected_dashboard_tab.getValue();
@@ -75,7 +75,7 @@ function initMap()
 function dispatchWorkOrder()
 {
     RMPApplication.debug("begin dispatchWorkOrder");
-    c_debug(debug.sla, "=> dispatchWorkOrder");
+    c_debug(dbug.sla, "=> dispatchWorkOrder");
     
     // attach concerned SLA definition to each work orker
     var SLA_overSLA = sla_def[0];
@@ -95,7 +95,7 @@ function dispatchWorkOrder()
     
     } else {
 
-        c_debug(debug.sla, "=> dispatchWorkOrder: wos_array = ", wos_array);
+        c_debug(dbug.sla, "=> dispatchWorkOrder: wos_array = ", wos_array);
         var wos_loc_name = [];              // store all locations with an active SLA
         var reduced_wos_loc_name = [];      // delete all duplicates and keep only one instance of each location
 
@@ -104,7 +104,7 @@ function dispatchWorkOrder()
             wos_loc_name[i] = wos_array[i].loc_name;
             reduced_wos_loc_name = reduce_array(wos_loc_name);
         }
-        c_debug(debug.sla, "=> dispatchWorkOrder: reduced_wos_loc_name = ", reduced_wos_loc_name);
+        c_debug(dbug.sla, "=> dispatchWorkOrder: reduced_wos_loc_name = ", reduced_wos_loc_name);
 
         // 1) deal with location name
         var k_on = 0;
@@ -117,7 +117,7 @@ function dispatchWorkOrder()
             var increment_k_soon = false;
             var increment_k_over = false;
             var sla_location_name = reduced_wos_loc_name[j];
-            // c_debug(debug.sla, "=> dispatchWorkOrder: sla_location_name = ", sla_location_name);
+            // c_debug(dbug.sla, "=> dispatchWorkOrder: sla_location_name = ", sla_location_name);
 
             sla_loc_name[j] = {};
             sla_loc_name[j].loc_name = reduced_wos_loc_name[j];
@@ -128,8 +128,8 @@ function dispatchWorkOrder()
 
                 // keep additionnal location informations for further needs
                 wos_array[i].loc_col_location_code = wos_array[i].cu_correlation_id;
-                // c_debug(debug.sla, "=> dispatchWorkOrder: location_name = ", wos_array[i].loc_col_location_name);
-                // c_debug(debug.sla, "=> dispatchWorkOrder: location_code = ", wos_array[i].loc_col_location_code);
+                // c_debug(dbug.sla, "=> dispatchWorkOrder: location_name = ", wos_array[i].loc_col_location_name);
+                // c_debug(dbug.sla, "=> dispatchWorkOrder: location_code = ", wos_array[i].loc_col_location_code);
                 
                 var tiret_i = wos_array[i].loc_name.lastIndexOf("-");
                 if (tiret_i > -1) {     // '-' character found
@@ -142,10 +142,10 @@ function dispatchWorkOrder()
                 } else {
                     wos_array[i].loc_col_location_name = wos_array[i].loc_name;
                 }
-                // c_debug(debug.sla, "=> dispatchWorkOrder: wos_array[" + i + "] = ", wos_array[i]);
+                // c_debug(dbug.sla, "=> dispatchWorkOrder: wos_array[" + i + "] = ", wos_array[i]);
 
-                // c_debug(debug.sla, "=> dispatchWorkOrder: wos_array[" + i + "].loc_col_location_name = ", wos_array[i].loc_col_location_name);
-                // c_debug(debug.sla, "\n                    sla_location_name = ", sla_location_name);
+                // c_debug(dbug.sla, "=> dispatchWorkOrder: wos_array[" + i + "].loc_col_location_name = ", wos_array[i].loc_col_location_name);
+                // c_debug(dbug.sla, "\n                    sla_location_name = ", sla_location_name);
                 // if (wos_array[i].loc_col_location_name === sla_location_name) {          // if no location_code included in location's name
                 // if (wos_array[i].loc_col_location_code === sla_loc_code) {                // strict dispatching
                 if (include_string(sla_location_name, wos_array[i].loc_col_location_name)) {       // if no location_code included in location's name                  
@@ -153,7 +153,7 @@ function dispatchWorkOrder()
                     sla_loc_name[j].wo_list.push(wos_array[i]);
 
                     if ( parseFloat(wos_array[i].tasksla_percentage) < 80 ) {             // On Time SLA
-                        // c_debug(debug.sla, "=> dispatchWorkOrder: < 80 | (i,j) = ", "(" + i + "," + j + ")");
+                        // c_debug(dbug.sla, "=> dispatchWorkOrder: < 80 | (i,j) = ", "(" + i + "," + j + ")");
                         wos_array[i].sla_def = SLA_onTimeSLA;
                         if (isEmpty(onTimeSLA_WO[k_on])) {
                             onTimeSLA_WO[k_on] = {};
@@ -164,10 +164,10 @@ function dispatchWorkOrder()
                         }
                         onTimeSLA_WO[k_on].wo_list.push(wos_array[i]);
                         increment_k_on = true;
-                        c_debug(debug.sla, "=> dispatchWorkOrder: onTimeSLA_WO[" + k_on + "] = ", onTimeSLA_WO[k_on]);
+                        c_debug(dbug.sla, "=> dispatchWorkOrder: onTimeSLA_WO[" + k_on + "] = ", onTimeSLA_WO[k_on]);
 
                     } else if ( parseFloat(wos_array[i].tasksla_percentage) < 100 ) {     // between 80 and 100% elapsed Time
-                        // c_debug(debug.sla, "=> dispatchWorkOrder: 80 < x < 100");
+                        // c_debug(dbug.sla, "=> dispatchWorkOrder: 80 < x < 100");
                         wos_array[i].sla_def = SLA_soonOverSLA;
                         if (isEmpty(soonOverSLA_WO[k_soon])) {
                             soonOverSLA_WO[k_soon] = {};
@@ -180,7 +180,7 @@ function dispatchWorkOrder()
                         increment_k_soon = true;
 
                     } else {                                        // over SLA time
-                        // c_debug(debug.sla, "=> dispatchWorkOrder: > 100");
+                        // c_debug(dbug.sla, "=> dispatchWorkOrder: > 100");
                         wos_array[i].sla_def = SLA_overSLA;
                         if (isEmpty(overSLA_WO[k_over])) {
                             overSLA_WO[k_over] = {};
@@ -197,14 +197,14 @@ function dispatchWorkOrder()
             if (increment_k_on) { k_on++; }
             if (increment_k_soon) { k_soon++; }
             if (increment_k_over) { k_over++; }
-            // c_debug(debug.sla, "=> dispatchWorkOrder: sla_loc_name[" + j + "] = ", sla_loc_name[j]);
+            // c_debug(dbug.sla, "=> dispatchWorkOrder: sla_loc_name[" + j + "] = ", sla_loc_name[j]);
         }
     }
 
-    c_debug(debug.sla, "=> dispatchWorkOrder: onTimeSLA_WO = ", onTimeSLA_WO);
-    c_debug(debug.sla, "=> dispatchWorkOrder: soonOverSLA_WO = ", soonOverSLA_WO);
-    c_debug(debug.sla, "=> dispatchWorkOrder: overSLA_WO = ", overSLA_WO);
-    c_debug(debug.sla, "=> dispatchWorkOrder: sla_loc_name = ", sla_loc_name);
+    c_debug(dbug.sla, "=> dispatchWorkOrder: onTimeSLA_WO = ", onTimeSLA_WO);
+    c_debug(dbug.sla, "=> dispatchWorkOrder: soonOverSLA_WO = ", soonOverSLA_WO);
+    c_debug(dbug.sla, "=> dispatchWorkOrder: overSLA_WO = ", overSLA_WO);
+    c_debug(dbug.sla, "=> dispatchWorkOrder: sla_loc_name = ", sla_loc_name);
     
     setTimeout(function() { 
         // show tickets with an active SLA (3 states)
@@ -222,7 +222,7 @@ function showSLA(sla_type)
 {
     RMPApplication.debug("begin showSLA");
     current_sla = sla_type;
-    c_debug(debug.sla, "=> showSLA: current_sla = ", current_sla);
+    c_debug(dbug.sla, "=> showSLA: current_sla = ", current_sla);
 
     if (sla_type == "all") {
         current_sla = "all";
@@ -230,7 +230,7 @@ function showSLA(sla_type)
     } else {
         for (var i=0; i<sla_def.length; i++) {
             var array_WO = eval(sla_def[i].type + '_WO');
-            c_debug(debug.sla, "=> showSLA: array_WO = ", array_WO);
+            c_debug(dbug.sla, "=> showSLA: array_WO = ", array_WO);
             if (sla_def[i].type == sla_type) {
                 showMarkers(array_WO);
             }
@@ -261,14 +261,14 @@ function showMarkers(arr_loc)
     }
 
     // Automatically center the map fitting all markers on the screen
-    // c_debug(debug.sla, "=> showMarkers: bounds = ", bounds);
+    // c_debug(dbug.sla, "=> showMarkers: bounds = ", bounds);
     if (!isEmpty(bounds)) {
         map.fitBounds(bounds);
         if (arr_loc.length == 1) {      // if only one location, adjust a correct zoom
             map.setZoom(6);
         }
     }
-    // c_debug(debug.sla, "=> showMarkers: current_markers = ", current_markers);
+    // c_debug(dbug.sla, "=> showMarkers: current_markers = ", current_markers);
 
     RMPApplication.debug("end showMarkers");
 }
@@ -279,12 +279,12 @@ function showMarkers(arr_loc)
 function addMarker(loca)
 {
     RMPApplication.debug("begin addMarker");
-    // c_debug(debug.sla, "=> addMarker: loca = ", loca);
+    // c_debug(dbug.sla, "=> addMarker: loca = ", loca);
 
     var contentInfo = setSiteInfo(loca);
-    // c_debug(debug.sla, "=> addMarker: contentInfo = ", contentInfo);
+    // c_debug(dbug.sla, "=> addMarker: contentInfo = ", contentInfo);
     var place = new google.maps.LatLng (loca.wo_list[0].loc_latitude, loca.wo_list[0].loc_longitude);
-    // c_debug(debug.sla, "=> addMarker: place = ", place);
+    // c_debug(dbug.sla, "=> addMarker: place = ", place);
     
     // define a rectangle with all markers on the map
     if (!isEmpty(place)) {
@@ -299,7 +299,7 @@ function addMarker(loca)
         icon: loca.wo_list[0].sla_def.marker
     });
     marker.setMap(map);
-    // c_debug(debug.sla, "=> addMarker: marker = ", marker);
+    // c_debug(dbug.sla, "=> addMarker: marker = ", marker);
 
     // keep all current markers on the map in an array
     current_markers.push(marker);
@@ -322,7 +322,7 @@ function addMarker(loca)
 function setSiteInfo(w_order_arr) 
 {
     RMPApplication.debug("begin setSiteInfo");
-    // c_debug(debug.sla, "=> setSiteInfo: w_order_arr = ", w_order_arr);
+    // c_debug(dbug.sla, "=> setSiteInfo: w_order_arr = ", w_order_arr);
 
     var imgInfo = "https://live.runmyprocess.com/live/112501480325272109/upload/05c7f6c0-25c7-11e7-869b-02b3a23437c9/locations_200.png";
     var siteInfo =    
@@ -357,7 +357,7 @@ function setSiteInfo(w_order_arr)
 function hideMarkers(markers_array) 
 {
     RMPApplication.debug("begin hideMarkers");
-    // c_debug(debug.sla, "=> hideMarkers : markers_array = ", markers_array);
+    // c_debug(dbug.sla, "=> hideMarkers : markers_array = ", markers_array);
     clearMarkers(markers_array);
     RMPApplication.debug("end hideMarkers");
 }
@@ -368,7 +368,7 @@ function hideMarkers(markers_array)
 function deleteMarkers(markers_array) 
 {
     RMPApplication.debug("begin deleteMarkers");
-    // c_debug(debug.sla, "=> deleteMarkers : markers_array = ", markers_array);
+    // c_debug(dbug.sla, "=> deleteMarkers : markers_array = ", markers_array);
     clearMarkers(markers_array);
     markers_array = [];                 // delete all markers on the map, by resetting array
     RMPApplication.debug("end deleteMarkers");
@@ -380,7 +380,7 @@ function deleteMarkers(markers_array)
 function clearMarkers(markers_array) 
 {
     RMPApplication.debug("begin clearMarkers");
-    // c_debug(debug.sla, "=> clearMarkers : markers_array = ", markers_array);
+    // c_debug(dbug.sla, "=> clearMarkers : markers_array = ", markers_array);
     var clean = true;
     setMapOnAll(markers_array, clean);
     RMPApplication.debug("end clearMarkers");
@@ -392,8 +392,8 @@ function clearMarkers(markers_array)
 function setMapOnAll(markers_array, clean) 
 {
     RMPApplication.debug("begin setMapOnAll");
-    // c_debug(debug.sla, "=> setMapOnAll : markers_array = ", markers_array);
-    // c_debug(debug.sla, "=>               clean = ", clean);
+    // c_debug(dbug.sla, "=> setMapOnAll : markers_array = ", markers_array);
+    // c_debug(dbug.sla, "=>               clean = ", clean);
     for (var i=0; i<markers_array.length; i++) {
         if (clean) {
             markers_array[i].setMap(null);
