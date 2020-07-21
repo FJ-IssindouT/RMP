@@ -6,31 +6,18 @@ RMPApplication.debug("IMAC : Application started");
 // ========================
 // Variables declaration
 // ========================
-
-// if "true", logs will be showed on the browser console
-var dbug = {
-    "init" : false,
-    "box" : false,
-    "categ" : false,
-    "action" : false,
-    "datas" : false,
-    "process_btn" : true
-};
-
 var login = {};					// metadata user
 var view;						// view definition according to metadata values
 var affiliateList = null;       // group of alliliates for specific GRP_AFF view/scope
 var selected_location = null;   // selected location according to input's user
 var enseigne = null;            // affiliate's login user
 var update_done = false;
-var processing = true;
 
 var request = {};				// all informations related to the IMAC request 
 								// => should be used as pattern to retrieve cost line in collection
 
 var error_title_notify = ${P_quoted(i18n("error_title_notify", "Erreur"))};
-var success_title_notify = ${P_quoted(i18n("success_title_notify", "Succès"))};
-var error_thanks_notify = ${P_quoted(i18n("error_thanks_notify", "Merci de signaler cette erreur !"))};
+var error_thanks_notify = ${P_quoted(i18n("error_thanks_notify", "Merci de signaler cette erreur!"))};
 var btn_ok = ${P_quoted(i18n("btn_ok", "OK"))};
 
 resetWI();	// reset WI
@@ -43,8 +30,7 @@ init();		// execute main program
 function resetWI()
 {
 	RMPApplication.debug("begin resetWI");
-	c_debug(dbug.init, "=> resetWI");
-	$("#id_module_cards").hide();			// by default
+	// console.log("=> resetWI");
 
 	var selectedLang = "fr";                // french by default
     var datepicker_lang = selectedLang;
@@ -52,7 +38,6 @@ function resetWI()
 
 	var contexte = id_context.getValue();
     // contexte == "web" for desktop screen and datepicker; otherwise (for tablet & mobile) datebox is used as calendar component
-    c_debug(dbug.init, "=> resetWI: contexte = ", contexte);
 
     if (contexte == "web") {       // desktop
 
@@ -104,7 +89,7 @@ function resetWI()
 
     var req_type = id_request_type.getValue();
     if (isEmpty(req_type)) {
-        c_debug(dbug.init, "=> resetWI: req_type is empty!");
+    	// console.log("=> resetWI: req_type is empty!");
     	var categ = id_category.getValue();
     	if (!isEmpty(categ)) {
     		id_request_type.setValue(findRequestType(categ));
@@ -112,15 +97,14 @@ function resetWI()
     		setFamCat(req_type);
     	}
     } else {
-        c_debug(dbug.init, "=> resetWI: req_type is NOT empty!");
+    	// console.log("=> resetWI: req_type is NOT empty!");
     	setFamCat(req_type);
     }
 
-    var imac_statut = id_state.getValue();
-    c_debug(dbug.init, "=> resetWI: case [" + imac_statut + "]");
-	switch (imac_statut) {			// What informations to show
+	switch (id_state.getValue()) {			// What informations to show
 
 		case "draft" : 		// IMAC request contains some datas
+			// console.log('=> resetWI: case "draft"');
 			$("#id_module_cards").hide();
 			$("#id_user_choice_row").show();
 			id_location_info.setVisible(true);
@@ -132,11 +116,12 @@ function resetWI()
 			retrieveAllDatas();
 			break;
 		case "sent" : 		// IMAC fullfilled by customer and already sent to Fujitsu
+			// console.log('=> resetWI: case "sent"');
 			$("#id_module_cards").hide();
 			$("#id_user_choice_row").show();
 			id_location_info.setVisible(true);
 			id_location_info.open();
-			id_reset_adresses.setVisible(false);
+			id_location_change.setVisible(false);
 			id_location_validate.setVisible(false);
 			id_imac_request.setVisible(true);
 			id_imac_request.open();
@@ -150,13 +135,13 @@ function resetWI()
 			id_sdmo_cancellation.setVisible(true);       	// only active for "Informations Fujitsu screen"
 			retrieveAllDatas();
 			break;
-        case "accepted" : 		// IMAC saved on Fujitsu side with additionnal informations
-        case "planned" :
+		case "work_in_progress" : 		// IMAC saved on Fujitsu side with additionnal informations
+			// console.log('=> resetWI: case "work_in_progress"');
 			$("#id_module_cards").hide();
 			$("#id_user_choice_row").show();
 			id_location_info.setVisible(true);
 			id_location_info.open();
-			id_reset_adresses.setVisible(false);
+			id_location_change.setVisible(false);
 			id_location_validate.setVisible(false);
 			id_imac_request.setVisible(true);
 			id_imac_request.open();
@@ -170,12 +155,13 @@ function resetWI()
 			id_sdmo_cancellation.setVisible(true);       	// only active for "Informations Fujitsu screen"
 			retrieveAllDatas();
 			break;
-		case "achieved" : 	// IMAC achieved by Fujitsu SDMO
+		case "validated" : 	// IMAC validated by Fujitsu SDMO
+			// console.log('=> resetWI: case "validated"');
 			$("#id_module_cards").hide();
 			$("#id_user_choice_row").show();
 			id_location_info.setVisible(true);
 			id_location_info.open();
-			id_reset_adresses.setVisible(false);
+			id_location_change.setVisible(false);
 			id_location_validate.setVisible(false);
 			id_imac_request.setVisible(true);
 			id_imac_request.open();
@@ -185,11 +171,12 @@ function resetWI()
 			retrieveAllDatas();
 			break;
 		case "cancelled" : 	// IMAC cancelled by Fujitsu SDMO
+			// console.log('=> resetWI: case "cancelled"');
 			$("#id_module_cards").hide();
 			$("#id_user_choice_row").show();
 			id_location_info.setVisible(true);
 			id_location_info.open();
-			id_reset_adresses.setVisible(false);
+			id_location_change.setVisible(false);
 			id_location_validate.setVisible(false);
 			id_imac_request.setVisible(true);
 			id_imac_request.open();
@@ -199,6 +186,7 @@ function resetWI()
 			retrieveAllDatas();
 			break;
 		default :  		// New IMAC request
+			// console.log('=> resetWI: case "default"');
 			$("#id_module_cards").show();
 			$("#id_user_choice_row").hide();	
 			id_location_info.setVisible(false);
@@ -222,7 +210,7 @@ function resetWI()
 function fillTechnicianBox() 
 {
     RMPApplication.debug("begin fillTechnicianBox");
-    c_debug(dbug.box, "=> begin fillTechnicianBox");
+    // console.log("=> fillTechnicianBox");
 
     var id_technicianRequest = $("#id_technicianRequest");
     var defaultValue = "yes";
@@ -244,7 +232,7 @@ function fillTechnicianBox()
 function fillServerBox() 
 {
     RMPApplication.debug("begin fillServerBox");
-    c_debug(dbug.box, "=> begin fillServerBox");
+    // console.log("=> fillServerBox");
 
     var id_serverRequest = $("#id_serverRequest");
     var defaultValue = "no";
@@ -268,7 +256,7 @@ function fillServerBox()
 function resetAction() 
 {
 	RMPApplication.debug("begin resetAction");
-	c_debug(dbug.init, "=> begin resetAction");
+	// console.log("=> resetAction");
 
 	RMPApplication.debug("end resetAction");
 }
@@ -278,13 +266,14 @@ function resetAction()
 // ===============================
 function init() 
 {
-    RMPApplication.debug("begin init");
-    
+	RMPApplication.debug("begin init");
+	// console.log("begin init");
+
 	// resetWI();						// reset Web Interface  & hide sub-level area
 	var options = {};
 	var pattern = {};
-    pattern.login = RMPApplication.get("login");
-    c_debug(dbug.init, "=> init: pattern = ", pattern);
+	pattern.login = RMPApplication.get("login");
+    // console.log("=> init: pattern = ", pattern);
 
     // CAPI for getting user information
 	id_get_user_info_as_admin_api.trigger (pattern, options , get_info_ok, get_info_ko); 
@@ -296,8 +285,8 @@ function init()
 // ============================================
 function get_info_ok(result)
 {
-    RMPApplication.debug("begin get_info_ok: result =  " + JSON.stringify(result));
-    c_debug(dbug.init, "=> get_info_ok: result = ", result);
+	RMPApplication.debug("begin get_info_ok: result =  " + JSON.stringify(result));
+	// console.log("=> get_info_ok: result = ", result);
 
     // define "login" variable properties
 	login.user = result.user;
@@ -312,8 +301,8 @@ function get_info_ok(result)
     login.location_code = (!isEmpty(result.code_magasin)) ? result.code_magasin.trim().toUpperCase() : '';
     login.division = (!isEmpty(result.division)) ? result.division.trim().toUpperCase() : '';
     login.region = (!isEmpty(result.region)) ? result.region.trim().toUpperCase() : '';
-    login.is_super_user = (!isEmpty(result.is_super_user)) ? result.is_super_user.toUpperCase() : '';
-    c_debug(dbug.init, "=> get_info_ok: login = ", login);
+	login.is_super_user = (!isEmpty(result.is_super_user)) ? result.is_super_user.toUpperCase() : '';
+    // console.log("=> get_info_ok: login = ", login);
 	enseigne = login.affiliate;
 	if (!isEmpty(login.affiliate)) {
 		id_enseigne.setValue(login.affiliate);
@@ -325,8 +314,7 @@ function get_info_ok(result)
 		id_acces_enseignes.setValue(login.affiliates_access);
 	}
 	id_telephone_demandeur.setValue(login.phone);
-	// if (!isEmpty(login.country)) {
-	if (isEmpty(id_h_pays_m.getValue())) {		
+	if (!isEmpty(login.country)) {
 		id_pays_m.setSelectedValue(capitalize(login.country));
 		id_new_pays.setSelectedValue(capitalize(login.country));
 	}
@@ -359,8 +347,8 @@ function get_info_ok(result)
 	    view = "LOCAL";   
 	}
     id_view.setValue(view);
-    c_debug(dbug.init, "=> get_info_ok: view = ", view);
-    
+    // console.log("get_info_ok: view = ", view);
+
     var affiliateList = '';
     switch (login.grp_affiliates) {
         case 'SMC':
@@ -382,8 +370,8 @@ function get_info_ok(result)
 function get_info_ko(error) 
 {
     RMPApplication.debug("begin get_info_ko: error = " + JSON.stringify(error));
-    c_debug(dbug.init, "=> get_info_ko: error = ", error);
-    var error_msg = ${P_quoted(i18n("get_info_ko_msg", "Récupération impossible des informations utilisateur !"))};
+    // console.log("=> get_info_ko: error = ", error);
+    var error_msg = ${P_quoted(i18n("get_info_ko_msg", "Récupération impossible des informations utilisateur!"))};
     notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify);
     RMPApplication.debug("end get_info_ko"); 
 } 
@@ -393,8 +381,8 @@ function get_info_ko(error)
 // ====================================================================================
 function check_user_lanes() 
 {
-    RMPApplication.debug("begin check_user_lanes : login = " + login);
-    c_debug(dbug.init, "=> check_user_lanes: login = ", login);
+	RMPApplication.debug("begin check_user_lanes : login = " + login);
+	// console.log("=> check_user_lanes: login = ", login);
 
 	var options = {};
 	var pattern = {};
@@ -406,8 +394,8 @@ function check_user_lanes()
 
 function check_user_lanes_ok(result) 
 {
-    RMPApplication.debug("begin check_user_lanes_ok: result =  " + JSON.stringify(result));
-    c_debug(dbug.init, "=> check_user_lanes_ok: result = ", result);
+	RMPApplication.debug("begin check_user_lanes_ok: result =  " + JSON.stringify(result));
+	// console.log("=> check_user_lanes_ok: result = ", result);
 
 	// define other "login" variable properties
 	login.is_sdmo = (result.is_sdmo == "true") ? true : false;
@@ -421,8 +409,8 @@ function check_user_lanes_ok(result)
 	login.is_vivarte_user = (result.is_vivarte_user == "true") ? true : false;
 	login.is_imac_requestor = (result.is_imac_requestor == "true") ? true : false;
 	login.is_imac_validator = (result.is_imac_validator == "true") ? true : false;
-    login.is_imac_contributor = (result.is_imac_contributor == "true") ? true : false;
-    c_debug(dbug.init, "=> check_user_lanes_ok: login = ", login);
+	login.is_imac_contributor = (result.is_imac_contributor == "true") ? true : false;
+	// console.log("=> check_user_lanes_ok: login = ", login);
 
 	set_section_visibility();
 
@@ -432,8 +420,8 @@ function check_user_lanes_ok(result)
 function check_user_lanes_ko(error) 
 {
     RMPApplication.debug("begin check_user_lanes_ko: error = " + JSON.stringify(error));
-    c_debug(dbug.init, "=> check_user_lanes_ko: error = ", error);
-    var error_msg = ${P_quoted(i18n("get_info_ko_msg", "Vérification impossible des droits de l'utilisateur !"))};
+    // console.log("=> check_user_lanes_ko: error = ", error);
+    var error_msg = ${P_quoted(i18n("get_info_ko_msg", "Vérification impossible des droits de l'utilisateur!"))};
     notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify);
     RMPApplication.debug("end check_user_lanes_ko"); 
 } 
@@ -444,8 +432,8 @@ function check_user_lanes_ko(error)
 
 function set_section_visibility() 
 {
-    RMPApplication.debug("begin set_section_visibility : login = " + login);
-    c_debug(dbug.init, "=> set_section_visibility: login.is_sdmo = ", login.is_sdmo);
+	RMPApplication.debug("begin set_section_visibility : login = " + login);
+	// console.log("=> set_section_visibility: login.is_sdmo = ", login.is_sdmo);
 
 	// Following section shoubd be visible only for SDMO usersPRET
 	id_fujitsu_follow_up.setVisible(login.is_sdmo);
@@ -463,8 +451,8 @@ function set_section_visibility()
 // ====================================================================================
 function setFamCat(type) 
 {
-    RMPApplication.debug("begin setFamCat");
-    c_debug(dbug.categ, "=> setFamCat: type = ", type);
+	RMPApplication.debug("begin setFamCat");
+	// console.log("=> setFamCat: type = ", type);
 
 	// save type of request for windows title
    	id_request_type.setValue(type);
@@ -523,8 +511,8 @@ function setFamCat(type)
 // ====================================================================================
 function findRequestType(cat) 
 {
-    RMPApplication.debug("begin findRequestType");
-    c_debug(dbug.categ, "=> findRequestType: cat = ", cat);
+	RMPApplication.debug("begin findRequestType");
+	// console.log("=> findRequestType: cat = ", cat);
 	var req_type = "";
 
 	// Complete country selection filter according connected profile
@@ -558,10 +546,10 @@ function findRequestType(cat)
             break;
     }
 
-    c_debug(dbug.categ, "=> findRequestType: req_type = ", req_type);
+    // console.log('=> findRequestType: req_type = ', req_type);
     return req_type;
 
-	// RMPApplication.debug("end findRequestType");
+	RMPApplication.debug("end findRequestType");
 }
 
 // ====================================================================================
@@ -569,8 +557,8 @@ function findRequestType(cat)
 // ====================================================================================
 function showUserChoice() 
 {
-    RMPApplication.debug("begin showUserChoice");
-    c_debug(dbug.categ, "=> showUserChoice: request = ", request);
+	RMPApplication.debug("begin showUserChoice");
+	// console.log("=> showUserChoice: request = ", request);
 
 	var id_moduleCards = $("#id_module_cards");
 	var id_userChoiceRow = $("#id_user_choice_row");
@@ -586,7 +574,7 @@ function showUserChoice()
 	var fontAwesome = "";
 	var matAction = "";
 	var title = ${P_quoted(i18n("error_showUserChoice_title", "Information"))};
-	var content = ${P_quoted(i18n("error_showUserChoice_msg", "Le type d'opération demandée n'a pas encore été implémenté !"))};
+	var content = ${P_quoted(i18n("error_showUserChoice_msg", "Le type d'opération demandée n'a pas encore été implémenté!"))};
 
 	switch (request.category) {
 		case "ouverture" :
@@ -693,7 +681,7 @@ function showUserChoice()
 			break;
 	}
 
-    c_debug(dbug.categ, "=> showUserChoice: matAction = " + matAction + "\n + action: " + action);
+	// console.log('=> showUserChoice: matAction = ' + matAction + '\n + action: ' + action);
 
 	// hide choice modules part
 	id_moduleCards.hide();
@@ -718,47 +706,11 @@ function showUserChoice()
 	id_imacToDo.append(action);
 	id_imacToDo.show();	
 
+
 	// toggle location details part
 	id_location_info.setVisible(true);
 
 	RMPApplication.debug("end showUserChoice");
-}
-
-// ====================================================================================
-//   Check or uncheck State options according values
-// ====================================================================================
-function checkStates() 
-{
-    RMPApplication.debug("begin checkStates");
-	c_debug(dbug.process_btn, "=> checkStates");
-	
-	var id_woNb = $("#id_woNb");
-	var id_techDate = $("#id_techDate");
-	var state_value = id_state.getValue();
-	var imac_accepted = (id_imac_accepted.isChecked()) ? true : false;
-	var inter_planned = (!isEmpty(id_woNb.val()) && (!isEmpty(id_techDate.val()))) ? true : false;
-
-	if (state_value != "draft") {		// State in ['sent', 'accepted', 'planned', 'achieved', 'cancelled']
-
-		if (imac_accepted) {						// SDMO has checked this checkbox
-			id_state.setValue("accepted");
-		}
-		if (inter_planned) {						// Intervention date & WO filled
-			id_state.setValue("planned");
-			id_inter_planned.setChecked(true);
-		}
-		if (id_imac_achieved.isChecked()) {			// IMAC can't be cancelled if "achieved" state
-			id_imac_cancelled.setChecked(false);
-			id_state.setValue("achieved");
-		}
-		if (id_imac_cancelled.isChecked()) {        // IMAC can't be achieved if "cancelled" state
-			id_imac_achieved.setChecked(false);
-			id_state.setValue("cancelled");
-		}
-	}
-	imacContentStateUpdate();
-
-	RMPApplication.debug("end checkStates");
 }
 
 // ====================================================================================
@@ -768,14 +720,13 @@ function dataValidation()
 {
 	RMPApplication.debug("begin dataValidation");
 	var state_value = id_state.getValue();
-    c_debug(dbug.datas, "=> dataValidation: state at START = ", state_value);
-	
+	// console.log("=> dataValidation: state = ", state_value);
+
 	// set temporary variables for each HTML fields
 	var id_technicianRequest = $("#id_technicianRequest");			// technicianRequest input
 	var id_serverRequest = $("#id_serverRequest");					// serverRequest input
 	var distanceCost = (id_distance_cost.getSelectedValue() == "yes") ? "yes" : "no";			// distance: more than 20 kms
 	var id_cashdeskNb = $("#id_cashdeskNb");
-	var id_cashDrawerNb = $("#id_cashDrawerNb");
 	var id_scannerNb = $("#id_scannerNb");
 	var id_handScannerNb = $("#id_handScannerNb");
 	var id_tpeNb = $("#id_tpeNb");
@@ -795,7 +746,7 @@ function dataValidation()
 	var id_collectDate = $("#id_collectDate");
 	var id_restrictedAccess = $("#id_restrictedAccess");
 	var datum = "";
-	
+
 	// Customer set following values
 	if (id_material_todo.getValue() == "move") {
 		id_distance_cost.setSelectedValue(distanceCost);
@@ -803,7 +754,6 @@ function dataValidation()
 	id_technician.setSelectedValue(id_technicianRequest.val());
 	id_server.setSelectedValue(id_serverRequest.val());
 	id_cashdesk_nb.setValue(id_cashdeskNb.val());
-	id_cash_drawer_nb.setValue(id_cashDrawerNb.val());
 	id_scanner_nb.setValue(id_scannerNb.val());
 	id_hand_scanner_nb.setValue(id_handScannerNb.val());
 	id_tpe_nb.setValue(id_tpeNb.val());
@@ -813,117 +763,112 @@ function dataValidation()
 	id_customer_comments.setValue(id_customerComments.val());
 	id_technician_time.setValue(id_techTime.val());
 	id_restricted_access.setValue(id_restrictedAccess.val());
-	
+
     var contexte = id_context.getValue();
     // contexte == "web" for desktop screen and datepicker; otherwise (for tablet & mobile) datebox is used as calendar component
     var date_separator = (contexte == "web") ? "/" :  "-";
     var temp_techTime = "10:00";
-	var date_format = "DD" + date_separator + "MM" + date_separator + "YYYY";
-	
-	var techDate_val = id_techDate.val();
-	var technician_date_val = moment.unix(id_technician_date.getDate()).format(date_format);
-	if (isEmpty(techDate_val) && isEmpty(technician_date_val)) {
-		c_debug(dbug.datas, "=> dataValidation: isEmpty(techDate_val) && isEmpty(technician_date_val)");
-		id_planning_changed.setValue("no");
-		id_technician_date.setValue(null);
-		RMPApplication.set("technician_date_l", "");
 
-	} else if (techDate_val != technician_date_val) {
-
-		if (isEmpty(techDate_val)) {
-			c_debug(dbug.datas, "=> dataValidation: (techDate_val != technician_date_val) && isEmpty(techDate_val)");
-			id_planning_changed.setValue("no");
-			id_technician_date.setValue(null);
-			RMPApplication.set("technician_date_l", "");
-		} else {
-			c_debug(dbug.datas, "=> dataValidation: (techDate_val != technician_date_val) && !(isEmpty(techDate_val))");
-			id_planning_changed.setValue("yes");
-			datum = stringToDateTime(id_techDate.val() + " " + temp_techTime, date_separator);
-			datum = Math.round(datum.getTime()/ 1000);
-			id_technician_date.setDate(datum);
-		}
-		
-	} else {
-		c_debug(dbug.datas, "=> dataValidation: !(isEmpty(techDate_val) && isEmpty(technician_date_val))");
-		id_planning_changed.setValue("no");
+	if (!isEmpty(id_techDate.val())) {
+		datum = stringToDateTime(id_techDate.val() + " " + temp_techTime, date_separator);
+		datum = Math.round(datum.getTime()/ 1000);
+		id_technician_date.setDate(datum);
 	}
-	c_debug(dbug.datas, "=> dataValidation: planning_changed = ", id_planning_changed.getValue());
-
 	if (!isEmpty(id_runDate.val())) {
 		datum = stringToDateTime(id_runDate.val() + " " + temp_techTime, date_separator);
 		datum = Math.round(datum.getTime()/ 1000);
 		id_run_date.setDate(datum);
-    } else {
-		id_run_date.setValue(null);
-    }
+	}
 	if (!isEmpty(id_businessDate.val())) {
 		datum = stringToDateTime(id_businessDate.val() + " " + temp_techTime, date_separator);
 		datum = Math.round(datum.getTime()/ 1000);
 		id_business_date.setDate(datum);
-    } else {
-		id_business_date.setValue(null);
-    }
+	}
 	if (!isEmpty(id_keyReturnDate.val())) {
 		datum = stringToDateTime(id_keyReturnDate.val() + " " + temp_techTime, date_separator);
 		datum = Math.round(datum.getTime()/ 1000);
 		id_key_return_date.setDate(datum);
-	} else {
-		id_key_return_date.setValue(null);
 	}
 
-	checkStates();		// check or uncheck SDMO State options
-	setTimeout(function(){}, 500);
-	var state_value = id_state.getValue();
-	c_debug(dbug.datas, "=> dataValidation: state at END = ", state_value);
-	
-	if (state_value == "sent" || state_value == "planned" || state_value == "accepted" || state_value == "achieved" || state_value == "cancelled") {
-		
+	if (state_value == "sent" || state_value == "work_in_progress" || state_value == "validated") {
+
 		id_wo_number.setValue(id_woNb.val());
 		id_total_amount.setValue(id_totalAmount.val());
 		id_fujitsu_comments.setValue(id_fujitsuComments.val());
-		
+
 		if (!isEmpty(id_deliveryDate.val())) {
 			datum = stringToDateTime(id_deliveryDate.val() + " " + temp_techTime, date_separator);
 			datum = Math.round(datum.getTime()/ 1000);
 			id_delivery_date.setDate(datum);
-		} else {
-            id_delivery_date.setValue(null);
-        }
+		}
 		if (!isEmpty(id_collectDate.val())) {
 			datum = stringToDateTime(id_collectDate.val() + " " + temp_techTime, date_separator);
 			datum = Math.round(datum.getTime()/ 1000);
 			id_collect_date.setDate(datum);
-		} else {
-            id_collect_date.setValue(null);
-        }	
+		}	
 	}
 
 	switch (state_value) {
 		case "sent" :
 			// id_save_draft.setVisible(false);
-            // id_transfer_to_sdmo.setVisible(false);
-            c_debug(dbug.datas, "=> dataValidation: DRAFT & SENT TO FUJITSU buttons should be hidden");
+			// id_transfer_to_sdmo.setVisible(false);
+			// console.log("DRAFT & SENT TO FUJITSU buttons should be hidden");
 			break;
-        case "planned" :
-        case "accepted" :
+		case "work_in_progress" :
 			id_imac_update.setVisible(true);
 			id_sdmo_validation.setVisible(true);
-            id_sdmo_cancellation.setVisible(true);
-            c_debug(dbug.datas, "=> dataValidation: 3 SDMO buttons should be visible");
+			id_sdmo_cancellation.setVisible(true);
+			// console.log("3 SDMO buttons should be visible");
 			break;
-		case "achieved" :
+		case "validated" :
+			id_imac_update.setVisible(false);
+			id_sdmo_validation.setVisible(false);
+			id_sdmo_cancellation.setVisible(false);
+			// console.log("3 SDMO buttons should be hidden");
+			break;
 		case "cancelled" :
 			id_imac_update.setVisible(false);
 			id_sdmo_validation.setVisible(false);
-            id_sdmo_cancellation.setVisible(false);
-            c_debug(dbug.datas, "=> dataValidation: 3 SDMO buttons should be hidden");
+			id_sdmo_cancellation.setVisible(false);
+			// console.log("3 SDMO buttons should be hidden");
 			break;
 		default: 		// state = "draft" or EMPTY
 			id_save_draft.setVisible(true);
-            id_transfer_to_sdmo.setVisible(true);
-            c_debug(dbug.datas, "=> dataValidation: DRAFT & SENT TO FUJITSU buttons should be visible");
+			id_transfer_to_sdmo.setVisible(true);
+			// console.log("DRAFT & SENT TO FUJITSU buttons should be visible");
 			break;		
 	}
+
+	// =========================================================
+	// TO DO: Liste de contrôle des erreurs possibles de saisie
+	// =========================================================
+	var toDoList = '<ul>';
+	// List of input's control
+	if (request.category != "out_of_scope") {
+
+		if (!isEmpty(id_scannerNb.val())) {		// # of cashdesk is known
+
+			if ( id_scannerNb.val() > id_cashdeskNb.val() ) {
+				toDoList += '<li>Nb de scanner > Nb de caisse(s)</li>';
+			}
+			if ( id_handScannerNb.val() > id_cashdeskNb.val() ) {
+				toDoList += '<li>Nb de douchette > Nb de caisse(s)</li>';
+			}
+			if ( id_tpeNb.val() > id_cashdeskNb.val() ) {
+				toDoList += '<li>Nb de TPE(s) > Nb de caisse(s)</li>';
+			}
+			if ( id_tpaNb.val() > id_cashdeskNb.val() ) {
+				toDoList += '<li>Nb de TPA(s) > Nb de caisse(s)</li>';
+			}
+			if ( id_ticketPrinterNb.val() > id_cashdeskNb.val() ) {
+				toDoList += '<li>Nb d\'impr. ticket > Nb de caisse(s)</li>';
+			}
+			if ( id_boPrinterNb.val() > id_cashdeskNb.val() ) {
+				toDoList += '<li>Nb d\'impr. A4 > Nb de caisse(s)</li>';
+			}
+		}
+	}
+	toDoList += '</ul>';
 
 	update_done = true;
 
@@ -935,11 +880,10 @@ function dataValidation()
 // ====================================================================================
 function saveDraft() 
 {
-    RMPApplication.debug("begin saveDraft");
-    c_debug(dbug.process_btn, "=> saveDraft");
+	RMPApplication.debug("begin saveDraft");
+	// console.log("=> saveDraft");
 
 	id_state.setValue("draft");
-	// validate data before continuing the process or saving the form
 	dataValidation();
 
 	RMPApplication.debug("end saveDraft");
@@ -952,8 +896,8 @@ function saveDraft()
 // ====================================================================================
 function sendRequest() 
 {
-    RMPApplication.debug("begin sendRequest");
-    c_debug(dbug.process_btn, "=> sendRequest");
+	RMPApplication.debug("begin sendRequest");
+	// console.log("=> sendRequest");
 
 	var contexte = id_context.getValue();
 	// contexte == "web" for desktop screen; otherwise (for tablet & mobile) warehouse Module is not available as actual data report's presentation is poor with Google tables
@@ -964,19 +908,20 @@ function sendRequest()
 
 	if (missing_info) { 
 
-		var content = ${P_quoted(i18n("error_sendRequest_msg", "L'un des 2 champs doit être rempli <br>- <strong>Date d'intervention souhaitée</strong><br>- <strong>Horaire / Semaine</strong>"))};
+		var content = ${P_quoted(i18n("error_sendRequest_msg", "L'un des 2 champs doit être rempli (Date d'intervention souhaitée OU Semaine approximative d'intervention!"))};
 		dialog_warning(error_title_notify, content, btn_ok);
 		return false;		// not sent to SDMO as mandatory info are not provided
 
 	} else {                       // tablet or mobile
 
 		id_state.setValue("sent");
-		// validate data before continuing the process or saving the form
+		// update IMAC global state
+		imacStateUpdate();
 		dataValidation();
 		return true;		// needed as called by pre-launch script "Envoyer la demande" button
 	}
 
-	// RMPApplication.debug("end sendRequest");
+	RMPApplication.debug("end sendRequest");
 }
 
 // ====================================================================================
@@ -984,22 +929,20 @@ function sendRequest()
 // ====================================================================================
 function retrieveAllDatas() 
 {
-    RMPApplication.debug("begin retrieveAllDatas");
-    c_debug(dbug.datas, "=> retrieveAllDatas");
+	RMPApplication.debug("begin retrieveAllDatas");
+	// console.log("=> retrieveAllDatas");
 
 	// Fill technician & server boxes before retrieving real values
     fillTechnicianBox();
-	fillServerBox();
-	id_planning_changed.setValue("no");
-    var state_value = id_state.getValue();
-    c_debug(dbug.datas, "=> retrieveAllDatas state = ", state_value);
+    fillServerBox();
+	var state_value = id_state.getValue();
+	// console.log("=> retrieveAllDatas: state = ", state_value);
 
 	// set temporary variables for each HTML fields
 	var id_technicianRequest = $("#id_technicianRequest");			// technicianRequest input
 	var id_serverRequest = $("#id_serverRequest");					// serverRequest input
 	var id_distanceCost = $("#id_distanceCost");					// distance: more than 20 kms
 	var id_cashdeskNb = $("#id_cashdeskNb");
-	var id_cashDrawerNb = $("#id_cashDrawerNb");
 	var id_scannerNb = $("#id_scannerNb");
 	var id_handScannerNb = $("#id_handScannerNb");
 	var id_tpeNb = $("#id_tpeNb");
@@ -1020,11 +963,11 @@ function retrieveAllDatas()
 	var id_restrictedAccess = $("#id_restrictedAccess");
 	var datum = "";
 
+
 	// Customer set following values
 	id_technicianRequest.val(id_technician.getSelectedValue());
 	id_serverRequest.val(id_server.getSelectedValue());
 	id_cashdeskNb.val(id_cashdesk_nb.getValue());
-	id_cashDrawerNb.val(id_cash_drawer_nb.getValue());
 	id_scannerNb.val(id_scanner_nb.getValue());
 	id_handScannerNb.val(id_hand_scanner_nb.getValue());
 	id_tpeNb.val(id_tpe_nb.getValue());
@@ -1046,62 +989,49 @@ function retrieveAllDatas()
 	
     var contexte = id_context.getValue();
     // contexte == "web" for desktop screen and datepicker; otherwise (for tablet & mobile) datebox is used as calendar component
-	var date_separator = (contexte == "web") ? "/" :  "-";
+    var date_separator = (contexte == "web") ? "/" :  "-";
 
 	var date_format = "DD" + date_separator + "MM" + date_separator + "YYYY";
 	if (!isEmpty(id_technician_date.getDate())) {
 		datum = moment.unix(id_technician_date.getDate()).format(date_format);
 		id_techDate.val(datum);
-	} else {
-        id_techDate.val("");
-    }
+	}
 	if (!isEmpty(id_run_date.getDate())) {
 		datum = moment.unix(id_run_date.getDate()).format(date_format);
 		id_runDate.val(datum);
-	} else {
-        id_runDate.val("");
-    }
+	}
 	if (!isEmpty(id_business_date.getDate()) ) {
 		datum = moment.unix(id_business_date.getDate()).format(date_format);
 		id_businessDate.val(datum);
-	} else {
-        id_businessDate.val("");
-    }
+	}
 	if (!isEmpty(id_key_return_date.getDate()) ) {
 		datum = moment.unix(id_key_return_date.getDate()).format(date_format);
 		id_keyReturnDate.val(datum);
-	} else {
-        id_keyReturnDate.val("");
-    }
+	}
 	if (!isEmpty(id_delivery_date.getDate())) {
 		datum = moment.unix(id_delivery_date.getDate()).format(date_format);
 		id_deliveryDate.val(datum);
-	} else {
-        id_deliveryDate.val("");
-    }
+	}
 	if (!isEmpty(id_collect_date.getDate())) {
 		datum = moment.unix(id_collect_date.getDate()).format(date_format);
 		id_collectDate.val(datum);
-	} else {
-        id_collectDate.val("");
-    }		
+	}		
 
 	switch (state_value) {
 		case "draft" : 
 			id_save_draft.setVisible(true);			// only active for "Création de l'IMAC"
 			id_transfer_to_sdmo.setVisible(true);	// only active for "Création de l'IMAC"
-            break;
-		case "achieved" : 
+			break;
+		case "validated" : 
 		case "cancelled" : 
 			id_imac_update.setVisible(false);		// only active for "Informations Fujitsu screen"
 			id_sdmo_validation.setVisible(false);	// only active for "Informations Fujitsu screen"
 			id_sdmo_cancellation.setVisible(false);	// only active for "Informations Fujitsu screen"
 			break;
-        default :
-			checkStates();
+		default :
 			id_imac_update.setVisible(true);		// only active for "Informations Fujitsu screen"
 			id_sdmo_validation.setVisible(true);	// only active for "Informations Fujitsu screen"
-            id_sdmo_cancellation.setVisible(true);	// only active for "Informations Fujitsu screen"
+			id_sdmo_cancellation.setVisible(true);	// only active for "Informations Fujitsu screen"
 			break;
 	}
 
@@ -1114,15 +1044,14 @@ function retrieveAllDatas()
 function sdmoValidation() 
 {
 	RMPApplication.debug("begin sdmoValidation");
-    var state_value = id_state.getValue();
-    c_debug(dbug.datas, "=> sdmoValidation: state at START = ", state_value);
+	var state_value = id_state.getValue();
+	// console.log("=> sdmoValidation: state = ", state_value);
 
 	// set temporary variables for each HTML fields
 	var id_technicianRequest = $("#id_technicianRequest");
 	var id_serverRequest = $("#id_serverRequest");
 	var distanceCost = (id_distance_cost.getSelectedValue() == "yes") ? "yes" : "no";			// distance: more than 20 kms
 	var id_cashdeskNb = $("#id_cashdeskNb");
-	var id_cashDrawerNb = $("#id_cashDrawerNb");
 	var id_scannerNb = $("#id_scannerNb");
 	var id_handScannerNb = $("#id_handScannerNb");
 	var id_tpeNb = $("#id_tpeNb");
@@ -1154,7 +1083,6 @@ function sdmoValidation()
 	var id_serv = (isEmpty(id_serverRequest.val())) ? "no" : id_serverRequest.val();
 	id_server.setSelectedValue(id_serv);
 	id_cashdesk_nb.setValue(id_cashdeskNb.val());
-	id_cash_drawer_nb.setValue(id_cashDrawerNb.val());
 	id_scanner_nb.setValue(id_scannerNb.val());
 	id_hand_scanner_nb.setValue(id_handScannerNb.val());
 	id_tpe_nb.setValue(id_tpeNb.val());
@@ -1170,87 +1098,76 @@ function sdmoValidation()
     // contexte == "web" for desktop screen and datepicker; otherwise (for tablet & mobile) datebox is used as calendar component
     var date_separator = (contexte == "web") ? "/" :  "-";
     var temp_techTime = "10:00";
-	var date_format = "DD" + date_separator + "MM" + date_separator + "YYYY";
 
-	var techDate_val = id_techDate.val();
-	var technician_date_val = moment.unix(id_technician_date.getDate()).format(date_format);
-	
-	// Planned technician date has changed or not ?
-	if (isEmpty(techDate_val) && isEmpty(technician_date_val)) {
-		// No Technicien Intervention Date was filled
-		c_debug(dbug.datas, "=> sdmoValidation: isEmpty(techDate_val) && isEmpty(technician_date_val)");
-		id_planning_changed.setValue("no");
-		id_technician_date.setValue(null);
-		RMPApplication.set("technician_date_l", "");
-
-	} else if (techDate_val != technician_date_val) {		// HTML and RMP Technician Intervention Date are different
-
-		if (isEmpty(techDate_val)) {	// If no HTML Tech Inter Date, then we reset RMP tech Inter Date
-			c_debug(dbug.datas, "=> sdmoValidation: (techDate_val != technician_date_val) && isEmpty(techDate_val)");
-			id_planning_changed.setValue("no");
-			id_technician_date.setValue(null);
-			RMPApplication.set("technician_date_l", "");
-
-		} else {		// If HTML Tech Inter Date is changed, then we synchronize RMP tech Inter Date
-			c_debug(dbug.datas, "=> sdmoValidation: (techDate_val != technician_date_val) && !(isEmpty(techDate_val))");
-			id_planning_changed.setValue("yes");		// Planning date has also changed
-			datum = stringToDateTime(id_techDate.val() + " " + temp_techTime, date_separator);
-			datum = Math.round(datum.getTime()/ 1000);
-			id_technician_date.setDate(datum);
-		}
-
-	} else {
-		c_debug(dbug.datas, "=> sdmoValidation: !(isEmpty(techDate_val) && isEmpty(technician_date_val))");
-		id_planning_changed.setValue("no");
+	if (!isEmpty(id_techDate.val())) {
+		datum = stringToDateTime(id_techDate.val() + " " + temp_techTime, date_separator);
+		datum = Math.round(datum.getTime()/ 1000);
+		id_technician_date.setDate(datum);
 	}
-	c_debug(dbug.datas, "=> sdmoValidation: planning_changed = ", id_planning_changed.getValue());
-
-	// Synchronize other RMP Date Fields
 	if (!isEmpty(id_runDate.val())) {
 		datum = stringToDateTime(id_runDate.val() + " " + temp_techTime, date_separator);
 		datum = Math.round(datum.getTime()/ 1000);
 		id_run_date.setDate(datum);
-	} else {
-        id_run_date.setValue(null);
-    }
+	}
 	if (!isEmpty(id_businessDate.val())) {
 		datum = stringToDateTime(id_businessDate.val() + " " + temp_techTime, date_separator);
 		datum = Math.round(datum.getTime()/ 1000);
 		id_business_date.setDate(datum);
-	} else {
-        id_business_date.setValue(null);
-    }
+	}
 	if (!isEmpty(id_keyReturnDate.val())) {
 		datum = stringToDateTime(id_keyReturnDate.val() + " " + temp_techTime, date_separator);
 		datum = Math.round(datum.getTime()/ 1000);
 		id_key_return_date.setDate(datum);
-	} else {
-        id_key_return_date.setValue(null);
-    }
+	}
 	if (!isEmpty(id_deliveryDate.val())) {
 		datum = stringToDateTime(id_deliveryDate.val() + " " + temp_techTime, date_separator);
 		datum = Math.round(datum.getTime()/ 1000);
 		id_delivery_date.setDate(datum);
-	} else {
-        id_delivery_date.setValue(null);
-    }
+	}
 	if (!isEmpty(id_collectDate.val())) {
 		datum = stringToDateTime(id_collectDate.val() + " " + temp_techTime, date_separator);
 		datum = Math.round(datum.getTime()/ 1000);
 		id_collect_date.setDate(datum);
-	} else {
-        id_collect_date.setValue(null);
-    }
+	}
 
-	// checkStates();		// check or uncheck SDMO State options
-	// setTimeout(function(){}, 1000);
-	// var state_value = id_state.getValue();
-	var state_value = checkStates();		// check or uncheck SDMO State options
-	c_debug(dbug.datas, "=> sdmoValidation: state at END = ", state_value);
+	// =========================================================
+	// TO DO: Liste de contrôle des erreurs possibles de saisie
+	// =========================================================
+	var toDoList = '<ul>';
+	// List of input's control
+	if (request.category != "out_of_scope") {
+
+		if (!isEmpty(id_scannerNb.val())) {		// # of cashdesk is known
+
+			if ( id_scannerNb.val() > id_cashdeskNb.val() ) {
+				toDoList += '<li>Nb de scanner > Nb de caisse(s)</li>';
+			}
+			if ( id_handScannerNb.val() > id_cashdeskNb.val() ) {
+				toDoList += '<li>Nb de douchette > Nb de caisse(s)</li>';
+			}
+			if ( id_tpeNb.val() > id_cashdeskNb.val() ) {
+				toDoList += '<li>Nb de TPE(s) > Nb de caisse(s)</li>';
+			}
+			if ( id_tpaNb.val() > id_cashdeskNb.val() ) {
+				toDoList += '<li>Nb de TPA(s) > Nb de caisse(s)</li>';
+			}
+			if ( id_ticketPrinterNb.val() > id_cashdeskNb.val() ) {
+				toDoList += '<li>Nb d\'impr. ticket > Nb de caisse(s)</li>';
+			}
+			if ( id_boPrinterNb.val() > id_cashdeskNb.val() ) {
+				toDoList += '<li>Nb d\'impr. A4 > Nb de caisse(s)</li>';
+			}
+		}
+	}
+	toDoList += '</ul>';
 
 	switch (state_value) {
-		case "achieved" :		
+		case "validated" :		
 		case "cancelled" :
+			if (id_imac_update.isEnabled()) {
+				// Update last informations related to present IMAC
+				RMPApplication.save(updateImac, updateImacFail);
+			}
 			id_imac_update.setVisible(false);
 			id_sdmo_validation.setVisible(false);
 			id_sdmo_cancellation.setVisible(false);
@@ -1261,47 +1178,42 @@ function sdmoValidation()
 			id_sdmo_cancellation.setVisible(true);
 			break;
 	}
-
 	update_done = true;
 
 	RMPApplication.debug("end sdmoValidation");
 }
 
 // ====================================================================================
-//   IMAC closure by Fujitsu SDMO
+//   IMAC request validation by Fujitsu SDMO
 // ====================================================================================
-function woCloseIMAC() 
+function woCreationValidate() 
 {
-	RMPApplication.debug("begin woCloseIMAC");
+	RMPApplication.debug("begin woCreationValidate");
+	var id_woNb = $("#id_woNb");
+	// console.log("=> woCreationValidate: id_woNb = ", id_woNb.val());
 	update_done = false;
-	processing = true;
-	c_debug(dbug.process_btn, "=> woCloseIMAC: var [update_done = false] and  [processing = true]");
-    var id_woNb = $("#id_woNb");
-    var id_techDate = $("#id_techDate");
-	c_debug(dbug.process_btn, "=> woCloseIMAC: id_woNb = ", id_woNb.val());
 
-
-	if (isEmpty(id_woNb.val()) || isEmpty(id_techDate.val())) {
-		var title = ${P_quoted(i18n("error_woCloseIMAC_title", "Erreur"))};
-        var content = ${P_quoted(i18n("error_woCloseIMAC_msg", "Mise à jour impossible !<br>L'un des 2 champs suivants n'est pas renseigné :<br>- <strong>N° de Work Order</strong><br>- <strong>Date d'intervention</strong>"))};
+	if (isEmpty(id_woNb.val())) {
+		var title = ${P_quoted(i18n("error_woCreationValidate_title", "Erreur"))};
+        var content = ${P_quoted(i18n("error_woCreationValidate_msg", "Validation impossible tant que le n° de Work Order n'est pas renseigné!"))};
         dialog_warning(title, content, btn_ok);
-        return false;
-        
+		return false;
 	} else {
-		// id_state.setValue("achieved");
+		id_state.setValue("validated");
 		id_imac_achieved.setChecked(true);
-
 		// update IMAC global state
 		updateImacBeforeEnd();
 
-		while (update_done == false || processing == true) {
+		RMPApplication.debug("end woCreationValidate");
+
+		// console.log("=> woCreationValidate: before returning TRUE");
+		while (update_done == false) {
 			// wait until flag update_done is setted to true
 		}
-		c_debug(dbug.process_btn, "=> woCloseIMAC: before returning TRUE");
-		RMPApplication.debug("end woCloseIMAC");
 		return true;		// needed as called by pre-launch script "Envoyer la demande" button
 	}
 }
+
 
 // ====================================================================================
 //   IMAC cancellation by Fujitsu SDMO
@@ -1309,31 +1221,30 @@ function woCloseIMAC()
 function woImacCancel() 
 {
 	RMPApplication.debug("begin woImacCancel");
+	// console.log("=> woImacCancel");
 	update_done = false;
-	processing = true;
-    c_debug(dbug.process_btn, "=> woImacCancel: var [update_done = false] and  [processing = true]");
 
 	if (isEmpty(id_cancellation_reason.getValue())) {
 		var title = ${P_quoted(i18n("error_woImacCancel_title", "Erreur"))};
-        var content = ${P_quoted(i18n("error_woImacCancel_msg", "En cas d'<strong>annulation d'un IMAC</strong>, la raison doit être indiquée dans le champ prévu à cet effet !"))};
+        var content = ${P_quoted(i18n("error_woImacCancel_msg", "En cas d'annulation d'un IMAC, la raison doit être indiquée dans le champ prévu à cet effet!"))};
         dialog_warning(title, content, btn_ok);
-        return false;
-        
+		return false;
 	} else {
 		var id_fujitsuComments = $("#id_fujitsuComments");
 		var new_fuji_comments = (isEmpty(id_fujitsu_comments.getValue()) ? "" : id_fujitsu_comments.getValue() + "\n-------------------\n" ) + "- Raison annulation: " + id_cancellation_reason.getValue();
 		id_fujitsu_comments.setValue(new_fuji_comments);
 		id_fujitsuComments.val(new_fuji_comments);
+		id_state.setValue("cancelled");
 		id_imac_cancelled.setChecked(true);
-		
 		// update IMAC global state
 		updateImacBeforeEnd();
 
-		while (update_done == false && processing == true) {
-			// wait until flag update_done is setted to true
-		}
-		c_debug(dbug.process_btn, "=> woImacCancel: before returning TRUE");
 		RMPApplication.debug("end woImacCancel");
+
+		// console.log("=> woImacCancel: before returning TRUE");
+		while (update_done == false) {
+				// wait until flag update_done is setted to true
+			}
 		return true;		// needed as called by pre-launch script "Annuler l'IMAC" button
 	}
 }
@@ -1344,23 +1255,21 @@ function woImacCancel()
 function updateImac() 
 {
 	RMPApplication.debug("begin updateImac");
+	// console.log("=> updateImac");
 	update_done = false;
-	processing = true;	
-    c_debug(dbug.process_btn, "=> updateImac: var [update_done = false] and  [processing = true]");
 
-	// validate data before continuing the process or saving the form
-	// sdmoValidation();
-
+	id_state.setValue("work_in_progress");
 	// update IMAC global state
-	updateImacBeforeEnd();
+	imacStateUpdate();
+	dataValidation();
 
-	while (update_done == false || processing == true) {
+	RMPApplication.debug("end updateImac");
+	
+	// console.log("=> updateImac: before returning TRUE");
+	while (update_done == false) {
 		// wait until flag update_done is setted to true
 	}
-	c_debug(dbug.process_btn, "=> updateImac: before returning TRUE");
-	RMPApplication.debug("end updateImac");
-	return true;		// needed as called by pre-launch script "Mettre à jour l'IMAC" button	
-	
+	return true;		// needed as called by pre-launch script "Mettre à jour l'IMAC" button
 }
 
 // ====================================================================================
@@ -1368,22 +1277,37 @@ function updateImac()
 // ====================================================================================
 function updateImacBeforeEnd() 
 {
-    RMPApplication.debug("begin updateImacBeforeEnd");
-    c_debug(dbug.process_btn, "=> updateImacBeforeEnd");
+	RMPApplication.debug("begin updateImacBeforeEnd");
+	// console.log("=> updateImacBeforeEnd");
 
-	// validate data before continuing the process or saving the form
+	// update IMAC global state
+	imacStateUpdate();
 	sdmoValidation();
 
 	RMPApplication.debug("end updateImacBeforeEnd");
 }
 
 // ====================================================================================
+//   Update IMAC failure
+// ====================================================================================
+function updateImacFail() 
+{
+	RMPApplication.debug("begin updateImacFail");
+	// console.log("=> updateImacFail");
+	
+	RMPApplication.debug("end updateImacFail");
+	
+	// console.log("=> updateImac: before returning TRUE");
+	return false;		// needed as called by pre-launch script "Mettre à jour l'IMAC" button
+}
+
+// ====================================================================================
 //   IMAC state update by SDMO => state column report is filled with this info
 // ====================================================================================
-function imacContentStateUpdate() 
+function imacStateUpdate() 
 {
-    RMPApplication.debug("begin imacContentStateUpdate");
-    c_debug(dbug.process_btn, "=> BEGIN imacContentStateUpdate");
+	RMPApplication.debug("begin ImacStateUpdate");
+	// console.log("=> ImacStateUpdate");
 
 	var sent_state = ${P_quoted(i18n("sent_state", "Transmise"))};
 	var accepted_state = ${P_quoted(i18n("accepted_state", "Acceptée"))};
@@ -1406,21 +1330,27 @@ function imacContentStateUpdate()
 		state_content += ((state_content == "") ? "" : separator) + states.sent;
 	}
 	if (id_imac_accepted.isChecked()) {
+		// state_content += ((state_content == "") ? "" : separator) + "<span style=\'background-color: red; color: white;\'>" + states.accepted + "</span>";
 		state_content += ((state_content == "") ? "" : separator) + states.accepted;
 	}
 	if (id_inter_planned.isChecked()) {
+		// state_content += ((state_content == "") ? "" : separator) + "<span style=\'background-color: yellow; color: black;\'>" + states.planned + "</span>";
 		state_content += ((state_content == "") ? "" : separator) + states.planned;
 	}
+	if (id_order_requested.isChecked()) {	// Customer is not aware of this info
+		// state_content += ((state_content == "") ? "" : separator) + "<span style='background-color: orange; color: white;'>" + states.ordered + "</span>";
+		// state_content += ((state_content == "") ? "" : separator) + states.ordered;
+	}
 	if (id_imac_achieved.isChecked()) {
+		// state_content = "<span style='background-color: green; color: white;'>" + states.achieved + "</span>";
 		state_content = states.achieved;		// previous actions are cleared
 	}
 	if (id_imac_cancelled.isChecked()) {
+		// state_content+= "<span stype='background-color: blue; color: white;'>" + states.cancelled + "</span>";
 		state_content = states.cancelled;		// previous actions are cleared
 	}
 
 	id_fujitsu_state.setValue(state_content);
-	processing = false;
-	c_debug(dbug.process_btn, "=> imacContentStateUpdate: var [processing] set to [false]");
 
-	RMPApplication.debug("end imacContentStateUpdate");
+	RMPApplication.debug("end ImacStateUpdate");
 }

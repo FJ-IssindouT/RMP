@@ -799,7 +799,7 @@ function load_category_ko(error)
     RMPApplication.debug ("begin load_category_ko : error = " + JSON.stringify(error));
     c_debug(dbug.item, "=> load_category_ko: error = ", error);
     var error_msg = ${P_quoted(i18n("load_category_error_msg", "Chargement impossible de la catégorie !"))};
-    notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify);   
+    notify_error(error_title_notify, error_msg + ' ' + error_thanks_notify);
     RMPApplication.debug ("end load_category_ko");    
 }
 
